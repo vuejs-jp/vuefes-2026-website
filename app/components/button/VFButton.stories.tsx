@@ -24,7 +24,7 @@ const Template: StoryFn<{
   type: "button" | "submit" | "reset";
   outlined: boolean;
   icon: boolean;
-}> = args => ({
+}> = (args) => ({
   name: "VFButton",
   setup: () => () => (
     <VFButton {...args} onClick={() => console.log("clicked")}>
@@ -41,17 +41,8 @@ Outlined.args = { outlined: true };
 export const Icon: StoryFn<{ icon: boolean }> = () => ({
   name: "VFButton",
   setup: () => () => (
-    <VFButton
-      icon
-      onClick={() => console.log("clicked")}
-      style={{ width: "70px", height: "70px" }}
-    >
-      <img
-        src="/images/icons/ic_github.svg"
-        alt="GitHub icon"
-        width="48px"
-        height="48px"
-      />
+    <VFButton icon onClick={() => console.log("clicked")} style={{ width: "70px", height: "70px" }}>
+      <img src="/images/icons/ic_github.svg" alt="GitHub icon" width="48px" height="48px" />
     </VFButton>
   ),
 });

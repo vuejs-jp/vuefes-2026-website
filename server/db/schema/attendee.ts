@@ -2,7 +2,10 @@ import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 import { users } from "./auth";
 
 export const attendees = sqliteTable("attendee", {
-  userId: text("user_id").primaryKey().references(() => users.id, { onDelete: "cascade" }).notNull(),
+  userId: text("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
   email: text("email").notNull(),
   avatarUrl: text("avatar_url"),
   imageFileName: text("image_file_name"),
@@ -16,7 +19,11 @@ export const attendees = sqliteTable("attendee", {
   receiptId: text("receipt_id"),
 
   activatedAt: integer("activated_at", { mode: "timestamp" }),
-  createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp" })
+    .notNull()
+    .$defaultFn(() => new Date()),
   canceledAt: integer("canceled_at", { mode: "timestamp" }),
 });

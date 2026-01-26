@@ -40,18 +40,22 @@ defineOgImage({
 });
 
 useSeoMeta({
-  title: () => nameBadgeData.value?.role === "Sponsor"
-    ? t("nameBadge.pageTitleSponsor", { sponsorName: nameBadgeData.value?.name })
-    : t("nameBadge.pageTitle", { username: nameBadgeData.value?.name }),
-  ogTitle: () => nameBadgeData.value?.role === "Sponsor"
-    ? t("nameBadge.pageTitleSponsor", { sponsorName: nameBadgeData.value?.name })
-    : t("nameBadge.pageTitle", { username: nameBadgeData.value?.name }),
+  title: () =>
+    nameBadgeData.value?.role === "Sponsor"
+      ? t("nameBadge.pageTitleSponsor", { sponsorName: nameBadgeData.value?.name })
+      : t("nameBadge.pageTitle", { username: nameBadgeData.value?.name }),
+  ogTitle: () =>
+    nameBadgeData.value?.role === "Sponsor"
+      ? t("nameBadge.pageTitleSponsor", { sponsorName: nameBadgeData.value?.name })
+      : t("nameBadge.pageTitle", { username: nameBadgeData.value?.name }),
   description: () => t("nameBadge.pageDescription"),
   ogDescription: () => t("nameBadge.pageDescription"),
 });
 
 function handleClickXIcon() {
-  const shareUrl = window.location.href.endsWith("/") ? window.location.href : `${window.location.href}/`;
+  const shareUrl = window.location.href.endsWith("/")
+    ? window.location.href
+    : `${window.location.href}/`;
   const shareText = t("nameBadge.shareText", { link: shareUrl });
   const url = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
   const _ = window.open(url, "_blank") ?? navigateTo(url, { external: true });
@@ -91,15 +95,15 @@ function copyUrl() {
           v-bind="
             bp === 'mobile'
               ? {
-                width: '100%',
-                height: '284px',
-                aspectRatio: '200 / 284',
-              }
+                  width: '100%',
+                  height: '284px',
+                  aspectRatio: '200 / 284',
+                }
               : {
-                width: '100%',
-                height: '360px',
-                aspectRatio: '253.52 / 360',
-              }
+                  width: '100%',
+                  height: '360px',
+                  aspectRatio: '253.52 / 360',
+                }
           "
         />
       </div>
@@ -110,7 +114,8 @@ function copyUrl() {
       >
         <p class="name-badge-status">
           <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-          {{ t("nameBadge.status.label") }} : {{ nameBadgeData ? t(`nameBadge.status.created`) : t(`nameBadge.status.notCreated`) }}
+          {{ t("nameBadge.status.label") }} :
+          {{ nameBadgeData ? t(`nameBadge.status.created`) : t(`nameBadge.status.notCreated`) }}
         </p>
 
         <VFButton

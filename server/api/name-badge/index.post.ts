@@ -12,9 +12,8 @@ import {
   createError,
   // useRuntimeConfig,
 } from "#imports";
-import {
-// usePeatixApi,
-} from "~~/server/peatix-api/usePeatixApi";
+import {} from // usePeatixApi,
+"~~/server/peatix-api/usePeatixApi";
 
 const sizeInMB = (sizeInBytes: number, decimalsNum = 2) => {
   const result = sizeInBytes / (1024 * 1024);
@@ -26,7 +25,7 @@ const schema = v.object({
   salesId: v.pipe(v.string(), v.minLength(1)),
   avatarImageBlob: v.pipe(
     v.custom<File>((input: unknown) => input instanceof File),
-    v.check(file => sizeInMB(file.size) <= 5, "File size must be 5MB or less"),
+    v.check((file) => sizeInMB(file.size) <= 5, "File size must be 5MB or less"),
   ),
   avatarImageName: v.string(),
 });
@@ -78,7 +77,11 @@ export default defineEventHandler(async (event) => {
 
   try {
     // image registration
-    const maybeRegistered = await db.select().from(attendees).where(eq(attendees.userId, session.userId)).get();
+    const maybeRegistered = await db
+      .select()
+      .from(attendees)
+      .where(eq(attendees.userId, session.userId))
+      .get();
 
     const objectName = `${randomUUID()}-${validatedBody.output.avatarImageName}`;
 
@@ -98,7 +101,8 @@ export default defineEventHandler(async (event) => {
         Key: new URL(maybeRegistered.avatarUrl).pathname.split("/").pop()!,
       });
       // NOTE: asynchronously delete old image
-      S3.send(deleteCommand).catch();
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      S3.send(deleteCommand).catch(() => {});
     }
 
     const command = new PutObjectCommand({
@@ -112,7 +116,9 @@ export default defineEventHandler(async (event) => {
       // all upsert
       const data = {
         email: session.user.email,
-        avatarUrl: encodeURI(`${r2Endpoint}/${process.env.CLOUDFLARE_R2_BUCKET_NAME}/${objectName}`),
+        avatarUrl: encodeURI(
+          `${r2Endpoint}/${process.env.CLOUDFLARE_R2_BUCKET_NAME}/${objectName}`,
+        ),
         imageFileName: validatedBody.output.avatarImageName,
         displayName: validatedBody.output.name,
         receiptId: validatedBody.output.salesId,

@@ -55,8 +55,10 @@ const SectionId = {
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 
-const panelSpeakers = computed(() => locale.value === "en" ? enPanelSpeakers : jaPanelSpeakers);
-const studentSupportSpeakers = computed(() => locale.value === "en" ? enStudentSupportSpeakers : jaStudentSupportSpeakers);
+const panelSpeakers = computed(() => (locale.value === "en" ? enPanelSpeakers : jaPanelSpeakers));
+const studentSupportSpeakers = computed(() =>
+  locale.value === "en" ? enStudentSupportSpeakers : jaStudentSupportSpeakers,
+);
 
 const quizImageList = [
   { src: "/images/event/quiz_1.jpg", alt: t("event.quiz.image.alt1") },
@@ -83,47 +85,64 @@ defineOgImage({
       : `${runtimeConfig.public.siteUrl}images/og/event.png`,
 });
 useSeoMeta({
-  title: route.query.section === SectionId.PanelDiscussion
-    ? t("event.panel.talkTitle")
-    : t("event.title"),
+  title:
+    route.query.section === SectionId.PanelDiscussion
+      ? t("event.panel.talkTitle")
+      : t("event.title"),
   ogTitle:
     route.query.section === SectionId.PanelDiscussion
       ? t("event.panel.talkTitle")
       : t("event.title"),
-  description: route.query.section === SectionId.PanelDiscussion
-    ? t("event.panel.talkDescription")
-    : undefined,
-  ogDescription: route.query.section === SectionId.PanelDiscussion
-    ? t("event.panel.talkDescription")
-    : undefined,
+  description:
+    route.query.section === SectionId.PanelDiscussion
+      ? t("event.panel.talkDescription")
+      : undefined,
+  ogDescription:
+    route.query.section === SectionId.PanelDiscussion
+      ? t("event.panel.talkDescription")
+      : undefined,
 });
 </script>
 
 <template>
   <div id="pages-event">
-    <h1>{{ $t('event.title') }}</h1>
-    <VFSection :id="SectionId.PanelDiscussion" :title="t('event.panel.title')" class="vf-section discussion-event">
+    <h1>{{ $t("event.title") }}</h1>
+    <VFSection
+      :id="SectionId.PanelDiscussion"
+      :title="t('event.panel.title')"
+      class="vf-section discussion-event"
+    >
       <component :is="locale === 'ja' ? JaPanelDiscussionEvent : EnPanelDiscussionEvent">
         <template #speaker>
           <ul class="speaker-list">
-            <EventSpeakerCard v-for="speaker in panelSpeakers" :key="speaker.name" :speaker="speaker" />
+            <EventSpeakerCard
+              v-for="speaker in panelSpeakers"
+              :key="speaker.name"
+              :speaker="speaker"
+            />
           </ul>
         </template>
       </component>
       <div class="meta">
-        <span class="location"> {{ t('event.panel.location') }}</span>
-        <span class="time">{{ t('event.panel.time') }}</span>
+        <span class="location"> {{ t("event.panel.location") }}</span>
+        <span class="time">{{ t("event.panel.time") }}</span>
       </div>
     </VFSection>
 
     <VFSection :id="SectionId.VueQuiz" :title="t('event.quiz.title')" class="vf-section">
       <component :is="locale === 'ja' ? JaVueQuiz : EnVueQuiz" />
       <div class="meta">
-        <span class="location"> {{ t('event.quiz.location') }}</span>
-        <span class="time">{{ t('event.quiz.time') }}</span>
+        <span class="location"> {{ t("event.quiz.location") }}</span>
+        <span class="time">{{ t("event.quiz.time") }}</span>
       </div>
       <div class="image-list">
-        <img v-for="(item, index) in quizImageList" :key="index" :src="item.src" :alt="item.alt" loading="lazy" />
+        <img
+          v-for="(item, index) in quizImageList"
+          :key="index"
+          :src="item.src"
+          :alt="item.alt"
+          loading="lazy"
+        />
       </div>
     </VFSection>
 
@@ -132,97 +151,132 @@ useSeoMeta({
         <template #images>
           <div class="image-list">
             <img
-              v-for="(item, index) in handsOnImageList" :key="index" :src="item.src" :alt="item.alt"
+              v-for="(item, index) in handsOnImageList"
+              :key="index"
+              :src="item.src"
+              :alt="item.alt"
               loading="lazy"
             />
           </div>
         </template>
       </component>
       <div class="meta">
-        <span class="location"> {{ t('event.handsOn.location') }}</span>
-        <span class="time">{{ t('event.handsOn.time') }}</span>
+        <span class="location"> {{ t("event.handsOn.location") }}</span>
+        <span class="time">{{ t("event.handsOn.time") }}</span>
       </div>
     </VFSection>
 
-    <VFSection :id="SectionId.StudentSupportContents" :title="t('event.studentSupport.title')" class="vf-section student-support-event">
+    <VFSection
+      :id="SectionId.StudentSupportContents"
+      :title="t('event.studentSupport.title')"
+      class="vf-section student-support-event"
+    >
       <component :is="locale === 'ja' ? JaStudentSupportEvent : EnStudentSupportEvent">
         <template #speaker>
           <ul class="speaker-list">
-            <EventSpeakerCard v-for="speaker in studentSupportSpeakers" :key="speaker.name" :speaker="speaker" />
+            <EventSpeakerCard
+              v-for="speaker in studentSupportSpeakers"
+              :key="speaker.name"
+              :speaker="speaker"
+            />
           </ul>
         </template>
       </component>
       <div class="meta">
-        <span class="location"> {{ t('event.studentSupport.location') }}</span>
-        <span class="time">{{ t('event.studentSupport.time') }}</span>
+        <span class="location"> {{ t("event.studentSupport.location") }}</span>
+        <span class="time">{{ t("event.studentSupport.time") }}</span>
       </div>
     </VFSection>
 
-    <VFSection :id="SectionId.CreativeWall" :title="t('event.creativeWall.title')" class="vf-section">
+    <VFSection
+      :id="SectionId.CreativeWall"
+      :title="t('event.creativeWall.title')"
+      class="vf-section"
+    >
       <div class="meta">
-        <span class="location"> {{ t('event.creativeWall.location') }}</span>
+        <span class="location"> {{ t("event.creativeWall.location") }}</span>
       </div>
       <div class="media-block">
-        <img src="/images/event/creative-wall.jpg" :alt="t('event.creativeWall.alt')" loading="lazy" />
-        <p>{{ t('event.creativeWall.description') }}</p>
+        <img
+          src="/images/event/creative-wall.jpg"
+          :alt="t('event.creativeWall.alt')"
+          loading="lazy"
+        />
+        <p>{{ t("event.creativeWall.description") }}</p>
       </div>
     </VFSection>
 
-    <VFSection :id="SectionId.SponsorStickerRally" :title="t('event.sponsorBooth.title')" class="vf-section">
+    <VFSection
+      :id="SectionId.SponsorStickerRally"
+      :title="t('event.sponsorBooth.title')"
+      class="vf-section"
+    >
       <div class="meta">
-        <span class="location"> {{ t('event.sponsorBooth.location') }}</span>
+        <span class="location"> {{ t("event.sponsorBooth.location") }}</span>
       </div>
       <div class="media-block">
-        <img src="/images/event/sponsor-booth.jpg" :alt="t('event.sponsorBooth.alt')" loading="lazy" />
-        <p>{{ t('event.sponsorBooth.description') }}</p>
+        <img
+          src="/images/event/sponsor-booth.jpg"
+          :alt="t('event.sponsorBooth.alt')"
+          loading="lazy"
+        />
+        <p>{{ t("event.sponsorBooth.description") }}</p>
       </div>
     </VFSection>
 
     <VFSection :id="SectionId.FreeDrinks" :title="t('event.freeDrink.title')" class="vf-section">
       <div class="meta">
-        <span class="location"> {{ t('event.freeDrink.location') }}</span>
+        <span class="location"> {{ t("event.freeDrink.location") }}</span>
       </div>
       <div class="media-block">
         <img src="/images/event/free-drink.jpg" :alt="t('event.freeDrink.alt')" loading="lazy" />
-        <p>{{ t('event.freeDrink.description') }}</p>
+        <p>{{ t("event.freeDrink.description") }}</p>
       </div>
     </VFSection>
 
     <VFSection :id="SectionId.Festival" :title="t('event.festival.title')" class="vf-section">
       <div class="meta">
-        <span class="location"> {{ t('event.festival.location') }}</span>
+        <span class="location"> {{ t("event.festival.location") }}</span>
       </div>
       <div class="media-block">
-        <img src="/images/event/festival-corner.jpg" :alt="t('event.festival.alt')" loading="lazy" />
-        <p>{{ t('event.festival.description') }}</p>
+        <img
+          src="/images/event/festival-corner.jpg"
+          :alt="t('event.festival.alt')"
+          loading="lazy"
+        />
+        <p>{{ t("event.festival.description") }}</p>
       </div>
     </VFSection>
 
     <VFSection :id="SectionId.TattooSpace" :title="t('event.tattoo.title')" class="vf-section">
       <div class="meta">
-        <span class="location"> {{ t('event.tattoo.location') }}</span>
+        <span class="location"> {{ t("event.tattoo.location") }}</span>
       </div>
       <div class="media-block">
         <img src="/images/event/tattoo-space.jpg" :alt="t('event.tattoo.alt')" loading="lazy" />
-        <p>{{ t('event.tattoo.description') }}</p>
+        <p>{{ t("event.tattoo.description") }}</p>
       </div>
     </VFSection>
 
     <VFSection :id="SectionId.CocktailBash" :title="t('event.cocktail.title')" class="vf-section">
       <div class="meta">
-        <span class="location"> {{ t('event.cocktail.location') }}</span>
+        <span class="location"> {{ t("event.cocktail.location") }}</span>
       </div>
       <div class="media-block">
-        <img src="/images/event/vue-cocktail-bash.jpg" :alt="t('event.cocktail.alt')" loading="lazy" />
-        <p>{{ t('event.cocktail.description') }}</p>
+        <img
+          src="/images/event/vue-cocktail-bash.jpg"
+          :alt="t('event.cocktail.alt')"
+          loading="lazy"
+        />
+        <p>{{ t("event.cocktail.description") }}</p>
       </div>
-      <hr class="divider">
+      <hr class="divider" />
       <div class="note">
         <p>
-          {{ t('event.cocktail.attention1') }}
+          {{ t("event.cocktail.attention1") }}
         </p>
         <p>
-          {{ t('event.cocktail.attention2') }}
+          {{ t("event.cocktail.attention2") }}
         </p>
       </div>
     </VFSection>

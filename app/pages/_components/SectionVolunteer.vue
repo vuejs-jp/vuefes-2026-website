@@ -13,9 +13,10 @@ const { locale, t } = useI18n();
     :id="HOME_HEADING_ID.volunteer"
     :title="t('volunteer.title')"
     :cover-image="{
-      src: bp === 'pc'
-        ? withBase('/images/top/cover/volunteer-pc.svg')
-        : withBase('/images/top/cover/volunteer-sp.svg'),
+      src:
+        bp === 'pc'
+          ? withBase('/images/top/cover/volunteer-pc.svg')
+          : withBase('/images/top/cover/volunteer-sp.svg'),
       alt: t('volunteer.coverImageAlt'),
     }"
   >

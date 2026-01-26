@@ -26,16 +26,14 @@ const localeRoute = useLocaleRoute();
       gap,
     }"
   >
-    <div
-      v-for="sponsor in sponsors"
-      :key="sponsor.id"
-      class="sponsor-grid-item"
-    >
+    <div v-for="sponsor in sponsors" :key="sponsor.id" class="sponsor-grid-item">
       <NuxtLink
-        :to="localeRoute({
-          name: 'sponsors-sponsorId',
-          params: { sponsorId: sponsor.id },
-        })"
+        :to="
+          localeRoute({
+            name: 'sponsors-sponsorId',
+            params: { sponsorId: sponsor.id },
+          })
+        "
         class="to-sponsor"
       >
         <slot :item="sponsor">
@@ -62,7 +60,7 @@ const localeRoute = useLocaleRoute();
   flex-direction: column;
   gap: 1rem;
 }
-.sponsor-name{
+.sponsor-name {
   margin: 0;
   font-size: 0.875rem;
 }

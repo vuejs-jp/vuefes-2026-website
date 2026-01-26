@@ -12,7 +12,10 @@ const planName = computed(() => {
 });
 
 const runtimeConfig = useRuntimeConfig();
-const logoImageFullUrl = computed(() => `${runtimeConfig.siteUrl}${logoImageUrl.startsWith("/") ? logoImageUrl.slice(1) : logoImageUrl}`);
+const logoImageFullUrl = computed(
+  () =>
+    `${runtimeConfig.siteUrl}${logoImageUrl.startsWith("/") ? logoImageUrl.slice(1) : logoImageUrl}`,
+);
 
 const SPONSOR_TAG_STYLE_BASE = {
   alignItems: "center",
@@ -28,7 +31,8 @@ const variants = computed(() => {
         subColor: "#d0edf2",
         sponsorTagStyle: {
           ...SPONSOR_TAG_STYLE_BASE,
-          background: "linear-gradient(270deg, #EEEEEE 0%, #C6C6C6 25%, #EEEEEE 50%, #EEEEEE 75%, #C6C6C6 100%)",
+          background:
+            "linear-gradient(270deg, #EEEEEE 0%, #C6C6C6 25%, #EEEEEE 50%, #EEEEEE 75%, #C6C6C6 100%)",
         },
       };
     case "GOLD":

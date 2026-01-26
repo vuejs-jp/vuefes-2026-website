@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { useLocaleRoute, useRoute } from "@typed-router";
-import { SESSION_SPEAKERS as enSessionSpeakers, LT_SPEAKERS as enLT_Speakers, PANEL_DISCUSSION_SPEAKERS as enPanelSpeakers } from "../../../../i18n/en/speakers";
-import { SESSION_SPEAKERS as jaSessionSpeakers, LT_SPEAKERS as jaLT_Speakers, PANEL_DISCUSSION_SPEAKERS as jaPanelSpeakers } from "../../../../i18n/ja/speakers";
+import {
+  SESSION_SPEAKERS as enSessionSpeakers,
+  LT_SPEAKERS as enLT_Speakers,
+  PANEL_DISCUSSION_SPEAKERS as enPanelSpeakers,
+} from "../../../../i18n/en/speakers";
+import {
+  SESSION_SPEAKERS as jaSessionSpeakers,
+  LT_SPEAKERS as jaLT_Speakers,
+  PANEL_DISCUSSION_SPEAKERS as jaPanelSpeakers,
+} from "../../../../i18n/ja/speakers";
 import XIcon from "~icons/icons/ic_x";
 import GithubIcon from "~icons/icons/ic_github";
 import BlueskyIcon from "~icons/icons/ic_bluesky";
@@ -27,19 +35,19 @@ const localeRoute = useLocaleRoute();
 const speakers = computed(() =>
   locale.value === "ja"
     ? [
-        ...jaSessionSpeakers.map(it => ({ ...it, type: "session" as const })),
-        ...jaLT_Speakers.map(it => ({ ...it, type: "lt" as const })),
-        ...jaPanelSpeakers.map(it => ({ ...it, type: "panel" as const })),
+        ...jaSessionSpeakers.map((it) => ({ ...it, type: "session" as const })),
+        ...jaLT_Speakers.map((it) => ({ ...it, type: "lt" as const })),
+        ...jaPanelSpeakers.map((it) => ({ ...it, type: "panel" as const })),
       ]
     : [
-        ...enSessionSpeakers.map(it => ({ ...it, type: "session" as const })),
-        ...enLT_Speakers.map(it => ({ ...it, type: "lt" as const })),
-        ...enPanelSpeakers.map(it => ({ ...it, type: "panel" as const })),
+        ...enSessionSpeakers.map((it) => ({ ...it, type: "session" as const })),
+        ...enLT_Speakers.map((it) => ({ ...it, type: "lt" as const })),
+        ...enPanelSpeakers.map((it) => ({ ...it, type: "panel" as const })),
       ],
 );
 
 const currentSpeaker = computed(() =>
-  speakers.value.find(speaker => speaker.id === route.params.speakerId),
+  speakers.value.find((speaker) => speaker.id === route.params.speakerId),
 );
 
 useSeoMeta({
@@ -95,7 +103,13 @@ const trackStyles = computed(() => ({
     <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
     <h1>Speaker</h1>
 
-    <VFSection :title="currentSpeaker?.type === 'session' ? t('speakers.sessions.information') : t('speakers.lightningTalks.information')">
+    <VFSection
+      :title="
+        currentSpeaker?.type === 'session'
+          ? t('speakers.sessions.information')
+          : t('speakers.lightningTalks.information')
+      "
+    >
       <div class="speaker-track" :style="trackStyles">
         {{ t(`timetable.track.${currentSpeaker.talkTrack}`) }}
       </div>
@@ -105,7 +119,7 @@ const trackStyles = computed(() => ({
 
       <div class="speaker-information">
         <div class="speaker-avatar">
-          <img :src="currentSpeaker.avatarUrl" :alt="currentSpeaker.name">
+          <img :src="currentSpeaker.avatarUrl" :alt="currentSpeaker.name" />
         </div>
         <div class="speaker-details">
           <h3 class="session-title">
@@ -113,9 +127,14 @@ const trackStyles = computed(() => ({
           </h3>
 
           <p v-if="currentSpeaker.talkOverview" class="session-overview">
-            <template v-for="(paragraph, idx) in currentSpeaker.talkOverview?.split('\n')" :key="idx">
+            <template
+              v-for="(paragraph, idx) in currentSpeaker.talkOverview?.split('\n')"
+              :key="idx"
+            >
               <template v-if="paragraph">
-                <p :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''">
+                <p
+                  :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''"
+                >
                   {{ paragraph }}
                 </p>
               </template>
@@ -237,7 +256,7 @@ const trackStyles = computed(() => ({
 <style scoped>
 @import "~/assets/styles/custom-media-query.css";
 
-#pages-speaker-detail{
+#pages-speaker-detail {
   display: grid;
   row-gap: 1.5rem;
   @media (--mobile) {
@@ -265,7 +284,7 @@ const trackStyles = computed(() => ({
     }
   }
 }
-.speaker-track{
+.speaker-track {
   display: grid;
   place-items: center;
   width: fit-content;
@@ -274,12 +293,12 @@ const trackStyles = computed(() => ({
   border-radius: 4px;
   background-color: var(--base-color);
   color: var(--sub-color);
-    @media (--mobile) {
-      height: 29px;
-      font-size: 14px;
-    }
+  @media (--mobile) {
+    height: 29px;
+    font-size: 14px;
+  }
 }
-.speaker-time{
+.speaker-time {
   display: grid;
   place-items: center;
   width: fit-content;
@@ -322,9 +341,9 @@ const trackStyles = computed(() => ({
     img {
       width: 100%;
       aspect-ratio: 1 / 1;
-      border-radius: .625rem;
+      border-radius: 0.625rem;
       object-fit: cover;
-      border: .0625rem solid var(--color-divider-light);
+      border: 0.0625rem solid var(--color-divider-light);
     }
   }
 
@@ -351,7 +370,7 @@ const trackStyles = computed(() => ({
     .speaker-meta {
       .speaker-title,
       .speaker-affiliation {
-        font-size: .6875rem;
+        font-size: 0.6875rem;
         line-height: 1.0313rem;
         margin: 0;
       }
@@ -385,8 +404,8 @@ const trackStyles = computed(() => ({
 
     .speaker-title,
     .speaker-affiliation {
-      font-size: .625rem;
-      line-height: .9375rem;
+      font-size: 0.625rem;
+      line-height: 0.9375rem;
       margin: 0;
     }
 
@@ -405,7 +424,6 @@ const trackStyles = computed(() => ({
         display: inline-flex;
       }
     }
-
   }
 
   .session-title-mobile {

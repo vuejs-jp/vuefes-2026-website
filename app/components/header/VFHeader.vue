@@ -40,9 +40,7 @@ const [animationEnabled, setAnimationEnabled, isWebGLSupported] = useAnimationSt
           >
             JA
           </NuxtLink>
-          <div aria-hidden="true" class="language-separator">
-            /
-          </div>
+          <div aria-hidden="true" class="language-separator">/</div>
           <NuxtLink
             :to="switchLocalePath('en')"
             lang="en"

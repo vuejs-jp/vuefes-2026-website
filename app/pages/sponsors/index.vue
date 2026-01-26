@@ -69,21 +69,16 @@ useSeoMeta({
 
     <VFSection id="option-sponsor" :title="t('sponsors.optionSponsor')">
       <div
-        v-for="option in (locale === 'ja' ? JaSponsors.OPTION : EnSponsors.OPTION) as OptionSponsor[]"
+        v-for="option in (locale === 'ja'
+          ? JaSponsors.OPTION
+          : EnSponsors.OPTION) as OptionSponsor[]"
         :key="option.title"
       >
-        <div
-          v-if="option.data.length > 0"
-          class="sponsor-option-container"
-        >
+        <div v-if="option.data.length > 0" class="sponsor-option-container">
           <h2 class="sponsor-option-title">
             {{ t(`sponsors.${option.title}`) }}
           </h2>
-          <SponsorGrid
-            :sponsors="option.data"
-            :columns="bp === 'mobile' ? 2 : 4"
-            gap="24px"
-          />
+          <SponsorGrid :sponsors="option.data" :columns="bp === 'mobile' ? 2 : 4" gap="24px" />
         </div>
       </div>
     </VFSection>
@@ -98,7 +93,11 @@ useSeoMeta({
 
     <VFSection id="individual-sponsor" :title="t('sponsors.individualSponsor')">
       <div class="sponsor-individual-container">
-        <span v-for="(name, index) in locale === 'ja' ? JaSponsors.INDIVIDUAL : EnSponsors.INDIVIDUAL" :key="index">{{ name }}</span>
+        <span
+          v-for="(name, index) in locale === 'ja' ? JaSponsors.INDIVIDUAL : EnSponsors.INDIVIDUAL"
+          :key="index"
+          >{{ name }}</span
+        >
       </div>
     </VFSection>
   </div>
@@ -107,7 +106,7 @@ useSeoMeta({
 <style scoped>
 @import "~/assets/styles/custom-media-query.css";
 
-#pages-sponsors{
+#pages-sponsors {
   display: grid;
   row-gap: 1.5rem;
   @media (--mobile) {

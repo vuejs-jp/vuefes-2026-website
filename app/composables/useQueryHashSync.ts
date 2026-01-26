@@ -9,6 +9,7 @@ export function useQueryHashSync(option: { queryKey: string }) {
     () => route.hash,
     (h) => {
       if (!h) return;
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.replace({
         query: {
           [option.queryKey]: h.replace("#", ""),

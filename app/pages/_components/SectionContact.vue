@@ -51,8 +51,7 @@ async function submit(event: FormSubmitEvent) {
         type: "success",
         message: t("contactForm.successMessage"),
       });
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
       toast.open({
         type: "alert",
@@ -64,16 +63,9 @@ async function submit(event: FormSubmitEvent) {
 </script>
 
 <template>
-  <VFSection
-    :id="HOME_HEADING_ID.contact"
-    :title="t('contactForm.title')"
-  >
+  <VFSection :id="HOME_HEADING_ID.contact" :title="t('contactForm.title')">
     <p>{{ t("contactForm.description") }}</p>
-    <VFForm
-      :initial-values="state"
-      :schema="schema"
-      @submit="submit"
-    >
+    <VFForm :initial-values="state" :schema="schema" @submit="submit">
       <template #default="$form">
         <div class="contact-form-items">
           <VFInput
@@ -104,12 +96,12 @@ async function submit(event: FormSubmitEvent) {
           class="submit-button"
           :disabled="
             !(
-              $form.name?.touched
-              && $form.name?.valid
-              && $form.email?.touched
-              && $form.email?.valid
-              && $form.content?.touched
-              && $form.content?.valid
+              $form.name?.touched &&
+              $form.name?.valid &&
+              $form.email?.touched &&
+              $form.email?.valid &&
+              $form.content?.touched &&
+              $form.content?.valid
             )
           "
         >

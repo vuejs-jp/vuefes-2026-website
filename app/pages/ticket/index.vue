@@ -32,13 +32,11 @@ const localeRoute = useLocaleRoute();
 
 const isSoldOutAfterParty = import.meta.vfFeatures.soldOutAfterParty;
 const isSoldOutEarlyBirdAfterParty =
-  import.meta.vfFeatures.soldOutEarlyBirdAfterParty ||
-  import.meta.vfFeatures.soldOutEarlyBird;
+  import.meta.vfFeatures.soldOutEarlyBirdAfterParty || import.meta.vfFeatures.soldOutEarlyBird;
 const isSoldOutEarlyBird = import.meta.vfFeatures.soldOutEarlyBird;
 const isSoldOutGeneral = import.meta.vfFeatures.soldOutGeneral;
 const isSoldOutHandsOn = import.meta.vfFeatures.soldOutHandsOn;
-const isSoldOutIndividualSponsor = import.meta.vfFeatures
-  .soldOutIndividualSponsor;
+const isSoldOutIndividualSponsor = import.meta.vfFeatures.soldOutIndividualSponsor;
 
 const isLoading = ref(false);
 
@@ -97,9 +95,7 @@ useSeoMeta({
               <div class="ticket-badge-prices">
                 <span class="ticket-badge-price">
                   <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-                  <span class="ticket-badge-price-type">{{
-                    t("ticket.early")
-                  }}</span>
+                  <span class="ticket-badge-price-type">{{ t("ticket.early") }}</span>
                   <span
                     class="ticket-badge-price-value"
                     :class="{ 'sold-out': isSoldOutEarlyBird }"
@@ -107,11 +103,7 @@ useSeoMeta({
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{
-                      Number(
-                        t("ticket.generalTicket.earlyPrice"),
-                      ).toLocaleString()
-                    }}
+                    >{{ Number(t("ticket.generalTicket.earlyPrice")).toLocaleString() }}
                   </span>
                   <span v-if="isSoldOutEarlyBird" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -120,21 +112,12 @@ useSeoMeta({
 
                 <span class="ticket-badge-price">
                   <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-                  <span class="ticket-badge-price-type">{{
-                    t("ticket.standard")
-                  }}</span>
-                  <span
-                    class="ticket-badge-price-value"
-                    :class="{ 'sold-out': isSoldOutGeneral }"
-                  >
+                  <span class="ticket-badge-price-type">{{ t("ticket.standard") }}</span>
+                  <span class="ticket-badge-price-value" :class="{ 'sold-out': isSoldOutGeneral }">
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{
-                      Number(
-                        t("ticket.generalTicket.standardPrice"),
-                      ).toLocaleString()
-                    }}
+                    >{{ Number(t("ticket.generalTicket.standardPrice")).toLocaleString() }}
                   </span>
                   <span v-if="isSoldOutGeneral" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -161,9 +144,7 @@ useSeoMeta({
               <div class="ticket-badge-prices">
                 <span class="ticket-badge-price">
                   <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-                  <span class="ticket-badge-price-type">{{
-                    t("ticket.early")
-                  }}</span>
+                  <span class="ticket-badge-price-type">{{ t("ticket.early") }}</span>
                   <span
                     class="ticket-badge-price-value"
                     :class="{ 'sold-out': isSoldOutEarlyBirdAfterParty }"
@@ -171,24 +152,16 @@ useSeoMeta({
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{
-                      Number(
-                        t("ticket.afterPartyTicket.earlyPrice"),
-                      ).toLocaleString()
-                    }}
+                    >{{ Number(t("ticket.afterPartyTicket.earlyPrice")).toLocaleString() }}
                   </span>
-                  <span
-                    v-if="isSoldOutEarlyBirdAfterParty"
-                    class="sold-out-label"
-                    >{{ t("ticket.soldOut") }}</span
-                  >
+                  <span v-if="isSoldOutEarlyBirdAfterParty" class="sold-out-label">{{
+                    t("ticket.soldOut")
+                  }}</span>
                 </span>
 
                 <span class="ticket-badge-price">
                   <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-                  <span class="ticket-badge-price-type">{{
-                    t("ticket.standard")
-                  }}</span>
+                  <span class="ticket-badge-price-type">{{ t("ticket.standard") }}</span>
                   <span
                     class="ticket-badge-price-value"
                     :class="{ 'sold-out': isSoldOutAfterParty }"
@@ -196,11 +169,7 @@ useSeoMeta({
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{
-                      Number(
-                        t("ticket.afterPartyTicket.standardPrice"),
-                      ).toLocaleString()
-                    }}
+                    >{{ Number(t("ticket.afterPartyTicket.standardPrice")).toLocaleString() }}
                   </span>
                   <span v-if="isSoldOutAfterParty" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -225,10 +194,7 @@ useSeoMeta({
               </h2>
               <div class="ticket-badge-prices">
                 <span class="ticket-badge-price">
-                  <span
-                    class="ticket-badge-price-value"
-                    :class="{ 'sold-out': isSoldOutHandsOn }"
-                  >
+                  <span class="ticket-badge-price-value" :class="{ 'sold-out': isSoldOutHandsOn }">
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
@@ -268,11 +234,9 @@ useSeoMeta({
                     }}</span
                     >{{ Number(t("ticket.individual.price")).toLocaleString() }}
                   </span>
-                  <span
-                    v-if="isSoldOutIndividualSponsor"
-                    class="sold-out-label"
-                    >{{ t("ticket.soldOut") }}</span
-                  >
+                  <span v-if="isSoldOutIndividualSponsor" class="sold-out-label">{{
+                    t("ticket.soldOut")
+                  }}</span>
                 </span>
               </div>
             </div>
@@ -291,11 +255,7 @@ useSeoMeta({
       </section>
 
       <div class="buy-ticket-button-wrapper">
-        <VFButton
-          class="buy-ticket-button"
-          link="https://vuefes2026.peatix.com/view"
-          external
-        >
+        <VFButton class="buy-ticket-button" link="https://vuefes2026.peatix.com/view" external>
           {{ t("ticket.buy") }}
         </VFButton>
       </div>
@@ -303,11 +263,7 @@ useSeoMeta({
       <hr class="divider" />
 
       <component
-        :is="
-          locale === 'ja'
-            ? JaTicketUsageInstructions
-            : EnTicketUsageInstructions
-        "
+        :is="locale === 'ja' ? JaTicketUsageInstructions : EnTicketUsageInstructions"
         class="ticket-usage-instructions"
       />
     </VFSection>
@@ -321,22 +277,14 @@ useSeoMeta({
         class="cover-image"
       />
 
-      <i18n-t
-        keypath="nameBadge.description"
-        tag="p"
-        class="name-badge-description"
-      >
+      <i18n-t keypath="nameBadge.description" tag="p" class="name-badge-description">
         <template #ticketName>
           <a href="https://vuefes2026.peatix.com/view" target="_blank">
             {{ t("nameBadge.ticketName") }}
           </a>
         </template>
       </i18n-t>
-      <i18n-t
-        keypath="nameBadge.deadlineDescription"
-        tag="p"
-        class="name-badge-description"
-      >
+      <i18n-t keypath="nameBadge.deadlineDescription" tag="p" class="name-badge-description">
         <template #correction>
           <del>
             {{ t("nameBadge.correction") }}
@@ -373,11 +321,7 @@ useSeoMeta({
       <hr class="divider" />
 
       <component
-        :is="
-          locale === 'ja'
-            ? JaNameBadgeFlowAndAttentions
-            : EnNameBadgeFlowAndAttentions
-        "
+        :is="locale === 'ja' ? JaNameBadgeFlowAndAttentions : EnNameBadgeFlowAndAttentions"
         class="name-badge-flow-and-attentions"
       />
     </VFSection>
@@ -387,9 +331,7 @@ useSeoMeta({
       :title="t('individualSponsor.title')"
       class="individual-sponsor"
     >
-      <component
-        :is="locale === 'ja' ? JaIndividualSponsor : EnIndividualSponsor"
-      />
+      <component :is="locale === 'ja' ? JaIndividualSponsor : EnIndividualSponsor" />
     </VFSection>
 
     <VFSection id="hands-on" :title="t('handsOn.title')" class="hands-on">

@@ -8,7 +8,7 @@ export default {
 
 const Template: StoryFn<{
   animation: boolean;
-}> = args => ({
+}> = (args) => ({
   name: "VFMenu",
   setup: () => () => (
     <VFMenu

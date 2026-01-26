@@ -34,8 +34,8 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 function shuffleNonPinned(staffArray: Staff[]): Staff[] {
-  const pinned = staffArray.filter(staff => staff.pinned);
-  const nonPinned = staffArray.filter(staff => !staff.pinned);
+  const pinned = staffArray.filter((staff) => staff.pinned);
+  const nonPinned = staffArray.filter((staff) => !staff.pinned);
   const shuffledNonPinned = shuffleArray(nonPinned);
   return [...pinned, ...shuffledNonPinned];
 }
@@ -44,28 +44,17 @@ function shuffleNonPinned(staffArray: Staff[]): Staff[] {
 <template>
   <VFSection :id="HOME_HEADING_ID.staff" :title="t('staff.title')">
     <p class="staff-description">
-      {{ t('staff.description') }}
+      {{ t("staff.description") }}
     </p>
     <template v-if="staffList">
-      <StaffGrid
-        :staff-list="staffList.leaders"
-        grid-mode="leader"
-        :columns="leaderColumns"
-      />
-      <StaffGrid
-        :staff-list="staffList.cores"
-        grid-mode="core"
-        :columns="coreColumns"
-      />
+      <StaffGrid :staff-list="staffList.leaders" grid-mode="leader" :columns="leaderColumns" />
+      <StaffGrid :staff-list="staffList.cores" grid-mode="core" :columns="coreColumns" />
 
       <VFHeading id="volunteer-staff">
-        {{ t('staff.volunteer') }}
+        {{ t("staff.volunteer") }}
       </VFHeading>
 
-      <StaffGrid
-        :staff-list="staffList.volunteers"
-        grid-mode="volunteer"
-      />
+      <StaffGrid :staff-list="staffList.volunteers" grid-mode="volunteer" />
     </template>
   </VFSection>
 </template>

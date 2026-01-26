@@ -19,10 +19,7 @@ const { items } = defineProps<{
     <Transition enter-active-class="zoom-blur-in" leave-active-class="zoom-blur-in-reverse">
       <ul v-if="menuOpen" v-show="menuOpen" class="sp-navigation-content">
         <li v-for="(item, idx) in items" :key="idx">
-          <MenuItem
-            class="sp-navigation-link"
-            v-bind="item"
-          />
+          <MenuItem class="sp-navigation-link" v-bind="item" />
         </li>
       </ul>
     </Transition>
@@ -99,16 +96,26 @@ const { items } = defineProps<{
 
 /* アニメーションを付けたいクラス */
 .zoom-blur-in {
-  animation: zoomBlurIn 0.3s cubic-bezier(.25,.8,.25,1) both;
+  animation: zoomBlurIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) both;
   /* both = forwards+backwards なので初期状態も 0% が効く */
 }
 
 @keyframes zoomBlurOut {
-  0%   { transform: scale(1);   filter: blur(0);    backdrop-filter: blur(8px); opacity: 1; }
-  100% { transform: scale(0.8); filter: blur(12px); backdrop-filter: blur(0);   opacity: 0; }
+  0% {
+    transform: scale(1);
+    filter: blur(0);
+    backdrop-filter: blur(8px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    filter: blur(12px);
+    backdrop-filter: blur(0);
+    opacity: 0;
+  }
 }
 
 .zoom-blur-in-reverse {
-  animation: zoomBlurOut 0.2s cubic-bezier(.4,.0,.6,1) both;
+  animation: zoomBlurOut 0.2s cubic-bezier(0.4, 0, 0.6, 1) both;
 }
 </style>

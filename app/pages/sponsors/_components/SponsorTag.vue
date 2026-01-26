@@ -9,7 +9,11 @@ defineProps({
 
 <template>
   <span :class="`sponsor-tag sponsor-tag--${plan.toLowerCase()}`">
-    {{ $t(`sponsors.${plan.toLowerCase().replace(/-([a-z])/g, (match, letter) => letter.toUpperCase())}Sponsor`) }}
+    {{
+      $t(
+        `sponsors.${plan.toLowerCase().replace(/-([a-z])/g, (match, letter) => letter.toUpperCase())}Sponsor`,
+      )
+    }}
   </span>
 </template>
 
@@ -20,26 +24,33 @@ defineProps({
   padding: 0 8px;
   height: 36px;
   border-radius: 8px;
-  background: #FAE8E4;
+  background: #fae8e4;
 }
 
 .sponsor-tag--platina {
-  background: linear-gradient(270deg, #EEEEEE 0%, #C6C6C6 25%, #EEEEEE 50%, #EEEEEE 75%, #C6C6C6 100%);
+  background: linear-gradient(
+    270deg,
+    #eeeeee 0%,
+    #c6c6c6 25%,
+    #eeeeee 50%,
+    #eeeeee 75%,
+    #c6c6c6 100%
+  );
 }
 
 .sponsor-tag--gold {
-  background: #DBD69A;
+  background: #dbd69a;
 }
 
 .sponsor-tag--silver {
-  background: #E2E4EC;
+  background: #e2e4ec;
 }
 
 .sponsor-tag--bronze {
-  background: #DDA25B;
+  background: #dda25b;
 }
 
 .sponsor-tag--creative {
-  background: #FAE8E4;
+  background: #fae8e4;
 }
 </style>

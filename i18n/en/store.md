@@ -5,7 +5,7 @@ This time, we have completely redesigned the goods design in conjunction with th
 
 <slot name="goods" />
 
-* Product images are for reference only. Actual products may differ in color and details.
+- Product images are for reference only. Actual products may differ in color and details.
 
 <hr class="divider">
 

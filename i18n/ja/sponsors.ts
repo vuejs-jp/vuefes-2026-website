@@ -7,12 +7,14 @@ const SPONSORS_PLATINA: Sponsor[] = [
     logoImageAlt: "CLOUDSIGN powered by 弁護士ドットコム",
     linkUrl: "https://www.bengo4.com/corporate/",
     plan: "platina",
-    description: "弁護士ドットコム株式会社について\n「プロフェッショナル・テックで、次の常識をつくる。」をミッションとして、人々と専門家をつなぐポータルサイト『弁護士ドットコム』『BUSINESS LAWYERS』『税理士ドットコム』、契約マネジメントプラットフォーム『クラウドサイン』、『リーガル特化型AIエージェント「Legal Brain エージェント」』を提供しています。\n当社はVue.js はサービス初期から活用しており、プロダクトを長年支えてきました。運営の皆様をはじめ、参加者の方々と一緒に Vue.js のコミュニティを盛り上げていきたいと思います。当日会場でお会いできるのを楽しみにしております。",
+    description:
+      "弁護士ドットコム株式会社について\n「プロフェッショナル・テックで、次の常識をつくる。」をミッションとして、人々と専門家をつなぐポータルサイト『弁護士ドットコム』『BUSINESS LAWYERS』『税理士ドットコム』、契約マネジメントプラットフォーム『クラウドサイン』、『リーガル特化型AIエージェント「Legal Brain エージェント」』を提供しています。\n当社はVue.js はサービス初期から活用しており、プロダクトを長年支えてきました。運営の皆様をはじめ、参加者の方々と一緒に Vue.js のコミュニティを盛り上げていきたいと思います。当日会場でお会いできるのを楽しみにしております。",
     id: "bengo4",
     session: [
       {
         title: "webpack 依存からの脱却！快適フロントエンド開発を Viteで実現する",
-        overview: "弁護士ドットコム株式会社が提供するクラウドサインは、リリースしてから今年で10年を迎えます。フロントエンドの規模も大きくなり、webpackを使用し続けることによるペインがありました。\n\n本セッションでは、どのようなペインを抱えていて今回 Vite 移行に至ったのか、そして具体的な移行の方法、移行したことによってどのような恩恵を得ることができたのかの成果についてお話したいと思います。",
+        overview:
+          "弁護士ドットコム株式会社が提供するクラウドサインは、リリースしてから今年で10年を迎えます。フロントエンドの規模も大きくなり、webpackを使用し続けることによるペインがありました。\n\n本セッションでは、どのようなペインを抱えていて今回 Vite 移行に至ったのか、そして具体的な移行の方法、移行したことによってどのような恩恵を得ることができたのかの成果についてお話したいと思います。",
         speaker: {
           sponsorId: "bengo4",
           name: "Nobuaki Kambe",
@@ -37,12 +39,14 @@ const SPONSORS_PLATINA: Sponsor[] = [
     logoImageAlt: "株式会社ヤプリロゴ",
     linkUrl: "https://yappli.co.jp/",
     plan: "platina",
-    description: "株式会社ヤプリは、「デジタルを簡単に、社会を便利に」をミッションに、ノーコードでアプリを開発・運用できるプラットフォーム「Yappli」と「Yappli CRM」を提供し、企業のモバイルDXを支援しています。導入企業は750社を超え、小売・EC、社内DX、公共機関など幅広い分野で活用されています。また、アプリ開発で培った技術を活かし、次世代Web構築プラットフォーム「Yappli WebX」を提供開始し、統合的な顧客体験を提供するデジタルエクスペリエンスプラットフォーム（DXP）へと進化を続けています。",
+    description:
+      "株式会社ヤプリは、「デジタルを簡単に、社会を便利に」をミッションに、ノーコードでアプリを開発・運用できるプラットフォーム「Yappli」と「Yappli CRM」を提供し、企業のモバイルDXを支援しています。導入企業は750社を超え、小売・EC、社内DX、公共機関など幅広い分野で活用されています。また、アプリ開発で培った技術を活かし、次世代Web構築プラットフォーム「Yappli WebX」を提供開始し、統合的な顧客体験を提供するデジタルエクスペリエンスプラットフォーム（DXP）へと進化を続けています。",
     id: "yappli",
     session: [
       {
         title: "alien-signalsと自作OSSで実現するフレームワーク非依存なロジック共通化の探求",
-        overview: "マルチプロダクト環境では、似通った処理やロジックを各プロダクトごとに重複実装しがちです。\n\n本セッションでは、\"ロジックそのものをフレームワークから切り離し、Signalsをベースとした純粋なTypeScriptで一度だけ実装し、各フレームワークで同じ実装を活用する\" というアプローチを共有します。\n\nこのアプローチを実現するために、Vue.js 3.6でも採用されるalien-signalsをベースとした自作OSSの『sigrea』というライブラリを構築しました。\n\nこのライブラリを用いて、フレームワークに依存しないロジックを定義し、各フレームワークへ薄いアダプターで橋渡しする設計方法をお話しします。",
+        overview:
+          'マルチプロダクト環境では、似通った処理やロジックを各プロダクトごとに重複実装しがちです。\n\n本セッションでは、"ロジックそのものをフレームワークから切り離し、Signalsをベースとした純粋なTypeScriptで一度だけ実装し、各フレームワークで同じ実装を活用する" というアプローチを共有します。\n\nこのアプローチを実現するために、Vue.js 3.6でも採用されるalien-signalsをベースとした自作OSSの『sigrea』というライブラリを構築しました。\n\nこのライブラリを用いて、フレームワークに依存しないロジックを定義し、各フレームワークへ薄いアダプターで橋渡しする設計方法をお話しします。',
         speaker: {
           sponsorId: "yappli",
           name: "Aose Yuu",
@@ -58,7 +62,8 @@ const SPONSORS_PLATINA: Sponsor[] = [
             bluesky: "https://bsky.app/profile/aose-yuu.bsky.social",
             github: "https://github.com/aose-yuu",
           },
-          slide: "https://speakerdeck.com/aoseyuu/exploring-framework-agnostic-logic-sharing-with-alien-signals-and-custom-oss",
+          slide:
+            "https://speakerdeck.com/aoseyuu/exploring-framework-agnostic-logic-sharing-with-alien-signals-and-custom-oss",
         },
       },
     ],
@@ -74,7 +79,8 @@ const SPONSORS_PLATINA: Sponsor[] = [
     session: [
       {
         title: "VueはAIに弱い？そんなの都市伝説です",
-        overview: "「AIにコード書かせるならReact」という空気、ありませんか？\nしかし、Vue.jsでもAIとの効果的なコラボレーションは十分に可能です。\n実際に取り組んでみると、重要なのはフレームワークではなく“開発しやすさ“への投資でした。\n人に優しい設計、その積み重ねが結果としてAIにも優しい環境をつくります。\nこのセッションでは、AI×Vue.jsでのプロダクト開発に挑戦してきた経験と、そこから得た学びを共有します。",
+        overview:
+          "「AIにコード書かせるならReact」という空気、ありませんか？\nしかし、Vue.jsでもAIとの効果的なコラボレーションは十分に可能です。\n実際に取り組んでみると、重要なのはフレームワークではなく“開発しやすさ“への投資でした。\n人に優しい設計、その積み重ねが結果としてAIにも優しい環境をつくります。\nこのセッションでは、AI×Vue.jsでのプロダクト開発に挑戦してきた経験と、そこから得た学びを共有します。",
         speaker: {
           sponsorId: "lmi",
           name: "中上 裕基",
@@ -100,12 +106,14 @@ const SPONSORS_PLATINA: Sponsor[] = [
     logoImageAlt: "ユニークビジョン株式会社の企業ロゴ画像",
     linkUrl: "https://www.uniquevision.co.jp/",
     plan: "platina",
-    description: "ユニークビジョンは、ソーシャルメディアを通じて企業のブランド体験を創出するテクノロジーカンパニーです。自社開発のSNSマーケティングツール「Belugaシリーズ」は、年間800件以上の施策を実施しています。\nプロダクト開発ではVue.jsを積極的に導入しており、Vue.js製のコンポーネントライブラリを社内OSSとして開発・改善する文化が根付いています。また、2022年から毎月開催しているエンジニア勉強会「UV Study」では、Vue.jsを頻繁にテーマとして取り上げています。\nツール・文化・場づくりの三位一体で、Vue.jsの発展を後押ししていきます。",
+    description:
+      "ユニークビジョンは、ソーシャルメディアを通じて企業のブランド体験を創出するテクノロジーカンパニーです。自社開発のSNSマーケティングツール「Belugaシリーズ」は、年間800件以上の施策を実施しています。\nプロダクト開発ではVue.jsを積極的に導入しており、Vue.js製のコンポーネントライブラリを社内OSSとして開発・改善する文化が根付いています。また、2022年から毎月開催しているエンジニア勉強会「UV Study」では、Vue.jsを頻繁にテーマとして取り上げています。\nツール・文化・場づくりの三位一体で、Vue.jsの発展を後押ししていきます。",
     id: "uniquevision",
     session: [
       {
         title: "Storybook 駆動開発で実現する持続可能な Vue コンポーネント設計",
-        overview: "Vue.js での開発において「再利用可能で保守しやすいコンポーネント設計」は重要な課題です。しかし実際のチーム開発では、コンポーネントのインターフェースが後から決まることで設計が複雑化したり、テストが後回しになって品質にばらつきが生じるといった問題に直面することがあります。\n\n私たちのチームでは、Storybook 駆動開発という手法を 1 年間実践し、これらの課題を解決してきました。従来の「実装 → テスト」ではなく、「インターフェース定義・Story 作成 → 実装 → 自動テスト」という流れに変えることで、手戻りの削減と高いテストカバレッジを実現しています。\n\nこの手法の核心は、実装前に Vue コンポーネントのインターフェースを明確に定義し、Story として表現することです。Storybook の制約が良い設計を促し、自動テスト作成が自然に習慣化されます。コンポーネント数が増えても、品質のばらつきがなく、新しいメンバーでも一定の品質を保てています。\n\nなぜこの手法が効果的なのか、どのような工夫でチーム全体に浸透させたのか、1 年間の実践で得た知見とベストプラクティスをお話しします。",
+        overview:
+          "Vue.js での開発において「再利用可能で保守しやすいコンポーネント設計」は重要な課題です。しかし実際のチーム開発では、コンポーネントのインターフェースが後から決まることで設計が複雑化したり、テストが後回しになって品質にばらつきが生じるといった問題に直面することがあります。\n\n私たちのチームでは、Storybook 駆動開発という手法を 1 年間実践し、これらの課題を解決してきました。従来の「実装 → テスト」ではなく、「インターフェース定義・Story 作成 → 実装 → 自動テスト」という流れに変えることで、手戻りの削減と高いテストカバレッジを実現しています。\n\nこの手法の核心は、実装前に Vue コンポーネントのインターフェースを明確に定義し、Story として表現することです。Storybook の制約が良い設計を促し、自動テスト作成が自然に習慣化されます。コンポーネント数が増えても、品質のばらつきがなく、新しいメンバーでも一定の品質を保てています。\n\nなぜこの手法が効果的なのか、どのような工夫でチーム全体に浸透させたのか、1 年間の実践で得た知見とベストプラクティスをお話しします。",
         speaker: {
           sponsorId: "uniquevision",
           name: "矢光 隆太郎",
@@ -133,7 +141,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://www.codmon.com/",
     plan: "gold",
     option: ["intermission-slide"],
-    description: "「子どもを取り巻く環境をテクノロジーの力でよりよいものに」をミッションに掲げ、主力プロダクトである保育・教育施設向けICTサービス「CoDMON（コドモン）」をはじめ、複数の事業を展開しています。開発チームではいくつかのプロダクトや機能にて、Vue.js / Nuxt を採用し開発を行なっています！",
+    description:
+      "「子どもを取り巻く環境をテクノロジーの力でよりよいものに」をミッションに掲げ、主力プロダクトである保育・教育施設向けICTサービス「CoDMON（コドモン）」をはじめ、複数の事業を展開しています。開発チームではいくつかのプロダクトや機能にて、Vue.js / Nuxt を採用し開発を行なっています！",
     id: "codmon",
   },
   {
@@ -142,7 +151,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "株式会社スタディストのロゴ",
     linkUrl: "https://studist.jp/",
     plan: "gold",
-    description: "株式会社スタディストは「オペレーションから、働き方と未来を変えていく」というミッションをかかげ企業の生産性向上を支援するスタートアップです。マニュアル作成・共有システム「Teachme Biz」やコンサルティングなどのサービスを通じて「リーンオペレーション」を実現し、人々がクリエイティブな仕事に取り組める「知的活力みなぎる社会」をつくることを目指しています。",
+    description:
+      "株式会社スタディストは「オペレーションから、働き方と未来を変えていく」というミッションをかかげ企業の生産性向上を支援するスタートアップです。マニュアル作成・共有システム「Teachme Biz」やコンサルティングなどのサービスを通じて「リーンオペレーション」を実現し、人々がクリエイティブな仕事に取り組める「知的活力みなぎる社会」をつくることを目指しています。",
     id: "studist",
   },
   {
@@ -152,12 +162,14 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://www.lycorp.co.jp/ja/technology-design/",
     plan: "gold",
     option: ["student-support"],
-    description: "LINEヤフー株式会社は、2023年10月にLINE株式会社とヤフー株式会社を含むグループ会社の再編により誕生した、日本最大級のテックカンパニーです。当社は合併前から Vue.js を活用し、プロダクトの開発・提供や Vue.js および Vue Fes Japan への貢献・協賛を行ってきました。今後も Vue.js とともに、世の中やユーザーの生活を変えるようなプロダクトを開発してまいります。",
+    description:
+      "LINEヤフー株式会社は、2023年10月にLINE株式会社とヤフー株式会社を含むグループ会社の再編により誕生した、日本最大級のテックカンパニーです。当社は合併前から Vue.js を活用し、プロダクトの開発・提供や Vue.js および Vue Fes Japan への貢献・協賛を行ってきました。今後も Vue.js とともに、世の中やユーザーの生活を変えるようなプロダクトを開発してまいります。",
     id: "lycorp",
     session: [
       {
         title: "LINE公式アカウントの技術スタックと開発の裏側",
-        overview: "「LINE公式アカウント」プラットフォームは、国内外の幅広いユーザーと企業に利用される、拡張性と信頼性を重視した大規模プロダクトです。\n一般ユーザーが日々触れるLINE内のWebアプリケーション群と、ビジネスオーナーが運用で使用する管理画面の両輪で成り立ち、機能追加と品質改善を継続的に行っています。\n\n本セッションでは、Vue.jsを中心とした実際のプロダクト構成と技術選定、スケールし続ける開発の裏側を紹介します。",
+        overview:
+          "「LINE公式アカウント」プラットフォームは、国内外の幅広いユーザーと企業に利用される、拡張性と信頼性を重視した大規模プロダクトです。\n一般ユーザーが日々触れるLINE内のWebアプリケーション群と、ビジネスオーナーが運用で使用する管理画面の両輪で成り立ち、機能追加と品質改善を継続的に行っています。\n\n本セッションでは、Vue.jsを中心とした実際のプロダクト構成と技術選定、スケールし続ける開発の裏側を紹介します。",
         speaker: {
           sponsorId: "lycorp",
           name: "佐野 友亮",
@@ -181,7 +193,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "ストアーズ",
     linkUrl: "https://jobs.st.inc/",
     plan: "gold",
-    description: "STORES 株式会社は、「Just for Fun」のミッションのもと、こだわりや情熱に駆動される経済を目指しています。小売、飲食、サービス業を中心とする中小事業者の店舗運営を支える幅広いプロダクトを提供しています。顧客データを基盤とした「STORES」のプロダクトを通じて、事業者の持続的な売上成長をサポートし、個性豊かで多様な商いがあふれる社会を実現します。",
+    description:
+      "STORES 株式会社は、「Just for Fun」のミッションのもと、こだわりや情熱に駆動される経済を目指しています。小売、飲食、サービス業を中心とする中小事業者の店舗運営を支える幅広いプロダクトを提供しています。顧客データを基盤とした「STORES」のプロダクトを通じて、事業者の持続的な売上成長をサポートし、個性豊かで多様な商いがあふれる社会を実現します。",
     id: "st",
   },
   {
@@ -190,7 +203,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "株式会社Finatextホールディングスのロゴ",
     linkUrl: "https://hd.finatext.com/",
     plan: "gold",
-    description: "Finatextグループは「金融を“サービス”として再発明する」をミッションに、「金融がもっと暮らしに寄り添う世の中」を目指しているフィンテック企業グループです。証券、保険、融資などの基幹システムをSaaS化することで、スピーディーな開発を可能にしています。toBサービスとしてSaaS型基幹システムを提供するだけでなく、その上で稼働するtoCサービスも開発・提供しているマルチプロダクトな会社です。",
+    description:
+      "Finatextグループは「金融を“サービス”として再発明する」をミッションに、「金融がもっと暮らしに寄り添う世の中」を目指しているフィンテック企業グループです。証券、保険、融資などの基幹システムをSaaS化することで、スピーディーな開発を可能にしています。toBサービスとしてSaaS型基幹システムを提供するだけでなく、その上で稼働するtoCサービスも開発・提供しているマルチプロダクトな会社です。",
     id: "finatext",
   },
   {
@@ -199,7 +213,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "KINTOテクノロジーズ　ロゴ",
     linkUrl: "https://www.kinto-technologies.com/",
     plan: "gold",
-    description: "KINTOテクノロジーズは、トヨタグループ各社が展開するモビリティサービスやビジネスをテクノロジーで支援するために、2021年4月に創設されたテックカンパニーです。\n世界30ヵ国で展開するグローバルモビリティブランド『KINTO』関連プロダクトや、マルチモーダルモビリティサービス『my route』など、クルマに乗る「人」に焦点を当てた新しいサービスの開発・運用を行っています。",
+    description:
+      "KINTOテクノロジーズは、トヨタグループ各社が展開するモビリティサービスやビジネスをテクノロジーで支援するために、2021年4月に創設されたテックカンパニーです。\n世界30ヵ国で展開するグローバルモビリティブランド『KINTO』関連プロダクトや、マルチモーダルモビリティサービス『my route』など、クルマに乗る「人」に焦点を当てた新しいサービスの開発・運用を行っています。",
     id: "kinto-technologies",
   },
   {
@@ -209,12 +224,14 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://plaid.co.jp/",
     plan: "gold",
     option: ["student-support"],
-    description: "プレイドは、オンライン上でのユーザー行動をリアルタイムに解析し、エンドユーザーに最適な体験を提供するためのCX（顧客体験）プラットフォーム「KARTE」などを提供しています。プレイドでは、2014年からVue.jsを採用し、KARTEなどのプロダクトの多くの機能をVue.jsで実装しています。当日はブースにて、プレイドのVue.jsや関連技術の活用の工夫などをお話しします。ぜひお立ち寄りください！",
+    description:
+      "プレイドは、オンライン上でのユーザー行動をリアルタイムに解析し、エンドユーザーに最適な体験を提供するためのCX（顧客体験）プラットフォーム「KARTE」などを提供しています。プレイドでは、2014年からVue.jsを採用し、KARTEなどのプロダクトの多くの機能をVue.jsで実装しています。当日はブースにて、プレイドのVue.jsや関連技術の活用の工夫などをお話しします。ぜひお立ち寄りください！",
     id: "plaid",
     session: [
       {
         title: "プレイドのユニークな技術とインターンのリアル",
-        overview: "このセッションでは、株式会社プレイドの内製DBやリアルタイム解析基盤などのユニークな技術、そしてインターンで挑めるプロジェクトや成長のリアルを、登壇者自身の「ここが本当に面白い！」という推しポイントを交えてお話しします。",
+        overview:
+          "このセッションでは、株式会社プレイドの内製DBやリアルタイム解析基盤などのユニークな技術、そしてインターンで挑めるプロジェクトや成長のリアルを、登壇者自身の「ここが本当に面白い！」という推しポイントを交えてお話しします。",
         speaker: {
           sponsorId: "plaid",
           name: "片山拓海",
@@ -250,7 +267,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://www.future.co.jp/architect/",
     plan: "gold",
     option: ["room-naming-rights"],
-    description: "フューチャーでは、各分野に精通するエンジニアが多数在籍しコミッタ―としても活躍しています。エンジニアが実装のみならず業務改革などのコンサルティングも行い、様々な業界のお客様の「経営と IT」を支援しています。現在も社会にインパクトのあるプロジェクトを数多く手掛けており、エンジニアを募集中です！Vue.js は多くのプロジェクトで活用しており、コミュニティへの貢献を通じて社会の発展に寄与します。",
+    description:
+      "フューチャーでは、各分野に精通するエンジニアが多数在籍しコミッタ―としても活躍しています。エンジニアが実装のみならず業務改革などのコンサルティングも行い、様々な業界のお客様の「経営と IT」を支援しています。現在も社会にインパクトのあるプロジェクトを数多く手掛けており、エンジニアを募集中です！Vue.js は多くのプロジェクトで活用しており、コミュニティへの貢献を通じて社会の発展に寄与します。",
     id: "future",
   },
   {
@@ -259,16 +277,19 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "株式会社GENEROSITY",
     linkUrl: "https://generosity.co.jp",
     plan: "gold",
-    description: "GENEROSITYは、リアルとデジタルを融合させ、企業の新たなブランド体験をデザインするスタジオです。イベントのDXや体験型サイネージ等を企画開発しております。\nVue.jsやWebGLを武器にまだ世にないインタラクティブな表現を追求しませんか？技術で世界を驚かせたいエンジニアを募集しています！",
+    description:
+      "GENEROSITYは、リアルとデジタルを融合させ、企業の新たなブランド体験をデザインするスタジオです。イベントのDXや体験型サイネージ等を企画開発しております。\nVue.jsやWebGLを武器にまだ世にないインタラクティブな表現を追求しませんか？技術で世界を驚かせたいエンジニアを募集しています！",
     id: "generosity",
   },
   {
     name: "HENNGE株式会社",
     logoImageUrl: "/images/sponsor-logo/gold/hennge.png",
-    logoImageAlt: "白い背景に、縦に配置されたHENNGEのロゴと文字が黒でシンプルかつモダンなデザインです。",
+    logoImageAlt:
+      "白い背景に、縦に配置されたHENNGEのロゴと文字が黒でシンプルかつモダンなデザインです。",
     linkUrl: "https://hennge.com/jp/",
     plan: "gold",
-    description: "HENNGEは日本を代表するクラウドセキュリティ企業です。HENNGE OneでID管理・データ損失防止、セキュリティを一括提供し、数千社以上が活用。\nOpen Source文化を大切にし、Vue.jsなど最新技術を取り入れた安全なSaaS開発を推進。多様で協働的なチーム文化のHENNGEブースへぜひお立ち寄りください。",
+    description:
+      "HENNGEは日本を代表するクラウドセキュリティ企業です。HENNGE OneでID管理・データ損失防止、セキュリティを一括提供し、数千社以上が活用。\nOpen Source文化を大切にし、Vue.jsなど最新技術を取り入れた安全なSaaS開発を推進。多様で協働的なチーム文化のHENNGEブースへぜひお立ち寄りください。",
     id: "hennge",
     session: [
       {
@@ -279,8 +300,7 @@ const SPONSORS_GOLD: Sponsor[] = [
           affiliation: "",
           avatarUrl: "",
           attendedIndex: 1,
-          socialUrls: {
-          },
+          socialUrls: {},
           id: "",
           color: "default",
         },
@@ -303,7 +323,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "株式会社一休",
     linkUrl: "https://www.ikyu.co.jp/",
     plan: "gold",
-    description: "わたしたちは、「一休.com」「一休.comレストラン」といった宿やレストランなどのWeb予約サービスを運営しており、\nサービスを通して「こころに贅沢」な時間を世に増やすことを目指しています。 \n一休ではVue.jsを積極的に使用して、会員数1,000万を超える大規模なBtoCのサービスを運用しています。",
+    description:
+      "わたしたちは、「一休.com」「一休.comレストラン」といった宿やレストランなどのWeb予約サービスを運営しており、\nサービスを通して「こころに贅沢」な時間を世に増やすことを目指しています。 \n一休ではVue.jsを積極的に使用して、会員数1,000万を超える大規模なBtoCのサービスを運用しています。",
     id: "ikkyu",
   },
   {
@@ -312,7 +333,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "ソーシャルデータバンク株式会社",
     linkUrl: "https://social-db.co.jp",
     plan: "gold",
-    description: "顧客とのコミュニケーションを“思い通り”に実現できるサービス”Liny”を開発しています。一人一人のお客様に適したアプローチを通じて、デジタル時代のコミュニケーションを豊かにすることを目指しています。",
+    description:
+      "顧客とのコミュニケーションを“思い通り”に実現できるサービス”Liny”を開発しています。一人一人のお客様に適したアプローチを通じて、デジタル時代のコミュニケーションを豊かにすることを目指しています。",
     id: "social-db",
   },
   {
@@ -322,7 +344,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://tebiki.co.jp/",
     plan: "gold",
     option: ["intermission-slide", "job-board"],
-    description: "私たちは「現場の未来を切り拓く」をミッションに、動画教育システム『tebiki現場教育』と電子帳票システム『tebiki現場分析』を通じて、製造現場における動画撮影から作業データの分析まで一気通貫で支援し、DXを加速させます。AI動画処理基盤やリアルタイム画像解析、IoT連携、ペタバイト規模のビッグデータ可視化など、まだまだ多くの技術課題があります。現場DXを一緒に実現しましょう。",
+    description:
+      "私たちは「現場の未来を切り拓く」をミッションに、動画教育システム『tebiki現場教育』と電子帳票システム『tebiki現場分析』を通じて、製造現場における動画撮影から作業データの分析まで一気通貫で支援し、DXを加速させます。AI動画処理基盤やリアルタイム画像解析、IoT連携、ペタバイト規模のビッグデータ可視化など、まだまだ多くの技術課題があります。現場DXを一緒に実現しましょう。",
     id: "tebiki",
   },
   {
@@ -332,16 +355,19 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://medpeer.co.jp/",
     plan: "gold",
     option: ["staff-t-shirts"],
-    description: "メドピアは、医師が創業したヘルステック業界のリーディングカンパニー。「Supporting Doctors, Helping Patients.」のMissionのもと、医療現場のニーズを汲みながら医療従事者、患者、そして健康を維持したい人々を支えるサービスを提供しています。 柔軟でスピード感を持ったサービス開発で医療課題解決を目指すため、多くのプロダクトにVue、Nuxtを用いています。",
+    description:
+      "メドピアは、医師が創業したヘルステック業界のリーディングカンパニー。「Supporting Doctors, Helping Patients.」のMissionのもと、医療現場のニーズを汲みながら医療従事者、患者、そして健康を維持したい人々を支えるサービスを提供しています。 柔軟でスピード感を持ったサービス開発で医療課題解決を目指すため、多くのプロダクトにVue、Nuxtを用いています。",
     id: "medpeer",
   },
   {
     name: "株式会社キャリアデザインセンター",
     logoImageUrl: "/images/sponsor-logo/gold/career-design-center.png",
     logoImageAlt: "Direct type",
-    linkUrl: "https://directtype.jp/?utm_source=event&utm_medium=banner&utm_campaign=tech_event_251025",
+    linkUrl:
+      "https://directtype.jp/?utm_source=event&utm_medium=banner&utm_campaign=tech_event_251025",
     plan: "gold",
-    description: "ITエンジニアのためのスカウト転職サービス『Direct type（ダイレクトタイプ）』。\n転職サイトや転職イベント、WEBマガジンなど、エンジニアに強い「type」が展開するサービスです。\n登録した経歴や希望条件を見た企業から直接スカウトが届くため、スキマ時間で転職活動を進められます。\nDirect typeのスカウトは100％IT求人で、有名企業からスタートアップまで1100以上が掲載中です。",
+    description:
+      "ITエンジニアのためのスカウト転職サービス『Direct type（ダイレクトタイプ）』。\n転職サイトや転職イベント、WEBマガジンなど、エンジニアに強い「type」が展開するサービスです。\n登録した経歴や希望条件を見た企業から直接スカウトが届くため、スキマ時間で転職活動を進められます。\nDirect typeのスカウトは100％IT求人で、有名企業からスタートアップまで1100以上が掲載中です。",
     id: "career-design-center",
   },
   {
@@ -351,7 +377,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://engineer.andpad.co.jp/",
     plan: "gold",
     option: ["intermission-slide"],
-    description: "ANDPADは建築・建設業界に特化したクラウド型プロジェクト管理プラットフォームで、現場効率化から業務改善まで一元管理でき、21万社以上、55万人の毎日の業務を支えています。その多くはVue/Nuxtで実装され、建設現場の複雑な情報を解きほぐしたスマートな操作の実現、個社要求の多い見積・請求に対応するUI、開発スピードを上げるデザインシステムなど様々に工夫しています。ぜひブースにお立ち寄りください",
+    description:
+      "ANDPADは建築・建設業界に特化したクラウド型プロジェクト管理プラットフォームで、現場効率化から業務改善まで一元管理でき、21万社以上、55万人の毎日の業務を支えています。その多くはVue/Nuxtで実装され、建設現場の複雑な情報を解きほぐしたスマートな操作の実現、個社要求の多い見積・請求に対応するUI、開発スピードを上げるデザインシステムなど様々に工夫しています。ぜひブースにお立ち寄りください",
     id: "andpad",
   },
   {
@@ -361,7 +388,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://mov.am/",
     plan: "gold",
     option: ["job-board"],
-    description: "株式会社movは「日本のポテンシャルを最大化する」を使命として掲げ、「インバウンド事業」「店舗支援事業」の2事業を展開しています。movは活気のある日本を取り戻すために、日本市場、日本企業、日本のコンテンツを支援する会社として存在していきます。実直なコンサルティングのスタイルと、高水準のプロダクトで、着実かつ加速度的な成長を遂げています。",
+    description:
+      "株式会社movは「日本のポテンシャルを最大化する」を使命として掲げ、「インバウンド事業」「店舗支援事業」の2事業を展開しています。movは活気のある日本を取り戻すために、日本市場、日本企業、日本のコンテンツを支援する会社として存在していきます。実直なコンサルティングのスタイルと、高水準のプロダクトで、着実かつ加速度的な成長を遂げています。",
     id: "mov",
   },
   {
@@ -370,20 +398,22 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "ビザスク",
     linkUrl: "https://corp.visasq.co.jp/",
     plan: "gold",
-    description: "ビザスクは「知見と、挑戦をつなぐ」をミッションに掲げ国内外70万人超の知見データベースを活用したナレッジプラットフォームを運営しています。新規事業開発、人材育成、グローバル戦略等、課題を抱える企業と知見を持つ個人を1 時間単位のインタビュー、オンラインアンケート調査、伴走支援などあらゆる手法でマッチングするサービスを展開しています。",
+    description:
+      "ビザスクは「知見と、挑戦をつなぐ」をミッションに掲げ国内外70万人超の知見データベースを活用したナレッジプラットフォームを運営しています。新規事業開発、人材育成、グローバル戦略等、課題を抱える企業と知見を持つ個人を1 時間単位のインタビュー、オンラインアンケート調査、伴走支援などあらゆる手法でマッチングするサービスを展開しています。",
     id: "visasq",
   },
   {
     name: "株式会社リブセンス",
     logoImageUrl: "/images/sponsor-logo/gold/tenshoku-draft.png",
     logoImageAlt: "転職ドラフト",
-    linkUrl: "https://job-draft.jp/?utm_source=site&utm_medium=conference&utm_campaign=allconference&utm_term=vuefes2025",
+    linkUrl:
+      "https://job-draft.jp/?utm_source=site&utm_medium=conference&utm_campaign=allconference&utm_term=vuefes2025",
     plan: "gold",
     option: ["after-party"],
-    description: "転職ドラフトは、「年収も実力も磨ける仕事」に出会える、ITエンジニア向けの転職サービスです。\n年収付きのスカウトが企業から届く「転職ドラフトスカウト」、ITエンジニアキャリアのプロに相談できる「転職ドラフトエージェント」を運営しています。",
+    description:
+      "転職ドラフトは、「年収も実力も磨ける仕事」に出会える、ITエンジニア向けの転職サービスです。\n年収付きのスカウトが企業から届く「転職ドラフトスカウト」、ITエンジニアキャリアのプロに相談できる「転職ドラフトエージェント」を運営しています。",
     id: "job-draft",
   },
-
 ];
 const SPONSORS_SILVER: Sponsor[] = [
   {
@@ -393,7 +423,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     linkUrl: "https://mates-app.jp/",
     plan: "silver",
     option: ["hall-naming-rights"],
-    description: "株式会社メイツは「教育をアップデートする」をミッションに、再現性・学習成果が高いICT教材 aim@ を提供しています。教育をより良くするプロダクトをともに作っていくエンジニアを募集しています。",
+    description:
+      "株式会社メイツは「教育をアップデートする」をミッションに、再現性・学習成果が高いICT教材 aim@ を提供しています。教育をより良くするプロダクトをともに作っていくエンジニアを募集しています。",
     id: "mates",
   },
   {
@@ -402,7 +433,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     logoImageAlt: "DMM.com",
     linkUrl: "https://dmm-corp.com/",
     plan: "silver",
-    description: "会員数4,507万人（※）を誇る総合サービスサイト「DMM.com」を運営。1998年の創業以来、多岐にわたる事業を展開し、現在は60以上のサービスを運営。※2024年2月時点",
+    description:
+      "会員数4,507万人（※）を誇る総合サービスサイト「DMM.com」を運営。1998年の創業以来、多岐にわたる事業を展開し、現在は60以上のサービスを運営。※2024年2月時点",
     id: "dmm-corp",
   },
   {
@@ -412,7 +444,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     linkUrl: "https://www.istyle.co.jp/",
     plan: "silver",
     option: ["intermission-slide", "job-board"],
-    description: "株式会社アイスタイルは、美容系総合サービス「@cosme（アットコスメ）」とEC・店舗を運営し、生活者情報を活用する企業横断型の新しいマーケティングプラットフォームを提供しています。",
+    description:
+      "株式会社アイスタイルは、美容系総合サービス「@cosme（アットコスメ）」とEC・店舗を運営し、生活者情報を活用する企業横断型の新しいマーケティングプラットフォームを提供しています。",
     id: "istyle",
   },
   {
@@ -422,7 +455,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     linkUrl: "https://www.coderabbit.ai",
     plan: "silver",
     option: ["intermission-slide"],
-    description: "CodeRabbitはコードレビューの時間とバグを減らすAIコードレビューサービスです。GitHub/GitLabなどと連携し、PRを自動でレビューします。VS Code機能拡張は無料で利用できます。",
+    description:
+      "CodeRabbitはコードレビューの時間とバグを減らすAIコードレビューサービスです。GitHub/GitLabなどと連携し、PRを自動でレビューします。VS Code機能拡張は無料で利用できます。",
     id: "CodeRabbit",
   },
   {
@@ -431,7 +465,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     logoImageAlt: "株式会社クラウドワークスのロゴ",
     linkUrl: "https://crowdworks.co.jp/",
     plan: "silver",
-    description: "日本最大級のクラウドソーシングサービス「クラウドワークス」は、サービス開発でVue.jsを積極的に活用しています。コミュニティの更なる発展を願い、Vue Fes Japanの成功を応援しています！",
+    description:
+      "日本最大級のクラウドソーシングサービス「クラウドワークス」は、サービス開発でVue.jsを積極的に活用しています。コミュニティの更なる発展を願い、Vue Fes Japanの成功を応援しています！",
     id: "crowd-works",
   },
   {
@@ -441,7 +476,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     linkUrl: "https://kickflow.com/",
     plan: "silver",
     option: ["job-board"],
-    description: "私たちは、企業向けのクラウドワークフローであるkickflowを開発・提供しています。kickflowは企業の生産性向上で高く評価されており、大手企業や成長中の企業に導入されています。",
+    description:
+      "私たちは、企業向けのクラウドワークフローであるkickflowを開発・提供しています。kickflowは企業の生産性向上で高く評価されており、大手企業や成長中の企業に導入されています。",
     id: "kickflow",
   },
 ];
@@ -475,8 +511,10 @@ const SPONSORS_BRONZE: Sponsor[] = [
     id: "cyberagent",
     session: [
       {
-        title: "ViteとTypeScriptのProject Referencesで大規模モノレポのUIカタログのリリースサイクルを高速化する",
-        overview: "CyberAgent group Infrastructure Unit（CIU）のWebフロントエンドでは、50以上のパッケージを束ねたモノレポを運用しています。\nこのモノレポは、CIUのWebフロントエンドのUIや共通ロジック、APIクライアントなどを含むSDKとして、CIUの様々なサービスの開発に用いられています。\n本LTでは、SDKが提供しているUIのカタログについて、Viteを活用してリリースを高速化しているお話をします。\n特に、モノレポの管理に用いているTypeScriptのProject ReferencesとViteをどのように組み合わせて、開発サーバーを高速化しつつ、本番への変更にかかる時間を短縮しているのかについてご紹介します。",
+        title:
+          "ViteとTypeScriptのProject Referencesで大規模モノレポのUIカタログのリリースサイクルを高速化する",
+        overview:
+          "CyberAgent group Infrastructure Unit（CIU）のWebフロントエンドでは、50以上のパッケージを束ねたモノレポを運用しています。\nこのモノレポは、CIUのWebフロントエンドのUIや共通ロジック、APIクライアントなどを含むSDKとして、CIUの様々なサービスの開発に用いられています。\n本LTでは、SDKが提供しているUIのカタログについて、Viteを活用してリリースを高速化しているお話をします。\n特に、モノレポの管理に用いているTypeScriptのProject ReferencesとViteをどのように組み合わせて、開発サーバーを高速化しつつ、本番への変更にかかる時間を短縮しているのかについてご紹介します。",
         speaker: {
           sponsorId: "cyberagent",
           name: "did0es",
@@ -489,12 +527,14 @@ const SPONSORS_BRONZE: Sponsor[] = [
             x: "https://x.com/did0es",
             github: "https://github.com/shuta13",
           },
-          slide: "https://speakerdeck.com/shuta13/vitetotypescriptnoproject-referencesde-da-gui-mo-monoreponouikatarogunoririsusaikuruwogao-su-hua-suru",
+          slide:
+            "https://speakerdeck.com/shuta13/vitetotypescriptnoproject-referencesde-da-gui-mo-monoreponouikatarogunoririsusaikuruwogao-su-hua-suru",
         },
       },
       {
         title: "Vue.js コミュニティとサイバーエージェント",
-        overview: "Jabelicがフロントエンドエンジニアになった身の上話と、サイバーエージェントについて軽く紹介させてください。",
+        overview:
+          "Jabelicがフロントエンドエンジニアになった身の上話と、サイバーエージェントについて軽く紹介させてください。",
         speaker: {
           sponsorId: "cyberagent",
           name: "Jabelic",
@@ -533,7 +573,8 @@ const SPONSORS_BRONZE: Sponsor[] = [
   {
     name: "株式会社クイック",
     logoImageUrl: "/images/sponsor-logo/bronze/quick.png",
-    logoImageAlt: "総合人材サービス会社「株式会社クイック」のロゴ。\n当社のシンボルマークのモチーフは「人」。“日本の人事部”を標榜する株式会社クイック、また“世界の人事部”をビジョンに掲げるクイックグループの象徴と言えます。ゆとりと豊かさを感じさせるソフトなフォルムには、時代にフィットするしなやかな感性と未来への確かな飛躍が託されています。",
+    logoImageAlt:
+      "総合人材サービス会社「株式会社クイック」のロゴ。\n当社のシンボルマークのモチーフは「人」。“日本の人事部”を標榜する株式会社クイック、また“世界の人事部”をビジョンに掲げるクイックグループの象徴と言えます。ゆとりと豊かさを感じさせるソフトなフォルムには、時代にフィットするしなやかな感性と未来への確かな飛躍が託されています。",
     linkUrl: "https://quick-wpd.notion.site/",
     plan: "bronze",
     description: "",
@@ -564,7 +605,8 @@ const SPONSORS_OPTION_ONLY: Sponsor[] = [
     session: [
       {
         title: "Vue.jsを8年間使ってきた会社が今考えていること",
-        overview: "Studio株式会社では、Vue.jsを1系から8年間使い続けてきました。Vue.jsの構文の変更や、TypeScriptの導入、周辺ツールの変遷などと付き合いながら、現在もアプリケーション開発の中心にあります。そんな会社のエンジニアに現在のVue.jsやフロントエンドについてどんなことを考えているのかアンケートを実施してみました。",
+        overview:
+          "Studio株式会社では、Vue.jsを1系から8年間使い続けてきました。Vue.jsの構文の変更や、TypeScriptの導入、周辺ツールの変遷などと付き合いながら、現在もアプリケーション開発の中心にあります。そんな会社のエンジニアに現在のVue.jsやフロントエンドについてどんなことを考えているのかアンケートを実施してみました。",
         speaker: {
           sponsorId: "studio",
           name: "齊藤広野",
@@ -591,7 +633,8 @@ const SPONSORS_CREATIVE: Sponsor[] = [
     logoImageAlt: "IE3 Logo",
     linkUrl: "https://ie3.jp/",
     plan: "creative",
-    description: "IE3 は、ビジュアルアーティスト、エンジニア、デザイナーによるクリエイティブユニットです。「Make it First.」をミッションに、エンジニアリングとクリエイティブを融合させた新しい表現と体験の創造に挑戦しています。Media Art、Digital Signage、UI/UX Design、Webなど多領域に専門性を持ち、公共・商業施設でのメディアアートやサイネージなど大型プロジェクトを手がけています。文化庁メディア芸術祭優秀賞、Cannes Lions Goldなど豊富な受賞歴を誇ります。",
+    description:
+      "IE3 は、ビジュアルアーティスト、エンジニア、デザイナーによるクリエイティブユニットです。「Make it First.」をミッションに、エンジニアリングとクリエイティブを融合させた新しい表現と体験の創造に挑戦しています。Media Art、Digital Signage、UI/UX Design、Webなど多領域に専門性を持ち、公共・商業施設でのメディアアートやサイネージなど大型プロジェクトを手がけています。文化庁メディア芸術祭優秀賞、Cannes Lions Goldなど豊富な受賞歴を誇ります。",
     id: "ie3",
   },
 ];
@@ -644,11 +687,11 @@ const SPONSORS_INDIVIDUAL: string[] = [
 ];
 
 const filterSponsorsByOption = (option: Option): Sponsor[] => [
-  ...SPONSORS_PLATINA.filter(sponsor => sponsor.option?.includes(option)),
-  ...SPONSORS_GOLD.filter(sponsor => sponsor.option?.includes(option)),
-  ...SPONSORS_SILVER.filter(sponsor => sponsor.option?.includes(option)),
-  ...SPONSORS_BRONZE.filter(sponsor => sponsor.option?.includes(option)),
-  ...SPONSORS_OPTION_ONLY.filter(sponsor => sponsor.option?.includes(option)),
+  ...SPONSORS_PLATINA.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_GOLD.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_SILVER.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_BRONZE.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_OPTION_ONLY.filter((sponsor) => sponsor.option?.includes(option)),
 ];
 
 const SPONSORS_HALL_NAMING_RIGHTS: Sponsor[] = filterSponsorsByOption("hall-naming-rights");

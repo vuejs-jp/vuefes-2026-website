@@ -1,10 +1,6 @@
 <script lang="ts">
 import type * as v from "valibot";
-import {
-  type FormFieldState,
-  type FormSubmitEvent,
-  Form as PForm,
-} from "@primevue/forms";
+import { type FormFieldState, type FormSubmitEvent, Form as PForm } from "@primevue/forms";
 import { valibotResolver } from "@primevue/forms/resolvers/valibot";
 import { useTemplateRef } from "#imports";
 

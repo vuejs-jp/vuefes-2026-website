@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import Carousel from "primevue/carousel";
 import { useLocaleRoute } from "@typed-router";
-import { SESSION_SPEAKERS as enSessionSpeakers, PANEL_DISCUSSION_SPEAKERS as enPanelDiscussionSpeakers } from "../../../i18n/en/speakers";
-import { SESSION_SPEAKERS as jaSessionSpeakers, PANEL_DISCUSSION_SPEAKERS as jaPanelDiscussionSpeakers } from "../../../i18n/ja/speakers";
+import {
+  SESSION_SPEAKERS as enSessionSpeakers,
+  PANEL_DISCUSSION_SPEAKERS as enPanelDiscussionSpeakers,
+} from "../../../i18n/en/speakers";
+import {
+  SESSION_SPEAKERS as jaSessionSpeakers,
+  PANEL_DISCUSSION_SPEAKERS as jaPanelDiscussionSpeakers,
+} from "../../../i18n/ja/speakers";
 import { computed, useI18n } from "#imports";
 import { EnSpeaker, JaSpeaker, VFButton } from "#components";
 import type { Speaker } from "~~/i18n/speaker";
@@ -38,36 +44,31 @@ type CarouselSpeaker = Omit<Speaker, "id" | "color"> & {
 const speakers = computed<CarouselSpeaker[]>(() => {
   const colorSetIter = new ColorSetIter();
 
-  const _speakers
-    = (locale.value === "en" ? [...enSessionSpeakers, ...enPanelDiscussionSpeakers] : [...jaSessionSpeakers, ...jaPanelDiscussionSpeakers])
+  const _speakers = (
+    locale.value === "en"
+      ? [...enSessionSpeakers, ...enPanelDiscussionSpeakers]
+      : [...jaSessionSpeakers, ...jaPanelDiscussionSpeakers]
+  )
 
-      .filter((it, index, speakers) => index === speakers.findIndex(s => s.name === it.name))
-      .filter(it => it.attendedIndex !== undefined)
-      .sort((a, b) => a.attendedIndex! - b.attendedIndex!)
-      .map(it => ({
-        ...it,
-        id: it.name,
-        color: colorSetIter.next(),
-      }));
+    .filter((it, index, speakers) => index === speakers.findIndex((s) => s.name === it.name))
+    .filter((it) => it.attendedIndex !== undefined)
+    .sort((a, b) => a.attendedIndex! - b.attendedIndex!)
+    .map((it) => ({
+      ...it,
+      id: it.name,
+      color: colorSetIter.next(),
+    }));
 
-  return [
-    { ..._speakers[_speakers.length - 1]! },
-    ..._speakers,
-    { ..._speakers[0]! },
-  ];
+  return [{ ..._speakers[_speakers.length - 1]! }, ..._speakers, { ..._speakers[0]! }];
 });
 </script>
 
 <template>
-  <VFSection
-    :id="HOME_HEADING_ID.speaker"
-    :title="t('speakers.title')"
-    class="section-speakers"
-  >
+  <VFSection :id="HOME_HEADING_ID.speaker" :title="t('speakers.title')" class="section-speakers">
     <component :is="locale === 'ja' ? JaSpeaker : EnSpeaker" />
 
     <h3 class="featured-speaker-heading">
-      {{ t('speakers.featured') }}
+      {{ t("speakers.featured") }}
     </h3>
 
     <div class="carousel">
@@ -107,7 +108,7 @@ const speakers = computed<CarouselSpeaker[]>(() => {
 
     <div class="view-all-speakers">
       <VFButton :link="localeRoute({ name: 'speaker' })">
-        {{ t('speakers.viewAll') }}
+        {{ t("speakers.viewAll") }}
       </VFButton>
     </div>
   </VFSection>
@@ -123,8 +124,8 @@ const speakers = computed<CarouselSpeaker[]>(() => {
     position: relative;
 
     .p-carousel-content {
-      [data-pc-name=pcnextbutton],
-      [data-pc-name=pcprevbutton] {
+      [data-pc-name="pcnextbutton"],
+      [data-pc-name="pcprevbutton"] {
         position: absolute;
         bottom: -64px; /* button size (48px) + margin (16px)  */
         color: var(--color-base);
@@ -142,11 +143,11 @@ const speakers = computed<CarouselSpeaker[]>(() => {
         }
       }
 
-      [data-pc-name=pcprevbutton] {
+      [data-pc-name="pcprevbutton"] {
         left: calc(50% - 48px - 4px); /* 50% - button size (48px) - gap (8px / 2 = 4px) */
       }
 
-      [data-pc-name=pcnextbutton] {
+      [data-pc-name="pcnextbutton"] {
         right: calc(50% - 48px - 4px); /* 50% - button size (48px) - gap (8px / 2 = 4px) */
       }
 

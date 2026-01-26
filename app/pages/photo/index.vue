@@ -37,31 +37,19 @@ useSeoMeta({
 
 <template>
   <div id="pages-photo">
-    <h1>{{ $t('photo.title') }}</h1>
+    <h1>{{ $t("photo.title") }}</h1>
 
     <VFSection>
       <i18n-t keypath="photo.description" tag="p" class="photo-description">
         <template #cc0Link>
-          <a
-            :href="CC0_URL"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="cc0-link"
-          >{{ t('photo.cc0LinkText') }}</a>
+          <a :href="CC0_URL" target="_blank" rel="noopener noreferrer" class="cc0-link">{{
+            t("photo.cc0LinkText")
+          }}</a>
         </template>
       </i18n-t>
       <ul class="photo-list">
-        <li
-          v-for="category in PHOTO_CATEGORIES"
-          :key="category.id"
-          class="photo-list-item"
-        >
-          <a
-            :href="category.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="photo-link"
-          >
+        <li v-for="category in PHOTO_CATEGORIES" :key="category.id" class="photo-list-item">
+          <a :href="category.url" target="_blank" rel="noopener noreferrer" class="photo-link">
             {{ getCategoryLabel(category.id) }}
           </a>
         </li>

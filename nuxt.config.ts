@@ -1,4 +1,3 @@
-/* eslint-disable nuxt/nuxt-config-keys-order */
 import Icons from "unplugin-icons/vite";
 import { FileSystemIconLoader } from "unplugin-icons/loaders";
 import type { NuxtPage } from "nuxt/schema";
@@ -7,7 +6,6 @@ import type { NuxtPage } from "nuxt/schema";
 export default defineNuxtConfig({
   modules: [
     "./modules/00.feature-flags.ts",
-    "@nuxt/eslint",
     "@nuxt/scripts",
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
@@ -149,15 +147,6 @@ export default defineNuxtConfig({
     guestDetailsBaku: true,
     guestDetailsOgawa: true,
     guestDetailsLeaysgur: true,
-  },
-
-  eslint: {
-    config: {
-      stylistic: {
-        semi: true,
-        quotes: "double",
-      },
-    },
   },
 
   i18n: {

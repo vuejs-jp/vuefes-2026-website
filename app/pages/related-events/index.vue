@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import {
-  RELATED_EVENTS as enRelatedEvents,
-} from "../../../i18n/en/related-events";
+import { RELATED_EVENTS as enRelatedEvents } from "../../../i18n/en/related-events";
 
-import {
-  RELATED_EVENTS as jaRelatedEvents,
-} from "../../../i18n/ja/related-events";
+import { RELATED_EVENTS as jaRelatedEvents } from "../../../i18n/ja/related-events";
 
-import {
-  VFSection,
-  VFButton,
-} from "#components";
+import { VFSection, VFButton } from "#components";
 
 import {
   computed,
@@ -25,21 +18,23 @@ import {
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 
-const relatedEvents = computed(() => locale.value === "en" ? enRelatedEvents : jaRelatedEvents);
+const relatedEvents = computed(() => (locale.value === "en" ? enRelatedEvents : jaRelatedEvents));
 
-const dateOption = computed(() => locale.value === "en"
-  ? {
-      year: "numeric" as const,
-      month: "long" as const,
-      day: "numeric" as const,
-      weekday: "short" as const,
-    }
-  : {
-      year: "numeric" as const,
-      month: "short" as const,
-      day: "numeric" as const,
-      weekday: "short" as const,
-    });
+const dateOption = computed(() =>
+  locale.value === "en"
+    ? {
+        year: "numeric" as const,
+        month: "long" as const,
+        day: "numeric" as const,
+        weekday: "short" as const,
+      }
+    : {
+        year: "numeric" as const,
+        month: "short" as const,
+        day: "numeric" as const,
+        weekday: "short" as const,
+      },
+);
 
 defineOgImage({
   url: `${runtimeConfig.public.siteUrl}images/og/related-events.png`,
@@ -53,13 +48,19 @@ useSeoMeta({
 
 <template>
   <div id="pages-related-events">
-    <h1>{{ $t('relatedEvents.title') }}</h1>
+    <h1>{{ $t("relatedEvents.title") }}</h1>
   </div>
 
   <VFSection :title="t('relatedEvents.sectionTitle')" class="vf-section discussion-event">
     <ul class="event-card">
       <li v-for="event in relatedEvents" :key="event.id" class="event-card-item">
-        <img :src="event.coverUrl" :alt="event.coverAlt" width="400" height="164" class="event-card-image">
+        <img
+          :src="event.coverUrl"
+          :alt="event.coverAlt"
+          width="400"
+          height="164"
+          class="event-card-image"
+        />
         <div class="event-card-content">
           <div>
             <h2 class="event-card-title">

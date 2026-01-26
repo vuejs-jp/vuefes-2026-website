@@ -93,16 +93,26 @@ function toggleMenu(toggle = !isOpened.value) {
 
 /* Class to apply the animation */
 .zoom-blur-in {
-  animation: zoomBlurIn 0.3s cubic-bezier(.25,.8,.25,1) both;
+  animation: zoomBlurIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) both;
   /* both = forwards+backwards so initial state is affected by 0% */
 }
 
 @keyframes zoomBlurOut {
-  0%   { transform: scale(1);   filter: blur(0);    backdrop-filter: blur(8px); opacity: 1; }
-  100% { transform: scale(0.8); filter: blur(12px); backdrop-filter: blur(0);   opacity: 0; }
+  0% {
+    transform: scale(1);
+    filter: blur(0);
+    backdrop-filter: blur(8px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    filter: blur(12px);
+    backdrop-filter: blur(0);
+    opacity: 0;
+  }
 }
 
 .zoom-blur-in-reverse {
-  animation: zoomBlurOut 0.2s cubic-bezier(.4,.0,.6,1) both;
+  animation: zoomBlurOut 0.2s cubic-bezier(0.4, 0, 0.6, 1) both;
 }
 </style>

@@ -10,23 +10,18 @@ export default defineEventHandler(async (event): Promise<Timetable> => {
   const locale = (query.locale as string) || "ja";
   const t = useTranslation(locale);
 
-  const {
-    SESSION_SPEAKERS,
-    LT_SPEAKERS,
-    PANEL_DISCUSSION_SPEAKERS,
-    STUDENT_SUPPORT_SPEAKERS,
-  } = locale === "ja"
-    ? await import(`../../../i18n/ja/speakers`)
-    : await import(`../../../i18n/en/speakers`);
+  const { SESSION_SPEAKERS, LT_SPEAKERS, PANEL_DISCUSSION_SPEAKERS, STUDENT_SUPPORT_SPEAKERS } =
+    locale === "ja"
+      ? await import(`../../../i18n/ja/speakers`)
+      : await import(`../../../i18n/en/speakers`);
 
-  const {
-    SPONSORS,
-  } = locale === "ja"
-    ? await import(`../../../i18n/ja/sponsors`)
-    : await import(`../../../i18n/en/sponsors`);
+  const { SPONSORS } =
+    locale === "ja"
+      ? await import(`../../../i18n/ja/sponsors`)
+      : await import(`../../../i18n/en/sponsors`);
 
   function getSpeaker(id: string): Speaker {
-    const speaker = SESSION_SPEAKERS.find(s => s.id === id);
+    const speaker = SESSION_SPEAKERS.find((s) => s.id === id);
     if (!speaker) {
       throw new Error(`Speaker not found: ${id}`);
     }
@@ -41,7 +36,7 @@ export default defineEventHandler(async (event): Promise<Timetable> => {
       ...SPONSORS.BRONZE,
       ...SPONSORS.CREATIVE,
       ...SPONSORS.OPTION_ONLY,
-    ].find(s => s.id === id);
+    ].find((s) => s.id === id);
 
     if (!sponsor) {
       throw new Error(`Sponsor not found: ${id}`);
@@ -224,7 +219,9 @@ export default defineEventHandler(async (event): Promise<Timetable> => {
             rowspan: 1,
             startTime: "11:05",
             endTime: "11:15",
-            speakers: [{ ...uniquevision.session![0]!.speaker, talkTitle: uniquevision.session![0]!.title }],
+            speakers: [
+              { ...uniquevision.session![0]!.speaker, talkTitle: uniquevision.session![0]!.title },
+            ],
             track: "mates",
           },
         ],
@@ -285,9 +282,7 @@ export default defineEventHandler(async (event): Promise<Timetable> => {
             startTime: "12:00",
             endTime: "12:30",
             link: "student-support-contents",
-            speakers: [
-              ...STUDENT_SUPPORT_SPEAKERS as Speaker[],
-            ],
+            speakers: [...(STUDENT_SUPPORT_SPEAKERS as Speaker[])],
           },
         ],
       },
@@ -371,7 +366,12 @@ export default defineEventHandler(async (event): Promise<Timetable> => {
             startTime: "12:50",
             endTime: "14:50",
             link: "hands-on",
-            speakers: [{ ...cyberagent.session![1]!.speaker, talkTitle: `【${t("timetable.handsOnSponsorSession")}】\n${cyberagent.session![1]!.title}` }],
+            speakers: [
+              {
+                ...cyberagent.session![1]!.speaker,
+                talkTitle: `【${t("timetable.handsOnSponsorSession")}】\n${cyberagent.session![1]!.title}`,
+              },
+            ],
           },
         ],
       },
@@ -563,7 +563,12 @@ export default defineEventHandler(async (event): Promise<Timetable> => {
             startTime: "15:05",
             endTime: "17:05",
             link: "hands-on",
-            speakers: [{ ...cyberagent.session![0]!.speaker, talkTitle: `【${t("timetable.handsOnSponsorSession")}】\n${cyberagent.session![0]!.title}` }],
+            speakers: [
+              {
+                ...cyberagent.session![0]!.speaker,
+                talkTitle: `【${t("timetable.handsOnSponsorSession")}】\n${cyberagent.session![0]!.title}`,
+              },
+            ],
           },
         ],
       },

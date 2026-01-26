@@ -10,15 +10,17 @@ export default defineEventHandler(async (event) => {
   const salesId = getRouterParam(event, "salesId")!;
   const { fresh } = getQuery(event);
 
-  const data = await client.GET("/event/{eventId}/list_sales/{salesId}", {
-    params: {
-      path: {
-        eventId: peatixEventId,
-        salesId,
+  const data = await client
+    .GET("/event/{eventId}/list_sales/{salesId}", {
+      params: {
+        path: {
+          eventId: peatixEventId,
+          salesId,
+        },
+        query: { fresh: fresh as string | undefined },
       },
-      query: { fresh: fresh as string | undefined },
-    },
-  }).then(response => response.data);
+    })
+    .then((response) => response.data);
 
   return data;
 });

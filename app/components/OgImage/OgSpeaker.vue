@@ -10,7 +10,9 @@ const { avatarUrl, color, speakerTitle, affiliation } = defineProps<{
 }>();
 
 const runtimeConfig = useRuntimeConfig();
-const avatarImageFullUrl = computed(() => `${runtimeConfig.siteUrl}${avatarUrl.startsWith("/") ? avatarUrl.slice(1) : avatarUrl}`);
+const avatarImageFullUrl = computed(
+  () => `${runtimeConfig.siteUrl}${avatarUrl.startsWith("/") ? avatarUrl.slice(1) : avatarUrl}`,
+);
 const description = computed(() => speakerTitle || affiliation);
 
 const variants = computed(() => {

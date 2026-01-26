@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "linter": {
+    "rules": {
+      "correctness": "error",
+      "suspicious": "warn",
+      "pedantic": "warn",
+      "style": "warn",
+      "nursery": "off",
+      "restriction": "off",
+      "typescript/consistent-type-imports": "error",
+      "typescript/no-import-type-side-effects": "error"
+    }
+  },
+  "typescript": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["typescript", "import"],
+  "ignorePatterns": [".github/dependabot.yml", "server/db/drizzle", "server/peatix-api/schema.d.ts"]
+}

@@ -21,7 +21,7 @@ const { locale: lang } = useI18n();
       v-bind="$attrs"
       :id="id"
       :aria-describedby="descriptionId"
-      :class="{ 'has-form-state': formState, 'invalid': formState?.invalid }"
+      :class="{ 'has-form-state': formState, invalid: formState?.invalid }"
       rows="6"
     />
     <p

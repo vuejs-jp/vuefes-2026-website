@@ -4,17 +4,8 @@ import { useI18n, useLocaleRoute } from "#imports";
 import type { TimetableCell } from "~~/i18n/timetable";
 import SliderIcon from "~icons/icons/timetable-slider.svg";
 
-const {
-  type,
-  title,
-  startTime,
-  endTime,
-  speakers,
-  colspan,
-  rowspan,
-  track,
-  link,
-} = defineProps<TimetableCell>();
+const { type, title, startTime, endTime, speakers, colspan, rowspan, track, link } =
+  defineProps<TimetableCell>();
 const { t } = useI18n();
 const localeRoute = useLocaleRoute();
 
@@ -41,7 +32,12 @@ const hoverColor = `var(--color-${accentColorName.value}-accent-hover)`;
 </script>
 
 <template>
-  <td class="cell" :colspan="colspan" :rowspan="rowspan" :class="{ 'cell--schedule': type === 'schedule' }">
+  <td
+    class="cell"
+    :colspan="colspan"
+    :rowspan="rowspan"
+    :class="{ 'cell--schedule': type === 'schedule' }"
+  >
     <div class="cell-inner">
       <div v-if="startTime && type !== 'schedule'" class="time">
         <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
@@ -77,23 +73,33 @@ const hoverColor = `var(--color-${accentColorName.value}-accent-hover)`;
           {{ title }}
         </div>
 
-        <div v-if="speakers" class="speakers" :style="{ '--speaker-gap': type ==='lightningTalk' ? '32px' : undefined }">
+        <div
+          v-if="speakers"
+          class="speakers"
+          :style="{ '--speaker-gap': type === 'lightningTalk' ? '32px' : undefined }"
+        >
           <template v-for="speaker in speakers" :key="speaker.id">
             <div :class="{ 'event-speaker': type === 'event' }">
               <NuxtLink
                 v-if="speaker.talkTitle"
-                :to="localeRoute(
-                  speaker.sponsorId === undefined
-                    ? { name: 'speaker-speakerId', params: { speakerId: speaker.id } }
-                    : { name: 'sponsors-sponsorId', params: { sponsorId: speaker.sponsorId }, hash: `#${speaker.id}` },
-                ) || (speaker.sponsorId === undefined ? '/speakers' : '/sponsors')"
+                :to="
+                  localeRoute(
+                    speaker.sponsorId === undefined
+                      ? { name: 'speaker-speakerId', params: { speakerId: speaker.id } }
+                      : {
+                          name: 'sponsors-sponsorId',
+                          params: { sponsorId: speaker.sponsorId },
+                          hash: `#${speaker.id}`,
+                        },
+                  ) || (speaker.sponsorId === undefined ? '/speakers' : '/sponsors')
+                "
                 class="title"
               >
                 {{ speaker.talkTitle }}
               </NuxtLink>
               <div class="speaker-item">
                 <div v-if="speaker.avatarUrl" class="avatar">
-                  <img :src="speaker.avatarUrl" :alt="speaker.name">
+                  <img :src="speaker.avatarUrl" :alt="speaker.name" />
                 </div>
                 <div class="speaker-info">
                   <p v-if="speaker.affiliation" class="affiliation">
@@ -203,7 +209,7 @@ const hoverColor = `var(--color-${accentColorName.value}-accent-hover)`;
   align-items: flex-start;
   gap: 0 8px;
   margin-top: 8px;
-  .avatar{
+  .avatar {
     width: 48px;
     aspect-ratio: 1;
     overflow: hidden;
@@ -227,7 +233,7 @@ const hoverColor = `var(--color-${accentColorName.value}-accent-hover)`;
     line-height: 1;
     margin-bottom: 0.25rem;
   }
-  .name{
+  .name {
     font-size: 14px;
     color: var(--color-text-default);
     line-height: 1.2;

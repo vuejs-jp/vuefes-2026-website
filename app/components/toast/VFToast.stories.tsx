@@ -19,7 +19,8 @@ export const Default: StoryFn = () => ({
             toast.open({
               type: "success",
               message: "送信しました",
-            })}
+            })
+          }
         >
           トーストを開く
         </VFButton>
@@ -41,7 +42,8 @@ export const Alert: StoryFn = () => ({
             toast.open({
               type: "alert",
               message: "送信に失敗しました",
-            })}
+            })
+          }
         >
           トーストを開く
         </VFButton>

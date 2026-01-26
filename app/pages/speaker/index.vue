@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
-import { SESSION_SPEAKERS as enSessionSpeakers, LT_SPEAKERS as enLTSpeakers, PANEL_DISCUSSION_SPEAKERS as enPanelSpeakers } from "../../../i18n/en/speakers";
-import { SESSION_SPEAKERS as jaSessionSpeakers, LT_SPEAKERS as jaLTSpeakers, PANEL_DISCUSSION_SPEAKERS as jaPanelSpeakers } from "../../../i18n/ja/speakers";
+import {
+  SESSION_SPEAKERS as enSessionSpeakers,
+  LT_SPEAKERS as enLTSpeakers,
+  PANEL_DISCUSSION_SPEAKERS as enPanelSpeakers,
+} from "../../../i18n/en/speakers";
+import {
+  SESSION_SPEAKERS as jaSessionSpeakers,
+  LT_SPEAKERS as jaLTSpeakers,
+  PANEL_DISCUSSION_SPEAKERS as jaPanelSpeakers,
+} from "../../../i18n/ja/speakers";
 import SpeakerCard from "./_components/SpeakerCard.vue";
 import { VFSection, JaSpeaker, EnSpeaker, JaPanelDiscussion, EnPanelDiscussion } from "#components";
 import {
@@ -24,9 +32,11 @@ const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
 
-const sessionSpeakers = computed(() => locale.value === "en" ? enSessionSpeakers : jaSessionSpeakers);
-const ltSpeakers = computed(() => locale.value === "en" ? enLTSpeakers : jaLTSpeakers);
-const panelSpeakers = computed(() => locale.value === "en" ? enPanelSpeakers : jaPanelSpeakers);
+const sessionSpeakers = computed(() =>
+  locale.value === "en" ? enSessionSpeakers : jaSessionSpeakers,
+);
+const ltSpeakers = computed(() => (locale.value === "en" ? enLTSpeakers : jaLTSpeakers));
+const panelSpeakers = computed(() => (locale.value === "en" ? enPanelSpeakers : jaPanelSpeakers));
 
 const SectionId = {
   Sessions: "sessions",
@@ -39,9 +49,10 @@ const route = useRoute();
 useQueryHashSync({ queryKey: "section" });
 
 defineOgImage({
-  url: route.query.section === SectionId.PanelDiscussion
-    ? `${runtimeConfig.public.siteUrl}images/og/panel-discussion.png`
-    : `${runtimeConfig.public.siteUrl}images/og/speaker.png`,
+  url:
+    route.query.section === SectionId.PanelDiscussion
+      ? `${runtimeConfig.public.siteUrl}images/og/panel-discussion.png`
+      : `${runtimeConfig.public.siteUrl}images/og/speaker.png`,
 });
 useSeoMeta({
   title: () =>
@@ -76,7 +87,8 @@ useSeoMeta({
           v-for="speaker in sessionSpeakers"
           :key="speaker.id"
           :to="localeRoute({ name: 'speaker-speakerId', params: { speakerId: speaker.id } })"
-          class="speaker-card-link" :speaker="speaker"
+          class="speaker-card-link"
+          :speaker="speaker"
         />
       </ul>
     </VFSection>
@@ -94,7 +106,10 @@ useSeoMeta({
     </VFSection>
 
     <VFSection :id="SectionId.PanelDiscussion" :title="t('speakers.panel.title')" wide>
-      <component :is="locale === 'ja' ? JaPanelDiscussion : EnPanelDiscussion" class="description" />
+      <component
+        :is="locale === 'ja' ? JaPanelDiscussion : EnPanelDiscussion"
+        class="description"
+      />
 
       <ul class="speakers">
         <SpeakerCard v-for="speaker in panelSpeakers" :key="speaker.name" :speaker="speaker" />

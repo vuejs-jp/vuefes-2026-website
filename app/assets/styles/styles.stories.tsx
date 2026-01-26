@@ -36,9 +36,7 @@ const Colors = () => (
 
     <h3>Base</h3>
     <div class="theme-base" style={colorsStyle}>
-      <div style={colorStyle + "background: var(--color-primary);"}>
-        Primary
-      </div>
+      <div style={colorStyle + "background: var(--color-primary);"}>Primary</div>
       <div style={colorStyle + "background: var(--color-purple);"}>Purple</div>
       <div style={colorStyle + "background: var(--color-orange);"}>Orange</div>
       <div style={colorStyle + "background: var(--color-navy);"}>Navy</div>
@@ -46,9 +44,7 @@ const Colors = () => (
 
     <h3>Sub</h3>
     <div class="theme-sub" style={colorsStyle}>
-      <div style={colorStyle + "background: var(--color-primary);"}>
-        Primary
-      </div>
+      <div style={colorStyle + "background: var(--color-primary);"}>Primary</div>
       <div style={colorStyle + "background: var(--color-purple);"}>Purple</div>
       <div style={colorStyle + "background: var(--color-orange);"}>Orange</div>
       <div style={colorStyle + "background: var(--color-navy);"}>Navy</div>
@@ -57,42 +53,22 @@ const Colors = () => (
     <h3>_common</h3>
     <div style={colorsStyle}>
       <div style={colorStyle + "background: var(--color-accent);"}>Accent</div>
-      <div style={colorStyle + "background: var(--color-accent-hover);"}>
-        Accent Hover
-      </div>
-      <div style={colorStyle + "background: var(--color-text-default);"}>
-        Text Default
-      </div>
-      <div
-        style={
-          colorStyle +
-          "color: var(--color-primary); background: var(--color-divider);"
-        }
-      >
+      <div style={colorStyle + "background: var(--color-accent-hover);"}>Accent Hover</div>
+      <div style={colorStyle + "background: var(--color-text-default);"}>Text Default</div>
+      <div style={colorStyle + "color: var(--color-primary); background: var(--color-divider);"}>
         Divider
       </div>
       <div
-        style={
-          colorStyle +
-          "color: var(--color-primary); background: var(--color-divider-light);"
-        }
+        style={colorStyle + "color: var(--color-primary); background: var(--color-divider-light);"}
       >
         Divider Light
       </div>
       <div
-        style={
-          colorStyle +
-          "color: var(--color-primary); background: var(--color-place-holder);"
-        }
+        style={colorStyle + "color: var(--color-primary); background: var(--color-place-holder);"}
       >
         Place Holder
       </div>
-      <div
-        style={
-          colorStyle +
-          "color: var(--color-primary); background: var(--color-white);"
-        }
-      >
+      <div style={colorStyle + "color: var(--color-primary); background: var(--color-white);"}>
         White
       </div>
     </div>
@@ -112,9 +88,7 @@ const Typography = () => (
     <h3>Logo Font</h3>
 
     <div style={langsStyle}>
-      <h1 style="font-family: ClashDisplay-SemiBold; margin: 0;s">
-        Vue Fes Japan 2026
-      </h1>
+      <h1 style="font-family: ClashDisplay-SemiBold; margin: 0;s">Vue Fes Japan 2026</h1>
     </div>
 
     <h3>JA</h3>
@@ -149,23 +123,19 @@ const Typography = () => (
       <h3>H3</h3>
       <p>
         BODY1 <br />
-        The quick brown fox jumps over the lazy dog the quick brown fox jumps
-        over the lazy dog.
+        The quick brown fox jumps over the lazy dog the quick brown fox jumps over the lazy dog.
       </p>
       <p class="text-body-2">
         BODY2 <br />
-        The quick brown fox jumps over the lazy dog the quick brown fox jumps
-        over the lazy dog.
+        The quick brown fox jumps over the lazy dog the quick brown fox jumps over the lazy dog.
       </p>
       <p class="text-body-3">
         BODY3 <br />
-        The quick brown fox jumps over the lazy dog the quick brown fox jumps
-        over the lazy dog.
+        The quick brown fox jumps over the lazy dog the quick brown fox jumps over the lazy dog.
       </p>
       <p class="text-caption">
         CAPTION <br />
-        The quick brown fox jumps over the lazy dog the quick brown fox jumps
-        over the lazy dog.
+        The quick brown fox jumps over the lazy dog the quick brown fox jumps over the lazy dog.
       </p>
     </div>
   </>

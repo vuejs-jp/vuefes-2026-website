@@ -22,12 +22,7 @@ const { t } = useI18n();
       <VFButton icon link="https://x.com/vuefes" external class="sns-button">
         <XIcon :aria-label="t('snsIconImageAlt.x')" role="img" />
       </VFButton>
-      <VFButton
-        icon
-        link="https://bsky.app/profile/vuefes.bsky.social"
-        external
-        class="sns-button"
-      >
+      <VFButton icon link="https://bsky.app/profile/vuefes.bsky.social" external class="sns-button">
         <BlueskyIcon :aria-label="t('snsIconImageAlt.bluesky')" role="img" />
       </VFButton>
       <VFButton
@@ -38,20 +33,10 @@ const { t } = useI18n();
       >
         <YoutubeIcon :aria-label="t('snsIconImageAlt.youtube')" role="img" />
       </VFButton>
-      <VFButton
-        icon
-        link="https://github.com/vuejs-jp"
-        external
-        class="sns-button"
-      >
+      <VFButton icon link="https://github.com/vuejs-jp" external class="sns-button">
         <GithubIcon :aria-label="t('snsIconImageAlt.github')" role="img" />
       </VFButton>
-      <VFButton
-        icon
-        link="https://note.com/vuejs_jp/m/mb35849fee631"
-        external
-        class="sns-button"
-      >
+      <VFButton icon link="https://note.com/vuejs_jp/m/mb35849fee631" external class="sns-button">
         <NoteIcon :aria-label="t('snsIconImageAlt.note')" role="img" />
       </VFButton>
     </div>
@@ -63,22 +48,34 @@ const { t } = useI18n();
       <div class="links">
         <ul class="past-vuefes-links">
           <li>
-            <NuxtLink to="https://vuefes.jp/2024" external target="_blank">Vue Fes Japan 2024</NuxtLink>
+            <NuxtLink to="https://vuefes.jp/2024" external target="_blank"
+              >Vue Fes Japan 2024</NuxtLink
+            >
           </li>
           <li>
-            <NuxtLink to="https://vuefes.jp/2023" external target="_blank">Vue Fes Japan 2023</NuxtLink>
+            <NuxtLink to="https://vuefes.jp/2023" external target="_blank"
+              >Vue Fes Japan 2023</NuxtLink
+            >
           </li>
           <li>
-            <NuxtLink to="https://vuefes.jp/2022" external target="_blank">Vue Fes Japan Online 2022</NuxtLink>
+            <NuxtLink to="https://vuefes.jp/2022" external target="_blank"
+              >Vue Fes Japan Online 2022</NuxtLink
+            >
           </li>
           <li>
-            <NuxtLink to="https://vuefes.jp/2020" external target="_blank">Vue Fes Japan 2020</NuxtLink>
+            <NuxtLink to="https://vuefes.jp/2020" external target="_blank"
+              >Vue Fes Japan 2020</NuxtLink
+            >
           </li>
           <li>
-            <NuxtLink to="https://vuefes.jp/2019" external target="_blank">Vue Fes Japan 2019</NuxtLink>
+            <NuxtLink to="https://vuefes.jp/2019" external target="_blank"
+              >Vue Fes Japan 2019</NuxtLink
+            >
           </li>
           <li>
-            <NuxtLink to="https://vuefes.jp/2018" external target="_blank">Vue Fes Japan 2018</NuxtLink>
+            <NuxtLink to="https://vuefes.jp/2018" external target="_blank"
+              >Vue Fes Japan 2018</NuxtLink
+            >
           </li>
         </ul>
 
@@ -89,27 +86,21 @@ const { t } = useI18n();
             }}</NuxtLink>
           </li>
           <li>
-            <NuxtLink :to="localePath('/privacy-policy')">{{
-              t("privacyPolicy")
-            }}</NuxtLink>
+            <NuxtLink :to="localePath('/privacy-policy')">{{ t("privacyPolicy") }}</NuxtLink>
           </li>
           <li>
-            <NuxtLink :to="localePath('/code-of-conduct')">{{
-              t("coc")
-            }}</NuxtLink>
+            <NuxtLink :to="localePath('/code-of-conduct')">{{ t("coc") }}</NuxtLink>
           </li>
           <li>
-            <NuxtLink :to="localePath('/tokusho')">{{
-              t("transactions")
-            }}</NuxtLink>
+            <NuxtLink :to="localePath('/tokusho')">{{ t("transactions") }}</NuxtLink>
           </li>
         </ul>
       </div>
 
       <p class="text-caption">
         © 2018-2025 Vue.js Japan Users Group some rights reserved. <br />
-        Vue.js artworks by Evan You is licensed under a Creative Commons
-        Attribution 4.0 International License.
+        Vue.js artworks by Evan You is licensed under a Creative Commons Attribution 4.0
+        International License.
       </p>
     </div>
   </footer>

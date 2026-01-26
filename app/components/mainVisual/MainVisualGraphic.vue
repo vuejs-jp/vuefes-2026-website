@@ -47,14 +47,8 @@ const handleWebGLInitialized = () => {
 
     <div v-else-if="appearance === 'png'" class="main-visual-graphic-wrapper">
       <picture>
-        <source
-          srcset="/images/main-visual.webp"
-          type="image/webp"
-        />
-        <img
-          src="/images/main-visual.png"
-          :alt="$t('mainVisual.imageAlt')"
-        />
+        <source srcset="/images/main-visual.webp" type="image/webp" />
+        <img src="/images/main-visual.png" :alt="$t('mainVisual.imageAlt')" />
       </picture>
     </div>
   </Transition>

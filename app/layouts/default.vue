@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { useScroll } from "@vueuse/core";
 import { useLocaleRoute, type RoutesNamesList } from "@typed-router";
-import { computed, nextTick, useBreakpoint, useRoute, watch, useI18n, type Breakpoint } from "#imports";
+import {
+  computed,
+  nextTick,
+  useBreakpoint,
+  useRoute,
+  watch,
+  useI18n,
+  type Breakpoint,
+} from "#imports";
 import {
   EnCtaTicket,
   JaCtaTicket,
@@ -70,37 +78,32 @@ const menuItems = computed<MenuItemProps[]>(() =>
       label: "Sponsor",
       routeName: localeRoute({ name: "sponsors" }).name,
     },
-  ].filter(it => !!it),
+  ].filter((it) => !!it),
 );
 
-const cta = computed(() =>
-  ({
-    props: {
-      actionButton: {
-        label: t("ticket.details"),
-        link: localeRoute({ name: "ticket" }).path,
-      },
-      openerText: "Ticket",
+const cta = computed(() => ({
+  props: {
+    actionButton: {
+      label: t("ticket.details"),
+      link: localeRoute({ name: "ticket" }).path,
     },
-    content: locale.value === "ja"
-      ? JaCtaTicket
-      : EnCtaTicket,
-  }),
-);
+    openerText: "Ticket",
+  },
+  content: locale.value === "ja" ? JaCtaTicket : EnCtaTicket,
+}));
 
 const { y } = useScroll(window);
 const isShowedSpMenu = computed(() => {
-  const targetBp: Breakpoint[]
-    = isTimetable.value
-      ? ["pc", "mobile-wide", "mobile"]
-      : isWidenContent.value
-        ? ["mobile-wide", "mobile"]
-        : ["mobile"];
+  const targetBp: Breakpoint[] = isTimetable.value
+    ? ["pc", "mobile-wide", "mobile"]
+    : isWidenContent.value
+      ? ["mobile-wide", "mobile"]
+      : ["mobile"];
   return targetBp.includes(bp.value) && (!isRoot.value || y.value > 450);
 });
 const isShowedSpCta = computed(() => {
-  const targetBp: Breakpoint[]
-    = isTimetable.value || isWidenContent.value
+  const targetBp: Breakpoint[] =
+    isTimetable.value || isWidenContent.value
       ? ["pc", "mobile-wide", "mobile"]
       : ["mobile-wide", "mobile"];
   return targetBp.includes(bp.value) && (!isRoot.value || y.value > 450);
@@ -120,33 +123,37 @@ const WIDE_ROUTE_NAMES: RoutesNamesList[] = [
 ];
 
 const isWidenContent = computed(() =>
-  WIDE_ROUTE_NAMES
-    .map(r => localeRoute(r as string)?.name as string | undefined)
-    .filter(it => !!it)
+  WIDE_ROUTE_NAMES.map((r) => localeRoute(r as string)?.name as string | undefined)
+    .filter((it) => !!it)
     .includes(route.name?.toString() ?? ""),
 );
 
-const isTimetable = computed(() => localeRoute("timetable" as string).name === route.name?.toString());
+const isTimetable = computed(
+  () => localeRoute("timetable" as string).name === route.name?.toString(),
+);
 
 // scroll behavior
-watch(() => route.hash, async (hash) => {
-  if (hash === "") {
-    return;
-  }
+watch(
+  () => route.hash,
+  async (hash) => {
+    if (hash === "") {
+      return;
+    }
 
-  await nextTick();
+    await nextTick();
 
-  if (isRoot.value && hash === "#") {
-    window.scrollTo(0, 0);
-    return;
-  }
+    if (isRoot.value && hash === "#") {
+      window.scrollTo(0, 0);
+      return;
+    }
 
-  const target = document.querySelector(hash);
-  if (target) {
-    const top = target.getBoundingClientRect().top + window.scrollY - window.innerHeight / 3;
-    window.scrollTo({ top, behavior: "smooth" });
-  }
-});
+    const target = document.querySelector(hash);
+    if (target) {
+      const top = target.getBoundingClientRect().top + window.scrollY - window.innerHeight / 3;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  },
+);
 </script>
 
 <template>
@@ -164,7 +171,7 @@ watch(() => route.hash, async (hash) => {
           <VFMenu :items="menuItems" />
         </div>
       </div>
-      <div class="content" :class="{ 'widen-content': isWidenContent, 'timetable': isTimetable }">
+      <div class="content" :class="{ 'widen-content': isWidenContent, timetable: isTimetable }">
         <VFHeader :is-root class="header" />
 
         <main class="main">
@@ -174,9 +181,7 @@ watch(() => route.hash, async (hash) => {
       </div>
       <div class="side-content right-menu">
         <div v-if="!isShowedSpCta && cta" class="nav-menu">
-          <VFCta
-            :action-button="cta.props.actionButton"
-          >
+          <VFCta :action-button="cta.props.actionButton">
             <component :is="cta.content" />
           </VFCta>
         </div>
@@ -187,19 +192,16 @@ watch(() => route.hash, async (hash) => {
 
   <div class="sp-nav-container">
     <Transition>
-      <VFSpMenu
-        v-if="isShowedSpMenu && cta"
-        :items="menuItems"
-      />
+      <VFSpMenu v-if="isShowedSpMenu && cta" :items="menuItems" />
     </Transition>
 
     <Transition>
       <VFSpCta
         v-if="
-          isShowedSpCta
-            && cta
-            // NOTE: When already on /ticket, don't show the menu as clicking the link won't navigate and could be confusing
-            && route.path !== localeRoute({ name: 'ticket' }).path
+          isShowedSpCta &&
+          cta &&
+          // NOTE: When already on /ticket, don't show the menu as clicking the link won't navigate and could be confusing
+          route.path !== localeRoute({ name: 'ticket' }).path
         "
         v-bind="cta.props"
       >

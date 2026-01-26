@@ -15,16 +15,17 @@ const localeRoute = useLocaleRoute();
     :id="HOME_HEADING_ID.ticket"
     :title="t('ticket.title')"
     :cover-image="{
-      src: bp === 'pc'
-        ? withBase('/images/top/cover/get-your-ticket-pc.png')
-        : withBase('/images/top/cover/get-your-ticket-sp.png'),
+      src:
+        bp === 'pc'
+          ? withBase('/images/top/cover/get-your-ticket-pc.png')
+          : withBase('/images/top/cover/get-your-ticket-sp.png'),
       alt: t('ticket.coverImageAlt'),
     }"
   >
     <component :is="locale === 'ja' ? JaGetYourTicket : EnGetYourTicket" />
     <div class="button-container">
       <VFButton :link="localeRoute('/ticket')">
-        {{ t('ticket.viewTicketDetails') }}
+        {{ t("ticket.viewTicketDetails") }}
       </VFButton>
     </div>
   </VFSection>

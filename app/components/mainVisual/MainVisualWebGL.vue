@@ -308,11 +308,7 @@ const createMaterial = () => {
 };
 
 // ジオメトリを事前に作成
-const coneGeometry = new THREE.ConeGeometry(
-  BASE_SIZE.coneRadius,
-  BASE_SIZE.coneHeight,
-  128,
-);
+const coneGeometry = new THREE.ConeGeometry(BASE_SIZE.coneRadius, BASE_SIZE.coneHeight, 128);
 
 const sphereGeometry = new THREE.SphereGeometry(BASE_SIZE.sphereRadius, 64, 64);
 
@@ -325,14 +321,7 @@ const init = () => {
   const viewSize = BASE_SIZE.height;
   const width = viewSize * aspectRatio;
   const height = viewSize;
-  camera = new THREE.OrthographicCamera(
-    -width / 2,
-    width / 2,
-    height / 2,
-    -height / 2,
-    0.1,
-    9999,
-  );
+  camera = new THREE.OrthographicCamera(-width / 2, width / 2, height / 2, -height / 2, 0.1, 9999);
   camera.position.set(0, 0, 1000);
   camera.lookAt(0, 0, 0);
 
@@ -373,10 +362,8 @@ const animate = () => {
     lastLogTime = currentSecond;
     if (currentSecond % COLOR_CHANGE_INTERVAL === 0) {
       const cSet = Math.floor(currentSecond / COLOR_CHANGE_INTERVAL) % 4;
-      if (mat1?.uniforms?.uActiveColorSet)
-        mat1.uniforms.uActiveColorSet.value = cSet;
-      if (mat2?.uniforms?.uActiveColorSet)
-        mat2.uniforms.uActiveColorSet.value = cSet;
+      if (mat1?.uniforms?.uActiveColorSet) mat1.uniforms.uActiveColorSet.value = cSet;
+      if (mat2?.uniforms?.uActiveColorSet) mat2.uniforms.uActiveColorSet.value = cSet;
     }
   }
   if (mat1?.uniforms?.uTime) mat1.uniforms.uTime.value = elapsedTime;
@@ -425,8 +412,7 @@ onMounted(() => {
     init();
     if (animation) {
       animationFrameId = requestAnimationFrame(animate);
-    }
-    else {
+    } else {
       renderer.render(scene, camera);
     }
     emit("initialized");

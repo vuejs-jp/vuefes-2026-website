@@ -1,10 +1,11 @@
 # Name Badge Admin Scripts
 
-Participant name badge data management tool for Vue Fes Japan 2025
+Participant name badge data management tool for Vue Fes Japan 2026
 
 ## Setup
 
 ### 1. Environment Variables (`.env`)
+
 ```env
 CLOUDFLARE_ACCOUNT_ID=xxx
 CLOUDFLARE_R2_ACCESS_KEY_ID=xxx
@@ -26,32 +27,32 @@ const data: NameBadgeInput[] = [
   // Create new
   {
     name: "Taro Yamada",
-    role: "Attendee",  // Attendee | Attendee+Party | Speaker | Sponsor | Staff
-    localAvatarImagePath: path.resolve(__dirname, "./images/yamada.jpg")
+    role: "Attendee", // Attendee | Attendee+Party | Speaker | Sponsor | Staff
+    localAvatarImagePath: path.resolve(__dirname, "./images/yamada.jpg"),
   },
-  
+
   // Staff (language specification required)
   {
     name: "Hanako Suzuki",
     role: "Staff",
     lang: "ja,en",
-    localAvatarImagePath: path.resolve(__dirname, "./images/suzuki.png")
+    localAvatarImagePath: path.resolve(__dirname, "./images/suzuki.png"),
   },
-  
+
   // Update
   {
     name: "Jiro Tanaka",
     role: "Speaker",
     action: "update",
-    localAvatarImagePath: path.resolve(__dirname, "./images/tanaka_new.jpg")  // Optional
+    localAvatarImagePath: path.resolve(__dirname, "./images/tanaka_new.jpg"), // Optional
   },
-  
+
   // Delete
   {
     name: "Saburo Sato",
     role: "Sponsor",
-    action: "delete"
-  }
+    action: "delete",
+  },
 ];
 
 export default data;
@@ -68,4 +69,3 @@ pnpm dlx tsx scripts/admin/name-badge/main.ts
 - **Image formats**: `.png`, `.jpg`, `.jpeg` only
 - **Unique**: Combination of name + role must be unique
 - **Images are automatically uploaded to Cloudflare R2**
-

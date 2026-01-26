@@ -3,11 +3,7 @@ import { computed } from "vue";
 
 import StaffGridItem, { type StaffItemProps } from "./StaffGridItem.vue";
 
-const {
-  staffList,
-  gridMode,
-  columns,
-} = defineProps<{
+const { staffList, gridMode, columns } = defineProps<{
   staffList: StaffItemProps[];
   gridMode: "leader" | "core" | "volunteer";
   columns?: number;
@@ -25,7 +21,9 @@ const gridStyle = computed(() =>
 <template>
   <div :class="gridClass" :style="gridStyle">
     <StaffGridItem
-      v-for="(staff, idx) in staffList" :key="idx" class="staff-member"
+      v-for="(staff, idx) in staffList"
+      :key="idx"
+      class="staff-member"
       v-bind="{ ...staff, gridMode }"
     />
   </div>

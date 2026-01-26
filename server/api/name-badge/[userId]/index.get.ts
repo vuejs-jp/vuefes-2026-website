@@ -19,7 +19,11 @@ export default defineEventHandler(async (event) => {
   // WARNING: Must be respond only public data
 
   // image registration
-  const nameBadgeData = await db.select().from(attendees).where(eq(attendees.userId, String(userId))).get();
+  const nameBadgeData = await db
+    .select()
+    .from(attendees)
+    .where(eq(attendees.userId, String(userId)))
+    .get();
 
   if (!nameBadgeData) {
     throw createError({
@@ -31,19 +35,27 @@ export default defineEventHandler(async (event) => {
   // try update role authorized and same user
   try {
     const session = await getServerSession(event);
-    if (session && session.user && session.userId && session.user.email && session.userId === userId) {
+    if (
+      session &&
+      session.user &&
+      session.userId &&
+      session.user.email &&
+      session.userId === userId
+    ) {
       const { peatixEventId } = useRuntimeConfig();
       const { client } = usePeatixApi();
 
       if (nameBadgeData?.receiptId && !nameBadgeData?.role) {
-        const sale = await client.GET("/event/{eventId}/list_sales/{salesId}", {
-          params: {
-            path: {
-              eventId: peatixEventId,
-              salesId: nameBadgeData.receiptId,
+        const sale = await client
+          .GET("/event/{eventId}/list_sales/{salesId}", {
+            params: {
+              path: {
+                eventId: peatixEventId,
+                salesId: nameBadgeData.receiptId,
+              },
             },
-          },
-        }).then(response => response.data);
+          })
+          .then((response) => response.data);
 
         if (sale) {
           const role = (() => {
@@ -60,7 +72,11 @@ export default defineEventHandler(async (event) => {
           })();
 
           if (role) {
-            await db.update(attendees).set({ role }).where(eq(attendees.userId, session.userId)).execute();
+            await db
+              .update(attendees)
+              .set({ role })
+              .where(eq(attendees.userId, session.userId))
+              .execute();
           }
         }
       }
@@ -82,16 +98,15 @@ export default defineEventHandler(async (event) => {
     name: nameBadgeData.displayName,
     role: nameBadgeData.role,
     lang: nameBadgeData.lang,
-    avatarUrl:
-      nameBadgeData.avatarUrl
-        ? await getSignedUrl(
-            S3,
-            new GetObjectCommand({
-              Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
-              Key: new URL(nameBadgeData.avatarUrl).pathname.split("/").pop(),
-            }),
-            { expiresIn: 3600 },
-          )
-        : undefined,
+    avatarUrl: nameBadgeData.avatarUrl
+      ? await getSignedUrl(
+          S3,
+          new GetObjectCommand({
+            Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
+            Key: new URL(nameBadgeData.avatarUrl).pathname.split("/").pop(),
+          }),
+          { expiresIn: 3600 },
+        )
+      : undefined,
   };
 });

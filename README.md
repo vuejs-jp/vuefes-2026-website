@@ -2,23 +2,19 @@
 
 ## Requirement
 
-- Node.js
-- pnpm
-
-For version information, please refer to package.json.
+- [Bun](https://bun.sh/)
 
 ## Setup
 
 ```sh
-
 # clone via ssh
 git clone git@github.com:vuejs-jp/vuefes-2026.git
 
 # install dependencies
-pnpm install
+bun install
 
-# launch application dev server and storybook
-pnpm dev
+# launch application dev server
+bun dev
 ```
 
 ## Feature Flags Module
@@ -42,8 +38,8 @@ export default defineNuxtConfig({
   featureFlags: {
     timetable: true,
     soldOutAfterParty: false,
-  }
-})
+  },
+});
 ```
 
 ### Usage
@@ -55,8 +51,8 @@ Use feature flags with dynamic imports to conditionally load components:
 ```vue
 <script setup lang="ts">
 // Conditionally import component based on feature flag
-const BetaFeature = import.meta.vfFeatures.betaFeature 
-  ? defineAsyncComponent(() => import('~/components/BetaFeature.vue'))
+const BetaFeature = import.meta.vfFeatures.betaFeature
+  ? defineAsyncComponent(() => import("~/components/BetaFeature.vue"))
   : null;
 </script>
 
@@ -86,7 +82,7 @@ export default defineEventHandler(async (event) => {
   if (!import.meta.vfFeatures.timetable) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Endpoint not available'
+      statusMessage: "Endpoint not available",
     });
   }
 

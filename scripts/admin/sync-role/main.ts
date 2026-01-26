@@ -10,11 +10,14 @@ import { attendees } from "../../../server/db/schema";
 dotenv.config();
 
 try {
-  const attendeesData = await db.select({
-    userId: attendees.userId,
-    receiptId: attendees.receiptId,
-    role: attendees.role,
-  }).from(attendees).all();
+  const attendeesData = await db
+    .select({
+      userId: attendees.userId,
+      receiptId: attendees.receiptId,
+      role: attendees.role,
+    })
+    .from(attendees)
+    .all();
 
   const client = createClient<paths>({
     baseUrl: process.env.PEATIX_API_ORIGIN!,
@@ -23,15 +26,17 @@ try {
     },
   });
 
-  const sales = await client.GET("/event/{eventId}/list_sales", {
-    params: {
-      path: { eventId: process.env.PEATIX_EVENT_ID! },
-    },
-  }).then(response => response.data?.sales);
+  const sales = await client
+    .GET("/event/{eventId}/list_sales", {
+      params: {
+        path: { eventId: process.env.PEATIX_EVENT_ID! },
+      },
+    })
+    .then((response) => response.data?.sales);
 
   await Promise.allSettled(
     attendeesData.map(async (attendee) => {
-      const sale = sales?.find(sale => sale.salesId === attendee.receiptId);
+      const sale = sales?.find((sale) => sale.salesId === attendee.receiptId);
       if (!sale) return;
 
       const role = (() => {
@@ -48,7 +53,11 @@ try {
       })();
 
       if (role) {
-        await db.update(attendees).set({ role }).where(eq(attendees.userId, attendee.userId)).execute();
+        await db
+          .update(attendees)
+          .set({ role })
+          .where(eq(attendees.userId, attendee.userId))
+          .execute();
       }
     }),
   );

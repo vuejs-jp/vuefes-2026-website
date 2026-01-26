@@ -4,7 +4,9 @@ import { primaryKey, integer, sqliteTable, text } from "drizzle-orm/sqlite-core"
 import type { ProviderType } from "next-auth/providers/index";
 
 export const users = sqliteTable("user", {
-  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
   email: text("email").unique(),
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
@@ -14,9 +16,13 @@ export const users = sqliteTable("user", {
 export const accounts = sqliteTable(
   "account",
   {
-    userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
     // NOTE: https://github.com/nextauthjs/next-auth/blob/39dd3b92de194c1a835f2d87631f4deb9d9fdf65/packages/core/src/adapters.ts#L191C13-L194
-    type: text("type").$type<Extract<ProviderType, "oauth" | "oidc" | "email" | "webauthn">>().notNull(),
+    type: text("type")
+      .$type<Extract<ProviderType, "oauth" | "oidc" | "email" | "webauthn">>()
+      .notNull(),
     provider: text("provider").notNull(),
     providerAccountId: text("providerAccountId").notNull(),
     refresh_token: text("refresh_token"),
@@ -27,7 +33,7 @@ export const accounts = sqliteTable(
     id_token: text("id_token"),
     session_state: text("session_state"),
   },
-  account => ({
+  (account) => ({
     compoundKey: primaryKey({
       columns: [account.provider, account.providerAccountId],
     }),
@@ -36,7 +42,9 @@ export const accounts = sqliteTable(
 
 export const sessions = sqliteTable("session", {
   sessionToken: text("sessionToken").primaryKey(),
-  userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
   expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
 });
 
@@ -47,7 +55,7 @@ export const verificationTokens = sqliteTable(
     token: text("token").notNull(),
     expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
   },
-  verificationToken => ({
+  (verificationToken) => ({
     compositePk: primaryKey({ columns: [verificationToken.identifier, verificationToken.token] }),
   }),
 );
@@ -56,7 +64,9 @@ export const authenticators = sqliteTable(
   "authenticator",
   {
     credentialID: text("credentialID").notNull().unique(),
-    userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
     providerAccountId: text("providerAccountId").notNull(),
     credentialPublicKey: text("credentialPublicKey").notNull(),
     counter: integer("counter").notNull(),
@@ -64,7 +74,7 @@ export const authenticators = sqliteTable(
     credentialBackedUp: integer("credentialBackedUp", { mode: "boolean" }).notNull(),
     transports: text("transports"),
   },
-  authenticator => ({
+  (authenticator) => ({
     compositePK: primaryKey({
       columns: [authenticator.userId, authenticator.credentialID],
     }),

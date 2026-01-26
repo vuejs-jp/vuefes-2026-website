@@ -46,8 +46,7 @@ const currentSponsor = computed((): SponsorWithPlan | undefined =>
 
 useSeoMeta({
   title: () => `${currentSponsor.value?.name || t("sponsors.title")}`,
-  ogTitle: () =>
-    `Vue Fes Japan 2026 - ${currentSponsor.value?.name || t("sponsors.title")}`,
+  ogTitle: () => `Vue Fes Japan 2026 - ${currentSponsor.value?.name || t("sponsors.title")}`,
 });
 
 defineOgImage({
@@ -99,10 +98,7 @@ onMounted(async () => {
       <div class="sponsor-images">
         <div class="image">
           <NuxtLink :to="currentSponsor.linkUrl" external target="_blank">
-            <img
-              :src="currentSponsor.logoImageUrl"
-              :alt="currentSponsor.logoImageAlt"
-            />
+            <img :src="currentSponsor.logoImageUrl" :alt="currentSponsor.logoImageAlt" />
           </NuxtLink>
         </div>
         <NuxtLink
@@ -150,11 +146,7 @@ onMounted(async () => {
           </div>
 
           <div class="session-speaker-image">
-            <img
-              :src="session.speaker.avatarUrl"
-              :alt="session.speaker.name"
-              loading="lazy"
-            />
+            <img :src="session.speaker.avatarUrl" :alt="session.speaker.name" loading="lazy" />
           </div>
 
           <div class="session-detail">
@@ -162,16 +154,11 @@ onMounted(async () => {
               {{ session.title }}
             </h4>
             <p v-if="session.overview" class="sponsor-speaker-overview">
-              <template
-                v-for="(paragraph, idx) in session.overview?.split('\n')"
-                :key="idx"
-              >
+              <template v-for="(paragraph, idx) in session.overview?.split('\n')" :key="idx">
                 <template v-if="paragraph">
                   <p
                     :style="
-                      paragraph.startsWith('・')
-                        ? 'text-indent: -1em; padding-left: 1em;'
-                        : ''
+                      paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''
                     "
                   >
                     {{ paragraph }}
@@ -187,9 +174,7 @@ onMounted(async () => {
           <div class="speaker">
             <p class="speaker-affiliation">
               {{ session.speaker.affiliation
-              }}<br
-                v-if="session.speaker.affiliation && session.speaker.title"
-              />
+              }}<br v-if="session.speaker.affiliation && session.speaker.title" />
               {{ session.speaker.title }}
             </p>
 
@@ -204,10 +189,7 @@ onMounted(async () => {
                 external
                 target="_blank"
               >
-                <GithubIcon
-                  :aria-label="t('snsIconImageAlt.github')"
-                  role="img"
-                />
+                <GithubIcon :aria-label="t('snsIconImageAlt.github')" role="img" />
               </NuxtLink>
 
               <NuxtLink
@@ -225,10 +207,7 @@ onMounted(async () => {
                 external
                 target="_blank"
               >
-                <BlueskyIcon
-                  :aria-label="t('snsIconImageAlt.bluesky')"
-                  role="img"
-                />
+                <BlueskyIcon :aria-label="t('snsIconImageAlt.bluesky')" role="img" />
               </NuxtLink>
             </div>
           </div>

@@ -7,12 +7,15 @@ const SPONSORS_PLATINA: Sponsor[] = [
     logoImageAlt: "CLOUDSIGN powered by Bengo4.com",
     linkUrl: "https://www.bengo4.com/corporate/",
     plan: "platina",
-    description: "At Bengo4.com, Inc., our mission is “Create the next common sense through professional tech,” and we provide services that connect people with experts, including portal sites such as Bengo4.com, BUSINESS LAWYERS, and Zeiri4.com, as well as the contract management platform CLOUDSIGN and the legal-focused AI agent “Legal Brain Agent.” \nWe have been leveraging Vue.js since the very beginning of our service, and it has supported our products for many years. Together with the organizers and all participants, we hope to energize the Vue.js community. We’re really looking forward to seeing you at the venue!",
+    description:
+      "At Bengo4.com, Inc., our mission is “Create the next common sense through professional tech,” and we provide services that connect people with experts, including portal sites such as Bengo4.com, BUSINESS LAWYERS, and Zeiri4.com, as well as the contract management platform CLOUDSIGN and the legal-focused AI agent “Legal Brain Agent.” \nWe have been leveraging Vue.js since the very beginning of our service, and it has supported our products for many years. Together with the organizers and all participants, we hope to energize the Vue.js community. We’re really looking forward to seeing you at the venue!",
     id: "bengo4",
     session: [
       {
-        title: "Breaking Free from Webpack Dependency! Achieving Comfortable Frontend Development with Vite",
-        overview: "CloudSign, provided by Bengo4.com, Inc., marks its 10th anniversary this year since its release. As the frontend has grown in scale, we've experienced pain points from continuing to use webpack. \nIn this session, I would like to discuss what pain points we were facing that led us to migrate to Vite, the specific migration methods we used, and the benefits and results we achieved from this migration.",
+        title:
+          "Breaking Free from Webpack Dependency! Achieving Comfortable Frontend Development with Vite",
+        overview:
+          "CloudSign, provided by Bengo4.com, Inc., marks its 10th anniversary this year since its release. As the frontend has grown in scale, we've experienced pain points from continuing to use webpack. \nIn this session, I would like to discuss what pain points we were facing that led us to migrate to Vite, the specific migration methods we used, and the benefits and results we achieved from this migration.",
         speaker: {
           sponsorId: "bengo4",
           name: "Nobuaki Kambe",
@@ -42,7 +45,8 @@ const SPONSORS_PLATINA: Sponsor[] = [
     session: [
       {
         title: "Exploring Framework-Agnostic Logic Sharing with alien-signals and Custom OSS",
-        overview: "In multi-product environments, we tend to duplicate similar processing and logic across each product.\n\nIn this session, I'll share an approach where we decouple logic from frameworks, implement it once in pure TypeScript based on Signals, and leverage the same implementation across different frameworks.\n\nTo realize this approach, I've built a custom OSS library called 'sigrea' based on alien-signals, which is set to be adopted in Vue.js 3.6.I'll discuss how to define framework-agnostic logic using this library and bridge it to each framework through thin adapters.",
+        overview:
+          "In multi-product environments, we tend to duplicate similar processing and logic across each product.\n\nIn this session, I'll share an approach where we decouple logic from frameworks, implement it once in pure TypeScript based on Signals, and leverage the same implementation across different frameworks.\n\nTo realize this approach, I've built a custom OSS library called 'sigrea' based on alien-signals, which is set to be adopted in Vue.js 3.6.I'll discuss how to define framework-agnostic logic using this library and bridge it to each framework through thin adapters.",
         speaker: {
           sponsorId: "yappli",
           name: "Aose Yuu",
@@ -58,7 +62,8 @@ const SPONSORS_PLATINA: Sponsor[] = [
             bluesky: "https://bsky.app/profile/aose-yuu.bsky.social",
             github: "https://github.com/aose-yuu",
           },
-          slide: "https://speakerdeck.com/aoseyuu/exploring-framework-agnostic-logic-sharing-with-alien-signals-and-custom-oss",
+          slide:
+            "https://speakerdeck.com/aoseyuu/exploring-framework-agnostic-logic-sharing-with-alien-signals-and-custom-oss",
         },
       },
     ],
@@ -74,7 +79,8 @@ const SPONSORS_PLATINA: Sponsor[] = [
     session: [
       {
         title: "Is Vue Not Good with AI? That's Just an Urban Legend",
-        overview: "Ever heard people say, \"If you're using AI to write code, go with React\"?\nBut we've found that effective collaboration with AI is just as possible with Vue.js.\nWhat really matters isn't the framework itself, but investing in a smoother developer experience.\nBy building human-friendly design step by step, we naturally create an environment that's also friendly for AI.\nIn this session, I'll share our experience developing products with AI and Vue.js, and the lessons we learned along the way.",
+        overview:
+          "Ever heard people say, \"If you're using AI to write code, go with React\"?\nBut we've found that effective collaboration with AI is just as possible with Vue.js.\nWhat really matters isn't the framework itself, but investing in a smoother developer experience.\nBy building human-friendly design step by step, we naturally create an environment that's also friendly for AI.\nIn this session, I'll share our experience developing products with AI and Vue.js, and the lessons we learned along the way.",
         speaker: {
           sponsorId: "lmi",
           name: "Yuki Nakagami",
@@ -100,12 +106,14 @@ const SPONSORS_PLATINA: Sponsor[] = [
     logoImageAlt: "Unique Vision Co., Ltd. corporate logo image",
     linkUrl: "https://www.uniquevision.co.jp/",
     plan: "platina",
-    description: "Unique Vision is a technology-focused company that creates brand experiences through social media. Our in-house developed SNS marketing tool, the 'Beluga Series,' operates over 800 campaigns annually.\nWe actively utilize Vue.js in our product development, and have established a strong culture of developing and refining Vue.js component libraries as internal open-source software. Since 2022, our monthly 'UV Study' engineering workshops frequently feature Vue.js as a central theme. \nThrough tools, culture, and community-building, we drive the growth of Vue.js.",
+    description:
+      "Unique Vision is a technology-focused company that creates brand experiences through social media. Our in-house developed SNS marketing tool, the 'Beluga Series,' operates over 800 campaigns annually.\nWe actively utilize Vue.js in our product development, and have established a strong culture of developing and refining Vue.js component libraries as internal open-source software. Since 2022, our monthly 'UV Study' engineering workshops frequently feature Vue.js as a central theme. \nThrough tools, culture, and community-building, we drive the growth of Vue.js.",
     id: "uniquevision",
     session: [
       {
         title: "Sustainable Vue Component Design through Storybook-Driven Development",
-        overview: "In Vue.js development, \"designing reusable and maintainable components\" is a critical challenge. However, in actual team development, we often face issues such as designs becoming complex when component interfaces are decided later, or quality inconsistencies arising when testing is postponed.\n\nOur team has been practicing Storybook-Driven Development for a year and has successfully resolved these challenges. By changing from the traditional \"implementation → testing\" flow to \"interface definition/Story creation → implementation → automated testing,\" we've achieved reduced rework and high test coverage.\n\nThe core of this approach is clearly defining Vue component interfaces before implementation and expressing them as Stories. Storybook's constraints promote good design, and automated test creation naturally becomes habitual. Even as the number of components grows, there's no quality variance, and new members can maintain consistent quality.\n\nI'll share why this approach is effective, how we successfully adopted it across the entire team, and the insights and best practices we've gained from a year of practice.",
+        overview:
+          'In Vue.js development, "designing reusable and maintainable components" is a critical challenge. However, in actual team development, we often face issues such as designs becoming complex when component interfaces are decided later, or quality inconsistencies arising when testing is postponed.\n\nOur team has been practicing Storybook-Driven Development for a year and has successfully resolved these challenges. By changing from the traditional "implementation → testing" flow to "interface definition/Story creation → implementation → automated testing," we\'ve achieved reduced rework and high test coverage.\n\nThe core of this approach is clearly defining Vue component interfaces before implementation and expressing them as Stories. Storybook\'s constraints promote good design, and automated test creation naturally becomes habitual. Even as the number of components grows, there\'s no quality variance, and new members can maintain consistent quality.\n\nI\'ll share why this approach is effective, how we successfully adopted it across the entire team, and the insights and best practices we\'ve gained from a year of practice.',
         speaker: {
           sponsorId: "uniquevision",
           name: "Ryutaro Yako",
@@ -133,7 +141,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://www.codmon.com/",
     plan: "gold",
     option: ["intermission-slide"],
-    description: "With the mission of 'Making the environment surrounding children better through the power of technology,' we operate multiple businesses, including our flagship product 'CoDMON,' an ICT service for childcare and educational facilities. Our development team uses Vue.js / Nuxt for several products and features!",
+    description:
+      "With the mission of 'Making the environment surrounding children better through the power of technology,' we operate multiple businesses, including our flagship product 'CoDMON,' an ICT service for childcare and educational facilities. Our development team uses Vue.js / Nuxt for several products and features!",
     id: "codmon",
   },
   {
@@ -152,12 +161,14 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://www.lycorp.co.jp/ja/technology-design/",
     plan: "gold",
     option: ["student-support"],
-    description: "LY Corporation is one of Japan's largest tech companies formed in October 2023 through the reorganization of Group companies including LINE Corporation and Yahoo Japan Corporation.",
+    description:
+      "LY Corporation is one of Japan's largest tech companies formed in October 2023 through the reorganization of Group companies including LINE Corporation and Yahoo Japan Corporation.",
     id: "lycorp",
     session: [
       {
         title: "The Tech Stack and Development Behind LINE Official Account",
-        overview: "The LINE Official Account platform is a large-scale product that prioritizes scalability and reliability, serving a wide range of users and businesses both domestically and internationally.\nIt consists of two pillars: web applications within LINE that general users interact with daily, and admin dashboards that business owners use for operations, with continuous feature additions and quality improvements.\nIn this session, I'll introduce the actual product architecture and technology selection centered around Vue.js, as well as the behind-the-scenes of continuously scaling development.",
+        overview:
+          "The LINE Official Account platform is a large-scale product that prioritizes scalability and reliability, serving a wide range of users and businesses both domestically and internationally.\nIt consists of two pillars: web applications within LINE that general users interact with daily, and admin dashboards that business owners use for operations, with continuous feature additions and quality improvements.\nIn this session, I'll introduce the actual product architecture and technology selection centered around Vue.js, as well as the behind-the-scenes of continuously scaling development.",
         speaker: {
           sponsorId: "lycorp",
           name: "Yusuke Sano",
@@ -181,7 +192,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "STORES",
     linkUrl: "https://jobs.st.inc/",
     plan: "gold",
-    description: "STORES Inc. aims to create an economy driven by passion and dedication under our mission of \"Just for Fun.\" We provide a wide range of products that support store operations for small and medium-sized businesses, primarily in retail, food service, and service industries. Through our customer data-driven \"STORES\" products, we support sustainable revenue growth for businesses and realize a society overflowing with diverse and distinctive commerce.",
+    description:
+      'STORES Inc. aims to create an economy driven by passion and dedication under our mission of "Just for Fun." We provide a wide range of products that support store operations for small and medium-sized businesses, primarily in retail, food service, and service industries. Through our customer data-driven "STORES" products, we support sustainable revenue growth for businesses and realize a society overflowing with diverse and distinctive commerce.',
     id: "st",
   },
   {
@@ -199,7 +211,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "KINTOtechnologies logo",
     linkUrl: "https://www.kinto-technologies.com/",
     plan: "gold",
-    description: "KINTO Technologies is a tech company established in April 2021 to support the mobility services and businesses developed by various Toyota Group companies through technology.\nWe develop and operate new services that focus on the people who use cars, such as the global mobility brand KINTO, which operates in 30 countries worldwide, and the multimodal mobility service my route.",
+    description:
+      "KINTO Technologies is a tech company established in April 2021 to support the mobility services and businesses developed by various Toyota Group companies through technology.\nWe develop and operate new services that focus on the people who use cars, such as the global mobility brand KINTO, which operates in 30 countries worldwide, and the multimodal mobility service my route.",
     id: "kinto-technologies",
   },
   {
@@ -209,12 +222,14 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://plaid.co.jp/",
     plan: "gold",
     option: ["student-support"],
-    description: "PLAID, Inc. provides products such as KARTE, a customer experience (CX) platform that analyzes online user behavior in real time to help deliver optimal experiences to end users. We've been using Vue.js since 2014, and many core features of our products are built with it. At our booth, we'll be sharing how we leverage Vue.js and other related technologies in our development. Feel free to stop by and chat with us!",
+    description:
+      "PLAID, Inc. provides products such as KARTE, a customer experience (CX) platform that analyzes online user behavior in real time to help deliver optimal experiences to end users. We've been using Vue.js since 2014, and many core features of our products are built with it. At our booth, we'll be sharing how we leverage Vue.js and other related technologies in our development. Feel free to stop by and chat with us!",
     id: "plaid",
     session: [
       {
         title: "PLAID's Unique Technologies and the Reality of Internships",
-        overview: "In this session, we'll discuss PLAID, Inc.'s unique technologies such as their in-house database and real-time analytics infrastructure, as well as the reality of projects interns can tackle and their growth opportunities. The speakers will share their personal \"this is what's really interesting!\" highlights and recommendations.",
+        overview:
+          "In this session, we'll discuss PLAID, Inc.'s unique technologies such as their in-house database and real-time analytics infrastructure, as well as the reality of projects interns can tackle and their growth opportunities. The speakers will share their personal \"this is what's really interesting!\" highlights and recommendations.",
         speaker: {
           sponsorId: "plaid",
           name: "Takumi Katayama",
@@ -259,16 +274,19 @@ const SPONSORS_GOLD: Sponsor[] = [
     logoImageAlt: "GENEROSITY Inc.",
     linkUrl: "https://generosity.co.jp",
     plan: "gold",
-    description: "GENEROSITY is a brand experience studio that fuses the real and digital worlds. We design and develop impactful digital solutions for events, interactive signage, and more for leading companies. We are looking for talented engineers who want to use their skills to surprise the world with technology!",
+    description:
+      "GENEROSITY is a brand experience studio that fuses the real and digital worlds. We design and develop impactful digital solutions for events, interactive signage, and more for leading companies. We are looking for talented engineers who want to use their skills to surprise the world with technology!",
     id: "generosity",
   },
   {
     name: "HENNGE K.K.",
     logoImageUrl: "/images/sponsor-logo/gold/hennge.png",
-    logoImageAlt: "On a white background, the HENNGE logo and lettering are vertically arranged in a simple and modern black design.",
+    logoImageAlt:
+      "On a white background, the HENNGE logo and lettering are vertically arranged in a simple and modern black design.",
     linkUrl: "https://hennge.com/jp/",
     plan: "gold",
-    description: "HENNGE is Japan's leading cloud security company. With HENNGE One, we provide a comprehensive solution for ID management, data loss prevention and security, trusted by thousands of enterprises. We embrace an open-source culture and promote the use of cutting-edge technologies like Vue.js for secure SaaS development. Please come visit our booth to meet the team behind HENNGE!",
+    description:
+      "HENNGE is Japan's leading cloud security company. With HENNGE One, we provide a comprehensive solution for ID management, data loss prevention and security, trusted by thousands of enterprises. We embrace an open-source culture and promote the use of cutting-edge technologies like Vue.js for secure SaaS development. Please come visit our booth to meet the team behind HENNGE!",
     id: "hennge",
   },
   {
@@ -298,7 +316,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://tebiki.co.jp/",
     plan: "gold",
     option: ["intermission-slide", "job-board"],
-    description: "We are on a mission to pioneer the future of frontline operations.\nOur products include Tebiki Frontline Training, a video-based training platform, and Tebiki Frontline Analytics, a digital form and data analysis system. These tools provide end-to-end support for frontline operations, from capturing training videos to analyzing operational data, and help accelerate digital transformation.\nWe are actively addressing complex engineering challenges such as scalable AI-powered video processing, real-time computer vision, IoT integration at the edge, and visualization of petabyte-scale data. Join us in shaping the future of frontline operations.",
+    description:
+      "We are on a mission to pioneer the future of frontline operations.\nOur products include Tebiki Frontline Training, a video-based training platform, and Tebiki Frontline Analytics, a digital form and data analysis system. These tools provide end-to-end support for frontline operations, from capturing training videos to analyzing operational data, and help accelerate digital transformation.\nWe are actively addressing complex engineering challenges such as scalable AI-powered video processing, real-time computer vision, IoT integration at the edge, and visualization of petabyte-scale data. Join us in shaping the future of frontline operations.",
     id: "tebiki",
   },
   {
@@ -308,14 +327,16 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://medpeer.co.jp/",
     plan: "gold",
     option: ["staff-t-shirts"],
-    description: "MedPeer, established by a practising physician, is a pioneering enterprise in the healthtech sector. Anchored by our mission—“Supporting Doctors, Helping Patients.”—we provide solutions that address the needs of healthcare professionals, patients, and individuals striving to maintain their wellbeing. With a commitment to tackling healthcare challenges through agile and responsive service development, we strategically leverage Vue and Nuxt across many of our products.",
+    description:
+      "MedPeer, established by a practising physician, is a pioneering enterprise in the healthtech sector. Anchored by our mission—“Supporting Doctors, Helping Patients.”—we provide solutions that address the needs of healthcare professionals, patients, and individuals striving to maintain their wellbeing. With a commitment to tackling healthcare challenges through agile and responsive service development, we strategically leverage Vue and Nuxt across many of our products.",
     id: "medpeer",
   },
   {
     name: "CAREER DESIGN CENTER CO.,LTD.",
     logoImageUrl: "/images/sponsor-logo/gold/career-design-center.png",
     logoImageAlt: "Direct type",
-    linkUrl: "https://directtype.jp/?utm_source=event&utm_medium=banner&utm_campaign=tech_event_251025",
+    linkUrl:
+      "https://directtype.jp/?utm_source=event&utm_medium=banner&utm_campaign=tech_event_251025",
     plan: "gold",
     description: `"Direct type" is a scout-based job change service tailored for IT engineers.\n
     It is provided by the job platform "type," which also operates a job site, hosts career events, and runs a web magazine specifically targeting engineers to support their career development.\n
@@ -331,7 +352,8 @@ const SPONSORS_GOLD: Sponsor[] = [
     linkUrl: "https://engineer.andpad.co.jp/",
     plan: "gold",
     option: ["intermission-slide"],
-    description: "ANDPAD is a Vue/Nuxt-powered project management platform for construction, serving 550K+ users across 210K+ companies. We've built smart UIs that untangle complex construction data, customizable billing components, and a design system that accelerates development. Visit our booth!",
+    description:
+      "ANDPAD is a Vue/Nuxt-powered project management platform for construction, serving 550K+ users across 210K+ companies. We've built smart UIs that untangle complex construction data, customizable billing components, and a design system that accelerates development. Visit our booth!",
     id: "andpad",
   },
   {
@@ -357,13 +379,13 @@ const SPONSORS_GOLD: Sponsor[] = [
     name: "Livesense Inc.",
     logoImageUrl: "/images/sponsor-logo/gold/tenshoku-draft.png",
     logoImageAlt: "Tenshoku-DRAFT",
-    linkUrl: "https://job-draft.jp/?utm_source=site&utm_medium=conference&utm_campaign=allconference&utm_term=vuefes2025",
+    linkUrl:
+      "https://job-draft.jp/?utm_source=site&utm_medium=conference&utm_campaign=allconference&utm_term=vuefes2025",
     plan: "gold",
     option: ["after-party"],
     description: `Tenshoku-DRAFT helps IT engineers boost salary & skills. Get direct salary-inclusive scout offers via "Scout" or expert career advice via "Agent."\nFind a truly rewarding IT engineering path with us.`,
     id: "job-draft",
   },
-
 ];
 const SPONSORS_SILVER: Sponsor[] = [
   {
@@ -373,7 +395,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     linkUrl: "https://mates-app.jp/",
     plan: "silver",
     option: ["hall-naming-rights"],
-    description: "Mates Inc. provides ICT educational materials “aim@” with high reproducibility and learning outcomes under the mission of “updating education”.We are looking for engineers who can work together to create products that improve education.",
+    description:
+      "Mates Inc. provides ICT educational materials “aim@” with high reproducibility and learning outcomes under the mission of “updating education”.We are looking for engineers who can work together to create products that improve education.",
     id: "mates",
   },
   {
@@ -392,7 +415,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     linkUrl: "https://www.istyle.co.jp/",
     plan: "silver",
     option: ["intermission-slide", "job-board"],
-    description: "istyle, Inc. operates @cosme, a leading beauty platform, along with E-commerce and physical stores. By leveraging consumer data, we strive to build a new cross-organizational infrastructure that empowers innovative services.",
+    description:
+      "istyle, Inc. operates @cosme, a leading beauty platform, along with E-commerce and physical stores. By leveraging consumer data, we strive to build a new cross-organizational infrastructure that empowers innovative services.",
     id: "istyle",
   },
   {
@@ -402,7 +426,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     linkUrl: "https://www.coderabbit.ai",
     plan: "silver",
     option: ["intermission-slide"],
-    description: "CodeRabbit slashes code review time and catches bugs faster. It hooks into GitHub and GitLab to auto-review PRs. Free VS Code extension available.",
+    description:
+      "CodeRabbit slashes code review time and catches bugs faster. It hooks into GitHub and GitLab to auto-review PRs. Free VS Code extension available.",
     id: "CodeRabbit",
   },
   {
@@ -411,7 +436,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     logoImageAlt: "CrowdWorks, Inc.'s logo",
     linkUrl: "https://crowdworks.co.jp/",
     plan: "silver",
-    description: "As one of Japan's largest crowdsourcing platforms, CrowdWorks actively leverages Vue.js for our service development. We are delighted to support the success of Vue Fes Japan and hope for the continued development of the community.",
+    description:
+      "As one of Japan's largest crowdsourcing platforms, CrowdWorks actively leverages Vue.js for our service development. We are delighted to support the success of Vue Fes Japan and hope for the continued development of the community.",
     id: "crowd-works",
   },
   {
@@ -421,7 +447,8 @@ const SPONSORS_SILVER: Sponsor[] = [
     linkUrl: "https://kickflow.com/",
     plan: "silver",
     option: ["job-board"],
-    description: "We develop and provide kickflow, a cloud workflow solution for businesses.kickflow is highly regarded for improving corporate productivity and is used by large and growing companies.",
+    description:
+      "We develop and provide kickflow, a cloud workflow solution for businesses.kickflow is highly regarded for improving corporate productivity and is used by large and growing companies.",
     id: "kickflow",
   },
 ];
@@ -455,8 +482,10 @@ const SPONSORS_BRONZE: Sponsor[] = [
     id: "cyberagent",
     session: [
       {
-        title: "Accelerating UI Catalog Release Cycles in Large-Scale Monorepos with Vite and TypeScript Project References",
-        overview: "In the Web frontend of CyberAgent group Infrastructure Unit (CIU), we operate a monorepo that bundles over 50 packages.\nThis monorepo serves as an SDK containing UI components, common logic, and API clients for CIU's Web frontend, and is used in the development of various CIU services.\nIn this LT, I'll talk about how we're accelerating releases for the UI catalog provided by the SDK using Vite.\nIn particular, I'll introduce how we combine TypeScript's Project References, which we use for monorepo management, with Vite to speed up the development server while reducing the time required for production changes.",
+        title:
+          "Accelerating UI Catalog Release Cycles in Large-Scale Monorepos with Vite and TypeScript Project References",
+        overview:
+          "In the Web frontend of CyberAgent group Infrastructure Unit (CIU), we operate a monorepo that bundles over 50 packages.\nThis monorepo serves as an SDK containing UI components, common logic, and API clients for CIU's Web frontend, and is used in the development of various CIU services.\nIn this LT, I'll talk about how we're accelerating releases for the UI catalog provided by the SDK using Vite.\nIn particular, I'll introduce how we combine TypeScript's Project References, which we use for monorepo management, with Vite to speed up the development server while reducing the time required for production changes.",
         speaker: {
           sponsorId: "cyberagent",
           name: "did0es",
@@ -469,12 +498,14 @@ const SPONSORS_BRONZE: Sponsor[] = [
             x: "https://x.com/did0es",
             github: "https://github.com/shuta13",
           },
-          slide: "https://speakerdeck.com/shuta13/vitetotypescriptnoproject-referencesde-da-gui-mo-monoreponouikatarogunoririsusaikuruwogao-su-hua-suru",
+          slide:
+            "https://speakerdeck.com/shuta13/vitetotypescriptnoproject-referencesde-da-gui-mo-monoreponouikatarogunoririsusaikuruwogao-su-hua-suru",
         },
       },
       {
         title: "Vue.js Community and CyberAgent",
-        overview: "Let me share my personal story of how Jabelic became a frontend engineer and briefly introduce CyberAgent.",
+        overview:
+          "Let me share my personal story of how Jabelic became a frontend engineer and briefly introduce CyberAgent.",
         speaker: {
           sponsorId: "cyberagent",
           name: "Jabelic",
@@ -521,7 +552,6 @@ const SPONSORS_BRONZE: Sponsor[] = [
     description: "",
     id: "quick",
   },
-
 ];
 
 const SPONSORS_OPTION_ONLY: Sponsor[] = [
@@ -547,7 +577,8 @@ const SPONSORS_OPTION_ONLY: Sponsor[] = [
     session: [
       {
         title: "What a Company That's Been Using Vue.js for 8 Years Is Thinking Now",
-        overview: "At Studio Inc., we have been using Vue.js continuously for 8 years since version 1. While dealing with changes in Vue.js syntax, the introduction of TypeScript, and the evolution of surrounding tools, it remains at the center of our application development today. We conducted a survey among our engineers to find out what they think about the current state of Vue.js and frontend development.",
+        overview:
+          "At Studio Inc., we have been using Vue.js continuously for 8 years since version 1. While dealing with changes in Vue.js syntax, the introduction of TypeScript, and the evolution of surrounding tools, it remains at the center of our application development today. We conducted a survey among our engineers to find out what they think about the current state of Vue.js and frontend development.",
         speaker: {
           sponsorId: "studio",
           name: "Koya Saito",
@@ -574,7 +605,8 @@ const SPONSORS_CREATIVE: Sponsor[] = [
     logoImageAlt: "IE3 Logo",
     linkUrl: "https://ie3.jp/",
     plan: "creative",
-    description: "IE3 is a creative unit composed of visual artists, engineers, and designers. With the mission \"Make it First.\", we strive to create new expressions and experiences by fusing engineering and creativity. We specialize across multiple domains including media art, digital signage, UI/UX design, and web, and we have delivered large-scale projects including media art installations and signage for public and commercial facilities. Our achievements include prestigious awards such as the Excellence Award at the Japan Media Arts Festival and a Gold at the Cannes Lions.",
+    description:
+      'IE3 is a creative unit composed of visual artists, engineers, and designers. With the mission "Make it First.", we strive to create new expressions and experiences by fusing engineering and creativity. We specialize across multiple domains including media art, digital signage, UI/UX design, and web, and we have delivered large-scale projects including media art installations and signage for public and commercial facilities. Our achievements include prestigious awards such as the Excellence Award at the Japan Media Arts Festival and a Gold at the Cannes Lions.',
     id: "ie3",
   },
 ];
@@ -627,11 +659,11 @@ const SPONSORS_INDIVIDUAL: string[] = [
 ];
 
 const filterSponsorsByOption = (option: Option): Sponsor[] => [
-  ...SPONSORS_PLATINA.filter(sponsor => sponsor.option?.includes(option)),
-  ...SPONSORS_GOLD.filter(sponsor => sponsor.option?.includes(option)),
-  ...SPONSORS_SILVER.filter(sponsor => sponsor.option?.includes(option)),
-  ...SPONSORS_BRONZE.filter(sponsor => sponsor.option?.includes(option)),
-  ...SPONSORS_OPTION_ONLY.filter(sponsor => sponsor.option?.includes(option)),
+  ...SPONSORS_PLATINA.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_GOLD.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_SILVER.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_BRONZE.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_OPTION_ONLY.filter((sponsor) => sponsor.option?.includes(option)),
 ];
 
 const SPONSORS_HALL_NAMING_RIGHTS: Sponsor[] = filterSponsorsByOption("hall-naming-rights");

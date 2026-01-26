@@ -13,9 +13,10 @@ const { locale, t } = useI18n();
     :id="HOME_HEADING_ID.message"
     :title="t('message')"
     :cover-image="{
-      src: bp === 'pc'
-        ? withBase('/images/top/cover/message-pc.png')
-        : withBase('/images/top/cover/message-sp.png'),
+      src:
+        bp === 'pc'
+          ? withBase('/images/top/cover/message-pc.png')
+          : withBase('/images/top/cover/message-sp.png'),
       alt: t('messageCoverImageAlt'),
     }"
   >

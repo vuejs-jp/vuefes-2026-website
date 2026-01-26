@@ -1,59 +1,36 @@
 {
   "name": "vuefes-2026",
-  "private": true,
   "version": "2.11.0",
-  "type": "module",
+  "private": true,
   "author": {
     "name": "ubugeeei",
     "email": "ubuge1122@gmail.com"
   },
-  "packageManager": "pnpm@10.6.3",
-  "engines": {
-    "node": ">=24",
-    "pnpm": ">=10"
-  },
-  "//": "NOTE: align to Netlify's Node.js version",
-  "pnpm": {
-    "executionEnv": {
-      "nodeVersion": "22.14.0"
-    },
-    "overrides": {
-      "vite": "npm:rolldown-vite@latest",
-      "vue": "npm:vue@3.6.0-alpha.2"
-    },
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "better-sqlite3",
-      "esbuild",
-      "sharp",
-      "unrs-resolver",
-      "workerd"
-    ]
-  },
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "check": "nuxi typecheck",
-    "lint": "eslint . && textlint .",
-    "lint:fix": "eslint --fix . && textlint --fix .",
+    "lint": "oxlint --type-aware && textlint .",
+    "lint:fix": "oxlint --type-aware --fix && textlint --fix .",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check .",
     "spell": "cspell '**' --cache",
     "story:dev": "storybook dev -p 6006",
     "story:build": "storybook build",
-    "peatix-api-gen": "pnpm dlx tsx scripts/peatix-api-gen",
-    "release:major": "pnpm dlx changelogen@latest --release --major",
-    "release:minor": "pnpm dlx changelogen@latest --release --minor",
-    "release:patch": "pnpm dlx changelogen@latest --release --patch",
-    "postinstall": "pnpm dlx tsx scripts/name-badge-admin-data-gen.ts && nuxt prepare"
+    "peatix-api-gen": "bun scripts/peatix-api-gen",
+    "release:major": "bunx changelogen@latest --release --major",
+    "release:minor": "bunx changelogen@latest --release --minor",
+    "release:patch": "bunx changelogen@latest --release --patch",
+    "postinstall": "bun scripts/name-badge-admin-data-gen.ts && nuxt prepare"
   },
   "devDependencies": {
     "@auth/drizzle-adapter": "^1.10.0",
     "@aws-sdk/client-s3": "^3.842.0",
     "@aws-sdk/s3-request-presigner": "^3.842.0",
     "@chromatic-com/storybook": "^3",
-    "@intlify/eslint-plugin-vue-i18n": "^4.0.1",
-    "@nuxt/eslint": "1.9.0",
     "@nuxt/scripts": "0.11.2",
     "@nuxtjs/i18n": "9.4.0",
     "@nuxtjs/seo": "^3.0.1",
@@ -76,9 +53,6 @@
     "drizzle-kit": "^0.31.4",
     "drizzle-orm": "^0.44.4",
     "emoji-regex": "^10.4.0",
-    "eslint": "^9.33.0",
-    "eslint-plugin-storybook": "^9.0.7",
-    "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "lightningcss": "^1.30.1",
     "next-auth": "~4.21.1",
     "nitro": "npm:nitropack@^2.12.4",
@@ -90,14 +64,15 @@
     "nuxt-typed-router": "3.8.0",
     "openapi-fetch": "^0.14.0",
     "openapi-typescript": "^7.8.0",
-    "prettier": "4.0.0-alpha.11",
+    "oxfmt": "^0.26.0",
+    "oxlint": "^1.41.0",
+    "oxlint-tsgolint": "^0.11.1",
     "primevue": "^4.3.2",
     "rehype-external-links": "^3.0.0",
     "rehype-stringify": "^10.0.1",
     "remark-mdc": "^3.5.3",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
-    "resolvers": "link:@primevue/forms/resolvers",
     "satori": "^0.16.2",
     "storybook": "8.4.7",
     "textlint": "^15.2.2",
@@ -109,15 +84,22 @@
     "unplugin-icons": "^22.1.0",
     "unstorage": "^1.16.1",
     "valibot": "^1.1.0",
-    "vue": "latest",
-    "vue-router": "latest",
+    "vue": "3.6.0-beta.1",
+    "vue-router": "4.6.0",
     "vue-tsc": "^2.2.8",
-    "yaml": "^2.8.1",
-    "wrangler": "^4.23.0"
+    "wrangler": "^4.23.0",
+    "yaml": "^2.8.1"
   },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
-  }
+  "overrides": {
+    "vite": "8.0.0-beta.10",
+    "vue": "3.6.0-beta.1"
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "better-sqlite3",
+    "esbuild",
+    "sharp",
+    "unrs-resolver",
+    "workerd"
+  ]
 }

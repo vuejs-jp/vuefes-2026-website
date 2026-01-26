@@ -13,9 +13,10 @@ const { locale, t } = useI18n();
     :id="HOME_HEADING_ID.sponsorWanted"
     :title="t('sponsorWanted')"
     :cover-image="{
-      src: bp === 'pc'
-        ? withBase('/images/top/cover/sponsor-wanted-pc.svg')
-        : withBase('/images/top/cover/sponsor-wanted-sp.svg'),
+      src:
+        bp === 'pc'
+          ? withBase('/images/top/cover/sponsor-wanted-pc.svg')
+          : withBase('/images/top/cover/sponsor-wanted-sp.svg'),
       alt: t('sponsorWantedCoverImageAlt'),
     }"
   >

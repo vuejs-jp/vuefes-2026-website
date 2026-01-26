@@ -26,7 +26,7 @@ const noiseImageUrl = computed(() => `${runtimeConfig.siteUrl}images/og/noise.pn
         width: '100%',
         objectFit: 'cover',
       }"
-    >
+    />
     <div
       :style="{
         position: 'absolute',

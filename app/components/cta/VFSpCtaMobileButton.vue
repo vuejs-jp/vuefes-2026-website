@@ -11,7 +11,7 @@ const emits = defineEmits<{
   click: [];
 }>();
 
-const label = computed(() => isOpened ? "Close" : openerText);
+const label = computed(() => (isOpened ? "Close" : openerText));
 </script>
 
 <template>

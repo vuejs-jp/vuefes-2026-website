@@ -39,10 +39,12 @@ const route = useRoute();
 
 if (import.meta.vfFeatures.expiredNameBadgeRegistration) {
   if (user.value) {
-    await navigateTo(localeRoute({
-      name: "ticket-userId",
-      params: { userId: user.value.userId },
-    }));
+    await navigateTo(
+      localeRoute({
+        name: "ticket-userId",
+        params: { userId: user.value.userId },
+      }),
+    );
   } else {
     await navigateTo(localeRoute({ name: "ticket" }));
   }
@@ -50,10 +52,12 @@ if (import.meta.vfFeatures.expiredNameBadgeRegistration) {
 
 if (route.params.userId !== user.value?.userId) {
   if (user.value) {
-    await navigateTo(localeRoute({
-      name: "ticket-userId",
-      params: { userId: user.value.userId },
-    }));
+    await navigateTo(
+      localeRoute({
+        name: "ticket-userId",
+        params: { userId: user.value.userId },
+      }),
+    );
   } else {
     await navigateTo(localeRoute({ name: "ticket" }));
   }
@@ -70,36 +74,24 @@ const schema = v.objectAsync({
   name: v.pipe(
     v.string(),
     v.minLength(1, t("nameBadge.form.name.error.required")),
-    v.check(
-      (value) => {
-        const len = [...value].reduce(
-          (len, char) => len + (/[\u2E80-\u9FFF\uF900-\uFAFF\uFF00-\uFFEF]/.test(char) ? 2 : 1),
-          0,
-        );
-        return len <= 24;
-      },
-      t("nameBadge.form.name.error.tooLong"),
-    ),
-    v.check(
-      value => !emojiRegex().test(value),
-      t("nameBadge.form.name.error.emoji"),
-    ),
+    v.check((value) => {
+      const len = [...value].reduce(
+        (len, char) => len + (/[\u2E80-\u9FFF\uF900-\uFAFF\uFF00-\uFFEF]/.test(char) ? 2 : 1),
+        0,
+      );
+      return len <= 24;
+    }, t("nameBadge.form.name.error.tooLong")),
+    v.check((value) => !emojiRegex().test(value), t("nameBadge.form.name.error.emoji")),
   ),
 
-  salesId: v.pipe(
-    v.string(),
-    v.minLength(1, t("nameBadge.form.receipt.error.required")),
-  ),
+  salesId: v.pipe(v.string(), v.minLength(1, t("nameBadge.form.receipt.error.required"))),
 
   avatarImage: v.pipeAsync(
     v.custom<VFFile>((input: unknown): input is VFFile => !!input),
-    v.checkAsync(
-      async (file: VFFile) => {
-        const { size } = await fetch(file.objectURL).then(r => r.blob());
-        return sizeInMB(size) <= 5;
-      },
-      t("nameBadge.form.avatarImage.error.size"),
-    ),
+    v.checkAsync(async (file: VFFile) => {
+      const { size } = await fetch(file.objectURL).then((r) => r.blob());
+      return sizeInMB(size) <= 5;
+    }, t("nameBadge.form.avatarImage.error.size")),
     v.check(
       (file: VFFile) => ["image/jpg", "image/jpeg", "image/png"].includes(file.type),
       t("nameBadge.form.avatarImage.error.type"),
@@ -109,7 +101,9 @@ const schema = v.objectAsync({
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const form = useTemplateRef<any>("form");
-const currentStates = computed(() => form.value?.currentState?.() as FormFieldStates<v.InferOutput<typeof schema>> | undefined);
+const currentStates = computed(
+  () => form.value?.currentState?.() as FormFieldStates<v.InferOutput<typeof schema>> | undefined,
+);
 const initialValues = ref<Partial<v.InferOutput<typeof schema>>>({
   name: "",
   salesId: "",
@@ -125,7 +119,7 @@ onMounted(async () => {
 
     if (nameBadgeData.value?.avatarUrl && nameBadgeData.value?.avatarImageFileName) {
       // NOTE: need to configure cors
-      const avatarBlob = await fetch(nameBadgeData.value.avatarUrl).then(r => r.blob());
+      const avatarBlob = await fetch(nameBadgeData.value.avatarUrl).then((r) => r.blob());
       form.value?.setFieldValue("avatarImage", {
         displayName: nameBadgeData.value.avatarImageFileName,
         name: nameBadgeData.value.avatarImageFileName,
@@ -151,7 +145,7 @@ async function submit(event: FormSubmitEvent) {
       formData.append("name", event.states.name!.value);
       formData.append("salesId", event.states.salesId!.value);
       if (event.states.avatarImage?.value) {
-        const blob = await fetch(event.states.avatarImage.value.objectURL).then(r => r.blob());
+        const blob = await fetch(event.states.avatarImage.value.objectURL).then((r) => r.blob());
         formData.append("avatarImageBlob", blob);
         formData.append("avatarImageName", event.states.avatarImage.value.name);
       }
@@ -160,8 +154,7 @@ async function submit(event: FormSubmitEvent) {
       await $fetch(`/api/name-badge/`, { method: "POST", body: formData });
       toast.open({ type: "success", message: t("nameBadge.form.submitResult.success") });
       await navigateTo(`/ticket/${user.value.userId}`);
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
       toast.open({ type: "alert", message: t("nameBadge.form.submitResult.error") });
     } finally {
@@ -178,7 +171,10 @@ async function submit(event: FormSubmitEvent) {
     <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
     <h1>Ticket</h1>
 
-    <VFSection :title="nameBadgeData ? t('nameBadge.edit') : t('nameBadge.create')" class="name-badge-section">
+    <VFSection
+      :title="nameBadgeData ? t('nameBadge.edit') : t('nameBadge.create')"
+      class="name-badge-section"
+    >
       <div class="name-badge-preview-area">
         <VFNameBadgePreview
           :user-role="nameBadgeData?.role || 'Attendee'"
@@ -186,28 +182,22 @@ async function submit(event: FormSubmitEvent) {
           :avatar-image-url="currentStates?.avatarImage?.value?.objectURL"
           :lang="nameBadgeData?.lang ?? undefined"
           v-bind="
-            bp =='mobile'
+            bp == 'mobile'
               ? {
-                width: '100%',
-                height: '284px',
-                aspectRatio: '200 / 284',
-              }
+                  width: '100%',
+                  height: '284px',
+                  aspectRatio: '200 / 284',
+                }
               : {
-                width: '100%',
-                height: '360px',
-                aspectRatio: '253.52 / 360',
-              }
+                  width: '100%',
+                  height: '360px',
+                  aspectRatio: '253.52 / 360',
+                }
           "
         />
       </div>
 
-      <VFForm
-        ref="form"
-        :initial-values
-        :schema
-        class="name-badge-form"
-        @submit="submit"
-      >
+      <VFForm ref="form" :initial-values :schema class="name-badge-form" @submit="submit">
         <template #default="$form">
           <VFInput
             name="name"
@@ -234,20 +224,22 @@ async function submit(event: FormSubmitEvent) {
           <div class="name-badge-form-actions">
             <VFButton
               outlined
-              :link="localeRoute({
-                name: 'ticket-userId',
-                params: { userId: user!.userId },
-              })"
+              :link="
+                localeRoute({
+                  name: 'ticket-userId',
+                  params: { userId: user!.userId },
+                })
+              "
             >
               {{ t("nameBadge.form.cancel") }}
             </VFButton>
             <VFButton
               type="submit"
               :disabled="
-                !$form.name?.valid
-                  || !$form.avatarImage?.value
-                  || !$form.avatarImage?.valid
-                  || !$form.salesId?.valid
+                !$form.name?.valid ||
+                !$form.avatarImage?.value ||
+                !$form.avatarImage?.valid ||
+                !$form.salesId?.valid
               "
             >
               {{ t("nameBadge.form.save") }}

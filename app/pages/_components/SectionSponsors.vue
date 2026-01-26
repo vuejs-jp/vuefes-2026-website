@@ -17,15 +17,16 @@ const localeRoute = useLocaleRoute();
   <VFSection
     :id="HOME_HEADING_ID.sponsorWanted"
     :cover-image="{
-      src: bp === 'pc'
-        ? withBase('/images/top/cover/sponsors-pc.svg')
-        : withBase('/images/top/cover/sponsors-sp.svg'),
+      src:
+        bp === 'pc'
+          ? withBase('/images/top/cover/sponsors-pc.svg')
+          : withBase('/images/top/cover/sponsors-sp.svg'),
       alt: t('sponsors.coverImageAlt'),
     }"
   >
     <div class="sponsor-list">
       <VFHeading id="platina-sponsors">
-        {{ t('sponsors.platinaSponsor') }}
+        {{ t("sponsors.platinaSponsor") }}
       </VFHeading>
       <div class="sponsor-grid-container">
         <SponsorGrid
@@ -39,7 +40,7 @@ const localeRoute = useLocaleRoute();
 
     <div class="sponsor-list">
       <VFHeading id="gold-sponsors">
-        {{ t('sponsors.goldSponsor') }}
+        {{ t("sponsors.goldSponsor") }}
       </VFHeading>
       <div class="sponsor-grid-container">
         <SponsorGrid
@@ -53,7 +54,7 @@ const localeRoute = useLocaleRoute();
 
     <div class="sponsor-list">
       <VFHeading id="silver-sponsors">
-        {{ t('sponsors.silverSponsor') }}
+        {{ t("sponsors.silverSponsor") }}
       </VFHeading>
       <div class="sponsor-grid-container">
         <SponsorGrid
@@ -67,7 +68,7 @@ const localeRoute = useLocaleRoute();
 
     <div class="sponsor-list">
       <VFHeading id="bronze-sponsors">
-        {{ t('sponsors.bronzeSponsor') }}
+        {{ t("sponsors.bronzeSponsor") }}
       </VFHeading>
       <div class="sponsor-grid-container">
         <SponsorGrid
@@ -81,16 +82,15 @@ const localeRoute = useLocaleRoute();
 
     <div class="sponsor-list">
       <VFHeading id="option-sponsors">
-        {{ t('sponsors.optionSponsor') }}
+        {{ t("sponsors.optionSponsor") }}
       </VFHeading>
       <div
-        v-for="option in (locale === 'ja' ? JaSponsors.OPTION : EnSponsors.OPTION) as OptionSponsor[]"
+        v-for="option in (locale === 'ja'
+          ? JaSponsors.OPTION
+          : EnSponsors.OPTION) as OptionSponsor[]"
         :key="option.title"
       >
-        <div
-          v-if="option.data.length > 0"
-          class="sponsor-option-container"
-        >
+        <div v-if="option.data.length > 0" class="sponsor-option-container">
           <h3>{{ t(`sponsors.${option.title}`) }}</h3>
           <SponsorGrid
             :sponsors="option.data"
@@ -104,7 +104,7 @@ const localeRoute = useLocaleRoute();
 
     <div class="sponsor-list">
       <VFHeading id="creative-sponsors">
-        {{ t('sponsors.creativeSponsor') }}
+        {{ t("sponsors.creativeSponsor") }}
       </VFHeading>
       <div class="sponsor-grid-container">
         <SponsorGrid
@@ -118,16 +118,20 @@ const localeRoute = useLocaleRoute();
 
     <div class="sponsor-list">
       <VFHeading id="individual-sponsors">
-        {{ t('sponsors.individualSponsor') }}
+        {{ t("sponsors.individualSponsor") }}
       </VFHeading>
       <div class="sponsor-individual-container">
-        <span v-for="(name, index) in locale === 'ja' ? JaSponsors.INDIVIDUAL : EnSponsors.INDIVIDUAL" :key="index">{{ name }}</span>
+        <span
+          v-for="(name, index) in locale === 'ja' ? JaSponsors.INDIVIDUAL : EnSponsors.INDIVIDUAL"
+          :key="index"
+          >{{ name }}</span
+        >
       </div>
     </div>
 
     <div class="view-all-sponsors">
       <VFButton :link="localeRoute({ name: 'sponsors' })">
-        {{ t('sponsors.viewAll') }}
+        {{ t("sponsors.viewAll") }}
       </VFButton>
     </div>
   </VFSection>
@@ -136,14 +140,14 @@ const localeRoute = useLocaleRoute();
 <style scoped>
 @import "~/assets/styles/custom-media-query.css";
 
-.sponsor-list:first-child{
+.sponsor-list:first-child {
   margin-top: -2rem;
 }
-.sponsor-list:not(:first-child){
+.sponsor-list:not(:first-child) {
   margin-top: 2rem;
 }
 
-.view-all-sponsors{
+.view-all-sponsors {
   display: grid;
   place-items: center;
   margin-top: 32px;

@@ -102,9 +102,9 @@ label {
 }
 
 .description {
-    margin-top: 0.5rem;
-    margin-bottom: 0rem;
-  }
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+}
 
 .error-message {
   color: var(--color-alert);

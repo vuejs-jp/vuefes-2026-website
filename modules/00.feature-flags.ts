@@ -48,7 +48,10 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.nitro = nuxt.options.nitro || {};
     nuxt.options.nitro.esbuild = nuxt.options.nitro.esbuild || {};
     nuxt.options.nitro.esbuild.options = nuxt.options.nitro.esbuild.options || {};
-    nuxt.options.nitro.esbuild.options.define = { ...nuxt.options.nitro.esbuild.options.define, ...defines };
+    nuxt.options.nitro.esbuild.options.define = {
+      ...nuxt.options.nitro.esbuild.options.define,
+      ...defines,
+    };
     nuxt.options.nitro.replace = { ...nuxt.options.nitro.replace, ...defines };
 
     addTemplate({
@@ -60,10 +63,14 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.hook("nitro:config", (nitroConfig) => {
       nitroConfig.typescript = nitroConfig.typescript || {};
       nitroConfig.typescript.tsConfig = nitroConfig.typescript.tsConfig || {};
-      nitroConfig.typescript.tsConfig.compilerOptions = nitroConfig.typescript.tsConfig.compilerOptions || {};
-      nitroConfig.typescript.tsConfig.compilerOptions.types = nitroConfig.typescript.tsConfig.compilerOptions.types || [];
+      nitroConfig.typescript.tsConfig.compilerOptions =
+        nitroConfig.typescript.tsConfig.compilerOptions || {};
+      nitroConfig.typescript.tsConfig.compilerOptions.types =
+        nitroConfig.typescript.tsConfig.compilerOptions.types || [];
       if (Array.isArray(nitroConfig.typescript.tsConfig.compilerOptions.types)) {
-        nitroConfig.typescript.tsConfig.compilerOptions.types.push("../.nuxt/types/nitro-feature-flags");
+        nitroConfig.typescript.tsConfig.compilerOptions.types.push(
+          "../.nuxt/types/nitro-feature-flags",
+        );
       }
     });
 

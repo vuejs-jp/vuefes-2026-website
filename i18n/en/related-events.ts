@@ -3,8 +3,7 @@ import type { RelatedEvents } from "../related-events";
 export const RELATED_EVENTS: RelatedEvents[] = [
   {
     id: "related-events_2",
-    title:
-      "Frontend Conference Hokkaido 2025 After-Party: Vue.js Hands-on by Vue Fes Japan",
+    title: "Frontend Conference Hokkaido 2025 After-Party: Vue.js Hands-on by Vue Fes Japan",
     coverUrl: "/images/related-events/vuejs-hands-on.png",
     coverAlt: "Thumbnail image: [Sapporo] Vue.js Hands-on by Vue Fes Japan",
     date: "2025-09-07",

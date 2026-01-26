@@ -10,7 +10,7 @@ const emits = defineEmits<{
   click: [];
 }>();
 
-const label = computed(() => isOpened ? "Close" : "Menu");
+const label = computed(() => (isOpened ? "Close" : "Menu"));
 </script>
 
 <template>

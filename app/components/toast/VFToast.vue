@@ -1,22 +1,15 @@
 <script lang="ts">
-import {
-  computed,
-  onUnmounted,
-  readonly,
-  ref,
-  useTemplateRef,
-  watch,
-} from "vue";
+import { computed, onUnmounted, readonly, ref, useTemplateRef, watch } from "vue";
 import { useI18n } from "#imports";
 
-export type ToastOption
-  = {
-    autoClose: true;
-    durationMs?: number;
-  }
+export type ToastOption =
   | {
-    autoClose: false;
-  };
+      autoClose: true;
+      durationMs?: number;
+    }
+  | {
+      autoClose: false;
+    };
 
 export type ToastType = "success" | "alert";
 
@@ -67,10 +60,7 @@ export function useToast(
       }
 
       if (v && options.autoClose) {
-        closeTimerId = setTimeout(
-          () => close(),
-          options.durationMs ?? DEFAULT_DURATION_MS,
-        );
+        closeTimerId = setTimeout(() => close(), options.durationMs ?? DEFAULT_DURATION_MS);
       }
     },
   );

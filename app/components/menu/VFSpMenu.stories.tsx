@@ -8,11 +8,13 @@ export default {
 
 const Template: StoryFn<{
   animation: boolean;
-}> = args => ({
+}> = (args) => ({
   name: "VFSpMenu",
   setup: () => () => (
     <div style="width: 100svw; height: 100vh; position: relative;">
-      <h2 style="position:absolute;bottom:18%;left:20svw">これはテストの文言です。メニューと被った際のぼかし具合を確認します。</h2>
+      <h2 style="position:absolute;bottom:18%;left:20svw">
+        これはテストの文言です。メニューと被った際のぼかし具合を確認します。
+      </h2>
       <VFSpMenu
         {...args}
         style="position:absolute; bottom:2%; left: 20svw"

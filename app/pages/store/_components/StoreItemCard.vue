@@ -29,17 +29,15 @@ const formatPrice = (price: number) => {
       </div>
       <div class="item-description">
         <p>{{ item.description }}</p>
-        <br>
+        <br />
         <div class="item-specs">
           <p v-if="item.specs.color" class="spec-item">
-            {{ t('store.color') }}{{ item.specs.color }}
+            {{ t("store.color") }}{{ item.specs.color }}
           </p>
           <p v-if="item.specs.material" class="spec-item">
-            {{ t('store.material') }}{{ item.specs.material }}
+            {{ t("store.material") }}{{ item.specs.material }}
           </p>
-          <p v-if="item.specs.size" class="spec-item">
-            {{ t('store.size') }}{{ item.specs.size }}
-          </p>
+          <p v-if="item.specs.size" class="spec-item">{{ t("store.size") }}{{ item.specs.size }}</p>
         </div>
       </div>
     </div>

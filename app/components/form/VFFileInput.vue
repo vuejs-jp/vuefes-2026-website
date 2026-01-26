@@ -38,13 +38,17 @@ function handleFileSelect(ev: FileUploadSelectEvent, formState: FormFieldState) 
   }
 }
 
-watch(() => formState, (v) => {
-  if (v?.value) {
-    file.value = v.value as VFFile;
-  } else {
-    file.value = null;
-  }
-}, { immediate: true, deep: true });
+watch(
+  () => formState,
+  (v) => {
+    if (v?.value) {
+      file.value = v.value as VFFile;
+    } else {
+      file.value = null;
+    }
+  },
+  { immediate: true, deep: true },
+);
 </script>
 
 <template>
@@ -166,7 +170,7 @@ watch(() => formState, (v) => {
         width: 130px;
       }
 
-      &:focus{
+      &:focus {
         border-color: var(--color-primary);
       }
 

@@ -26,11 +26,7 @@ defineProps<{
 
 <template>
   <li class="speaker">
-    <component
-      :is="to ? NuxtLink : 'div'"
-      :to="to"
-      class="speaker-card-link"
-    >
+    <component :is="to ? NuxtLink : 'div'" :to="to" class="speaker-card-link">
       <img :src="speaker.avatarUrl" :alt="''" class="speaker-image" />
       <p class="speaker-affiliation text-caption">
         {{ speaker.affiliation }}<br v-if="speaker.affiliation && speaker.title" />

@@ -19,7 +19,7 @@ const { locale, t } = useI18n();
     <component :is="locale === 'ja' ? JaCheckTheItems : EnCheckTheItems" />
     <div class="button-container">
       <VFButton link="https://vuejs-jp.stores.jp">
-        {{ t('store.preOrder') }}
+        {{ t("store.preOrder") }}
       </VFButton>
     </div>
   </VFSection>

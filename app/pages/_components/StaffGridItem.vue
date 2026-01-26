@@ -12,16 +12,13 @@ export type StaffItemProps = {
 </script>
 
 <script setup lang="ts">
-const {
-  name,
-  avatarUrl,
-  socialUrls,
-  gridMode,
-} = defineProps<StaffItemProps & { gridMode: "leader" | "core" | "volunteer" }>();
+const { name, avatarUrl, socialUrls, gridMode } = defineProps<
+  StaffItemProps & { gridMode: "leader" | "core" | "volunteer" }
+>();
 
 const gridItemClass = computed(() => `staff-link-${gridMode}`);
 
-const linkComp = computed(() => socialUrls?.x ? socialUrls.x : socialUrls?.github);
+const linkComp = computed(() => (socialUrls?.x ? socialUrls.x : socialUrls?.github));
 </script>
 
 <template>

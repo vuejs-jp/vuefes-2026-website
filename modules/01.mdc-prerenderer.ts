@@ -29,9 +29,9 @@ export default defineNuxtModule({
 
   setup(_options, nuxt) {
     // Initialize paths and processor
-    const { resolve } = createResolver(import.meta.url);
-    const mdcContentRootDir = resolve("../i18n/");
-    const componentsDir = resolve("../app/components/_i18n");
+    const resolver = createResolver(import.meta.url);
+    const mdcContentRootDir = resolver.resolve("../i18n/");
+    const componentsDir = resolver.resolve("../app/components/_i18n");
 
     // Set up unified processor
     const processor = createMarkdownProcessor();
@@ -57,7 +57,7 @@ export default defineNuxtModule({
       nuxt.hook("nitro:init", async () => {
         await fsp.rm(componentsDir, { recursive: true, force: true }); // clear
         const rendered = await renderAll();
-        await Promise.all(rendered.map(renderedContent => write(renderedContent, true)));
+        await Promise.all(rendered.map((renderedContent) => write(renderedContent, true)));
       });
     }
 
@@ -65,7 +65,7 @@ export default defineNuxtModule({
       nuxt.hook("builder:watch", async (events, path) => {
         if (!path.startsWith(mdcContentRootDir) || !path.endsWith(".md")) return;
 
-        const absolutePath = resolve(mdcContentRootDir, path);
+        const absolutePath = resolver.resolve(mdcContentRootDir, path);
         const relativePath = absolutePath.replace(mdcContentRootDir, "");
         const locale = relativePath.split("/")[relativePath.startsWith("/") ? 1 : 0]!;
 
@@ -82,9 +82,9 @@ export default defineNuxtModule({
 
     async function renderAll() {
       const files = await fsp.readdir(mdcContentRootDir, { recursive: true });
-      const mdcFiles = files.filter(file => file.endsWith(".md"));
-      const contents = await Promise.all(mdcFiles.map(async file => parseMdc(file)));
-      return await Promise.all(contents.map(mdcContent => render(mdcContent)));
+      const mdcFiles = files.filter((file) => file.endsWith(".md"));
+      const contents = await Promise.all(mdcFiles.map(async (file) => parseMdc(file)));
+      return await Promise.all(contents.map((mdcContent) => render(mdcContent)));
     }
 
     async function render(mdc: MdcContent): Promise<RenderedContent> {
@@ -105,9 +105,7 @@ ${isFaq ? generateFaqStyles() : ""}`;
       const renderedContent = await (async () => {
         try {
           const rendered = await processor.process(mdc.content);
-          return isFaq
-            ? renderFAQ(rendered.toString())
-            : rendered.toString();
+          return isFaq ? renderFAQ(rendered.toString()) : rendered.toString();
         } catch {
           // Fallback to original content if rendering fails
           return mdc.content;
@@ -177,37 +175,39 @@ h3.faq-q-wrapper {
       // Split content by h3 headers
       const sections = mdc.split(/(?=<h3>)/);
 
-      return sections.map((section) => {
-        // Skip empty sections
-        if (!section.trim()) return "";
+      return sections
+        .map((section) => {
+          // Skip empty sections
+          if (!section.trim()) return "";
 
-        // Check if this is an h3 section
-        if (section.startsWith("<h3>")) {
-          // Add Q span to the h3 and wrap in
-          const processedHeader = section.replace(
-            /<h3>(.*?)<\/h3>/,
-            "<h3 class=\"faq-q-wrapper\"><div class=\"faq-q\">Q</div><div class=\"faq-q-content\">$1</div></h3>",
-          );
-
-          // Find the content after h3 closing tag
-          const matches = processedHeader.match(/<h3 class="faq-q-wrapper">.*?<\/h3>([\s\S]*)/);
-          if (matches && matches[1]) {
-            // Wrap content with the A structure
-            return processedHeader.replace(
-              matches[1],
-              `<div class="faq-a-content-wrapper"><span class="faq-a">A</span><div class="faq-a-content">${matches[1]}</div></div>`,
+          // Check if this is an h3 section
+          if (section.startsWith("<h3>")) {
+            // Add Q span to the h3 and wrap in
+            const processedHeader = section.replace(
+              /<h3>(.*?)<\/h3>/,
+              '<h3 class="faq-q-wrapper"><div class="faq-q">Q</div><div class="faq-q-content">$1</div></h3>',
             );
+
+            // Find the content after h3 closing tag
+            const matches = processedHeader.match(/<h3 class="faq-q-wrapper">.*?<\/h3>([\s\S]*)/);
+            if (matches && matches[1]) {
+              // Wrap content with the A structure
+              return processedHeader.replace(
+                matches[1],
+                `<div class="faq-a-content-wrapper"><span class="faq-a">A</span><div class="faq-a-content">${matches[1]}</div></div>`,
+              );
+            }
+
+            return processedHeader;
           }
 
-          return processedHeader;
-        }
-
-        return section;
-      }).join("");
+          return section;
+        })
+        .join("");
     }
 
     async function parseMdc(path: string): Promise<MdcContent> {
-      const absolutePath = resolve(mdcContentRootDir, path);
+      const absolutePath = resolver.resolve(mdcContentRootDir, path);
       const relativePath = absolutePath.replace(mdcContentRootDir, "");
       const locale = relativePath.split("/")[relativePath.startsWith("/") ? 1 : 0]!;
       const content = await fsp.readFile(absolutePath, "utf-8");
@@ -216,7 +216,7 @@ h3.faq-q-wrapper {
 
     async function write(prc: RenderedContent, isNew = false): Promise<void> {
       const { resolvedPath, content } = prc;
-      const dir = resolve(resolvedPath, "..");
+      const dir = resolver.resolve(resolvedPath, "..");
       await fsp.mkdir(dir, { recursive: true });
       await fsp.writeFile(resolvedPath, content).catch();
 
@@ -227,7 +227,10 @@ h3.faq-q-wrapper {
 
     function registerComponent(resolvedPath: string) {
       addComponent({
-        name: resolvedPath.replace(/\.vue$/, "").split("/").slice(-1)[0]!,
+        name: resolvedPath
+          .replace(/\.vue$/, "")
+          .split("/")
+          .slice(-1)[0]!,
         filePath: resolvedPath,
         export: "default",
         global: true,
@@ -236,19 +239,21 @@ h3.faq-q-wrapper {
 
     function getOutputPath(mdc: MdcContent): string {
       // Add locale as prefix
-      const componentName = mdc.locale.charAt(0).toUpperCase() + mdc.locale.slice(1)
-        + mdc.relativePath
+      const componentName =
+        mdc.locale.charAt(0).toUpperCase() +
+        mdc.locale.slice(1) +
+        mdc.relativePath
           .replace(/\.md$/, "")
           .split("/")
           // Remove locale name part
           .slice(2)
           // Remove "-"
-          .flatMap(part => part.split("-"))
+          .flatMap((part) => part.split("-"))
           // To pascal case
-          .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+          .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
           .join("");
 
-      return resolve(componentsDir, mdc.locale, `${componentName}.vue`);
+      return resolver.resolve(componentsDir, mdc.locale, `${componentName}.vue`);
     }
   },
 });

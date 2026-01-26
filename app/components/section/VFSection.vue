@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { VFHeading } from "#components";
 
-const { title, heading = 2, coverImage, id } = defineProps<{
+const {
+  title,
+  heading = 2,
+  coverImage,
+  id,
+} = defineProps<{
   title?: string;
 
   /** @default 2 */
@@ -23,10 +28,7 @@ defineSlots<{
 <template>
   <section class="vf-section">
     <div v-if="coverImage" class="section-cover-wrapper">
-      <img
-        :src="coverImage.src"
-        :alt="coverImage.alt"
-      />
+      <img :src="coverImage.src" :alt="coverImage.alt" />
     </div>
     <div class="section-content">
       <div v-if="title">

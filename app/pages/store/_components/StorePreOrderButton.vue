@@ -6,7 +6,7 @@ const { t } = useI18n();
 
 <template>
   <VFButton link="https://vuejs-jp.stores.jp" external class="vf-button">
-    {{ t('store.preOrder') }}
+    {{ t("store.preOrder") }}
   </VFButton>
 </template>
 

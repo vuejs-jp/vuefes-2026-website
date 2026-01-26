@@ -11,9 +11,7 @@
   "paths": {
     "/event/{eventId}/list_sales": {
       "get": {
-        "tags": [
-          "ListSales"
-        ],
+        "tags": ["ListSales"],
         "summary": "List Sales",
         "operationId": "get_ListSalesGet",
         "parameters": [
@@ -57,17 +55,11 @@
                             "type": "string"
                           }
                         },
-                        "required": [
-                          "salesId",
-                          "eventId",
-                          "ticketName"
-                        ]
+                        "required": ["salesId", "eventId", "ticketName"]
                       }
                     }
                   },
-                  "required": [
-                    "sales"
-                  ]
+                  "required": ["sales"]
                 }
               }
             }
@@ -86,10 +78,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -99,9 +88,7 @@
     },
     "/event/{eventId}/list_sales/{salesId}": {
       "get": {
-        "tags": [
-          "Sale"
-        ],
+        "tags": ["Sale"],
         "summary": "Sale",
         "operationId": "get_SaleGet",
         "parameters": [
@@ -148,11 +135,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "salesId",
-                    "eventId",
-                    "ticketName"
-                  ]
+                  "required": ["salesId", "eventId", "ticketName"]
                 }
               }
             }
@@ -171,10 +154,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }
@@ -193,10 +173,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "error",
-                    "message"
-                  ]
+                  "required": ["error", "message"]
                 }
               }
             }

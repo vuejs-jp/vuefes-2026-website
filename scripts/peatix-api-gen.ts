@@ -12,7 +12,9 @@ dotenv.config();
 const OPEN_API_PATH = path.resolve("server/peatix-api/openapi.json");
 
 // download OpenAPI schema from Peatix API
-const schema = await fetch(`${process.env.PEATIX_API_ORIGIN}/openapi.json`, {}).then(response => response.json());
+const schema = await fetch(`${process.env.PEATIX_API_ORIGIN}/openapi.json`, {}).then((response) =>
+  response.json(),
+);
 
 fs.writeFileSync(OPEN_API_PATH, JSON.stringify(schema, null, 2) + "\n");
 

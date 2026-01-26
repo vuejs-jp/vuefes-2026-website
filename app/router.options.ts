@@ -10,9 +10,8 @@ export default <RouterConfig>{
     const nuxtApp = useNuxtApp();
 
     if (
-      nuxtApp.$i18n
-      && stripLocalePath(to.path?.toString() ?? "")
-      === stripLocalePath(from.path?.toString() ?? "")
+      nuxtApp.$i18n &&
+      stripLocalePath(to.path?.toString() ?? "") === stripLocalePath(from.path?.toString() ?? "")
     ) {
       await nuxtApp.$i18n.waitForPendingLocaleChange();
       return savedPosition;

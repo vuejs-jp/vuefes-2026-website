@@ -164,10 +164,7 @@ const nameTransform = computed(() => {
           width: '100%',
           height: '100%',
           borderRadius: '50%',
-          ...(userRole === 'Sponsor'
-            ? { objectFit: 'contain', backgroundColor: '#fff' }
-            : {}
-          ),
+          ...(userRole === 'Sponsor' ? { objectFit: 'contain', backgroundColor: '#fff' } : {}),
         }"
       />
     </div>

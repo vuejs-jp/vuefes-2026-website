@@ -1,12 +1,4 @@
-import {
-  onMounted,
-  computed,
-  ref,
-  shallowRef,
-  useState,
-  watch,
-  type ComputedRef,
-} from "#imports";
+import { onMounted, computed, ref, shallowRef, useState, watch, type ComputedRef } from "#imports";
 
 export function useAnimationStore(): [
   state: ComputedRef<boolean>,
@@ -28,21 +20,16 @@ export function useAnimationStore(): [
     }
   });
 
-  return [
-    computed(() => state.value),
-    set,
-    computed(() => isWebGLSupported.value),
-  ] as const;
+  return [computed(() => state.value), set, computed(() => isWebGLSupported.value)] as const;
 
   function _isWebGLSupported(): boolean {
     try {
       const canvas = document.createElement("canvas");
       return !!(
-        window.WebGLRenderingContext
-        && (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
+        window.WebGLRenderingContext &&
+        (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
       );
-    }
-    catch {
+    } catch {
       return false;
     }
   }
@@ -112,12 +99,7 @@ class ThemeCircularIter {
    *
    * order: align to MainVisualWebGL.vue
    */
-  static list = [
-    "theme-primary",
-    "theme-purple",
-    "theme-orange",
-    "theme-navy",
-  ] as const;
+  static list = ["theme-primary", "theme-purple", "theme-orange", "theme-navy"] as const;
 
   next(): Theme {
     this._current = (this._current + 1) % ThemeCircularIter.list.length;

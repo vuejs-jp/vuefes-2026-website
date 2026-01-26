@@ -1,36 +1,36 @@
-## Business Operator  
+## Business Operator
 
 ceroan LLC (Commissioned by the Vue.js Japan User Group for event operations and accounting)
 
-## Representative  
+## Representative
 
 Yoshiya OKI
 
-## Location  
+## Location
 
 5-26-29 Nakano, Nakano-ku, Tokyo 164-0001, Japan
 
-## Phone Number  
+## Phone Number
 
-*We do not accept inquiries by phone. Please contact us via the Vue Fes Japan 2026 inquiry form.*
+_We do not accept inquiries by phone. Please contact us via the Vue Fes Japan 2026 inquiry form._
 
-## Sales Price  
+## Sales Price
 
 Prices are as listed for each product.
 
-## Additional Fees  
+## Additional Fees
 
 Order handling fee (for convenience store and ATM payments)
 
-## Payment Timing and Methods  
+## Payment Timing and Methods
 
 Credit Card (immediate), Convenience Store Payment (by payment deadline), ATM Payment (by payment deadline)
 
-## Service Provision Period  
+## Service Provision Period
 
 The day of Vue Fes Japan 2026
 
-## Returns and Refunds  
+## Returns and Refunds
 
 Ticket cancellations and refunds are available only if requested within 50 days of purchase and if payment was made by credit card. Cancellations and refunds are not available for payments made via convenience store or ATM, so please be aware of this in advance.
 

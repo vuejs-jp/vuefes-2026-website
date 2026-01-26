@@ -23,7 +23,11 @@ export default defineEventHandler(async (event) => {
   }
 
   // image registration
-  const nameBadgeData = await db.select().from(attendees).where(eq(attendees.userId, session.userId)).get();
+  const nameBadgeData = await db
+    .select()
+    .from(attendees)
+    .where(eq(attendees.userId, session.userId))
+    .get();
 
   const S3 = new S3Client({
     region: "auto",
@@ -38,14 +42,16 @@ export default defineEventHandler(async (event) => {
   const { client } = usePeatixApi();
 
   if (nameBadgeData?.receiptId && !nameBadgeData?.role) {
-    const sale = await client.GET("/event/{eventId}/list_sales/{salesId}", {
-      params: {
-        path: {
-          eventId: peatixEventId,
-          salesId: nameBadgeData.receiptId,
+    const sale = await client
+      .GET("/event/{eventId}/list_sales/{salesId}", {
+        params: {
+          path: {
+            eventId: peatixEventId,
+            salesId: nameBadgeData.receiptId,
+          },
         },
-      },
-    }).then(response => response.data);
+      })
+      .then((response) => response.data);
 
     if (sale) {
       const role = (() => {
@@ -62,7 +68,11 @@ export default defineEventHandler(async (event) => {
       })();
 
       if (role) {
-        await db.update(attendees).set({ role }).where(eq(attendees.userId, session.userId)).execute();
+        await db
+          .update(attendees)
+          .set({ role })
+          .where(eq(attendees.userId, session.userId))
+          .execute();
       }
     }
   }
@@ -70,23 +80,22 @@ export default defineEventHandler(async (event) => {
   return nameBadgeData
     ? {
         name: nameBadgeData.displayName,
-        avatarUrl:
-          nameBadgeData.avatarUrl
-            ? await getSignedUrl(
-                S3,
-                new GetObjectCommand({
-                  Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
-                  Key: new URL(nameBadgeData.avatarUrl).pathname.split("/").pop(),
-                }),
-                { expiresIn: 3600 },
-              )
-            : undefined,
+        avatarUrl: nameBadgeData.avatarUrl
+          ? await getSignedUrl(
+              S3,
+              new GetObjectCommand({
+                Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
+                Key: new URL(nameBadgeData.avatarUrl).pathname.split("/").pop(),
+              }),
+              { expiresIn: 3600 },
+            )
+          : undefined,
         role: nameBadgeData.role,
         lang: nameBadgeData.lang,
 
         /**
-           * Authorized private data
-           */
+         * Authorized private data
+         */
         salesId: nameBadgeData.receiptId,
         avatarImageFileName: nameBadgeData.imageFileName,
       }

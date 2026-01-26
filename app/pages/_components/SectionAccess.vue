@@ -7,28 +7,16 @@ const { locale, t } = useI18n();
 </script>
 
 <template>
-  <VFSection
-    :id="HOME_HEADING_ID.access"
-    :title="t('access.title')"
-    class="section-access"
-  >
+  <VFSection :id="HOME_HEADING_ID.access" :title="t('access.title')" class="section-access">
     <component :is="locale === 'ja' ? JaAccess : EnAccess" />
     <div class="access-button-container">
       <VFButton link="https://maps.app.goo.gl/fdVEfMK5KcY33QiXA">
-        {{ t('access.googleMapLink') }}
+        {{ t("access.googleMapLink") }}
       </VFButton>
     </div>
     <div class="access-images-container">
-      <img
-        src="/images/top/access1.jpg"
-        :alt="t('access.alt1')"
-        loading="lazy"
-      >
-      <img
-        src="/images/top/access2.jpg"
-        :alt="t('access.alt2')"
-        loading="lazy"
-      >
+      <img src="/images/top/access1.jpg" :alt="t('access.alt1')" loading="lazy" />
+      <img src="/images/top/access2.jpg" :alt="t('access.alt2')" loading="lazy" />
     </div>
   </VFSection>
 </template>
@@ -55,7 +43,7 @@ const { locale, t } = useI18n();
   margin-top: 32px;
   margin-bottom: -48px;
   width: 100cqw;
-  margin-inline: calc(50% - calc(100cqw/2));
+  margin-inline: calc(50% - calc(100cqw / 2));
 
   @media (--mobile) {
     margin-top: 24px;

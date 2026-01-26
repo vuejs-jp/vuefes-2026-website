@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, useTemplateRef, watchEffect } from "vue";
 
-const {
-  name,
-  userRole,
-  avatarImageUrl,
-  width,
-  height,
-  aspectRatio,
-} = defineProps<{
+const { name, userRole, avatarImageUrl, width, height, aspectRatio } = defineProps<{
   userRole: "Attendee" | "Attendee+Party" | "Sponsor" | "Speaker" | "Staff";
   name: string;
   avatarImageUrl?: string;
@@ -216,14 +209,11 @@ onMounted(() => {
     @click="unfocus"
     @keydown.esc.prevent="unfocus"
   />
-  <div
-    ref="cardOuter"
-    class="name-badge-preview-outer"
-    :class="{ focused: isFocused }"
-  >
+  <div ref="cardOuter" class="name-badge-preview-outer" :class="{ focused: isFocused }">
     <div class="name-badge-preview" :class="{ focused: isFocused }">
       <div
-        ref="cardWrapper" class="base-name-badge-wrapper"
+        ref="cardWrapper"
+        class="base-name-badge-wrapper"
         :class="{ hovering: isHovering || isFocused }"
         :style="{
           width,
@@ -259,18 +249,22 @@ onMounted(() => {
           :src="avatarImageUrl ?? variants.avatarPlaceholderImageUrl"
           alt="avatar"
           :style="{
-            ...(userRole === 'Sponsor'
-              ? { objectFit: 'contain', backgroundColor: '#fff' }
-              : {}
-            ),
+            ...(userRole === 'Sponsor' ? { objectFit: 'contain', backgroundColor: '#fff' } : {}),
           }"
         />
 
-        <div id="name-badge-name" :style="{ color: variants.color, transform: `scaleX(${nameScaleX})` }">
+        <div
+          id="name-badge-name"
+          :style="{ color: variants.color, transform: `scaleX(${nameScaleX})` }"
+        >
           {{ name }}
         </div>
 
-        <div v-if="userRole==='Staff' && lang" id="name-badge-lang" :style="{ color: variants.color }">
+        <div
+          v-if="userRole === 'Staff' && lang"
+          id="name-badge-lang"
+          :style="{ color: variants.color }"
+        >
           {{ lang }}
         </div>
       </div>
@@ -356,7 +350,9 @@ onMounted(() => {
   perspective: 1000px;
   --rotation: 0deg;
   transform: rotateY(var(--rotation));
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
   border-radius: 1rem;
 
   .highlight {
@@ -395,12 +391,15 @@ onMounted(() => {
 
     & > .emboss {
       background-blend-mode: exclusion, darken, color-dodge;
-      background-size: 400% 400%, 210% 210%, 210% 210%;
+      background-size:
+        400% 400%,
+        210% 210%,
+        210% 210%;
       background-position:
         calc(((var(--posx) - 50%) * -2.5) + 50%) calc(((var(--posy) - 50%) * -2.5) + 50%),
         calc(((var(--posx) - 50%) * 1.5) + 50%) calc(((var(--posy) - 50%) * 1.5) + 50%),
         calc(((var(--posx) - 50%) * 1.5) + 50%) calc(((var(--posy) - 50%) * 1.5) + 50%);
-      filter: brightness(.95) contrast(4) saturate(0.75);
+      filter: brightness(0.95) contrast(4) saturate(0.75);
 
       &::before {
         content: "";
@@ -408,11 +407,11 @@ onMounted(() => {
         grid-area: 1/1;
         background-image: radial-gradient(
           farthest-corner ellipse at calc(((var(--mx)) * 0.5) + 25%) calc(((var(--my)) * 0.5) + 25%),
-          rgba(100, 100, 100, .1) 5%,
-          rgba(50, 50, 50, .1) 15%,
+          rgba(100, 100, 100, 0.1) 5%,
+          rgba(50, 50, 50, 0.1) 15%,
           /* rgba(100, 100, 100, .5) 5%,
-          rgba(50, 50, 50, .4) 15%,  */
-          rgba(0, 0, 0, .6) 30%
+          rgba(50, 50, 50, .4) 15%,  */ rgba(0, 0, 0, 0.6)
+            30%
         );
         background-position: center;
         background-size: 350% 350%;
@@ -426,7 +425,9 @@ onMounted(() => {
         background-image: url("~/assets/images/noise/1.png");
         background-color: var(--color-sub);
         background-repeat: repeat;
-        background-size: 25% 25%, 400% 100%;
+        background-size:
+          25% 25%,
+          400% 100%;
         background-position:
           center,
           calc(((var(--posx) - 50%) * -2.5) + 50%) calc(((var(--posy) - 50%) * -2.5) + 50%);

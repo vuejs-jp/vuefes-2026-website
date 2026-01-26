@@ -61,8 +61,8 @@
 
 ### ❤️ Contributors
 
-- @totocalcio 
-- @yamageji 
+- @totocalcio
+- @yamageji
 
 ## v2.9.15
 
@@ -215,7 +215,7 @@
 
 ### ❤️ Contributors
 
-- @naokihaba 
+- @naokihaba
 
 ## v2.9.6
 
@@ -241,7 +241,7 @@
 
 ### ❤️ Contributors
 
-- @naokihaba 
+- @naokihaba
 
 ## v2.9.5
 
@@ -322,7 +322,7 @@
 ### ❤️ Contributors
 
 - @naokihaba
->>>>>>> production
+  > > > > > > > production
 
 ## v2.9.1
 
@@ -729,7 +729,6 @@
 
 - Speaker card link ([33daa9b](https://github.com/vuejs-jp/vuefes-2025/commit/33daa9b))
 
-
 ### ❤️ Contributors
 
 - @ubugeeei
@@ -1059,7 +1058,6 @@
 
 - @ubugeeei
 
-
 ## v1.7.0
 
 [compare changes](https://github.com/vuejs-jp/vuefes-2025/compare/v1.6.0...v1.7.0)
@@ -1077,7 +1075,6 @@
 
 - Kitagawa ([@aster-mnch](https://github.com/aster-mnch))
 - Ubugeeei ([@ubugeeei](https://github.com/ubugeeei))
-
 
 ## v1.6.0
 
@@ -1174,7 +1171,6 @@
 
 - Koyama Shigehito
 
-
 ## v1.2.2
 
 [compare changes](https://github.com/vuejs-jp/vuefes-2025/compare/v1.0.5...v1.2.2)
@@ -1186,7 +1182,6 @@
 ### ❤️ Contributors
 
 - Ubugeeei
-
 
 ## v1.2.1
 
@@ -1291,11 +1286,9 @@
 - Ubugeeei [@ubugeeei](https://github.com/ubugeeei)
 - Ktym4a ([@ktym4a](https://github.com/ktym4a))
 
-
 ## v1.0.6
 
 [compare changes](https://github.com/vuejs-jp/vuefes-2025/compare/v1.0.5...v1.0.6)
-
 
 ### 🩹 Fixes
 
@@ -1326,7 +1319,6 @@
 - Sns introduction heading color ([#349](https://github.com/vuejs-jp/vuefes-2025/pull/349))
 - Cls on section cover image ([#351](https://github.com/vuejs-jp/vuefes-2025/pull/351))
 
-
 ### 🏡 Chore
 
 - Header lang switcher style ([#341](https://github.com/vuejs-jp/vuefes-2025/pull/341))
@@ -1337,7 +1329,6 @@
 - **deps-dev:** Bump eslint from 9.23.0 to 9.24.0 ([#342](https://github.com/vuejs-jp/vuefes-2025/pull/342))
 - **deps-dev:** Bump @unhead/vue from 2.0.2 to 2.0.5 ([#346](https://github.com/vuejs-jp/vuefes-2025/pull/346))
 - **deps-dev:** Bump typescript from 5.8.2 to 5.8.3 ([#343](https://github.com/vuejs-jp/vuefes-2025/pull/343))
-
 
 ### ❤️ Contributors
 
@@ -1388,14 +1379,12 @@
 
 ## v1.0.1
 
-
 [compare changes](https://github.com/vuejs-jp/vuefes-2025/compare/v1.0.0...v1.0.1)
 
 ### 🚀 Enhancements
 
 - Replace ServerContentRenderer with NuxtIsland ([#304](https://github.com/vuejs-jp/vuefes-2025/pull/304))
- - fix: https://github.com/vuejs-jp/vuefes-2025/issues/297, https://github.com/vuejs-jp/vuefes-2025/issues/309
-
+- fix: https://github.com/vuejs-jp/vuefes-2025/issues/297, https://github.com/vuejs-jp/vuefes-2025/issues/309
 
 ### ❤️ Contributors
 
@@ -1403,7 +1392,6 @@
 - Ubugeeei ([@ubugeeei](https://github.com/ubugeeei))
 
 ## v1.0.0
-
 
 ### 🚀 Enhancements
 
@@ -1461,7 +1449,7 @@
 - Scroll content ([#171](https://github.com/vuejs-jp/vuefes-2025/pull/171))
 - **router:** Preserve scroll position on language switch ([#174](https://github.com/vuejs-jp/vuefes-2025/pull/174))
 - Svg -> png (main visual, message cover) ([#183](https://github.com/vuejs-jp/vuefes-2025/pull/183))
-- Update privacy policy  in en ([#194](https://github.com/vuejs-jp/vuefes-2025/pull/194))
+- Update privacy policy in en ([#194](https://github.com/vuejs-jp/vuefes-2025/pull/194))
 - Main visual background-blend-mode ([3f2524d](https://github.com/vuejs-jp/vuefes-2025/commit/3f2524d))
 - Top page style ([#203](https://github.com/vuejs-jp/vuefes-2025/pull/203))
 - Lang style ([#221](https://github.com/vuejs-jp/vuefes-2025/pull/221))
@@ -1570,4 +1558,4 @@
 - Hal-Spidernight ([@Hal-Spidernight](https://github.com/Hal-Spidernight))
 - Ryuhei Shikanai ([@ryuhei373](https://github.com/ryuhei373))
 - Totocalcio
-- Kanno_stanfoot(_genj1) ([@genj11](https://github.com/genj11))
+- Kanno_stanfoot(\_genj1) ([@genj11](https://github.com/genj11))

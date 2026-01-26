@@ -404,8 +404,7 @@ Let's take a fresh look at how these Rust-based tools work, especially in coordi
       x: "https://x.com/ssssotaro",
       bluesky: "https://bsky.app/profile/ssssota.bsky.social",
     },
-    slide:
-      "https://speakerdeck.com/ssssota/why-do-rust-based-tools-run-without-a-rust-environment",
+    slide: "https://speakerdeck.com/ssssota/why-do-rust-based-tools-run-without-a-rust-environment",
   },
   {
     id: "NaokiHaba",
@@ -444,8 +443,7 @@ Let's take a fresh look at how these Rust-based tools work, especially in coordi
       github: "https://github.com/2nofa11",
       x: "https://x.com/2nofa11",
     },
-    slide:
-      "https://speakerdeck.com/bengo4com/20251025-cloudsign-vuefesjapan2025-lt",
+    slide: "https://speakerdeck.com/bengo4com/20251025-cloudsign-vuefesjapan2025-lt",
   },
   {
     id: "rinchoku",
@@ -471,8 +469,7 @@ Let's take a fresh look at how these Rust-based tools work, especially in coordi
     title: "Front Engineer",
     avatarUrl: "/images/avatars/shiminori.jpg",
     color: "default",
-    talkTitle:
-      "The Key to Cookie-Based State Management in Nuxt Authentication",
+    talkTitle: "The Key to Cookie-Based State Management in Nuxt Authentication",
     talkOverview:
       "In this session, I'll share key considerations for managing authentication state using cookies when building a custom auth system in Nuxt.\n\nAs of now, there are no stable third-party solutions for email and password-based authentication in Nuxt, which has led us to implement our own.\n\nI'll walk you through the challenges we faced and the practical workarounds we found—especially around why simply using the `useCookie` composable didn't behave as expected, and what we did to address it.",
     talkSchedule: "16:25 - 17:25",
@@ -490,8 +487,7 @@ Let's take a fresh look at how these Rust-based tools work, especially in coordi
     title: "Frontend Engineer",
     avatarUrl: "/images/avatars/crayfisher_zari.jpg",
     color: "purple",
-    talkTitle:
-      "Building Japan's Digital Agency Design System in Vue.js as a Solo Developer",
+    talkTitle: "Building Japan's Digital Agency Design System in Vue.js as a Solo Developer",
     talkOverview:
       "In this talk, I'll share our experience implementing the Digital Agency's public design system using Vue.js. Along the way, I'll highlight some of the key strengths we discovered—particularly the power of `v-model` and `computed`—as we built out the system.",
     talkSchedule: "16:25 - 17:25",
@@ -530,8 +526,7 @@ Let's take a fresh look at how these Rust-based tools work, especially in coordi
     title: "Frontend Engineer",
     avatarUrl: "/images/avatars/kaede-kato.png",
     color: "navy",
-    talkTitle:
-      "Building the chocoZAP Service Reservation System In-House with Nuxt",
+    talkTitle: "Building the chocoZAP Service Reservation System In-House with Nuxt",
     talkOverview: `At chocoZAP, we had been using external services for booking self-esthetic and self-hair removal services.
 This time, we have developed our own reservation system in Nuxt.
 

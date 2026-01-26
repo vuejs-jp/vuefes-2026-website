@@ -30,10 +30,7 @@ const { data: timetable } = await useFetch("/api/timetable", {
   query: { locale: locale.value },
 });
 
-const timetableScrollPosition = useState<number>(
-  "timetableScrollPosition",
-  () => 0,
-);
+const timetableScrollPosition = useState<number>("timetableScrollPosition", () => 0);
 
 onBeforeRouteLeave(() => {
   timetableScrollPosition.value = window.scrollY;
@@ -83,22 +80,10 @@ useSeoMeta({
         <table v-if="bp === 'pc'" class="timetable-content">
           <thead>
             <tr>
-              <TimetableHead
-                color="primary"
-                :title="t('timetable.track.hacomono')"
-              />
-              <TimetableHead
-                color="purple"
-                :title="t('timetable.track.mates')"
-              />
-              <TimetableHead
-                color="orange"
-                :title="t('timetable.track.feature')"
-              />
-              <TimetableHead
-                color="navy"
-                :title="t('timetable.track.cyberAgent')"
-              />
+              <TimetableHead color="primary" :title="t('timetable.track.hacomono')" />
+              <TimetableHead color="purple" :title="t('timetable.track.mates')" />
+              <TimetableHead color="orange" :title="t('timetable.track.feature')" />
+              <TimetableHead color="navy" :title="t('timetable.track.cyberAgent')" />
             </tr>
           </thead>
           <tbody>
@@ -120,11 +105,7 @@ useSeoMeta({
             </div>
             <template v-if="row.cells.length > 0">
               <template v-for="cell in row.cells">
-                <TimetableCard
-                  v-if="!cell.isPcOnly"
-                  :key="cell.id"
-                  v-bind="cell"
-                />
+                <TimetableCard v-if="!cell.isPcOnly" :key="cell.id" v-bind="cell" />
               </template>
             </template>
           </template>
@@ -135,19 +116,13 @@ useSeoMeta({
     <VFSection :title="t('venueMap.title')" class="venue-map-section">
       <a
         :href="
-          locale === 'ja'
-            ? '/images/venue-map/map_jp@2x.png'
-            : '/images/venue-map/map_en@2x.png'
+          locale === 'ja' ? '/images/venue-map/map_jp@2x.png' : '/images/venue-map/map_en@2x.png'
         "
         target="_blank"
       >
         <span class="visually-hidden">{{ t("venueMap.openInNewTab") }}</span>
         <img
-          :src="
-            locale === 'ja'
-              ? '/images/venue-map/map_jp.png'
-              : '/images/venue-map/map_en.png'
-          "
+          :src="locale === 'ja' ? '/images/venue-map/map_jp.png' : '/images/venue-map/map_en.png'"
           :alt="t('venueMap.alt')"
           loading="lazy"
         />

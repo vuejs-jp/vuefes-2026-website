@@ -2,11 +2,7 @@ import { randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import { and, eq } from "drizzle-orm";
 import dotenv from "dotenv";
-import {
-  DeleteObjectCommand,
-  PutObjectCommand,
-  S3Client,
-} from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { db } from "../../../server/db/orm";
 import { attendees, users } from "../../../server/db/schema";
 
@@ -67,14 +63,10 @@ await (async function main() {
           console.log(`✓ ${name}: Deleted successfully\n`);
           break;
         case "updated":
-          console.log(
-            `✓ ${name}: Updated successfully\n  ${result.value.shareUrl}\n`,
-          );
+          console.log(`✓ ${name}: Updated successfully\n  ${result.value.shareUrl}\n`);
           break;
         case "created":
-          console.log(
-            `✓ ${name}: Created successfully\n  ${result.value.shareUrl}\n`,
-          );
+          console.log(`✓ ${name}: Created successfully\n  ${result.value.shareUrl}\n`);
           break;
       }
     } else {
@@ -102,11 +94,7 @@ await (async function main() {
   }
 
   function isImageFormatSupported(filename: string): boolean {
-    return (
-      filename.endsWith(".png") ||
-      filename.endsWith(".jpg") ||
-      filename.endsWith(".jpeg")
-    );
+    return filename.endsWith(".png") || filename.endsWith(".jpg") || filename.endsWith(".jpeg");
   }
 
   function getMimeType(filename: string): string {
@@ -133,10 +121,7 @@ await (async function main() {
     await S3.send(deleteCommand);
   }
 
-  async function uploadToR2(
-    localPath: string,
-    filename: string,
-  ): Promise<string> {
+  async function uploadToR2(localPath: string, filename: string): Promise<string> {
     const mimeType = getMimeType(filename);
     const objectName = `${randomUUID()}-${filename}`;
 
@@ -174,9 +159,7 @@ await (async function main() {
       .rightJoin(attendees, eq(users.id, attendees.userId));
 
     if (existingUser) {
-      console.warn(
-        `[Warn] User with name "${it.name}" already exists. Skipping...`,
-      );
+      console.warn(`[Warn] User with name "${it.name}" already exists. Skipping...`);
       return;
     }
 
@@ -230,10 +213,7 @@ await (async function main() {
   }
 
   async function processUpdate(it: (typeof dataWithDefaultValues)[0]) {
-    const whereConditions = [
-      eq(users.name, it.name),
-      eq(attendees.role, it.role),
-    ];
+    const whereConditions = [eq(users.name, it.name), eq(attendees.role, it.role)];
 
     const [existingUser] = await db
       .select({
@@ -256,10 +236,7 @@ await (async function main() {
       .where(and(...whereConditions));
 
     if (!existingUser) {
-      const roleDesc =
-        it.role === "Staff" && "lang" in it
-          ? `${it.role} (${it.lang})`
-          : it.role;
+      const roleDesc = it.role === "Staff" && "lang" in it ? `${it.role} (${it.lang})` : it.role;
       console.warn(
         `[Warn] User with name "${it.name}" and role "${roleDesc}" not found. Skipping update...`,
       );
@@ -294,20 +271,14 @@ await (async function main() {
 
       // Delete old avatar from R2
       await deleteFromR2(existingUser.attendee.avatarUrl).catch((err) => {
-        console.error(
-          `[Error] Failed to delete old avatar from R2: ${err.message}`,
-        );
+        console.error(`[Error] Failed to delete old avatar from R2: ${err.message}`);
       });
 
       // Upload new avatar
-      avatarUrl = await uploadToR2(it.localAvatarImagePath, filename).catch(
-        (err) => {
-          console.error(
-            `[Error] Failed to upload new avatar to R2: ${err.message}`,
-          );
-          return existingUser.attendee.avatarUrl; // Fallback to old avatar URL
-        },
-      );
+      avatarUrl = await uploadToR2(it.localAvatarImagePath, filename).catch((err) => {
+        console.error(`[Error] Failed to upload new avatar to R2: ${err.message}`);
+        return existingUser.attendee.avatarUrl; // Fallback to old avatar URL
+      });
       imageFileName = filename;
     }
 
@@ -332,10 +303,7 @@ await (async function main() {
   }
 
   async function processDelete(it: (typeof dataWithDefaultValues)[0]) {
-    const whereConditions = [
-      eq(users.name, it.name),
-      eq(attendees.role, it.role),
-    ];
+    const whereConditions = [eq(users.name, it.name), eq(attendees.role, it.role)];
 
     // For Staff role, also match lang field
     if (it.role === "Staff" && "lang" in it) {
@@ -363,10 +331,7 @@ await (async function main() {
       .where(and(...whereConditions));
 
     if (!existingUser) {
-      const roleDesc =
-        it.role === "Staff" && "lang" in it
-          ? `${it.role} (${it.lang})`
-          : it.role;
+      const roleDesc = it.role === "Staff" && "lang" in it ? `${it.role} (${it.lang})` : it.role;
       console.warn(
         `[Warn] User with name "${it.name}" and role "${roleDesc}" not found. Skipping deletion...`,
       );

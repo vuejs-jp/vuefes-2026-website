@@ -21,8 +21,8 @@ const { t, locale } = useI18n();
 
 const runtimeConfig = useRuntimeConfig();
 
-const goods = computed(() => locale.value === "en" ? enGoods : jaGoods);
-const indent = computed(() => locale.value === "en" ? "0.7em" : "0.25em");
+const goods = computed(() => (locale.value === "en" ? enGoods : jaGoods));
+const indent = computed(() => (locale.value === "en" ? "0.7em" : "0.25em"));
 
 defineOgImage({
   url: `${runtimeConfig.public.siteUrl}images/og/store.png`,
@@ -38,7 +38,7 @@ useSeoMeta({
 
 <template>
   <div id="pages-store">
-    <h1>{{ $t('store.title') }}</h1>
+    <h1>{{ $t("store.title") }}</h1>
 
     <VFSection :title="t('store.panel.title')">
       <component :is="locale === 'ja' ? JaStore : EnStore">
@@ -49,11 +49,7 @@ useSeoMeta({
         </template>
         <template #goods>
           <ul class="store-item-list">
-            <StoreItemCard
-              v-for="item in goods"
-              :key="item.id"
-              :item="item"
-            />
+            <StoreItemCard v-for="item in goods" :key="item.id" :item="item" />
           </ul>
         </template>
       </component>
@@ -64,7 +60,7 @@ useSeoMeta({
 <style scoped>
 @import "~/assets/styles/custom-media-query.css";
 
-#pages-store{
+#pages-store {
   display: grid;
   row-gap: 1.5rem;
 

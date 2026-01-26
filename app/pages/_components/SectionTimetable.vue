@@ -11,15 +11,16 @@ const localeRoute = useLocaleRoute();
 <template>
   <VFSection
     :cover-image="{
-      src: bp === 'pc'
-        ? withBase('/images/top/cover/timetable-pc.svg')
-        : withBase('/images/top/cover/timetable-sp.svg'),
+      src:
+        bp === 'pc'
+          ? withBase('/images/top/cover/timetable-pc.svg')
+          : withBase('/images/top/cover/timetable-sp.svg'),
       alt: t('timetable.coverImageAlt'),
     }"
   >
     <div class="button-container">
       <VFButton :link="localeRoute('/timetable')">
-        {{ t('timetable.view') }}
+        {{ t("timetable.view") }}
       </VFButton>
     </div>
   </VFSection>

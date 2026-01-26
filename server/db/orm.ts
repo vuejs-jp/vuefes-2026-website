@@ -14,9 +14,14 @@ export const db = drizzle(async (sql, params, method) => {
       }),
     });
 
-    const json = await resp.json() as unknown;
+    const json = (await resp.json()) as unknown;
 
-    if (typeof json !== "object" || json === null || !("result" in json) || !Array.isArray(json.result)) {
+    if (
+      typeof json !== "object" ||
+      json === null ||
+      !("result" in json) ||
+      !Array.isArray(json.result)
+    ) {
       throw new Error("Invalid response from D1 API");
     }
 

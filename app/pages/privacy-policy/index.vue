@@ -11,7 +11,6 @@ import {
   useLocalePath,
   useRuntimeConfig,
   defineOgImage,
-
 } from "#imports";
 
 defineRouteRules({ prerender: true });
