@@ -10,6 +10,6 @@ The ecosystem surrounding Vue.js is also gaining momentum. The official ESLint p
 
 Additionally, last October, Evan You, the creator of Vue.js, launched a new company, VoidZero, to advance the development of the next-generation JavaScript toolchain. Projects like Vite, Vitest, Rolldown, and Oxc—as part of VoidZero’s open source initiatives—are set to make a significant impact not only on the Vue.js community but also on the broader JavaScript ecosystem.
 
-This is the place where you can experience cutting-edge information and trends firsthand—that’s Vue Fes Japan 2025. This year, to ensure even more people can enjoy the event, we are pursuing initiatives toward internationalization, such as rebranding the conference for its evolution and providing English translations for Japanese sessions. Let’s come together to share an authentic experience and excitement!
+This is the place where you can experience cutting-edge information and trends firsthand—that’s Vue Fes Japan 2026. This year, to ensure even more people can enjoy the event, we are pursuing initiatives toward internationalization, such as rebranding the conference for its evolution and providing English translations for Japanese sessions. Let’s come together to share an authentic experience and excitement!
 
 Kazuya Kawaguchi, Representative of the Vue.js Japan User Group ([@kazu_pon](https://github.com/kazupon))

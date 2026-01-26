@@ -21,7 +21,7 @@ If you pre-order through STORES in advance, you can pick up your items at the Vu
 
 Pre-order period: Varies by product. Please check each product page on STORES for details.
 
-Pick-up date and time: October 25, 2025 (Saturday) 9:30-18:00
+Pick-up date and time: October 24, 2025 (Saturday) 9:30-18:00
 
 Pick-up location: Vue Fes Store booth inside Vue Fes Japan 2025 venue
 
@@ -31,7 +31,7 @@ Please show your order confirmation email when picking up your items on the day.
 
 **Day-of Sales**
 
-Please purchase at the Vue Fes Store booth inside the Vue Fes Japan 2025 venue on the day of the event. However, the quantity available for day-of sales is limited for each product, so we recommend pre-ordering to ensure your purchase.
+Please purchase at the Vue Fes Store booth inside the Vue Fes Japan 2026 venue on the day of the event. However, the quantity available for day-of sales is limited for each product, so we recommend pre-ordering to ensure your purchase.
 
 Payment for day-of sales will be cashless payment only. Cash cannot be used.
 

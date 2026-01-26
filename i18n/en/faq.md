@@ -4,7 +4,7 @@ Credit cards, convenience store payments, and ATM payments are accepted.
 
 For more details, please check the Peatix Help article [What payment methods are available for paid ticket applications?](https://help-attendee.peatix.com/ja-JP/support/solutions/articles/44001821736-%E6%9C%89%E6%96%99%E3%83%81%E3%82%B1%E3%83%83%E3%83%88%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E3%81%AB%E3%81%AF%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E6%94%AF%E6%89%95%E3%81%84%E6%96%B9%E6%B3%95%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B-).
 
-Please note that Vue Fes Japan 2025 does not support PayPal or bank transfer payments.
+Please note that Vue Fes Japan 2026 does not support PayPal or bank transfer payments.
 
 ### Is a Peatix account required to purchase tickets?
 
@@ -14,7 +14,7 @@ You can create an account using your email address or social accounts such as Fa
 
 ### Will there be live streaming or archived videos of the event?
 
-There will be no live streaming on the day of the event. Vue Fes Japan 2025 is an offline-only conference, so please purchase a ticket to participate.
+There will be no live streaming on the day of the event. Vue Fes Japan 2026 is an offline-only conference, so please purchase a ticket to participate.
 
 Sessions will be recorded and published on the [Vue.js Japan User Group YouTube channel](https://www.youtube.com/channel/UC6KPwA1kZJtQYdlh8_2hxCA), but videos are expected to be released after the following year.
 
@@ -24,7 +24,7 @@ It's a special discount for those who purchase tickets early. You can buy ticket
 
 ### What about the schedule and session details?
 
-Please check [Timetable](/2025/en/timetable), [Speaker](/2025/en/speaker).
+Please check [Timetable](/2026/en/timetable), [Speaker](/2026/en/speaker).
 
 ### What do I need for admission on the day of the event?
 
@@ -40,7 +40,7 @@ The name badge is necessary for entering each venue, so please wear it around yo
 
 If you don't create a name badge, we will provide you with a badge without an avatar or name at the venue on the day of the event.
 
-### Is creating a name badge mandatory for participating in Vue Fes Japan 2025?
+### Is creating a name badge mandatory for participating in Vue Fes Japan 2026?
 
 No, it's not mandatory. If you don't create a name badge, we will provide you with a badge without an avatar or name at the venue on the day of the event.
 
@@ -48,11 +48,11 @@ No, it's not mandatory. If you don't create a name badge, we will provide you wi
 
 Yes, we issue digital receipts (qualified invoices) with invoice numbers. For details, please check [How to access receipt data](https://help-attendee.peatix.com/ja-JP/support/solutions/articles/44001821741-%E9%A0%98%E5%8F%8E%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%99%E3%82%8B) in the Peatix Help section.
 
-The receipts are issued by Ceroan LLC, the operations and accounting contractor for Vue Fes Japan 2025 (registered invoice issuer).
+The receipts are issued by Ceroan LLC, the operations and accounting contractor for Vue Fes Japan 2026 (registered invoice issuer).
 
 ### Will lunch be provided?
 
-**Lunch will not be provided** at Vue Fes Japan 2025. Please refer to the [lunch information around the venue](https://esa-pages.io/p/sharing/6906/posts/1614/52f6a682402e5d1e4a51.html).
+**Lunch will not be provided** at Vue Fes Japan 2026. Please refer to the [lunch information around the venue](https://esa-pages.io/p/sharing/6906/posts/1614/52f6a682402e5d1e4a51.html).
 
 You are welcome to bring your own food and beverages into the venue. If you do, please be considerate of those around you.
 
@@ -78,11 +78,11 @@ The email may have been filtered as spam. Please check your spam folder. If you 
 
 ### Can I cancel my ticket?
 
-Cancellations are accepted until September 21, 2025 (Sun). Please note that we cannot process cancellations or refunds after September 21, 2025.
+Cancellations are accepted until September 21, 2026 (Sun). Please note that we cannot process cancellations or refunds after September 21, 2026.
 
 Additionally, tickets can only be canceled and refunded if purchased with a credit card and within 50 days of purchase. Cancellations and refunds are not available for convenience store or ATM payments.
 
-If you wish to cancel, please contact us through the Vue Fes Japan 2025 inquiry form with your name as the purchaser and the order number included in the purchase confirmation email.
+If you wish to cancel, please contact us through the Vue Fes Japan 2026 inquiry form with your name as the purchaser and the order number included in the purchase confirmation email.
 
 ### Can I purchase multiple tickets?
 

@@ -1,4 +1,4 @@
-# Vue Fes Japan 2025
+# Vue Fes Japan 2026
 
 ## Requirement
 
@@ -12,7 +12,7 @@ For version information, please refer to package.json.
 ```sh
 
 # clone via ssh
-git clone git@github.com:vuejs-jp/vuefes-2025.git
+git clone git@github.com:vuejs-jp/vuefes-2026.git
 
 # install dependencies
 pnpm install

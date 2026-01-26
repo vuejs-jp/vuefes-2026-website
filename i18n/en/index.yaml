@@ -2,27 +2,27 @@ back: "Back"
 copyLink: "Copy Link"
 clipboard:
   copySuccess: "Copied to clipboard"
-siteName: "Vue Fes Japan 2025 Official"
+siteName: "Vue Fes Japan 2026 Official"
 
 nuxtSiteConfig:
-  name: "Vue Fes Japan 2025"
+  name: "Vue Fes Japan 2026"
   description: >
-    This is one of the largest Vue.js conferences in Japan, taking place on Saturday, October 25, 2025. In addition to sessions by renowned speakers from Japan and abroad, we are planning various events such as lightning talks, hands-on workshops, and merchandise sales. Join us to enjoy and celebrate Vue.js together!
+    This is one of the largest Vue.js conferences in Japan, taking place on Saturday, October 24, 2026. In addition to sessions by renowned speakers from Japan and abroad, we are planning various events such as lightning talks, hands-on workshops, and merchandise sales. Join us to enjoy and celebrate Vue.js together!
 mainVisual:
   imageAlt: >
-    The main visual of Vue Fes Japan 2025. It features a silhouette of a V, representing Vue, and a circle, representing the Japanese flag, side by side. The colors are deep matcha-like shades derived from the two colors, and the circle features a Japanese gold marbling pattern.
+    The main visual of Vue Fes Japan 2026. It features a silhouette of a V, representing Vue, and a circle, representing the Japanese flag, side by side. The colors are deep matcha-like shades derived from the two colors, and the circle features a Japanese gold marbling pattern.
   webglAlt: >
-    The main visual animation of Vue Fes Japan 2025. It features a side-by-side silhouette of a V, which represents Vue, and a circle silhouette, which represents the Japanese flag Hinomaru, with a golden suminagashi pattern on the circle silhouette. The color of the silhouette changes at regular intervals along with the flowing sumi ink animation.
+    The main visual animation of Vue Fes Japan 2026. It features a side-by-side silhouette of a V, which represents Vue, and a circle silhouette, which represents the Japanese flag Hinomaru, with a golden suminagashi pattern on the circle silhouette. The color of the silhouette changes at regular intervals along with the flowing sumi ink animation.
 logo:
   alt: >
-    Vue Fes Japan 2025 logo. It features a silhouette of a V, representing Vue, and a circle, representing the Japanese flag, side by side. The colors are deep matcha-like shades derived from the two colors used in the Vue.js logo.
-  shortAlt: Vue Fes Japan 2025 logo
+    Vue Fes Japan 2026 logo. It features a silhouette of a V, representing Vue, and a circle, representing the Japanese flag, side by side. The colors are deep matcha-like shades derived from the two colors used in the Vue.js logo.
+  shortAlt: Vue Fes Japan 2026 logo
 animation:
   play: "Play Animation"
   pause: "Pause Animation"
 
 message: "Message"
-messageCoverImageAlt: Vue Fes Japan 2025 logo
+messageCoverImageAlt: Vue Fes Japan 2026 logo
 
 ticket:
   title: "Ticket"
@@ -61,8 +61,8 @@ ticket:
 nameBadge:
   title: "Name Badge"
   description: "After purchasing your {ticketName} and registering the required information, you will receive a name badge featuring your avatar and name at the venue on the day! (Social login required)"
-  ticketName: "Vue Fes Japan 2025 ticket"
-  deadlineDescription: "Name badge editing deadline: September {correction} 21, 2025 (Sunday), 11:59 PM (JST)"
+  ticketName: "Vue Fes Japan 2026 ticket"
+  deadlineDescription: "Name badge editing deadline: September {correction} 21, 2026 (Sunday), 11:59 PM (JST)"
   correction: "29"
   attention: "* Name badge creation is optional."
   coverImageAlt: "Name badge image"
@@ -104,10 +104,10 @@ nameBadge:
     submitResult:
       success: "Name badge saved successfully."
       error: "Failed to save name badge. Please try again."
-  shareText: "I'll be at Vue Fes Japan 2025!\nBuy the ticket and create your name badge!\n\n{link}\n\n#vuefes"
+  shareText: "I'll be at Vue Fes Japan 2026!\nBuy the ticket and create your name badge!\n\n{link}\n\n#vuefes"
   pageTitle: "{username}'s Name Badge"
   pageTitleSponsor: "{sponsorName}'s Name Badge"
-  pageDescription: "This is the name badge page at Vue Fes Japan 2025. Purchase a ticket and create your name badge!"
+  pageDescription: "This is the name badge page at Vue Fes Japan 2026. Purchase a ticket and create your name badge!"
 
 login:
   withGoogle: "Log in with Google"
@@ -130,7 +130,7 @@ event:
     location: "FitFits with hacomono Track"
     time: "16:10 - 17:10"
     talkTitle: "The Future of Frontend"
-    talkDescription: "Several years have passed since the announcement of generative AI, and in recently, a development style \"Vibe Coding\" is using AI agent has been attracting attention. It's expected the performance of AI will continue to improve in the future, but how will this paradigm shift affect our front-end development? In this panel discussion, we will welcome Dan Abramov, Evan You, and dominikg, all well-known experts in React, Vue.js, and Svelte, to discuss \"the future of front-end in the era of generative AI\" from various angles."
+    talkDescription: 'Several years have passed since the announcement of generative AI, and in recently, a development style "Vibe Coding" is using AI agent has been attracting attention. It''s expected the performance of AI will continue to improve in the future, but how will this paradigm shift affect our front-end development? In this panel discussion, we will welcome Dan Abramov, Evan You, and dominikg, all well-known experts in React, Vue.js, and Svelte, to discuss "the future of front-end in the era of generative AI" from various angles.'
   quiz:
     title: "Vue Quiz"
     location: "CyberAgent Track"
@@ -256,7 +256,7 @@ access:
 
 photo:
   title: "Photo"
-  description: "Thank you to everyone who attended Vue Fes Japan 2025. Photos taken on the day are released under the {cc0Link}, so feel free to use them on your blogs, social media, and more."
+  description: "Thank you to everyone who attended Vue Fes Japan 2026. Photos taken on the day are released under the {cc0Link}, so feel free to use them on your blogs, social media, and more."
   cc0LinkText: "CC0 license"
   categories:
     preparation: "Preparation Day"
@@ -297,7 +297,7 @@ contactForm:
   errorMessage: "Failed to send. Please try again."
 staff:
   title: "Staff"
-  description: "Vue Fes Japan 2025 is planned and organized by the staff of the Vue.js Japan User Group."
+  description: "Vue Fes Japan 2026 is planned and organized by the staff of the Vue.js Japan User Group."
   volunteer: "Volunteer Staff"
 snsIntroduction: "Please check our official social media for the latest updates."
 snsIconImageAlt:
@@ -316,7 +316,7 @@ validation:
 
 timetable:
   title: "Timetable"
-  description: "This is the timetable for Vue Fes Japan 2025."
+  description: "This is the timetable for Vue Fes Japan 2026."
   track:
     hacomono: "FitFits with hacomono Track"
     mates: "Mates Track"
@@ -355,7 +355,7 @@ relatedEvents:
 store:
   title: "Vue Fes Store"
   description: "The Vue Fes Store is back this year, where you can purchase Vue Fes Japan exclusive original goods. This time, we have completely redesigned the goods design in conjunction with the site and logo rebranding. Get your original goods and help make Vue Fes Japan even more exciting!"
-  coverImageAlt: "Along with the text 'Check the items!', the official goods of Vue Fes Japan 2025 are displayed. A black hoodie, a logo T-shirt, a blue-purple and orange marble-patterned wristband, and postcards are shown."
+  coverImageAlt: "Along with the text 'Check the items!', the official goods of Vue Fes Japan 2026 are displayed. A black hoodie, a logo T-shirt, a blue-purple and orange marble-patterned wristband, and postcards are shown."
   panel:
     title: "Store"
   preOrder: "Pre-order"

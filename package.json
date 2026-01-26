@@ -1,5 +1,5 @@
 {
-  "name": "vuefes-2025",
+  "name": "vuefes-2026",
   "private": true,
   "version": "2.11.0",
   "type": "module",
@@ -9,7 +9,7 @@
   },
   "packageManager": "pnpm@10.6.3",
   "engines": {
-    "node": "22",
+    "node": ">=24",
     "pnpm": ">=10"
   },
   "//": "NOTE: align to Netlify's Node.js version",

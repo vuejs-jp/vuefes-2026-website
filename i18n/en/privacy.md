@@ -1,4 +1,4 @@
-Vue Fes Japan 2025 (hereinafter the "Conference") recognizes the importance of protecting the personal information of conference participants and sponsors (hereinafter the "User" or "Users").
+Vue Fes Japan 2026 (hereinafter the "Conference") recognizes the importance of protecting the personal information of conference participants and sponsors (hereinafter the "User" or "Users").
 
 In order to comply with the laws regarding the protection of personal information, we are committed to the appropriate handling, protection, and continual improvement of personal information in accordance with the following privacy policy (hereinafter the "Privacy Policy").
 
@@ -40,7 +40,7 @@ This conference may change the purposes for which personal information is used t
 
 ## Term of Use of Personal Information
 
-The Conference will use personal information collected from Users until October 31, 2025, the month in which the conference is held. After the expiration date, the personal information will be completely deleted as soon as possible.
+The Conference will use personal information collected from Users until October 31, 2026, the month in which the conference is held. After the expiration date, the personal information will be completely deleted as soon as possible.
 
 ## Safe Management of Personal Information
 

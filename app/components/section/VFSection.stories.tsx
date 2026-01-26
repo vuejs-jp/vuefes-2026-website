@@ -23,7 +23,7 @@ export default {
   },
 } satisfies Meta<typeof VFSection>;
 
-export const Default: StoryFn = args => ({
+export const Default: StoryFn = (args) => ({
   components: { VFSection },
   setup: () => ({
     args: {
@@ -41,7 +41,7 @@ export const Default: StoryFn = args => ({
   `,
 });
 
-export const WithCoverImage: StoryFn = args => ({
+export const WithCoverImage: StoryFn = (args) => ({
   components: { VFSection },
   setup: () => ({
     args: {
@@ -49,7 +49,7 @@ export const WithCoverImage: StoryFn = args => ({
       title: "カバー画像付きセクション",
       coverImage: {
         src: "/images/top/cover/message-pc.png",
-        alt: "Vue Fes Japan 2025 メッセージ",
+        alt: "Vue Fes Japan 2026 メッセージ",
       },
     },
   }),
@@ -63,7 +63,7 @@ export const WithCoverImage: StoryFn = args => ({
   `,
 });
 
-export const CustomHeadingLevel: StoryFn = args => ({
+export const CustomHeadingLevel: StoryFn = (args) => ({
   components: { VFSection },
   setup: () => ({
     args: {
@@ -81,7 +81,7 @@ export const CustomHeadingLevel: StoryFn = args => ({
   `,
 });
 
-export const WithId: StoryFn = args => ({
+export const WithId: StoryFn = (args) => ({
   components: { VFSection },
   setup: () => ({
     args: {

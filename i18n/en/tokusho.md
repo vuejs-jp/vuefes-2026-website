@@ -12,7 +12,7 @@ Yoshiya OKI
 
 ## Phone Number  
 
-*We do not accept inquiries by phone. Please contact us via the Vue Fes Japan 2025 inquiry form.*
+*We do not accept inquiries by phone. Please contact us via the Vue Fes Japan 2026 inquiry form.*
 
 ## Sales Price  
 
@@ -28,10 +28,10 @@ Credit Card (immediate), Convenience Store Payment (by payment deadline), ATM Pa
 
 ## Service Provision Period  
 
-The day of Vue Fes Japan 2025
+The day of Vue Fes Japan 2026
 
 ## Returns and Refunds  
 
 Ticket cancellations and refunds are available only if requested within 50 days of purchase and if payment was made by credit card. Cancellations and refunds are not available for payments made via convenience store or ATM, so please be aware of this in advance.
 
-If you wish to cancel, please contact us via the Vue Fes Japan 2025 inquiry form, including the name of the purchaser and the order number listed in the purchase confirmation email.
+If you wish to cancel, please contact us via the Vue Fes Japan 2026 inquiry form, including the name of the purchaser and the order number listed in the purchase confirmation email.

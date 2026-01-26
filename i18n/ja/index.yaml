@@ -2,27 +2,27 @@ back: "戻る"
 copyLink: "リンクをコピー"
 clipboard:
   copySuccess: "クリップボードにコピーしました"
-siteName: "Vue Fes Japan 2025 公式サイト"
+siteName: "Vue Fes Japan 2026 公式サイト"
 
 nuxtSiteConfig:
-  name: "Vue Fes Japan 2025"
+  name: "Vue Fes Japan 2026"
   description: >
-    2025年10月25日（土）に開催される日本最大級の Vue.jsカンファレンスです。国内外の著名スピーカーによるセッションの他、LT、ハンズオン、グッズ販売などのイベントも企画しています。ぜひ一緒にVue.jsを楽しみ、盛り上げていきましょう！
+    2026年10月25日（土）に開催される日本最大級の Vue.jsカンファレンスです。国内外の著名スピーカーによるセッションの他、LT、ハンズオン、グッズ販売などのイベントも企画しています。ぜひ一緒にVue.jsを楽しみ、盛り上げていきましょう！
 mainVisual:
   imageAlt: >
-    Vue Fes Japan 2025のメインビジュアル。VueをイメージしたVのシルエットと、日の丸をイメージした丸のシルエットが横に並んでいる。色は深い抹茶のような色をしており、丸のシルエットには金色の墨流し模様が描かれている。
+    Vue Fes Japan 2026のメインビジュアル。VueをイメージしたVのシルエットと、日の丸をイメージした丸のシルエットが横に並んでいる。色は深い抹茶のような色をしており、丸のシルエットには金色の墨流し模様が描かれている。
   webglAlt: >
-    Vue Fes Japan 2025のメインビジュアルアニメーション。VueをイメージしたVのシルエットと、日本の日の丸をイメージした丸のシルエットが横に並んでおり、丸のシルエットには金色の墨流し模様が描かれている。墨が流れるアニメーションとともに一定時間で色が変化している。
+    Vue Fes Japan 2026のメインビジュアルアニメーション。VueをイメージしたVのシルエットと、日本の日の丸をイメージした丸のシルエットが横に並んでおり、丸のシルエットには金色の墨流し模様が描かれている。墨が流れるアニメーションとともに一定時間で色が変化している。
 logo:
   alt: >
-    Vue Fes Japan 2025 ロゴ。VueをイメージしたVのシルエットと、日本の日の丸をイメージした丸のシルエットが横に並んでいる。色はVue.jsのロゴに使われている2色の色から作られた深い抹茶のような色。
-  shortAlt: Vue Fes Japan 2025 ロゴ
+    Vue Fes Japan 2026 ロゴ。VueをイメージしたVのシルエットと、日本の日の丸をイメージした丸のシルエットが横に並んでいる。色はVue.jsのロゴに使われている2色の色から作られた深い抹茶のような色。
+  shortAlt: Vue Fes Japan 2026 ロゴ
 animation:
   play: "アニメーションを再生"
   pause: "アニメーションを停止"
 
 message: "メッセージ"
-messageCoverImageAlt: Vue Fes Japan 2025 ロゴ
+messageCoverImageAlt: Vue Fes Japan 2026 ロゴ
 
 ticket:
   title: "チケット"
@@ -104,10 +104,10 @@ nameBadge:
     submitResult:
       success: "ネームカードを保存しました。"
       error: "ネームカードの保存に失敗しました。もう一度お試しください。"
-  shareText: "Vue Fes Japan 2025 に参加します！\nチケットを購入してネームカードを作成しよう！\n\n{link}\n\n#vuefes\n"
+  shareText: "Vue Fes Japan 2026 に参加します！\nチケットを購入してネームカードを作成しよう！\n\n{link}\n\n#vuefes\n"
   pageTitle: "{username}さんのネームカード"
   pageTitleSponsor: "{sponsorName}のネームカード"
-  pageDescription: "Vue Fes Japan 2025 のネームカードページです。チケットを購入して、あなたのネームカードを作成しましよう！"
+  pageDescription: "Vue Fes Japan 2026 のネームカードページです。チケットを購入して、あなたのネームカードを作成しましよう！"
 
 login:
   withGoogle: "Google でログイン"
@@ -255,7 +255,7 @@ access:
 
 photo:
   title: "写真"
-  description: "Vue Fes Japan 2025 にご参加いただいたみなさん、ありがとうございました。当日撮影された写真を {cc0Link} にて公開しますので、ブログや SNS などにご自由にお使いください。"
+  description: "Vue Fes Japan 2026 にご参加いただいたみなさん、ありがとうございました。当日撮影された写真を {cc0Link} にて公開しますので、ブログや SNS などにご自由にお使いください。"
   cc0LinkText: "CC0 ライセンス"
   categories:
     preparation: "前日準備"
@@ -296,7 +296,7 @@ contactForm:
   errorMessage: "送信に失敗しました。もう一度お試しください。"
 staff:
   title: "スタッフ"
-  description: "Vue Fes Japan 2025 は、Vue.js 日本ユーザーグループのスタッフによって企画・運営されています。"
+  description: "Vue Fes Japan 2026 は、Vue.js 日本ユーザーグループのスタッフによって企画・運営されています。"
   volunteer: "ボランティアスタッフ"
 snsIntroduction: "最新情報は公式SNSをご覧ください"
 snsIconImageAlt:
@@ -315,7 +315,7 @@ validation:
 
 timetable:
   title: "タイムテーブル"
-  description: "Vue Fes Japan 2025のタイムテーブルです。"
+  description: "Vue Fes Japan 2026のタイムテーブルです。"
   track:
     hacomono: "FitFits with hacomonoトラック"
     mates: "メイツトラック"
@@ -354,7 +354,7 @@ relatedEvents:
 store:
   title: "Vue Fes Store"
   description: "Vue Fes Japan 限定オリジナルグッズをお買い求めいただける Vue Fes Store が今年も登場。今回はサイトおよびロゴのリブランディングに伴い、グッズのデザインを一新しました。オリジナルグッズを揃えて、Vue Fes Japan を盛り上げましょう！"
-  coverImageAlt: "Check the items! のテキストとともに Vue Fes Japan 2025 の公式グッズが並んでいる。黒いパーカー、ロゴ入り T シャツ、青紫オレンジのマーブル柄のラバーバンド、ポストカードが写っている。"
+  coverImageAlt: "Check the items! のテキストとともに Vue Fes Japan 2026 の公式グッズが並んでいる。黒いパーカー、ロゴ入り T シャツ、青紫オレンジのマーブル柄のラバーバンド、ポストカードが写っている。"
   panel:
     title: "ストア"
   preOrder: "予約注文する"

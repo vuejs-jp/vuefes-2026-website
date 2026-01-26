@@ -21,23 +21,35 @@ const { locale } = useI18n();
 <template>
   <section class="main-visual">
     <component :is="titleTag" class="main-visual-head">
-      <span class="site-title site-title-en" lang="en" :aria-hidden="locale !== 'en'">
+      <span
+        class="site-title site-title-en"
+        lang="en"
+        :aria-hidden="locale !== 'en'"
+      >
         <span>Vue Fes</span>
-        <span>Japan 2025</span>
+        <span>Japan 2026</span>
       </span>
-      <span class="site-title site-title-ja" lang="ja" :aria-hidden="locale !== 'ja'">
+      <span
+        class="site-title site-title-ja"
+        lang="ja"
+        :aria-hidden="locale !== 'ja'"
+      >
         <span>ビューフェス</span>
         <span>ジャパン2025</span>
       </span>
     </component>
 
     <div class="main-visual-body">
-      <time datetime="2025-10-25" lang="en" :aria-hidden="locale !== 'en'">OCTOBER 25, 2025</time>
+      <time datetime="2025-10-25" lang="en" :aria-hidden="locale !== 'en'"
+        >OCTOBER 24, 2025</time
+      >
       <MainVisualGraphic
         :appearance="animation ? 'webgl' : 'png'"
         class="main-visual-graphic"
       />
-      <time datetime="2025-10-25" lang="ja" :aria-hidden="locale !== 'ja'">2025年10月25日</time>
+      <time datetime="2025-10-25" lang="ja" :aria-hidden="locale !== 'ja'"
+        >2025年10月24日</time
+      >
     </div>
 
     <div class="main-visual-foot">

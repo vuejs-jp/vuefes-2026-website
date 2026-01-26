@@ -2,7 +2,11 @@ import { randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import { and, eq } from "drizzle-orm";
 import dotenv from "dotenv";
-import { DeleteObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import {
+  DeleteObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from "@aws-sdk/client-s3";
 import { db } from "../../../server/db/orm";
 import { attendees, users } from "../../../server/db/schema";
 
@@ -25,7 +29,7 @@ await (async function main() {
   const { default: data } = await import("./input/data");
 
   // Add default values to input data
-  const dataWithDefaultValues = data.map(it => ({
+  const dataWithDefaultValues = data.map((it) => ({
     userId: generateDefaultUserId(),
     email: generateDefaultEmail(),
     action: "create" as const,
@@ -63,15 +67,21 @@ await (async function main() {
           console.log(`✓ ${name}: Deleted successfully\n`);
           break;
         case "updated":
-          console.log(`✓ ${name}: Updated successfully\n  ${result.value.shareUrl}\n`);
+          console.log(
+            `✓ ${name}: Updated successfully\n  ${result.value.shareUrl}\n`,
+          );
           break;
         case "created":
-          console.log(`✓ ${name}: Created successfully\n  ${result.value.shareUrl}\n`);
+          console.log(
+            `✓ ${name}: Created successfully\n  ${result.value.shareUrl}\n`,
+          );
           break;
       }
     } else {
       errorCount++;
-      console.error(`✗ Entry ${index + 1}: Error - ${result.status === "rejected" ? result.reason : "Unknown error"}`);
+      console.error(
+        `✗ Entry ${index + 1}: Error - ${result.status === "rejected" ? result.reason : "Unknown error"}`,
+      );
     }
   });
 
@@ -92,7 +102,11 @@ await (async function main() {
   }
 
   function isImageFormatSupported(filename: string): boolean {
-    return filename.endsWith(".png") || filename.endsWith(".jpg") || filename.endsWith(".jpeg");
+    return (
+      filename.endsWith(".png") ||
+      filename.endsWith(".jpg") ||
+      filename.endsWith(".jpeg")
+    );
   }
 
   function getMimeType(filename: string): string {
@@ -119,7 +133,10 @@ await (async function main() {
     await S3.send(deleteCommand);
   }
 
-  async function uploadToR2(localPath: string, filename: string): Promise<string> {
+  async function uploadToR2(
+    localPath: string,
+    filename: string,
+  ): Promise<string> {
     const mimeType = getMimeType(filename);
     const objectName = `${randomUUID()}-${filename}`;
 
@@ -135,8 +152,8 @@ await (async function main() {
   }
 
   // Process functions for each action
-  async function processCreate(it: typeof dataWithDefaultValues[0]) {
-    const [existingUser] = (await db
+  async function processCreate(it: (typeof dataWithDefaultValues)[0]) {
+    const [existingUser] = await db
       .select({
         user: {
           id: users.id,
@@ -154,11 +171,12 @@ await (async function main() {
       })
       .from(users)
       .where(eq(users.name, it.name))
-      .rightJoin(attendees, eq(users.id, attendees.userId))
-    );
+      .rightJoin(attendees, eq(users.id, attendees.userId));
 
     if (existingUser) {
-      console.warn(`[Warn] User with name "${it.name}" already exists. Skipping...`);
+      console.warn(
+        `[Warn] User with name "${it.name}" already exists. Skipping...`,
+      );
       return;
     }
 
@@ -182,35 +200,36 @@ await (async function main() {
     }
 
     // Create User
-    await db.insert(users).values({
-      id: it.userId,
-      name: it.name,
-      email: it.email,
-    }).execute();
+    await db
+      .insert(users)
+      .values({
+        id: it.userId,
+        name: it.name,
+        email: it.email,
+      })
+      .execute();
 
     // Create Attendee Data
-    await db
-      .insert(attendees)
-      .values({
-        userId: it.userId,
-        email: it.email,
-        avatarUrl,
-        imageFileName: filename,
-        displayName: it.name,
-        role: it.role,
-        lang: it.role === "Staff" && "lang" in it ? it.lang : undefined,
-        receiptId: "N/A",
-      });
+    await db.insert(attendees).values({
+      userId: it.userId,
+      email: it.email,
+      avatarUrl,
+      imageFileName: filename,
+      displayName: it.name,
+      role: it.role,
+      lang: it.role === "Staff" && "lang" in it ? it.lang : undefined,
+      receiptId: "N/A",
+    });
 
     return {
       name: it.name,
       role: it.role,
-      shareUrl: `https://vuefes.jp/2025/ticket/${it.userId}/`,
+      shareUrl: `https://vuefes.jp/2026/ticket/${it.userId}/`,
       action: "created" as const,
     };
   }
 
-  async function processUpdate(it: typeof dataWithDefaultValues[0]) {
+  async function processUpdate(it: (typeof dataWithDefaultValues)[0]) {
     const whereConditions = [
       eq(users.name, it.name),
       eq(attendees.role, it.role),
@@ -237,17 +256,26 @@ await (async function main() {
       .where(and(...whereConditions));
 
     if (!existingUser) {
-      const roleDesc = it.role === "Staff" && "lang" in it ? `${it.role} (${it.lang})` : it.role;
-      console.warn(`[Warn] User with name "${it.name}" and role "${roleDesc}" not found. Skipping update...`);
+      const roleDesc =
+        it.role === "Staff" && "lang" in it
+          ? `${it.role} (${it.lang})`
+          : it.role;
+      console.warn(
+        `[Warn] User with name "${it.name}" and role "${roleDesc}" not found. Skipping update...`,
+      );
       return;
     }
 
     // Update user if needed
-    await db.update(users).set({
-      email: it.email || existingUser.user.email,
-    }).where(eq(users.id, existingUser.user.id)).catch((err) => {
-      console.error(`[Error] Failed to update user: ${err.message}`);
-    });
+    await db
+      .update(users)
+      .set({
+        email: it.email || existingUser.user.email,
+      })
+      .where(eq(users.id, existingUser.user.id))
+      .catch((err) => {
+        console.error(`[Error] Failed to update user: ${err.message}`);
+      });
 
     let avatarUrl = existingUser.attendee.avatarUrl;
     let imageFileName = existingUser.attendee.imageFileName;
@@ -266,35 +294,44 @@ await (async function main() {
 
       // Delete old avatar from R2
       await deleteFromR2(existingUser.attendee.avatarUrl).catch((err) => {
-        console.error(`[Error] Failed to delete old avatar from R2: ${err.message}`);
+        console.error(
+          `[Error] Failed to delete old avatar from R2: ${err.message}`,
+        );
       });
 
       // Upload new avatar
-      avatarUrl = await uploadToR2(it.localAvatarImagePath, filename).catch((err) => {
-        console.error(`[Error] Failed to upload new avatar to R2: ${err.message}`);
-        return existingUser.attendee.avatarUrl; // Fallback to old avatar URL
-      });
+      avatarUrl = await uploadToR2(it.localAvatarImagePath, filename).catch(
+        (err) => {
+          console.error(
+            `[Error] Failed to upload new avatar to R2: ${err.message}`,
+          );
+          return existingUser.attendee.avatarUrl; // Fallback to old avatar URL
+        },
+      );
       imageFileName = filename;
     }
 
     // Update attendee
-    await db.update(attendees).set({
-      avatarUrl,
-      imageFileName,
-      displayName: it.name,
-      role: it.role,
-      lang: it.role === "Staff" && "lang" in it ? it.lang : undefined,
-    }).where(eq(attendees.userId, existingUser.user.id));
+    await db
+      .update(attendees)
+      .set({
+        avatarUrl,
+        imageFileName,
+        displayName: it.name,
+        role: it.role,
+        lang: it.role === "Staff" && "lang" in it ? it.lang : undefined,
+      })
+      .where(eq(attendees.userId, existingUser.user.id));
 
     return {
       name: it.name,
       role: it.role,
-      shareUrl: `https://vuefes.jp/2025/ticket/${existingUser.user.id}/`,
+      shareUrl: `https://vuefes.jp/2026/ticket/${existingUser.user.id}/`,
       action: "updated" as const,
     };
   }
 
-  async function processDelete(it: typeof dataWithDefaultValues[0]) {
+  async function processDelete(it: (typeof dataWithDefaultValues)[0]) {
     const whereConditions = [
       eq(users.name, it.name),
       eq(attendees.role, it.role),
@@ -326,8 +363,13 @@ await (async function main() {
       .where(and(...whereConditions));
 
     if (!existingUser) {
-      const roleDesc = it.role === "Staff" && "lang" in it ? `${it.role} (${it.lang})` : it.role;
-      console.warn(`[Warn] User with name "${it.name}" and role "${roleDesc}" not found. Skipping deletion...`);
+      const roleDesc =
+        it.role === "Staff" && "lang" in it
+          ? `${it.role} (${it.lang})`
+          : it.role;
+      console.warn(
+        `[Warn] User with name "${it.name}" and role "${roleDesc}" not found. Skipping deletion...`,
+      );
       return;
     }
 
@@ -337,12 +379,18 @@ await (async function main() {
     });
 
     // Delete attendee and user
-    await db.delete(attendees).where(eq(attendees.userId, existingUser.user.id)).catch((err) => {
-      console.error(`[Error] Failed to delete attendee: ${err.message}`);
-    });
-    await db.delete(users).where(eq(users.id, existingUser.user.id)).catch((err) => {
-      console.error(`[Error] Failed to delete user: ${err.message}`);
-    });
+    await db
+      .delete(attendees)
+      .where(eq(attendees.userId, existingUser.user.id))
+      .catch((err) => {
+        console.error(`[Error] Failed to delete attendee: ${err.message}`);
+      });
+    await db
+      .delete(users)
+      .where(eq(users.id, existingUser.user.id))
+      .catch((err) => {
+        console.error(`[Error] Failed to delete user: ${err.message}`);
+      });
 
     return {
       name: it.name,

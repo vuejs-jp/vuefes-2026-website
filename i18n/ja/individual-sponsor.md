@@ -1,4 +1,4 @@
-Vue Fes Japan 2025 では、企業向けスポンサーとは別に個人スポンサーを募集しています。 個人スポンサー向けには、以下の特典をご用意いたします。
+Vue Fes Japan 2026 では、企業向けスポンサーとは別に個人スポンサーを募集しています。 個人スポンサー向けには、以下の特典をご用意いたします。
 
 <div class="individual-sponsor-list">
   <div class="individual-sponsor-item">
@@ -24,7 +24,7 @@ Vue Fes Japan 2025 では、企業向けスポンサーとは別に個人スポ�
       alt=""
     />
     <div class="individual-sponsor-description">
-      <h2>Vue Fes Japan 2025 スタッフ限定 T シャツ</h2>
+      <h2>Vue Fes Japan 2026 スタッフ限定 T シャツ</h2>
       <p>スタッフのみに配布される限定 T シャツがもらえます。</p>
       <p class="individual-sponsor-attention">
         ※サイズは S～XXXL。チケット購入時にご指定ください。

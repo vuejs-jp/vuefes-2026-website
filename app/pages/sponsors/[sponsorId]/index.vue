@@ -36,17 +36,18 @@ const sponsors = computed((): SponsorWithPlan[] => {
   return Object.entries(sponsorData)
     .filter(([plan]) => plan !== "OPTION") // OPTIONプロパティを除外
     .flatMap(([plan, planSponsors]) =>
-      (planSponsors as Sponsor[]).map(sponsor => ({ ...sponsor, plan })),
+      (planSponsors as Sponsor[]).map((sponsor) => ({ ...sponsor, plan })),
     ) as SponsorWithPlan[];
 });
 
 const currentSponsor = computed((): SponsorWithPlan | undefined =>
-  sponsors.value.find(sponsor => sponsor.id === route.params.sponsorId),
+  sponsors.value.find((sponsor) => sponsor.id === route.params.sponsorId),
 );
 
 useSeoMeta({
   title: () => `${currentSponsor.value?.name || t("sponsors.title")}`,
-  ogTitle: () => `Vue Fes Japan 2025 - ${currentSponsor.value?.name || t("sponsors.title")}`,
+  ogTitle: () =>
+    `Vue Fes Japan 2026 - ${currentSponsor.value?.name || t("sponsors.title")}`,
 });
 
 defineOgImage({
@@ -98,10 +99,18 @@ onMounted(async () => {
       <div class="sponsor-images">
         <div class="image">
           <NuxtLink :to="currentSponsor.linkUrl" external target="_blank">
-            <img :src="currentSponsor.logoImageUrl" :alt="currentSponsor.logoImageAlt">
+            <img
+              :src="currentSponsor.logoImageUrl"
+              :alt="currentSponsor.logoImageAlt"
+            />
           </NuxtLink>
         </div>
-        <NuxtLink :to="currentSponsor.linkUrl" external target="_blank" style="text-decoration: none;">
+        <NuxtLink
+          :to="currentSponsor.linkUrl"
+          external
+          target="_blank"
+          style="text-decoration: none"
+        >
           <h2 class="name">
             {{ currentSponsor.name }}
           </h2>
@@ -122,8 +131,16 @@ onMounted(async () => {
       <div v-if="currentSponsor.session" class="sponsor-session">
         <hr />
 
-        <div v-for="session in currentSponsor.session" :key="session.speaker.id" class="sponsor-speaker-item">
-          <div v-if="session.speaker.talkTrack" class="session-track" :style="trackStyles(session.speaker.talkTrack)">
+        <div
+          v-for="session in currentSponsor.session"
+          :key="session.speaker.id"
+          class="sponsor-speaker-item"
+        >
+          <div
+            v-if="session.speaker.talkTrack"
+            class="session-track"
+            :style="trackStyles(session.speaker.talkTrack)"
+          >
             <div class="speaker-track">
               {{ t(`timetable.track.${session.speaker.talkTrack}`) }}
             </div>
@@ -133,7 +150,11 @@ onMounted(async () => {
           </div>
 
           <div class="session-speaker-image">
-            <img :src="session.speaker.avatarUrl" :alt="session.speaker.name" loading="lazy" />
+            <img
+              :src="session.speaker.avatarUrl"
+              :alt="session.speaker.name"
+              loading="lazy"
+            />
           </div>
 
           <div class="session-detail">
@@ -141,9 +162,18 @@ onMounted(async () => {
               {{ session.title }}
             </h4>
             <p v-if="session.overview" class="sponsor-speaker-overview">
-              <template v-for="(paragraph, idx) in session.overview?.split('\n')" :key="idx">
+              <template
+                v-for="(paragraph, idx) in session.overview?.split('\n')"
+                :key="idx"
+              >
                 <template v-if="paragraph">
-                  <p :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''">
+                  <p
+                    :style="
+                      paragraph.startsWith('・')
+                        ? 'text-indent: -1em; padding-left: 1em;'
+                        : ''
+                    "
+                  >
                     {{ paragraph }}
                   </p>
                 </template>
@@ -156,7 +186,10 @@ onMounted(async () => {
 
           <div class="speaker">
             <p class="speaker-affiliation">
-              {{ session.speaker.affiliation }}<br v-if="session.speaker.affiliation && session.speaker.title" />
+              {{ session.speaker.affiliation
+              }}<br
+                v-if="session.speaker.affiliation && session.speaker.title"
+              />
               {{ session.speaker.title }}
             </p>
 
@@ -171,7 +204,10 @@ onMounted(async () => {
                 external
                 target="_blank"
               >
-                <GithubIcon :aria-label="t('snsIconImageAlt.github')" role="img" />
+                <GithubIcon
+                  :aria-label="t('snsIconImageAlt.github')"
+                  role="img"
+                />
               </NuxtLink>
 
               <NuxtLink
@@ -189,7 +225,10 @@ onMounted(async () => {
                 external
                 target="_blank"
               >
-                <BlueskyIcon :aria-label="t('snsIconImageAlt.bluesky')" role="img" />
+                <BlueskyIcon
+                  :aria-label="t('snsIconImageAlt.bluesky')"
+                  role="img"
+                />
               </NuxtLink>
             </div>
           </div>
@@ -207,7 +246,7 @@ onMounted(async () => {
 <style scoped>
 @import "~/assets/styles/custom-media-query.css";
 
-#pages-sponsor-detail{
+#pages-sponsor-detail {
   display: grid;
   row-gap: 1.5rem;
   @media (--mobile) {
@@ -225,9 +264,9 @@ onMounted(async () => {
     }
   }
 
-  hr{
+  hr {
     margin: 0;
-    border: solid 1px  var(--color-divider);
+    border: solid 1px var(--color-divider);
   }
 }
 
@@ -246,41 +285,40 @@ onMounted(async () => {
   }
 }
 
-.sponsor-tags{
+.sponsor-tags {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   margin-top: 2rem;
 
-  @media (--mobile){
+  @media (--mobile) {
     margin-top: 1.5rem;
   }
 }
-.sponsor-description{
+.sponsor-description {
   margin: 2rem 0;
 
-  @media (--mobile){
+  @media (--mobile) {
     margin: 1.5rem 0;
   }
 }
 
 /* sponsor session */
 
-.sponsor-session{
+.sponsor-session {
   display: grid;
   gap: 2rem 0;
   margin-top: 2rem;
-
 }
 
-.sponsor-speaker-item{
+.sponsor-speaker-item {
   display: grid;
   grid-template-columns: calc(180 / 832 * 100%) 1fr;
-  grid-template-rows: repeat(3,auto);
+  grid-template-rows: repeat(3, auto);
   grid-template-areas: "track track" "image session" "image speaker";
   gap: 1rem 2rem;
-  @media (--mobile){
-    grid-template-columns: repeat(2,calc(50% - 0.75rem));
+  @media (--mobile) {
+    grid-template-columns: repeat(2, calc(50% - 0.75rem));
     grid-template-areas: "track track" "image speaker" "session session";
     gap: 1.5rem;
   }
@@ -289,7 +327,7 @@ onMounted(async () => {
 .sponsor-speaker-overview {
   margin-bottom: 2.5rem;
   white-space: pre-wrap;
-  @media (--mobile){
+  @media (--mobile) {
     margin-bottom: 2.25rem;
   }
 }
@@ -297,48 +335,48 @@ onMounted(async () => {
 .sponsor-speaker-overview-spacer {
   display: block;
   height: 1.25em;
-  @media (--mobile){
+  @media (--mobile) {
     height: 1rem;
   }
 }
 
-.session-detail{
+.session-detail {
   grid-area: session;
-  h4{
+  h4 {
     margin: 0 0 1.5rem;
     font-size: var(--typography-h2-size);
     line-height: var(--typography-h2-line-height);
     font-family: IBMPlexSansJP-Bold;
     scroll-margin-top: 102px;
-    @media (--mobile){
+    @media (--mobile) {
       margin-bottom: 0.5rem;
       scroll-margin-top: 74px;
     }
   }
-  p{
+  p {
     margin-top: 8px;
   }
 }
-.session-speaker-image{
+.session-speaker-image {
   grid-area: image;
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 10px;
   overflow: hidden;
-  img{
+  img {
     width: 100%;
   }
 }
 
-.speaker{
+.speaker {
   grid-area: speaker;
 }
-.speaker-affiliation{
+.speaker-affiliation {
   margin: 0;
   font-size: var(--typography-caption-size);
   line-height: var(--typography-caption-line-height);
 }
-.speaker-name{
+.speaker-name {
   margin-top: 4px;
   font-size: var(--typography-h2-size);
   line-height: var(--typography-h2-line-height);
@@ -363,11 +401,11 @@ onMounted(async () => {
   }
 }
 
-.view-all-sponsors{
+.view-all-sponsors {
   display: grid;
   place-items: center;
   margin-top: 2rem;
-  @media (--mobile){
+  @media (--mobile) {
     margin-bottom: 1.5rem;
   }
 }
@@ -376,7 +414,7 @@ onMounted(async () => {
   grid-area: track;
 }
 
-.speaker-track{
+.speaker-track {
   display: grid;
   place-items: center;
   width: fit-content;
@@ -385,12 +423,12 @@ onMounted(async () => {
   border-radius: 4px;
   background-color: var(--base-color);
   color: var(--sub-color);
-    @media (--mobile) {
-      height: 29px;
-      font-size: 14px;
-    }
+  @media (--mobile) {
+    height: 29px;
+    font-size: 14px;
+  }
 }
-.speaker-time{
+.speaker-time {
   display: grid;
   place-items: center;
   width: fit-content;

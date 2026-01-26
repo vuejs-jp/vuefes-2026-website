@@ -10,7 +10,7 @@ const { t } = useI18n();
 // NOTE: use getter to handle locale changes
 const title = () => `${t("nuxtSiteConfig.name")} %separator %s`;
 const description = () => t("nuxtSiteConfig.description");
-const ogImage = "https://vuefes.jp/2025/og-image.png";
+const ogImage = "https://vuefes.jp/2026/og-image.png";
 
 defineOgImage({ component: "root", url: ogImage });
 useHead({ templateParams: { separator: "-" } });

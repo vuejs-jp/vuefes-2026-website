@@ -50,8 +50,8 @@ export default defineNuxtConfig({
     authOrigin:
       process.env.NODE_ENV === "production"
         ? process.env.CONTEXT === "production"
-          ? "https://vuefes.jp/2025/api/auth"
-          : `${process.env.DEPLOY_PRIME_URL}/2025/api/auth`
+          ? "https://vuefes.jp/2026/api/auth"
+          : `${process.env.DEPLOY_PRIME_URL}/2026/api/auth`
         : `http://localhost:${process.env.PORT || 3000}/api/auth`,
 
     // for Peatix API
@@ -62,8 +62,8 @@ export default defineNuxtConfig({
     siteUrl:
       process.env.NODE_ENV === "production"
         ? process.env.CONTEXT === "production"
-          ? "https://vuefes.jp/2025/"
-          : `${process.env.DEPLOY_PRIME_URL}/2025/`
+          ? "https://vuefes.jp/2026/"
+          : `${process.env.DEPLOY_PRIME_URL}/2026/`
         : "http://localhost:3000/",
 
     public: {
@@ -71,15 +71,15 @@ export default defineNuxtConfig({
       siteUrl:
         process.env.NODE_ENV === "production"
           ? process.env.CONTEXT === "production"
-            ? "https://vuefes.jp/2025/"
-            : `${process.env.DEPLOY_PRIME_URL}/2025/`
+            ? "https://vuefes.jp/2026/"
+            : `${process.env.DEPLOY_PRIME_URL}/2026/`
           : "http://localhost:3000/",
     },
   },
   components: [{ path: "~/components", pathPrefix: false }],
   imports: { autoImport: false },
   devtools: { enabled: true },
-  app: { baseURL: process.env.NODE_ENV === "production" ? "/2025/" : "/" },
+  app: { baseURL: process.env.NODE_ENV === "production" ? "/2026/" : "/" },
   // @nuxt/robot don't support generate robots.txt when setting baseURL
   robots: { robotsTxt: false },
 
@@ -117,10 +117,10 @@ export default defineNuxtConfig({
     plugins: [
       Icons({
         customCollections: {
-          icons: FileSystemIconLoader("./public/images/icons", svg =>
+          icons: FileSystemIconLoader("./public/images/icons", (svg) =>
             svg.replace(/#007F62/g, "var(--color-base)"),
           ),
-          logo: FileSystemIconLoader("./public/images/logo", svg =>
+          logo: FileSystemIconLoader("./public/images/logo", (svg) =>
             svg.replace(/#007F62/g, "var(--color-base)"),
           ),
         },
@@ -224,8 +224,8 @@ export default defineNuxtConfig({
     baseURL:
       process.env.NODE_ENV === "production"
         ? process.env.CONTEXT === "production"
-          ? "https://vuefes.jp/2025/api/auth"
-          : `${process.env.DEPLOY_PRIME_URL}/2025/api/auth`
+          ? "https://vuefes.jp/2026/api/auth"
+          : `${process.env.DEPLOY_PRIME_URL}/2026/api/auth`
         : `http://localhost:${process.env.PORT || 3000}/api/auth`,
     provider: {
       type: "authjs",

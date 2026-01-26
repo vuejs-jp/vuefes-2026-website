@@ -1,4 +1,4 @@
-At Vue Fes Japan 2025, we are inviting individual sponsors in addition to corporate sponsorships. The following benefits are available for individual sponsors:
+At Vue Fes Japan 2026, we are inviting individual sponsors in addition to corporate sponsorships. The following benefits are available for individual sponsors:
 
 <div class="individual-sponsor-list">
   <div class="individual-sponsor-item">
@@ -25,7 +25,7 @@ At Vue Fes Japan 2025, we are inviting individual sponsors in addition to corpor
       alt=""
     />
     <div class="individual-sponsor-description">
-      <h2>Vue Fes Japan 2025 Staff-Exclusive T-Shirt</h2>
+      <h2>Vue Fes Japan 2026 Staff-Exclusive T-Shirt</h2>
       <p>
         You will receive an exclusive T-shirt distributed only to staff.
       </p>
