@@ -6,6 +6,7 @@ import type { NuxtPage } from "nuxt/schema";
 export default defineNuxtConfig({
   modules: [
     "./modules/00.feature-flags.ts",
+    "@nuxt/a11y",
     "@nuxt/scripts",
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
