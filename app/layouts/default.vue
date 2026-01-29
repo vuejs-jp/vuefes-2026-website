@@ -42,38 +42,37 @@ const menuItems = computed<MenuItemProps[]>(() =>
       label: "Home",
       routeName: localeRoute({ name: "index" }).name,
     },
-    {
+    import.meta.vfFeatures.photoSection && {
       id: HOME_HEADING_ID.photo,
       label: "Photo",
       routeName: localeRoute({ name: "photo" }).name,
     },
-    {
+    import.meta.vfFeatures.timetable && {
       id: HOME_HEADING_ID.timetable,
       label: "Timetable",
       routeName: localeRoute({ name: "timetable" }).name,
-      disabled: !import.meta.vfFeatures.timetable,
     },
-    {
+    import.meta.vfFeatures.guestSpeakers && {
       id: HOME_HEADING_ID.speaker,
       label: "Speaker",
       routeName: localeRoute({ name: "speaker" }).name,
     },
-    {
+    import.meta.vfFeatures.eventPage && {
       id: HOME_HEADING_ID.event,
       label: "Event",
       routeName: localeRoute({ name: "event" }).name,
     },
-    {
+    import.meta.vfFeatures.store && {
       id: HOME_HEADING_ID.store,
       label: "Store",
       routeName: localeRoute({ name: "store" }).name,
     },
-    {
+    import.meta.vfFeatures.ticketSales && {
       id: HOME_HEADING_ID.ticket,
       label: "Ticket",
       routeName: localeRoute({ name: "ticket" }).name,
     },
-    {
+    import.meta.vfFeatures.sponsorList && {
       id: HOME_HEADING_ID.sponsor,
       label: "Sponsor",
       routeName: localeRoute({ name: "sponsors" }).name,
@@ -81,16 +80,20 @@ const menuItems = computed<MenuItemProps[]>(() =>
   ].filter((it) => !!it),
 );
 
-const cta = computed(() => ({
-  props: {
-    actionButton: {
-      label: t("ticket.details"),
-      link: localeRoute({ name: "ticket" }).path,
-    },
-    openerText: "Ticket",
-  },
-  content: locale.value === "ja" ? JaCtaTicket : EnCtaTicket,
-}));
+const cta = computed(() =>
+  import.meta.vfFeatures.ctaTicket
+    ? {
+        props: {
+          actionButton: {
+            label: t("ticket.details"),
+            link: localeRoute({ name: "ticket" }).path,
+          },
+          openerText: "Ticket",
+        },
+        content: locale.value === "ja" ? JaCtaTicket : EnCtaTicket,
+      }
+    : null,
+);
 
 const { y } = useScroll(window);
 const isShowedSpMenu = computed(() => {

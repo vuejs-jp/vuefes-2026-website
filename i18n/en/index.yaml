@@ -205,6 +205,10 @@ speakers:
   sponsorSessions:
     title: "Sponsor Sessions"
 
+cfp:
+  title: "Call for Proposals"
+  apply: "Apply Here"
+
 student:
   title: "Student Support Program"
   guideline: "Application Guidelines"

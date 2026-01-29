@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     scripts: {
       registry: {
         googleAnalytics: {
-          id: "G-H7VEJHSZH4",
+          id: process.env.NUXT_PUBLIC_GA_ID || "G-H7VEJHSZH4",
         },
       },
     },
@@ -66,7 +66,9 @@ export default defineNuxtConfig({
         : "http://localhost:3000/",
 
     public: {
-      contactFormEndpoint: "https://vuejs-jp.form.newt.so/v1/UR5LmScZc",
+      contactFormEndpoint:
+        process.env.NUXT_PUBLIC_CONTACT_FORM_ENDPOINT ||
+        "https://vuejs-jp.form.newt.so/v1/UR5LmScZc",
       siteUrl:
         process.env.NODE_ENV === "production"
           ? process.env.CONTEXT === "production"
@@ -78,7 +80,12 @@ export default defineNuxtConfig({
   components: [{ path: "~/components", pathPrefix: false }],
   imports: { autoImport: false },
   devtools: { enabled: true },
-  app: { baseURL: process.env.NODE_ENV === "production" ? "/2026/" : "/" },
+  app: {
+    baseURL:
+      process.env.NODE_ENV === "production"
+        ? (process.env.NUXT_BASE_PATH || "/2026/")
+        : "/",
+  },
   // @nuxt/robot don't support generate robots.txt when setting baseURL
   robots: { robotsTxt: false },
 
@@ -87,9 +94,9 @@ export default defineNuxtConfig({
     // i18n/ja/ja.json, i18n/en/en.json
     url:
       process.env.CONTEXT === "branch-deploy"
-        ? "https://main--vuefes-2025.netlify.app"
+        ? (process.env.DEPLOY_PRIME_URL || "https://main--vuefes-2026.netlify.app")
         : process.env.NODE_ENV === "production"
-          ? "https://vuefes.jp/"
+          ? (process.env.NUXT_SITE_URL || "https://vuefes.jp/")
           : "http://localhost:3000/",
   },
 
@@ -129,25 +136,91 @@ export default defineNuxtConfig({
 
   // Use `process.env.CONTEXT !== "production"` for dev only features
   featureFlags: {
-    timetable: true,
-    staff: true,
+    // ========================================================================
+    // イベント開催前のフェーズベースフラグ
+    // ========================================================================
 
-    soldOutAfterParty: true,
-    soldOutEarlyBirdAfterParty: true,
-    soldOutEarlyBird: true,
-    soldOutGeneral: false, // turn on when sold out
-    soldOutHandsOn: true, // turn on when sold out
-    soldOutIndividualSponsor: false, // turn on when sold out
+    // --- 4月初: 初回ティザー公開 ---
+    // スポンサー資料も公開（募集フォームは非公開、募集開始日時を記載して温める）
+    sponsorDocument: false, // スポンサー資料のみ表示（募集フォームなし）
 
-    expiredNameBadgeRegistration: true,
+    // --- 4月中〜末: スポンサー募集開始 ---
+    sponsorWanted: false, // スポンサー募集セクション表示
+    sponsorClosed: false, // スポンサー募集終了メッセージ
 
+    // --- 5月末: ゲストスピーカー公開 ---
+    // CFP募集が始まることを匂わせる、トーク内容はまだ決まってないので一覧だけ
+    guestSpeakers: false, // スピーカーセクション/ページ表示
+
+    // --- 6月初: スポンサー公開 & CFP募集公開 ---
+    // 抽選のもの(プラチナ等)が決まった段階で暫定公開、追加があれば随時
+    sponsorList: false, // スポンサー一覧セクション/ページ
+    cfpOpen: false, // CFP募集中セクション
+
+    // --- 6月末: CFP募集〆切 ---
+    cfpClosed: false, // CFP募集終了メッセージ
+
+    // --- 7月初: ボランティアスタッフ募集 ---
+    volunteerOpen: false, // ボランティア募集セクション
+    volunteerClosed: false, // ボランティア募集終了
+
+    // --- この間のいつか: タイムテーブル、CFPスピーカー、イベント（ハンズオン）、スポンサー ---
+    // イベントは最低限ハンズオンは必須（チケットが別なので）、スピーカー一覧もあれば better
+    timetable: false, // タイムテーブル表示
+    cfpSpeakerList: false, // CFPスピーカー一覧表示
+    eventPage: false, // イベントページ有効化（ハンズオン必須）
+
+    // --- 8月初: チケット販売開始 ---
+    // ネームカード登録、特商法ページ、個人スポンサー募集も含む
+    ticketSales: false, // チケット販売セクション/ページ
+    ctaTicket: false, // チケットCTA表示
+    nameBadgeRegistration: false, // ネームカード登録機能
+    tokushoPage: false, // 特定商取引法に基づく表示ページ
+    individualSponsor: false, // 個人スポンサー募集
+
+    // --- 8月初〜中: ストア、イベント（ハンズオン以外） ---
+    store: false, // ストアセクション/ページ
+
+    // --- 随時公開 ---
+    staff: false, // スタッフ一覧
+    relatedEvents: false, // 関連イベントページ
+    // アクセスは常に表示
+
+    // --- 学生支援（時期は要調整） ---
+    studentSupportOpen: false, // 学生支援募集セクション
+    studentSupportClosed: false, // 学生支援募集終了
+    studentSupportEvent: false, // イベントページの学生支援コンテンツ
+
+    // ========================================================================
+    // イベント開催後のフラグ
+    // ========================================================================
+    // thanksメッセージ、当日の写真、セッションスライド、動画（翌年公開後）
+    photoSection: false, // フォトセクション表示（イベント後）
+    sessionSlides: false, // セッションスライド表示
+    sessionVideo: false, // セッション動画表示（翌年公開後）
+
+    // ========================================================================
+    // 売り切れ・終了フラグ
+    // ========================================================================
+    soldOutAfterParty: false, // アフターパーティー売り切れ
+    soldOutEarlyBirdAfterParty: false, // 早割アフターパーティー売り切れ
+    soldOutEarlyBird: false, // 早割チケット売り切れ
+    soldOutGeneral: false, // 一般チケット売り切れ
+    soldOutHandsOn: false, // ハンズオン売り切れ
+    soldOutIndividualSponsor: false, // 個人スポンサー売り切れ
+    ticketSalesClosed: false, // チケット販売終了
+    expiredNameBadgeRegistration: false, // ネームカード登録期限終了
+
+    // ========================================================================
+    // スピーカー詳細フラグ（個別に公開タイミングを制御）
+    // ========================================================================
     guestDetailsEvan: false,
-    guestDetailsDaniel: true,
-    guestDetailsJohnson: true,
-    guestDetailsAkryum: true,
-    guestDetailsBaku: true,
-    guestDetailsOgawa: true,
-    guestDetailsLeaysgur: true,
+    guestDetailsDaniel: false,
+    guestDetailsJohnson: false,
+    guestDetailsAkryum: false,
+    guestDetailsBaku: false,
+    guestDetailsOgawa: false,
+    guestDetailsLeaysgur: false,
   },
 
   i18n: {

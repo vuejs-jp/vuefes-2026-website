@@ -204,6 +204,10 @@ speakers:
   sponsorSessions:
     title: "スポンサーセッション"
 
+cfp:
+  title: "セッションスピーカー募集"
+  apply: "応募はこちら"
+
 student:
   title: "学生支援制度"
   guideline: "募集要項"

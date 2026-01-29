@@ -1,10 +1,18 @@
 /**
  * For more details on how to configure Wrangler, refer to:
  * https://developers.cloudflare.com/workers/wrangler/configuration/
+ *
+ * Note: Database IDs are configured via environment-specific files or
+ * environment variables when deploying. The values below are defaults
+ * for local development.
+ *
+ * Environment variables used:
+ * - CLOUDFLARE_DATABASE_ID: D1 database ID (set by Terraform/CI)
+ * - CLOUDFLARE_ACCOUNT_ID: Cloudflare account ID
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "d1-tutorial",
+  "name": "vuefes-2026",
   "main": "./.output/server/index.mjs",
   "compatibility_date": "2025-07-03",
   "assets": {
@@ -18,8 +26,24 @@
     {
       "binding": "DB",
       "database_name": "vuefes-2026-dev",
+      // Default to dev database ID for local development
+      // Override via CLOUDFLARE_DATABASE_ID env var in CI/production
       "database_id": "0c6b7881-3c26-472e-9276-2b71ed6af10b",
       "migrations_dir": "drizzle",
     },
   ],
+  // Environment-specific overrides
+  "env": {
+    "production": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "vuefes-2026-prod",
+          // This will be set via wrangler deploy --var or CI environment
+          "database_id": "${CLOUDFLARE_DATABASE_ID}",
+          "migrations_dir": "drizzle",
+        },
+      ],
+    },
+  },
 }

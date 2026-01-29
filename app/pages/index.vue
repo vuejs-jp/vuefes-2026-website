@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import SectionAccess from "./_components/SectionAccess.vue";
 import SectionContact from "./_components/SectionContact.vue";
-import SectionEvent from "./_components/SectionEvent.vue";
 import SectionMessage from "./_components/SectionMessage.vue";
-import SectionPhoto from "./_components/SectionPhoto.vue";
-import SectionSpeakers from "./_components/SectionSpeaker.vue";
-import SectionSponsors from "./_components/SectionSponsors.vue";
-import SectionTimetable from "./_components/SectionTimetable.vue";
 
 import {
   defineRouteRules,
@@ -22,6 +17,91 @@ defineRouteRules({ prerender: true });
 
 const { t } = useI18n();
 
+// === 条件付きコンポーネントローディング ===
+// フラグが false の場合、コンポーネントはバンドルに含まれません
+
+// フォトセクション
+const SectionPhoto = import.meta.vfFeatures.photoSection
+  ? defineAsyncComponent(() => import("./_components/SectionPhoto.vue"))
+  : null;
+
+// スポンサー募集セクション
+const SectionSponsorWanted =
+  import.meta.vfFeatures.sponsorWanted && !import.meta.vfFeatures.sponsorClosed
+    ? defineAsyncComponent(
+        () => import("./_components/SectionSponsorWanted.vue"),
+      )
+    : null;
+
+// スポンサー募集終了セクション
+const SectionSponsorClosed = import.meta.vfFeatures.sponsorClosed
+  ? defineAsyncComponent(() => import("./_components/SectionSponsorClosed.vue"))
+  : null;
+
+// スピーカーセクション
+const SectionSpeakers = import.meta.vfFeatures.guestSpeakers
+  ? defineAsyncComponent(() => import("./_components/SectionSpeaker.vue"))
+  : null;
+
+// タイムテーブルセクション
+const SectionTimetable = import.meta.vfFeatures.timetable
+  ? defineAsyncComponent(() => import("./_components/SectionTimetable.vue"))
+  : null;
+
+// イベントセクション
+const SectionEvent = import.meta.vfFeatures.eventPage
+  ? defineAsyncComponent(() => import("./_components/SectionEvent.vue"))
+  : null;
+
+// スポンサー一覧セクション
+const SectionSponsors = import.meta.vfFeatures.sponsorList
+  ? defineAsyncComponent(() => import("./_components/SectionSponsors.vue"))
+  : null;
+
+// 学生支援募集中セクション
+const SectionStudentSupportOpen =
+  import.meta.vfFeatures.studentSupportOpen &&
+  !import.meta.vfFeatures.studentSupportClosed
+    ? defineAsyncComponent(
+        () => import("./_components/SectionStudentSupportOpen.vue"),
+      )
+    : null;
+
+// 学生支援募集終了セクション
+const SectionStudentSupportClosed = import.meta.vfFeatures.studentSupportClosed
+  ? defineAsyncComponent(
+      () => import("./_components/SectionStudentSupport.vue"),
+    )
+  : null;
+
+// ボランティア募集セクション
+const SectionVolunteer =
+  import.meta.vfFeatures.volunteerOpen || import.meta.vfFeatures.volunteerClosed
+    ? defineAsyncComponent(() => import("./_components/SectionVolunteer.vue"))
+    : null;
+
+// チケット販売セクション
+const SectionGetYourTicket = import.meta.vfFeatures.ticketSales
+  ? defineAsyncComponent(() => import("./_components/SectionGetYourTicket.vue"))
+  : null;
+
+// ストアセクション
+const SectionGrabYourGear = import.meta.vfFeatures.store
+  ? defineAsyncComponent(() => import("./_components/SectionGranYourGear.vue"))
+  : null;
+
+// CFP募集中セクション
+const SectionCfpOpen =
+  import.meta.vfFeatures.cfpOpen && !import.meta.vfFeatures.cfpClosed
+    ? defineAsyncComponent(() => import("./_components/SectionCfpOpen.vue"))
+    : null;
+
+// CFP募集終了セクション
+const SectionCfpClosed = import.meta.vfFeatures.cfpClosed
+  ? defineAsyncComponent(() => import("./_components/SectionCfpClosed.vue"))
+  : null;
+
+// スタッフセクション
 const SectionStaff = import.meta.vfFeatures.staff
   ? defineAsyncComponent(() => import("./_components/SectionStaff.vue"))
   : null;
@@ -32,14 +112,48 @@ useSeoMeta({ title: "" });
 <template>
   <div id="pages-index">
     <div class="section-container">
-      <SectionPhoto />
-      <SectionTimetable />
-      <SectionSpeakers />
-      <SectionEvent />
+      <!-- フォト（イベント後に表示） -->
+      <SectionPhoto v-if="SectionPhoto" />
+
+      <!-- スポンサー募集 -->
+      <SectionSponsorWanted v-if="SectionSponsorWanted" />
+      <SectionSponsorClosed v-if="SectionSponsorClosed" />
+
+      <!-- CFP -->
+      <SectionCfpOpen v-if="SectionCfpOpen" />
+      <SectionCfpClosed v-if="SectionCfpClosed" />
+
+      <!-- タイムテーブル -->
+      <SectionTimetable v-if="SectionTimetable" />
+
+      <!-- スピーカー -->
+      <SectionSpeakers v-if="SectionSpeakers" />
+
+      <!-- イベント -->
+      <SectionEvent v-if="SectionEvent" />
+
+      <!-- 学生支援 -->
+      <SectionStudentSupportOpen v-if="SectionStudentSupportOpen" />
+      <SectionStudentSupportClosed v-if="SectionStudentSupportClosed" />
+
+      <!-- ボランティア -->
+      <SectionVolunteer v-if="SectionVolunteer" />
+
+      <!-- チケット -->
+      <SectionGetYourTicket v-if="SectionGetYourTicket" />
+
+      <!-- ストア -->
+      <SectionGrabYourGear v-if="SectionGrabYourGear" />
+
       <SectionAccess />
-      <SectionSponsors />
+
+      <!-- スポンサー一覧 -->
+      <SectionSponsors v-if="SectionSponsors" />
+
       <SectionMessage />
       <SectionContact />
+
+      <!-- スタッフ -->
       <SectionStaff v-if="SectionStaff" />
     </div>
 
