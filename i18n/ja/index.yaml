@@ -192,6 +192,7 @@ speakers:
   featured: "注目のスピーカー"
   previous: "前のスピーカー"
   next: "次のスピーカー"
+  slideLabel: "{total}件中{index}件目"
   viewAll: "すべてのスピーカーを見る"
   sessions:
     title: "セッション"

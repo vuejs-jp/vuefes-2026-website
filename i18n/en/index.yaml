@@ -193,6 +193,7 @@ speakers:
   featured: "Featured Speakers"
   previous: "Previous Speaker"
   next: "Next Speaker"
+  slideLabel: "{index} of {total}"
   viewAll: "View All Speakers"
   sessions:
     title: "Sessions"

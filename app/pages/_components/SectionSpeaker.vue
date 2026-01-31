@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Carousel from "primevue/carousel";
 import { useLocaleRoute } from "@typed-router";
 import {
   SESSION_SPEAKERS as enSessionSpeakers,
@@ -10,7 +9,7 @@ import {
   PANEL_DISCUSSION_SPEAKERS as jaPanelDiscussionSpeakers,
 } from "../../../i18n/ja/speakers";
 import { computed, useI18n } from "#imports";
-import { EnSpeaker, JaSpeaker, VFButton } from "#components";
+import { EnSpeaker, JaSpeaker, VFButton, VFCarousel } from "#components";
 import type { Speaker } from "~~/i18n/speaker";
 import { HOME_HEADING_ID } from "~/constant";
 
@@ -59,7 +58,7 @@ const speakers = computed<CarouselSpeaker[]>(() => {
       color: colorSetIter.next(),
     }));
 
-  return [{ ..._speakers[_speakers.length - 1]! }, ..._speakers, { ..._speakers[0]! }];
+  return _speakers;
 });
 </script>
 
@@ -72,14 +71,25 @@ const speakers = computed<CarouselSpeaker[]>(() => {
     </h3>
 
     <div class="carousel">
-      <Carousel :value="speakers" circular :num-visible="3" :num-scroll="1">
-        <template #item="{ data: speaker }">
-          <div
-            class="speaker-card"
-            :style="{
-              backgroundImage: `url(${speaker.avatarUrl}) `,
-            }"
-          >
+      <VFCarousel
+        :items="speakers"
+        :loop="true"
+        :label="t('speakers.title')"
+        :slide-label="(index, total) => t('speakers.slideLabel', { index, total })"
+        :prev-label="t('speakers.previous')"
+        :next-label="t('speakers.next')"
+      >
+        <template #slide="{ data: speaker }">
+          <div class="speaker-card">
+            <img
+              :src="speaker.avatarUrl"
+              :alt="`${speaker.name}${speaker.affiliation ? `, ${speaker.affiliation}` : ''}${speaker.title ? `, ${speaker.title}` : ''}`"
+              class="speaker-avatar"
+              loading="lazy"
+              decoding="async"
+              width="300"
+              height="341"
+            />
             <p
               v-if="speaker.affiliation || speaker.title"
               :style="{
@@ -87,23 +97,25 @@ const speakers = computed<CarouselSpeaker[]>(() => {
                 backgroundColor: speaker.color.sub,
               }"
               class="speaker-affiliation"
+              aria-hidden="true"
             >
               {{ speaker.affiliation }}<br v-if="speaker.affiliation && speaker.title" />
               {{ speaker.title }}
             </p>
 
-            <div
+            <p
               class="speaker-name"
               :style="{
                 color: speaker.color.sub,
                 backgroundColor: speaker.color.base,
               }"
+              aria-hidden="true"
             >
               {{ speaker.name }}
-            </div>
+            </p>
           </div>
         </template>
-      </Carousel>
+      </VFCarousel>
     </div>
 
     <div class="view-all-speakers">
@@ -114,57 +126,11 @@ const speakers = computed<CarouselSpeaker[]>(() => {
   </VFSection>
 </template>
 
-<style>
-@import "~/assets/styles/custom-media-query.css";
-
-.section-speakers {
-  container-type: inline-size;
-  /* overrides primevue carousel styles */
-  .p-carousel {
-    position: relative;
-
-    .p-carousel-content {
-      [data-pc-name="pcnextbutton"],
-      [data-pc-name="pcprevbutton"] {
-        position: absolute;
-        bottom: -64px; /* button size (48px) + margin (16px)  */
-        color: var(--color-base);
-        border: 1px solid var(--color-base);
-        border-radius: 50%;
-        width: 48px;
-        height: 48px;
-
-        /* reset */
-        @media (any-hover: hover) {
-          &:hover {
-            color: var(--color-base);
-            border: 1px solid var(--color-base);
-          }
-        }
-      }
-
-      [data-pc-name="pcprevbutton"] {
-        left: calc(50% - 48px - 4px); /* 50% - button size (48px) - gap (8px / 2 = 4px) */
-      }
-
-      [data-pc-name="pcnextbutton"] {
-        right: calc(50% - 48px - 4px); /* 50% - button size (48px) - gap (8px / 2 = 4px) */
-      }
-
-      .p-carousel-viewport {
-        .p-items-hidden .p-carousel-item {
-          visibility: visible;
-        }
-      }
-    }
-  }
-}
-</style>
-
 <style scoped>
 @import "~/assets/styles/custom-media-query.css";
 
 .section-speakers {
+  container-type: inline-size;
   overflow: hidden;
   h3.featured-speaker-heading {
     margin-bottom: 1rem;
@@ -180,13 +146,19 @@ const speakers = computed<CarouselSpeaker[]>(() => {
 
   .speaker-card {
     position: relative;
-    background-size: cover;
-    background-position: center;
     border-radius: 10px;
     height: 341px;
     overflow: hidden;
     margin-inline: 0.55rem;
     border: 1px solid var(--color-divider-light);
+
+    .speaker-avatar {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .speaker-affiliation {
       position: absolute;
@@ -220,11 +192,11 @@ const speakers = computed<CarouselSpeaker[]>(() => {
 
 .carousel {
   width: 120cqw;
-  margin: 0 calc(50% - 60cqw) calc(32px + 16px + 48px);
+  margin: 0 calc(50% - 60cqw) 32px;
 
   @media (--carousel) {
     width: 214cqw;
-    margin: 0 calc(50% - 107cqw) calc(24px + 16px + 48px);
+    margin: 0 calc(50% - 107cqw) 24px;
   }
 }
 </style>

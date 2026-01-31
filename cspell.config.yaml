@@ -45,6 +45,7 @@ words:
   - Delton
   - dero
   - dominikg
+  - embla
   - emscripten
   - escentier
   - evenodd
@@ -312,6 +313,8 @@ words:
   - zeiri
   - ZOZO
   - kickflow
+  - slidesinview
+  - reinit
 ignorePaths:
   - dist
   - node_modules
