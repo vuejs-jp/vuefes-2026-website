@@ -11,7 +11,7 @@ This configuration manages:
 
 ## Prerequisites
 
-1. [Terraform](https://www.terraform.io/downloads) >= 1.5.0
+1. [Terraform](https://www.terraform.io/downloads) v1.5.0 or higher
 2. Cloudflare API token with permissions:
    - D1: Edit
    - R2: Edit

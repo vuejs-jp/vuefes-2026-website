@@ -313,6 +313,8 @@ words:
   - zeiri
   - ZOZO
   - kickflow
+  - tfstate
+  - tfvars
   - slidesinview
   - reinit
 ignorePaths:
