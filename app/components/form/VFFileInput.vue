@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import type { FormFieldState } from "@primevue/forms";
-import { FormField } from "@primevue/forms";
 import FileUpload, { type FileUploadSelectEvent } from "primevue/fileupload";
-import { shallowRef, toRaw, useId, watch } from "#imports";
+import { shallowRef, useId, watch } from "vue";
 
 export interface VFFile {
   displayName: string;
@@ -11,12 +9,18 @@ export interface VFFile {
   type: string;
 }
 
-const { formState } = defineProps<{
-  formState?: FormFieldState;
+const props = defineProps<{
+  modelValue?: VFFile;
+  errorMessage?: string;
+  invalid?: boolean;
   name?: string;
   label?: string;
   placeholder?: string;
   description?: string;
+}>();
+
+const emit = defineEmits<{
+  "update:modelValue": [value: VFFile];
 }>();
 
 const id = useId();
@@ -24,35 +28,29 @@ const descriptionId = useId();
 
 const file = shallowRef<VFFile | null>(null);
 
-function handleFileSelect(ev: FileUploadSelectEvent, formState: FormFieldState) {
-  file.value = {
+function handleFileSelect(ev: FileUploadSelectEvent) {
+  const selected: VFFile = {
     displayName: ev.files[0].name,
     name: ev.files[0].name,
     objectURL: ev.files[0].objectURL,
     type: ev.files[0].type,
   };
 
-  if (formState) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (formState as any).onInput({ value: toRaw(file.value) });
-  }
+  file.value = selected;
+  emit("update:modelValue", selected);
 }
 
 watch(
-  () => formState,
+  () => props.modelValue,
   (v) => {
-    if (v?.value) {
-      file.value = v.value as VFFile;
-    } else {
-      file.value = null;
-    }
+    file.value = v ?? null;
   },
   { immediate: true, deep: true },
 );
 </script>
 
 <template>
-  <FormField v-slot="$field" class="vf-file-input" :name="name" initial-value="">
+  <div class="vf-file-input">
     <label v-if="label" :for="id">{{ label }}</label>
 
     <div class="file-upload-wrapper">
@@ -73,7 +71,7 @@ watch(
         severity="secondary"
         class="p-button-outlined"
         accept="image/*"
-        @select="handleFileSelect($event, $field)"
+        @select="handleFileSelect($event)"
       >
         <template #chooseicon>
           <div class="input-box" tabindex="0">
@@ -87,18 +85,16 @@ watch(
       {{ description }}
     </p>
     <p
-      v-if="formState?.invalid"
+      v-if="invalid"
       :id="descriptionId"
       class="error-message text-caption"
-      :aria-hidden="formState.valid"
+      :aria-hidden="!invalid"
     >
-      <span>
-        <span v-if="formState?.invalid">
-          {{ formState.error.message }}
-        </span>
+      <span v-if="invalid">
+        {{ errorMessage }}
       </span>
     </p>
-  </FormField>
+  </div>
 </template>
 
 <style scoped>

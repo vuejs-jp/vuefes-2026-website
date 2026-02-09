@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import InputText from "primevue/inputtext";
 import { useId } from "vue";
-
-import type { FormFieldState } from "./VFForm.vue";
 
 import { useI18n } from "#imports";
 
 defineProps<{
-  formState?: FormFieldState;
+  modelValue?: string;
+  errorMessage?: string;
+  invalid?: boolean;
   description?: string;
+}>();
+
+const emit = defineEmits<{
+  "update:modelValue": [value: string];
+  blur: [];
 }>();
 
 const id = useId();
@@ -20,26 +24,26 @@ const { locale: lang } = useI18n();
   <div>
     <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
     <label v-if="$attrs.label" :for="id" :lang>{{ $attrs.label }}</label>
-    <InputText
+    <input
       v-bind="$attrs"
       :id="id"
       :aria-describedby="descriptionId"
-      :class="{
-        invalid: formState?.invalid,
-      }"
+      :value="modelValue"
+      :class="{ invalid }"
+      @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      @blur="emit('blur')"
     />
     <p v-if="description" class="description text-caption">
       {{ description }}
     </p>
     <p
-      v-if="formState?.invalid"
+      v-if="invalid"
       :id="descriptionId"
       class="error-message text-caption"
-      :aria-hidden="formState.valid"
+      :aria-hidden="!invalid"
     >
-      <span v-if="formState?.invalid">
-        <!-- NOTE: formState.error potential nullish value -->
-        {{ formState.error?.message }}
+      <span v-if="invalid">
+        {{ errorMessage }}
       </span>
     </p>
   </div>
@@ -66,6 +70,10 @@ input {
     &.invalid {
       border-color: var(--color-alert);
     }
+  }
+
+  &:focus-visible {
+    outline: transparent;
   }
 
   @media (any-hover: hover) {

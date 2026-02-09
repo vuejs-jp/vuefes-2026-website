@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import * as v from "valibot";
+import { useRegleSchema } from "@regle/schemas";
 import { HOME_HEADING_ID } from "~/constant";
 import { reactive, useI18n, useRuntimeConfig } from "#imports";
 import { VFSection, VFButton } from "#components";
-import { type FormSubmitEvent, VFForm, VFInput, VFTextarea } from "~/components/form";
+import { VFInput, VFTextarea } from "~/components/form";
 import VFToast, { useToast } from "~/components/toast/VFToast.vue";
 
 const { t } = useI18n();
@@ -34,19 +35,23 @@ const state = reactive<v.InferOutput<typeof schema>>({
   content: "",
 });
 
-async function submit(event: FormSubmitEvent) {
-  if (event.valid) {
+const { r$ } = useRegleSchema(state, schema, { autoDirty: false });
+
+async function submit() {
+  const result = await r$.$validate();
+
+  if (result.valid) {
     const formData = new FormData();
-    Object.entries(event.states).forEach(([name, { value }]) => {
+    for (const [name, value] of Object.entries(state)) {
       formData.append(name, value);
-    });
+    }
     try {
       await fetch(config.public.contactFormEndpoint, {
         method: "POST",
         body: formData,
         headers: { Accept: "application/json" },
       });
-      event.reset();
+      r$.$reset();
       toast.open({
         type: "success",
         message: t("contactForm.successMessage"),
@@ -65,50 +70,57 @@ async function submit(event: FormSubmitEvent) {
 <template>
   <VFSection :id="HOME_HEADING_ID.contact" :title="t('contactForm.title')">
     <p>{{ t("contactForm.description") }}</p>
-    <VFForm :initial-values="state" :schema="schema" @submit="submit">
-      <template #default="$form">
-        <div class="contact-form-items">
-          <VFInput
-            name="name"
-            required
-            :label="t('contactForm.formFields.name.label')"
-            :placeholder="t('contactForm.formFields.name.placeholder')"
-            :form-state="$form.name"
-          />
-          <VFInput
-            name="email"
-            required
-            :label="t('contactForm.formFields.email.label')"
-            :placeholder="t('contactForm.formFields.email.placeholder')"
-            :form-state="$form.email"
-          />
-          <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
-          <VFTextarea
-            name="content"
-            required
-            :label="t('contactForm.formFields.content.label')"
-            :placeholder="t('contactForm.formFields.content.placeholder')"
-            :form-state="$form.content"
-          />
-        </div>
-        <VFButton
-          type="submit"
-          class="submit-button"
-          :disabled="
-            !(
-              $form.name?.touched &&
-              $form.name?.valid &&
-              $form.email?.touched &&
-              $form.email?.valid &&
-              $form.content?.touched &&
-              $form.content?.valid
-            )
-          "
-        >
-          {{ t("contactForm.formFields.submit.label") }}
-        </VFButton>
-      </template>
-    </VFForm>
+    <form @submit.prevent="submit">
+      <div class="contact-form-items">
+        <VFInput
+          v-model="state.name"
+          name="name"
+          required
+          :label="t('contactForm.formFields.name.label')"
+          :placeholder="t('contactForm.formFields.name.placeholder')"
+          :error-message="r$.$fields.name.$errors[0]"
+          :invalid="r$.$fields.name.$error"
+          @blur="r$.$fields.name.$touch()"
+        />
+        <VFInput
+          v-model="state.email"
+          name="email"
+          required
+          :label="t('contactForm.formFields.email.label')"
+          :placeholder="t('contactForm.formFields.email.placeholder')"
+          :error-message="r$.$fields.email.$errors[0]"
+          :invalid="r$.$fields.email.$error"
+          @blur="r$.$fields.email.$touch()"
+        />
+        <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
+        <VFTextarea
+          v-model="state.content"
+          name="content"
+          required
+          :label="t('contactForm.formFields.content.label')"
+          :placeholder="t('contactForm.formFields.content.placeholder')"
+          :error-message="r$.$fields.content.$errors[0]"
+          :invalid="r$.$fields.content.$error"
+          @blur="r$.$fields.content.$touch()"
+        />
+      </div>
+      <VFButton
+        type="submit"
+        class="submit-button"
+        :disabled="
+          !(
+            r$.$fields.name.$dirty &&
+            !r$.$fields.name.$error &&
+            r$.$fields.email.$dirty &&
+            !r$.$fields.email.$error &&
+            r$.$fields.content.$dirty &&
+            !r$.$fields.content.$error
+          )
+        "
+      >
+        {{ t("contactForm.formFields.submit.label") }}
+      </VFButton>
+    </form>
 
     <VFToast :state="toast.state.value" />
   </VFSection>

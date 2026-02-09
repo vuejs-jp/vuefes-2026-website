@@ -317,6 +317,7 @@ words:
   - tfvars
   - slidesinview
   - reinit
+  - regle
 ignorePaths:
   - dist
   - node_modules

@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import Textarea from "primevue/textarea";
 import { useId } from "vue";
-import type { FormFieldState } from "./VFForm.vue";
 import { useI18n } from "#imports";
 
 defineProps<{
-  formState?: FormFieldState;
+  modelValue?: string;
+  errorMessage?: string;
+  invalid?: boolean;
+}>();
+
+const emit = defineEmits<{
+  "update:modelValue": [value: string];
+  blur: [];
 }>();
 
 const id = useId();
@@ -17,21 +22,24 @@ const { locale: lang } = useI18n();
   <div>
     <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
     <label v-if="$attrs.label" :for="id" :lang>{{ $attrs.label }}</label>
-    <Textarea
+    <textarea
       v-bind="$attrs"
       :id="id"
       :aria-describedby="descriptionId"
-      :class="{ 'has-form-state': formState, invalid: formState?.invalid }"
+      :value="modelValue"
+      :class="{ invalid }"
       rows="6"
+      @input="emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
+      @blur="emit('blur')"
     />
     <p
-      v-if="formState?.invalid"
+      v-if="invalid"
       :id="descriptionId"
-      :aria-hidden="formState.valid"
+      :aria-hidden="!invalid"
       class="error-message text-caption"
     >
-      <span v-if="formState?.invalid">
-        {{ formState.error.message }}
+      <span v-if="invalid">
+        {{ errorMessage }}
       </span>
     </p>
   </div>
@@ -58,6 +66,10 @@ textarea {
     &.invalid {
       border-color: var(--color-alert);
     }
+  }
+
+  &:focus-visible {
+    outline: transparent;
   }
 
   @media (any-hover: hover) {

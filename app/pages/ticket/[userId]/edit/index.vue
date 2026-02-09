@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import * as v from "valibot";
 import emojiRegex from "emoji-regex";
+import { useRegleSchema } from "@regle/schemas";
 
 import { useLocaleRoute } from "@typed-router";
 import {
-  computed,
   navigateTo,
   onMounted,
   ref,
@@ -15,13 +15,11 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useSeoMeta,
-  useTemplateRef,
   useRoute,
 } from "#imports";
 
-import type { FormFieldStates, FormSubmitEvent } from "~/components/form/VFForm.vue";
 import type { VFFile } from "~/components/form/VFFileInput.vue";
-import { VFFileInput, VFForm, VFNameBadgePreview, VFSection, VFToast } from "#components";
+import { VFFileInput, VFNameBadgePreview, VFSection, VFToast } from "#components";
 import { useToast } from "~/components/toast/VFToast.vue";
 
 const { t } = useI18n();
@@ -99,55 +97,54 @@ const schema = v.objectAsync({
   ),
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const form = useTemplateRef<any>("form");
-const currentStates = computed(
-  () => form.value?.currentState?.() as FormFieldStates<v.InferOutput<typeof schema>> | undefined,
-);
-const initialValues = ref<Partial<v.InferOutput<typeof schema>>>({
+const state = ref<{ name: string; salesId: string; avatarImage: VFFile | undefined }>({
   name: "",
   salesId: "",
   avatarImage: undefined,
 });
 
+const { r$ } = useRegleSchema(state, schema, { autoDirty: false });
+
 onMounted(async () => {
   await refresh();
 
   if (nameBadgeData.value) {
-    form.value?.setFieldValue("name", nameBadgeData.value.name ?? "");
-    form.value?.setFieldValue("salesId", nameBadgeData.value.salesId ?? "");
+    state.value.name = nameBadgeData.value.name ?? "";
+    state.value.salesId = nameBadgeData.value.salesId ?? "";
 
     if (nameBadgeData.value?.avatarUrl && nameBadgeData.value?.avatarImageFileName) {
       // NOTE: need to configure cors
       const avatarBlob = await fetch(nameBadgeData.value.avatarUrl).then((r) => r.blob());
-      form.value?.setFieldValue("avatarImage", {
+      state.value.avatarImage = {
         displayName: nameBadgeData.value.avatarImageFileName,
         name: nameBadgeData.value.avatarImageFileName,
         type: avatarBlob.type,
         objectURL: URL.createObjectURL(avatarBlob),
-      } satisfies VFFile);
+      } satisfies VFFile;
     }
   }
 });
 
 const isLoading = ref(false);
 
-async function submit(event: FormSubmitEvent) {
+async function submit() {
   if (!user.value) {
     toast.open({ type: "alert", message: t("nameBadge.form.submitResult.error") });
     return;
   }
 
-  if (event.valid) {
+  const result = await r$.$validate();
+
+  if (result.valid) {
     try {
       isLoading.value = true;
       const formData = new FormData();
-      formData.append("name", event.states.name!.value);
-      formData.append("salesId", event.states.salesId!.value);
-      if (event.states.avatarImage?.value) {
-        const blob = await fetch(event.states.avatarImage.value.objectURL).then((r) => r.blob());
+      formData.append("name", state.value.name);
+      formData.append("salesId", state.value.salesId);
+      if (state.value.avatarImage) {
+        const blob = await fetch(state.value.avatarImage.objectURL).then((r) => r.blob());
         formData.append("avatarImageBlob", blob);
-        formData.append("avatarImageName", event.states.avatarImage.value.name);
+        formData.append("avatarImageName", state.value.avatarImage.name);
       }
 
       // ident by session
@@ -178,8 +175,8 @@ async function submit(event: FormSubmitEvent) {
       <div class="name-badge-preview-area">
         <VFNameBadgePreview
           :user-role="nameBadgeData?.role || 'Attendee'"
-          :name="currentStates?.name?.value || t('nameBadge.form.name.label')"
-          :avatar-image-url="currentStates?.avatarImage?.value?.objectURL"
+          :name="state.name || t('nameBadge.form.name.label')"
+          :avatar-image-url="state.avatarImage?.objectURL"
           :lang="nameBadgeData?.lang ?? undefined"
           v-bind="
             bp == 'mobile'
@@ -197,56 +194,62 @@ async function submit(event: FormSubmitEvent) {
         />
       </div>
 
-      <VFForm ref="form" :initial-values :schema class="name-badge-form" @submit="submit">
-        <template #default="$form">
-          <VFInput
-            name="name"
-            required
-            :label="t('nameBadge.form.name.label')"
-            :placeholder="t('nameBadge.form.name.placeholder')"
-            :form-state="$form.name"
-          />
-          <VFFileInput
-            name="avatarImage"
-            :label="t('nameBadge.form.avatarImage.label')"
-            :placeholder="t('nameBadge.form.avatarImage.placeholder')"
-            :description="t('nameBadge.form.avatarImage.description')"
-            :form-state="$form.avatarImage"
-          />
-          <VFInput
-            name="salesId"
-            required
-            :label="t('nameBadge.form.receipt.label')"
-            :description="t('nameBadge.form.receipt.description')"
-            :form-state="$form.salesId"
-          />
+      <form class="name-badge-form" @submit.prevent="submit">
+        <VFInput
+          v-model="state.name"
+          name="name"
+          required
+          :label="t('nameBadge.form.name.label')"
+          :placeholder="t('nameBadge.form.name.placeholder')"
+          :error-message="r$.$fields.name.$errors[0]"
+          :invalid="r$.$fields.name.$error"
+          @blur="r$.$fields.name.$touch()"
+        />
+        <VFFileInput
+          v-model="state.avatarImage"
+          name="avatarImage"
+          :label="t('nameBadge.form.avatarImage.label')"
+          :placeholder="t('nameBadge.form.avatarImage.placeholder')"
+          :description="t('nameBadge.form.avatarImage.description')"
+          :error-message="r$.$fields.avatarImage.$errors.$self?.[0]"
+          :invalid="r$.$fields.avatarImage.$error"
+        />
+        <VFInput
+          v-model="state.salesId"
+          name="salesId"
+          required
+          :label="t('nameBadge.form.receipt.label')"
+          :description="t('nameBadge.form.receipt.description')"
+          :error-message="r$.$fields.salesId.$errors[0]"
+          :invalid="r$.$fields.salesId.$error"
+          @blur="r$.$fields.salesId.$touch()"
+        />
 
-          <div class="name-badge-form-actions">
-            <VFButton
-              outlined
-              :link="
-                localeRoute({
-                  name: 'ticket-userId',
-                  params: { userId: user!.userId },
-                })
-              "
-            >
-              {{ t("nameBadge.form.cancel") }}
-            </VFButton>
-            <VFButton
-              type="submit"
-              :disabled="
-                !$form.name?.valid ||
-                !$form.avatarImage?.value ||
-                !$form.avatarImage?.valid ||
-                !$form.salesId?.valid
-              "
-            >
-              {{ t("nameBadge.form.save") }}
-            </VFButton>
-          </div>
-        </template>
-      </VFForm>
+        <div class="name-badge-form-actions">
+          <VFButton
+            outlined
+            :link="
+              localeRoute({
+                name: 'ticket-userId',
+                params: { userId: user!.userId },
+              })
+            "
+          >
+            {{ t("nameBadge.form.cancel") }}
+          </VFButton>
+          <VFButton
+            type="submit"
+            :disabled="
+              r$.$fields.name.$error ||
+              !state.avatarImage ||
+              r$.$fields.avatarImage.$error ||
+              r$.$fields.salesId.$error
+            "
+          >
+            {{ t("nameBadge.form.save") }}
+          </VFButton>
+        </div>
+      </form>
     </VFSection>
   </div>
 
