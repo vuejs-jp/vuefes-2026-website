@@ -17,6 +17,20 @@ bun install
 bun dev
 ```
 
+## Database Migration
+
+Uses [Drizzle Kit](https://orm.drizzle.team/docs/kit-overview) to run migrations on Cloudflare D1.
+
+Requires the following environment variables: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_DATABASE_ID`, `CLOUDFLARE_API_TOKEN`.
+
+```sh
+# Generate migration files from schema changes
+bun run db:generate
+
+# Apply migrations to D1
+bun run db:migrate
+```
+
 ## Feature Flags Module
 
 This project includes a custom Nuxt module for managing feature flags with full TypeScript support.

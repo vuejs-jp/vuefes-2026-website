@@ -20,6 +20,8 @@
     "spell": "cspell '**' --cache",
     "story:dev": "storybook dev -p 6006",
     "story:build": "storybook build",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "peatix-api-gen": "bun scripts/peatix-api-gen",
     "release:major": "bunx changelogen@latest --release --major",
     "release:minor": "bunx changelogen@latest --release --minor",

@@ -8,6 +8,13 @@
       "when": 1751558162134,
       "tag": "0000_vengeful_pandemic",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1751558162135,
+      "tag": "0001_far_scarlet_spider",
+      "breakpoints": true
     }
   ]
 }
