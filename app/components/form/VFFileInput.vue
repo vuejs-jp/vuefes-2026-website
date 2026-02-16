@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import FileUpload, { type FileUploadSelectEvent } from "primevue/fileupload";
-import { shallowRef, useId, watch } from "vue";
+import { onBeforeUnmount, shallowRef, useId, useTemplateRef, watch } from "vue";
 
 export interface VFFile {
   displayName: string;
@@ -27,26 +26,50 @@ const id = useId();
 const descriptionId = useId();
 
 const file = shallowRef<VFFile | null>(null);
+const fileInputRef = useTemplateRef<HTMLInputElement>("fileInputRef");
 
-function handleFileSelect(ev: FileUploadSelectEvent) {
-  const selected: VFFile = {
-    displayName: ev.files[0].name,
-    name: ev.files[0].name,
-    objectURL: ev.files[0].objectURL,
-    type: ev.files[0].type,
+function revokeObjectURL(target: VFFile | null | undefined) {
+  if (!target?.objectURL) return;
+  URL.revokeObjectURL(target.objectURL);
+}
+
+function handleFileSelect(ev: Event) {
+  const input = ev.target;
+  if (!(input instanceof HTMLInputElement)) return;
+  const selected = input.files?.[0];
+  if (!selected) return;
+
+  revokeObjectURL(file.value);
+
+  const vfFile: VFFile = {
+    displayName: selected.name,
+    name: selected.name,
+    objectURL: URL.createObjectURL(selected),
+    type: selected.type,
   };
 
-  file.value = selected;
-  emit("update:modelValue", selected);
+  file.value = vfFile;
+  emit("update:modelValue", vfFile);
+}
+
+function openFilePicker() {
+  fileInputRef.value?.click();
 }
 
 watch(
   () => props.modelValue,
   (v) => {
+    if (file.value?.objectURL !== v?.objectURL) {
+      revokeObjectURL(file.value);
+    }
     file.value = v ?? null;
   },
   { immediate: true, deep: true },
 );
+
+onBeforeUnmount(() => {
+  revokeObjectURL(file.value);
+});
 </script>
 
 <template>
@@ -61,25 +84,19 @@ watch(
         </div>
       </div>
 
-      <FileUpload
-        v-bind="$attrs"
+      <input
         :id="id"
-        :aria-describedby="descriptionId"
-        mode="basic"
-        custom-upload
-        auto
-        severity="secondary"
-        class="p-button-outlined"
+        ref="fileInputRef"
+        type="file"
         accept="image/*"
-        @select="handleFileSelect($event)"
-      >
-        <template #chooseicon>
-          <div class="input-box" tabindex="0">
-            <span v-if="file?.displayName">{{ file.displayName }}</span>
-            <span v-else>{{ placeholder }}</span>
-          </div>
-        </template>
-      </FileUpload>
+        class="file-input-hidden"
+        :aria-describedby="descriptionId"
+        @change="handleFileSelect"
+      />
+      <button type="button" class="input-box" @click="openFilePicker">
+        <span v-if="file?.displayName">{{ file.displayName }}</span>
+        <span v-else>{{ placeholder }}</span>
+      </button>
     </div>
     <p v-if="description" class="description text-caption">
       {{ description }}
@@ -142,7 +159,7 @@ watch(
       }
     }
 
-    :deep(.p-button-label) {
+    .file-input-hidden {
       display: none;
     }
 
@@ -154,6 +171,9 @@ watch(
     }
 
     .input-box {
+      appearance: none;
+      font: inherit;
+      color: inherit;
       width: 352px;
       padding: 1rem 0.5rem;
       border: 1px solid var(--color-divider);

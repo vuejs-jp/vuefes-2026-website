@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
     "@nuxtjs/storybook",
-    "@primevue/nuxt-module",
     "nuxt-typed-router",
     "@sidebase/nuxt-auth",
     "nuxt-og-image",
