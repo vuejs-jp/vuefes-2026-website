@@ -34,7 +34,7 @@
     "@aws-sdk/s3-request-presigner": "^3.842.0",
     "@chromatic-com/storybook": "^5",
     "@nuxt/a11y": "1.0.0-alpha.1",
-    "@nuxt/scripts": "0.11.2",
+    "@nuxt/scripts": "0.13.2",
     "@nuxtjs/i18n": "9.4.0",
     "@nuxtjs/seo": "^3.0.1",
     "@nuxtjs/storybook": "^8.3.3",
