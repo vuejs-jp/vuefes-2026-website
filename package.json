@@ -69,7 +69,7 @@
     "nuxt-typed-router": "3.8.0",
     "openapi-fetch": "^0.14.0",
     "openapi-typescript": "^7.8.0",
-    "oxfmt": "^0.26.0",
+    "oxfmt": "^0.32.0",
     "oxlint": "^1.41.0",
     "oxlint-tsgolint": "^0.11.1",
     "rehype-external-links": "^3.0.0",
