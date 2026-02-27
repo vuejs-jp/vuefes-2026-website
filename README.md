@@ -11,10 +11,10 @@
 git clone git@github.com:vuejs-jp/vuefes-2026.git
 
 # install dependencies
-bun install
+pnpm install
 
 # launch application dev server
-bun dev
+pnpm run dev
 ```
 
 ## Database Migration
@@ -25,10 +25,10 @@ Requires the following environment variables: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLA
 
 ```sh
 # Generate migration files from schema changes
-bun run db:generate
+pnpm run db:generate
 
 # Apply migrations to D1
-bun run db:migrate
+pnpm run db:migrate
 ```
 
 ## Feature Flags Module

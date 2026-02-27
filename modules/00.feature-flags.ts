@@ -75,6 +75,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.hook("pages:extend", (pages) => {
       // 開発モードまたは nuxt prepare/typecheck 時はページ除外をスキップ
       // _build は実際のビルド時のみ true になる
+      // @ts-expect-error _build is an internal Nuxt option not exposed in types
       const isProductionBuild = !nuxt.options.dev && nuxt.options._build;
 
       if (!isProductionBuild) {

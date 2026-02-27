@@ -2,6 +2,7 @@
   "name": "vuefes-2026",
   "version": "2.11.0",
   "private": true,
+  "packageManager": "pnpm@10.30.1",
   "author": {
     "name": "ubugeeei",
     "email": "ubuge1122@gmail.com"
@@ -22,11 +23,11 @@
     "story:build": "storybook build",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "peatix-api-gen": "bun scripts/peatix-api-gen",
-    "release:major": "bunx changelogen@latest --release --major",
-    "release:minor": "bunx changelogen@latest --release --minor",
-    "release:patch": "bunx changelogen@latest --release --patch",
-    "postinstall": "bun scripts/name-badge-admin-data-gen.ts && nuxt prepare"
+    "peatix-api-gen": "node --experimental-strip-types scripts/peatix-api-gen.ts",
+    "release:major": "npx changelogen@latest --release --major",
+    "release:minor": "npx changelogen@latest --release --minor",
+    "release:patch": "npx changelogen@latest --release --patch",
+    "postinstall": "node --experimental-strip-types scripts/name-badge-admin-data-gen.ts && nuxt prepare"
   },
   "devDependencies": {
     "@auth/drizzle-adapter": "^1.10.0",
@@ -94,16 +95,18 @@
     "wrangler": "^4.23.0",
     "yaml": "^2.8.1"
   },
-  "overrides": {
-    "vite": "8.0.0-beta.10",
-    "vue": "3.6.0-beta.1"
-  },
-  "trustedDependencies": [
-    "@parcel/watcher",
-    "better-sqlite3",
-    "esbuild",
-    "sharp",
-    "unrs-resolver",
-    "workerd"
-  ]
+  "pnpm": {
+    "overrides": {
+      "vite": "8.0.0-beta.10",
+      "vue": "3.6.0-beta.1"
+    },
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "better-sqlite3",
+      "esbuild",
+      "sharp",
+      "unrs-resolver",
+      "workerd"
+    ]
+  }
 }

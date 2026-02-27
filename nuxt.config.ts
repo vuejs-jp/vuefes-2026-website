@@ -129,7 +129,7 @@ export default defineNuxtConfig({
             svg.replace(/#007F62/g, "var(--color-base)"),
           ),
         },
-      }),
+      }) as any,
     ],
   },
 
