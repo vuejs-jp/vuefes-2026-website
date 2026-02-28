@@ -12,6 +12,8 @@ import Logo from "~icons/logo/logo";
 
 const localePath = useLocalePath();
 const { t } = useI18n();
+
+const showTokusho = import.meta.vfFeatures.tokushoPage;
 </script>
 
 <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
@@ -91,7 +93,7 @@ const { t } = useI18n();
           <li>
             <NuxtLink :to="localePath('/code-of-conduct')">{{ t("coc") }}</NuxtLink>
           </li>
-          <li>
+          <li v-if="showTokusho">
             <NuxtLink :to="localePath('/tokusho')">{{ t("transactions") }}</NuxtLink>
           </li>
         </ul>
