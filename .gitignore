@@ -24,7 +24,6 @@ logs
 !.env.example
 
 .cspellcache
-*storybook.log
 
 # Local Netlify folder
 .netlify

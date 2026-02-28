@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
-    "@nuxtjs/storybook",
     "nuxt-typed-router",
     "@sidebase/nuxt-auth",
     "nuxt-og-image",

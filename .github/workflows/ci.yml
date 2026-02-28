@@ -119,6 +119,3 @@ jobs:
           OAUTH_GOOGLE_CLIENT_ID: ${{ vars.OAUTH_GOOGLE_CLIENT_ID }}
           PEATIX_API_ORIGIN: ${{ vars.PEATIX_API_ORIGIN }}
           PEATIX_EVENT_ID: ${{ vars.PEATIX_EVENT_ID }}
-
-      # - name: Check Building Storybook
-      #   run: pnpm story:build
