@@ -107,17 +107,11 @@ export default defineEventHandler(async (event) => {
 
 ## Plans Overview
 
-### Features
-
-- [ ] Timetable
-- [ ] Staff List
-- [ ] Sponsor Map
-
 ### Others
 
 - [ ] Migrate to Cloudflare Workers
-- [ ] remove PrimeVue (Carousel, Form)
+- [x] remove PrimeVue (Carousel, Form)
 - [ ] Performance Improvements
 - [ ] Accessibility Improvements
-- [ ] Story Improvements
+- [ ] ~~Story Improvements~~
 - [ ] Refactor Static Datasets
