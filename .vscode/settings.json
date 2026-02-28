@@ -10,21 +10,21 @@
   // formatter
   //
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "nicolo-ribaudo.oxfmt",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "[vue]": {
-    "editor.defaultFormatter": "nicolo-ribaudo.oxfmt"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "nicolo-ribaudo.oxfmt"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "nicolo-ribaudo.oxfmt"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "nicolo-ribaudo.oxfmt"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "nicolo-ribaudo.oxfmt"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   //
   // theme
