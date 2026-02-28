@@ -13,6 +13,7 @@ import Logo from "~icons/logo/logo";
 const localePath = useLocalePath();
 const { t } = useI18n();
 
+const showRelatedEvents = import.meta.vfFeatures.relatedEvents;
 const showTokusho = import.meta.vfFeatures.tokushoPage;
 </script>
 
@@ -82,7 +83,7 @@ const showTokusho = import.meta.vfFeatures.tokushoPage;
         </ul>
 
         <ul class="other-links">
-          <li>
+          <li v-if="showRelatedEvents">
             <NuxtLink :to="localePath('/related-events')">{{
               t("relatedEvents.sectionTitle")
             }}</NuxtLink>
