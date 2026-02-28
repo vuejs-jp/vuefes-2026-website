@@ -1,14 +1,5 @@
 <script setup lang="ts">
 import { useRoute } from "@typed-router";
-import {
-  PANEL_DISCUSSION_SPEAKERS as enPanelSpeakers,
-  STUDENT_SUPPORT_SPEAKERS as enStudentSupportSpeakers,
-} from "../../../i18n/en/speakers";
-
-import {
-  PANEL_DISCUSSION_SPEAKERS as jaPanelSpeakers,
-  STUDENT_SUPPORT_SPEAKERS as jaStudentSupportSpeakers,
-} from "../../../i18n/ja/speakers";
 
 import EventSpeakerCard from "./_components/EventSpeakerCard.vue";
 
@@ -34,6 +25,7 @@ import {
   useHead,
   useSeoMeta,
   useQueryHashSync,
+  useFetch,
 } from "#imports";
 
 // To differentiate OGP based on query params
@@ -55,10 +47,12 @@ const SectionId = {
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 
-const panelSpeakers = computed(() => (locale.value === "en" ? enPanelSpeakers : jaPanelSpeakers));
-const studentSupportSpeakers = computed(() =>
-  locale.value === "en" ? enStudentSupportSpeakers : jaStudentSupportSpeakers,
-);
+const { data: speakersData } = await useFetch("/api/speakers", {
+  query: { locale },
+});
+
+const panelSpeakers = computed(() => speakersData.value?.panelDiscussionSpeakers ?? []);
+const studentSupportSpeakers = computed(() => speakersData.value?.studentSupportSpeakers ?? []);
 
 const quizImageList = [
   { src: "/images/event/quiz_1.jpg", alt: t("event.quiz.image.alt1") },

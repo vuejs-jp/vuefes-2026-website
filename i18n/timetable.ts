@@ -1,5 +1,5 @@
 // types/timetable.ts
-import type { Speaker } from "./speaker";
+import type { Speaker } from "~~/server/static-data/types/speaker";
 
 export interface TimetableCell {
   id: string;

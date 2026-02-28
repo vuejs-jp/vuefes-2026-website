@@ -1,24 +1,44 @@
 import { defineEventHandler, getQuery } from "h3";
 import { useTranslation } from "../../i18n/useTranslation";
+import {
+  SESSION_SPEAKERS as SESSION_SPEAKERS_DATA,
+  LT_SPEAKERS as LT_SPEAKERS_DATA,
+  PANEL_DISCUSSION_SPEAKERS as PANEL_DISCUSSION_SPEAKERS_DATA,
+  STUDENT_SUPPORT_SPEAKERS as STUDENT_SUPPORT_SPEAKERS_DATA,
+} from "../../static-data/speakers";
+import { SPONSORS as SPONSORS_DATA } from "../../static-data/sponsors";
+import {
+  resolveSpeaker,
+  resolveStudentSupportSpeaker,
+  resolveSponsor,
+} from "../../static-data/utils";
 
 import type { Timetable } from "../../../i18n/timetable";
-import type { Speaker } from "../../../i18n/speaker";
-import type { Sponsor } from "~~/i18n/sponsor";
+import type { Speaker } from "../../static-data/types/speaker";
+import type { Sponsor } from "../../static-data/types/sponsor";
 
 export default defineEventHandler(async (event): Promise<Timetable> => {
   const query = getQuery(event);
-  const locale = (query.locale as string) || "ja";
+  const locale = (query.locale as "ja" | "en") || "ja";
   const t = useTranslation(locale);
 
-  const { SESSION_SPEAKERS, LT_SPEAKERS, PANEL_DISCUSSION_SPEAKERS, STUDENT_SUPPORT_SPEAKERS } =
-    locale === "ja"
-      ? await import(`../../../i18n/ja/speakers`)
-      : await import(`../../../i18n/en/speakers`);
+  const SESSION_SPEAKERS = SESSION_SPEAKERS_DATA.map((s) => resolveSpeaker(s, locale));
+  const LT_SPEAKERS = LT_SPEAKERS_DATA.map((s) => resolveSpeaker(s, locale));
+  const PANEL_DISCUSSION_SPEAKERS = PANEL_DISCUSSION_SPEAKERS_DATA.map((s) =>
+    resolveSpeaker(s, locale),
+  );
+  const STUDENT_SUPPORT_SPEAKERS = STUDENT_SUPPORT_SPEAKERS_DATA.map((s) =>
+    resolveStudentSupportSpeaker(s, locale),
+  );
 
-  const { SPONSORS } =
-    locale === "ja"
-      ? await import(`../../../i18n/ja/sponsors`)
-      : await import(`../../../i18n/en/sponsors`);
+  const SPONSORS = {
+    PLATINA: SPONSORS_DATA.PLATINA.map((s) => resolveSponsor(s, locale)),
+    GOLD: SPONSORS_DATA.GOLD.map((s) => resolveSponsor(s, locale)),
+    SILVER: SPONSORS_DATA.SILVER.map((s) => resolveSponsor(s, locale)),
+    BRONZE: SPONSORS_DATA.BRONZE.map((s) => resolveSponsor(s, locale)),
+    CREATIVE: SPONSORS_DATA.CREATIVE.map((s) => resolveSponsor(s, locale)),
+    OPTION_ONLY: SPONSORS_DATA.OPTION_ONLY.map((s) => resolveSponsor(s, locale)),
+  };
 
   function getSpeaker(id: string): Speaker {
     const speaker = SESSION_SPEAKERS.find((s) => s.id === id);

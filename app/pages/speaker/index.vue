@@ -1,15 +1,5 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
-import {
-  SESSION_SPEAKERS as enSessionSpeakers,
-  LT_SPEAKERS as enLTSpeakers,
-  PANEL_DISCUSSION_SPEAKERS as enPanelSpeakers,
-} from "../../../i18n/en/speakers";
-import {
-  SESSION_SPEAKERS as jaSessionSpeakers,
-  LT_SPEAKERS as jaLTSpeakers,
-  PANEL_DISCUSSION_SPEAKERS as jaPanelSpeakers,
-} from "../../../i18n/ja/speakers";
 import SpeakerCard from "./_components/SpeakerCard.vue";
 import { VFSection, JaSpeaker, EnSpeaker, JaPanelDiscussion, EnPanelDiscussion } from "#components";
 import {
@@ -23,6 +13,7 @@ import {
   defineOgImage,
   useQueryHashSync,
   useRoute,
+  useFetch,
 } from "#imports";
 
 // To differentiate OGP based on query params
@@ -32,11 +23,13 @@ const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
 
-const sessionSpeakers = computed(() =>
-  locale.value === "en" ? enSessionSpeakers : jaSessionSpeakers,
-);
-const ltSpeakers = computed(() => (locale.value === "en" ? enLTSpeakers : jaLTSpeakers));
-const panelSpeakers = computed(() => (locale.value === "en" ? enPanelSpeakers : jaPanelSpeakers));
+const { data: speakersData } = await useFetch("/api/speakers", {
+  query: { locale },
+});
+
+const sessionSpeakers = computed(() => speakersData.value?.sessionSpeakers ?? []);
+const ltSpeakers = computed(() => speakersData.value?.ltSpeakers ?? []);
+const panelSpeakers = computed(() => speakersData.value?.panelDiscussionSpeakers ?? []);
 
 const SectionId = {
   Sessions: "sessions",

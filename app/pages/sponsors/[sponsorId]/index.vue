@@ -4,9 +4,7 @@ import SponsorTag from "../_components/SponsorTag.vue";
 import XIcon from "~icons/icons/ic_x";
 import GithubIcon from "~icons/icons/ic_github";
 import BlueskyIcon from "~icons/icons/ic_bluesky";
-import { SPONSORS as JaSponsors } from "~~/i18n/ja/sponsors";
-import { SPONSORS as EnSponsors } from "~~/i18n/en/sponsors";
-import type { Sponsor } from "~~/i18n/sponsor";
+import type { Sponsor } from "~~/server/static-data/types/sponsor";
 import {
   computed,
   defineOgImage,
@@ -17,6 +15,7 @@ import {
   useSeoMeta,
   nextTick,
   onMounted,
+  useFetch,
 } from "#imports";
 import { VFSection } from "#components";
 
@@ -29,12 +28,16 @@ const route = useRoute("sponsors-sponsorId");
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
 
+const { data: sponsorsData } = await useFetch("/api/sponsors", {
+  query: { locale },
+});
+
 type SponsorWithPlan = Omit<Sponsor, "plan"> & { plan: string };
 
 const sponsors = computed((): SponsorWithPlan[] => {
-  const sponsorData = locale.value === "ja" ? JaSponsors : EnSponsors;
-  return Object.entries(sponsorData)
-    .filter(([plan]) => plan !== "OPTION") // OPTIONプロパティを除外
+  if (!sponsorsData.value) return [];
+  return Object.entries(sponsorsData.value)
+    .filter(([plan]) => plan !== "OPTION" && plan !== "INDIVIDUAL")
     .flatMap(([plan, planSponsors]) =>
       (planSponsors as Sponsor[]).map((sponsor) => ({ ...sponsor, plan })),
     ) as SponsorWithPlan[];

@@ -1,20 +1,16 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
-import {
-  SESSION_SPEAKERS as enSessionSpeakers,
-  PANEL_DISCUSSION_SPEAKERS as enPanelDiscussionSpeakers,
-} from "../../../i18n/en/speakers";
-import {
-  SESSION_SPEAKERS as jaSessionSpeakers,
-  PANEL_DISCUSSION_SPEAKERS as jaPanelDiscussionSpeakers,
-} from "../../../i18n/ja/speakers";
-import { computed, useI18n } from "#imports";
+import { computed, useI18n, useFetch } from "#imports";
 import { EnSpeaker, JaSpeaker, VFButton, VFCarousel } from "#components";
-import type { Speaker } from "~~/i18n/speaker";
+import type { Speaker } from "~~/server/static-data/types/speaker";
 import { HOME_HEADING_ID } from "~/constant";
 
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
+
+const { data: speakersData } = await useFetch("/api/speakers", {
+  query: { locale },
+});
 
 interface ColorSet {
   base: string;
@@ -43,12 +39,12 @@ type CarouselSpeaker = Omit<Speaker, "id" | "color"> & {
 const speakers = computed<CarouselSpeaker[]>(() => {
   const colorSetIter = new ColorSetIter();
 
-  const _speakers = (
-    locale.value === "en"
-      ? [...enSessionSpeakers, ...enPanelDiscussionSpeakers]
-      : [...jaSessionSpeakers, ...jaPanelDiscussionSpeakers]
-  )
+  const allSpeakers = [
+    ...(speakersData.value?.sessionSpeakers ?? []),
+    ...(speakersData.value?.panelDiscussionSpeakers ?? []),
+  ];
 
+  const _speakers = allSpeakers
     .filter((it, index, speakers) => index === speakers.findIndex((s) => s.name === it.name))
     .filter((it) => it.attendedIndex !== undefined)
     .sort((a, b) => a.attendedIndex! - b.attendedIndex!)

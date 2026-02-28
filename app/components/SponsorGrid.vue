@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
-import type { Sponsor } from "~~/i18n/sponsor";
+import type { Sponsor } from "~~/server/static-data/types/sponsor";
 
 const {
   imageOnly = false,

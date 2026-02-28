@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import SponsorGrid from "../../components/SponsorGrid.vue";
-import { SPONSORS as JaSponsors } from "~~/i18n/ja/sponsors";
-import { SPONSORS as EnSponsors } from "~~/i18n/en/sponsors";
-import type { OptionSponsor } from "~~/i18n/sponsor";
+import type { OptionSponsor } from "~~/server/static-data/types/sponsor";
 
 import {
   definePageMeta,
@@ -13,6 +11,7 @@ import {
   useHead,
   useSeoMeta,
   defineOgImage,
+  useFetch,
 } from "#imports";
 import { VFSection } from "#components";
 
@@ -21,6 +20,10 @@ definePageMeta({ prerender: true });
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 const bp = useBreakpoint();
+
+const { data: sponsorsData } = await useFetch("/api/sponsors", {
+  query: { locale },
+});
 defineOgImage({
   url: `${runtimeConfig.public.siteUrl}images/og/sponsors.png`,
 });
@@ -37,7 +40,7 @@ useSeoMeta({
 
     <VFSection id="platina-sponsor" :title="t('sponsors.platinaSponsor')">
       <SponsorGrid
-        :sponsors="locale === 'ja' ? JaSponsors.PLATINA : EnSponsors.PLATINA"
+        :sponsors="sponsorsData?.PLATINA ?? []"
         :columns="bp === 'mobile' ? 1 : 2"
         :gap="bp === 'mobile' ? '24px' : '32px'"
       />
@@ -45,7 +48,7 @@ useSeoMeta({
 
     <VFSection id="gold-sponsor" :title="t('sponsors.goldSponsor')">
       <SponsorGrid
-        :sponsors="locale === 'ja' ? JaSponsors.GOLD : EnSponsors.GOLD"
+        :sponsors="sponsorsData?.GOLD ?? []"
         :columns="bp === 'mobile' ? 2 : 3"
         :gap="bp === 'mobile' ? '24px' : '32px'"
       />
@@ -53,7 +56,7 @@ useSeoMeta({
 
     <VFSection id="silver-sponsor" :title="t('sponsors.silverSponsor')">
       <SponsorGrid
-        :sponsors="locale === 'ja' ? JaSponsors.SILVER : EnSponsors.SILVER"
+        :sponsors="sponsorsData?.SILVER ?? []"
         :columns="bp === 'mobile' ? 2 : 4"
         :gap="bp === 'mobile' ? '24px' : '32px'"
       />
@@ -61,19 +64,14 @@ useSeoMeta({
 
     <VFSection id="bronze-sponsor" :title="t('sponsors.bronzeSponsor')">
       <SponsorGrid
-        :sponsors="locale === 'ja' ? JaSponsors.BRONZE : EnSponsors.BRONZE"
+        :sponsors="sponsorsData?.BRONZE ?? []"
         :columns="bp === 'mobile' ? 2 : 4"
         :gap="bp === 'mobile' ? '24px' : '32px'"
       />
     </VFSection>
 
     <VFSection id="option-sponsor" :title="t('sponsors.optionSponsor')">
-      <div
-        v-for="option in (locale === 'ja'
-          ? JaSponsors.OPTION
-          : EnSponsors.OPTION) as OptionSponsor[]"
-        :key="option.title"
-      >
+      <div v-for="option in (sponsorsData?.OPTION ?? []) as OptionSponsor[]" :key="option.title">
         <div v-if="option.data.length > 0" class="sponsor-option-container">
           <h2 class="sponsor-option-title">
             {{ t(`sponsors.${option.title}`) }}
@@ -85,7 +83,7 @@ useSeoMeta({
 
     <VFSection id="creative-sponsor" :title="t('sponsors.creativeSponsor')">
       <SponsorGrid
-        :sponsors="locale === 'ja' ? JaSponsors.CREATIVE : EnSponsors.CREATIVE"
+        :sponsors="sponsorsData?.CREATIVE ?? []"
         :columns="bp === 'mobile' ? 2 : 3"
         :gap="bp === 'mobile' ? '24px' : '32px'"
       />
@@ -93,11 +91,7 @@ useSeoMeta({
 
     <VFSection id="individual-sponsor" :title="t('sponsors.individualSponsor')">
       <div class="sponsor-individual-container">
-        <span
-          v-for="(name, index) in locale === 'ja' ? JaSponsors.INDIVIDUAL : EnSponsors.INDIVIDUAL"
-          :key="index"
-          >{{ name }}</span
-        >
+        <span v-for="(name, index) in sponsorsData?.INDIVIDUAL ?? []" :key="index">{{ name }}</span>
       </div>
     </VFSection>
   </div>

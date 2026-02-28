@@ -12,4 +12,4 @@ If you have technical knowledge, practical experiences, or ideas related to Vue.
 
 If you're interested in becoming a session speaker, please apply using the link below:
 
-[CFP Application Form](https://example.com/cfp-form){target="_blank"}
+[CFP Application Form](https://example.com/cfp-form){target="\_blank"}

@@ -14,4 +14,4 @@ For more details, please see the application guidelines.
 
 To apply for the Student Support Program, please use the link below:
 
-[Application Form](https://example.com/student-support-form){target="_blank"}
+[Application Form](https://example.com/student-support-form){target="\_blank"}

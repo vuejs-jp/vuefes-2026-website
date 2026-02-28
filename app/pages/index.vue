@@ -28,9 +28,7 @@ const SectionPhoto = import.meta.vfFeatures.photoSection
 // スポンサー募集セクション
 const SectionSponsorWanted =
   import.meta.vfFeatures.sponsorWanted && !import.meta.vfFeatures.sponsorClosed
-    ? defineAsyncComponent(
-        () => import("./_components/SectionSponsorWanted.vue"),
-      )
+    ? defineAsyncComponent(() => import("./_components/SectionSponsorWanted.vue"))
     : null;
 
 // スポンサー募集終了セクション
@@ -60,18 +58,13 @@ const SectionSponsors = import.meta.vfFeatures.sponsorList
 
 // 学生支援募集中セクション
 const SectionStudentSupportOpen =
-  import.meta.vfFeatures.studentSupportOpen &&
-  !import.meta.vfFeatures.studentSupportClosed
-    ? defineAsyncComponent(
-        () => import("./_components/SectionStudentSupportOpen.vue"),
-      )
+  import.meta.vfFeatures.studentSupportOpen && !import.meta.vfFeatures.studentSupportClosed
+    ? defineAsyncComponent(() => import("./_components/SectionStudentSupportOpen.vue"))
     : null;
 
 // 学生支援募集終了セクション
 const SectionStudentSupportClosed = import.meta.vfFeatures.studentSupportClosed
-  ? defineAsyncComponent(
-      () => import("./_components/SectionStudentSupport.vue"),
-    )
+  ? defineAsyncComponent(() => import("./_components/SectionStudentSupport.vue"))
   : null;
 
 // ボランティア募集セクション

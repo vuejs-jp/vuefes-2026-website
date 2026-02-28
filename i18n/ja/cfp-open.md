@@ -12,4 +12,4 @@ Vue.js に関連する技術、実践事例、アイデアなど、コミュニ�
 
 セッションスピーカーをご希望の方は、以下よりご応募ください。
 
-[CFP 応募フォーム](https://example.com/cfp-form){target="_blank"}
+[CFP 応募フォーム](https://example.com/cfp-form){target="\_blank"}

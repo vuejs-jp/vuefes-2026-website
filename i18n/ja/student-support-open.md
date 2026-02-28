@@ -12,4 +12,4 @@ Vue Fes Japan 2026 では、未来のエンジニアを応援する新たな取�
 
 学生支援プログラムへの応募は、以下よりお申し込みください。
 
-[応募フォーム](https://example.com/student-support-form){target="_blank"}
+[応募フォーム](https://example.com/student-support-form){target="\_blank"}

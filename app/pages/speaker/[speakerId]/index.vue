@@ -1,15 +1,5 @@
 <script setup lang="ts">
 import { useLocaleRoute, useRoute } from "@typed-router";
-import {
-  SESSION_SPEAKERS as enSessionSpeakers,
-  LT_SPEAKERS as enLT_Speakers,
-  PANEL_DISCUSSION_SPEAKERS as enPanelSpeakers,
-} from "../../../../i18n/en/speakers";
-import {
-  SESSION_SPEAKERS as jaSessionSpeakers,
-  LT_SPEAKERS as jaLT_Speakers,
-  PANEL_DISCUSSION_SPEAKERS as jaPanelSpeakers,
-} from "../../../../i18n/ja/speakers";
 import XIcon from "~icons/icons/ic_x";
 import GithubIcon from "~icons/icons/ic_github";
 import BlueskyIcon from "~icons/icons/ic_bluesky";
@@ -22,6 +12,7 @@ import {
   useHead,
   useSeoMeta,
   useRouter,
+  useFetch,
 } from "#imports";
 import { VFSection } from "#components";
 
@@ -32,19 +23,18 @@ const router = useRouter();
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
 
-const speakers = computed(() =>
-  locale.value === "ja"
-    ? [
-        ...jaSessionSpeakers.map((it) => ({ ...it, type: "session" as const })),
-        ...jaLT_Speakers.map((it) => ({ ...it, type: "lt" as const })),
-        ...jaPanelSpeakers.map((it) => ({ ...it, type: "panel" as const })),
-      ]
-    : [
-        ...enSessionSpeakers.map((it) => ({ ...it, type: "session" as const })),
-        ...enLT_Speakers.map((it) => ({ ...it, type: "lt" as const })),
-        ...enPanelSpeakers.map((it) => ({ ...it, type: "panel" as const })),
-      ],
-);
+const { data: speakersData } = await useFetch("/api/speakers", {
+  query: { locale },
+});
+
+const speakers = computed(() => [
+  ...(speakersData.value?.sessionSpeakers ?? []).map((it) => ({ ...it, type: "session" as const })),
+  ...(speakersData.value?.ltSpeakers ?? []).map((it) => ({ ...it, type: "lt" as const })),
+  ...(speakersData.value?.panelDiscussionSpeakers ?? []).map((it) => ({
+    ...it,
+    type: "panel" as const,
+  })),
+]);
 
 const currentSpeaker = computed(() =>
   speakers.value.find((speaker) => speaker.id === route.params.speakerId),

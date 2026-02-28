@@ -5,6 +5,7 @@ Terraform configuration for managing Netlify and Cloudflare resources.
 ## Overview
 
 This configuration manages:
+
 - **Cloudflare D1**: SQLite databases for dev/prod
 - **Cloudflare R2**: Object storage buckets for dev/prod and Terraform state
 - **Netlify**: Site configuration and environment variables
@@ -81,25 +82,26 @@ terraform apply # Apply import
 ## GitHub Actions
 
 The workflow in `.github/workflows/terraform.yml` runs:
+
 - **On PR**: `terraform plan` with results posted as a comment
 - **On merge to main**: `terraform apply -auto-approve`
 
 ### Required Secrets
 
-| Name | Description |
-|------|-------------|
-| `CLOUDFLARE_API_TOKEN` | Cloudflare API token |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Account ID |
-| `AWS_ACCESS_KEY_ID` | R2 Access Key ID (for state backend) |
+| Name                    | Description                              |
+| ----------------------- | ---------------------------------------- |
+| `CLOUDFLARE_API_TOKEN`  | Cloudflare API token                     |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Account ID                    |
+| `AWS_ACCESS_KEY_ID`     | R2 Access Key ID (for state backend)     |
 | `AWS_SECRET_ACCESS_KEY` | R2 Secret Access Key (for state backend) |
-| `NETLIFY_API_TOKEN` | Netlify Personal Access Token |
+| `NETLIFY_API_TOKEN`     | Netlify Personal Access Token            |
 
 ### Required Variables
 
-| Name | Description |
-|------|-------------|
-| `NETLIFY_TEAM_SLUG` | Netlify team slug |
-| `NETLIFY_SITE_ID` | Netlify site ID (optional, for import) |
+| Name                | Description                            |
+| ------------------- | -------------------------------------- |
+| `NETLIFY_TEAM_SLUG` | Netlify team slug                      |
+| `NETLIFY_SITE_ID`   | Netlify site ID (optional, for import) |
 
 ## File Structure
 

@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - 'infra/**'
-      - '.github/workflows/terraform.yml'
+      - "infra/**"
+      - ".github/workflows/terraform.yml"
   pull_request:
     paths:
-      - 'infra/**'
-      - '.github/workflows/terraform.yml'
+      - "infra/**"
+      - ".github/workflows/terraform.yml"
 
 # Prevent concurrent Terraform runs (R2 doesn't support state locking)
 concurrency:

@@ -74,8 +74,6 @@ watchEffect((onCleanup) => {
 
   updateState();
 
-  
-
   api.on("select", updateState);
   api.on("slidesinview", updateState);
   api.on("reinit", updateState);
@@ -99,12 +97,7 @@ watchEffect((onCleanup) => {
     :style="{ '--slide-size': `${slideSize}%` }"
   >
     <div ref="emblaRef" class="viewport">
-      <ul
-        :id="carouselId"
-        class="container"
-        aria-live="polite"
-        aria-atomic="true"
-      >
+      <ul :id="carouselId" class="container" aria-live="polite" aria-atomic="true">
         <li
           v-for="(item, index) in items"
           :key="index"
@@ -127,7 +120,12 @@ watchEffect((onCleanup) => {
     </div>
 
     <div class="navigation">
-      <slot name="prevButton" :on-click="scrollPrev" :disabled="!canScrollPrev && !loop" :aria-controls="carouselId">
+      <slot
+        name="prevButton"
+        :on-click="scrollPrev"
+        :disabled="!canScrollPrev && !loop"
+        :aria-controls="carouselId"
+      >
         <button
           type="button"
           class="button prev"
@@ -153,7 +151,12 @@ watchEffect((onCleanup) => {
         </button>
       </slot>
 
-      <slot name="nextButton" :on-click="scrollNext" :disabled="!canScrollNext && !loop" :aria-controls="carouselId">
+      <slot
+        name="nextButton"
+        :on-click="scrollNext"
+        :disabled="!canScrollNext && !loop"
+        :aria-controls="carouselId"
+      >
         <button
           type="button"
           class="button next"

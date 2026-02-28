@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { RELATED_EVENTS as enRelatedEvents } from "../../../i18n/en/related-events";
-
-import { RELATED_EVENTS as jaRelatedEvents } from "../../../i18n/ja/related-events";
-
 import { VFSection, VFButton } from "#components";
 
 import {
@@ -13,12 +9,17 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useSeoMeta,
+  useFetch,
 } from "#imports";
 
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 
-const relatedEvents = computed(() => (locale.value === "en" ? enRelatedEvents : jaRelatedEvents));
+const { data: relatedEventsData } = await useFetch("/api/related-events", {
+  query: { locale },
+});
+
+const relatedEvents = computed(() => relatedEventsData.value ?? []);
 
 const dateOption = computed(() =>
   locale.value === "en"
