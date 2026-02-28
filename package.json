@@ -52,7 +52,7 @@
     "@types/three": "^0.183.1",
     "@unhead/vue": "^2.0.5",
     "@vueuse/core": "^14.2.1",
-    "cspell": "^8.17.5",
+    "cspell": "^9.6.4",
     "d1-driver": "^2.0.2",
     "dotenv": "^17.0.1",
     "drizzle-kit": "^0.31.4",
