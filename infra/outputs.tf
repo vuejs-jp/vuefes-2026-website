@@ -1,7 +1,4 @@
-# =============================================================================
-# Cloudflare Outputs
-# =============================================================================
-
+# Cloudflare
 output "d1_database_dev_id" {
   description = "D1 Database ID (dev)"
   value       = cloudflare_d1_database.vuefes_2026_dev.id
@@ -27,21 +24,14 @@ output "r2_bucket_tfstate_name" {
   value       = cloudflare_r2_bucket.vuefes_2026_tfstate.name
 }
 
-# =============================================================================
-# Netlify Outputs
-# =============================================================================
-
+# Netlify
 output "netlify_site_id" {
   description = "Netlify Site ID"
-  value       = netlify_site.vuefes_2026.id
+  value       = data.netlify_site.vuefes_2026.id
 }
 
-output "netlify_site_url" {
-  description = "Netlify Site URL"
-  value       = netlify_site.vuefes_2026.url
-}
 
 output "netlify_site_name" {
   description = "Netlify Site Name"
-  value       = netlify_site.vuefes_2026.name
+  value       = data.netlify_site.vuefes_2026.name
 }

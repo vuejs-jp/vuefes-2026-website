@@ -21,10 +21,10 @@ env:
   TF_VAR_cloudflare_account_id: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
   TF_VAR_netlify_team_slug: ${{ vars.NETLIFY_TEAM_SLUG }}
   TF_VAR_netlify_site_id: ${{ vars.NETLIFY_SITE_ID }}
+  TF_VAR_d1_dev_database_id: ${{ vars.D1_DEV_DATABASE_ID }}
+  TF_VAR_d1_prod_database_id: ${{ vars.D1_PROD_DATABASE_ID }}
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
   NETLIFY_API_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS }}
 
 jobs:
   plan:
@@ -41,12 +41,20 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.5"
+          terraform_version: "~1.12"
+
+      - name: Generate backend config
+        run: |
+          cat > backend.conf <<EOF
+          endpoints = {
+            s3 = "https://${{ vars.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+          }
+          access_key = "${{ secrets.R2_TFSTATE_ACCESS_KEY_ID }}"
+          secret_key = "${{ secrets.R2_TFSTATE_SECRET_ACCESS_KEY }}"
+          EOF
 
       - name: Terraform Init
-        run: |
-          terraform init \
-            -backend-config="endpoints={s3=\"https://${{ vars.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com\"}"
+        run: terraform init -backend-config=backend.conf
 
       - name: Terraform Format Check
         run: terraform fmt -check -recursive
@@ -110,12 +118,20 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.5"
+          terraform_version: "~1.12"
+
+      - name: Generate backend config
+        run: |
+          cat > backend.conf <<EOF
+          endpoints = {
+            s3 = "https://${{ vars.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+          }
+          access_key = "${{ secrets.R2_TFSTATE_ACCESS_KEY_ID }}"
+          secret_key = "${{ secrets.R2_TFSTATE_SECRET_ACCESS_KEY }}"
+          EOF
 
       - name: Terraform Init
-        run: |
-          terraform init \
-            -backend-config="endpoints={s3=\"https://${{ vars.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com\"}"
+        run: terraform init -backend-config=backend.conf
 
       - name: Terraform Apply
         run: terraform apply -auto-approve

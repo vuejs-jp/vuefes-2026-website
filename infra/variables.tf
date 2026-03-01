@@ -1,46 +1,23 @@
-# =============================================================================
-# Cloudflare Variables
-# =============================================================================
-
+# Cloudflare
 variable "cloudflare_account_id" {
   description = "Cloudflare Account ID"
   type        = string
 }
 
-# =============================================================================
-# Netlify Variables
-# =============================================================================
-
+# Netlify
 variable "netlify_team_slug" {
   description = "Netlify team slug"
   type        = string
+  default     = "core-staff"
 }
 
 variable "netlify_site_id" {
   description = "Netlify site ID (for import)"
   type        = string
-  default     = ""
+  default     = "f0c9dd8c-9333-4197-a783-09646a6f84a5"
 }
 
-# =============================================================================
-# Environment Configuration
-# =============================================================================
-
-variable "environment" {
-  description = "Environment name (dev or prod)"
-  type        = string
-  default     = "prod"
-
-  validation {
-    condition     = contains(["dev", "prod"], var.environment)
-    error_message = "Environment must be 'dev' or 'prod'."
-  }
-}
-
-# =============================================================================
-# Application Configuration
-# =============================================================================
-
+# Application
 variable "ga_id" {
   description = "Google Analytics Measurement ID"
   type        = string
@@ -65,10 +42,7 @@ variable "site_base_path" {
   default     = "/2026/"
 }
 
-# =============================================================================
-# Sensitive Variables (set via environment or tfvars)
-# =============================================================================
-
+# Sensitive — set via TF_VAR_* environment variables
 variable "auth_secret" {
   description = "Auth.js secret"
   type        = string
@@ -124,18 +98,15 @@ variable "peatix_event_id" {
   default     = ""
 }
 
-# =============================================================================
 # D1 Database IDs (for import)
-# =============================================================================
-
 variable "d1_dev_database_id" {
   description = "Existing D1 dev database ID"
   type        = string
-  default     = "0c6b7881-3c26-472e-9276-2b71ed6af10b"
+  default     = ""
 }
 
 variable "d1_prod_database_id" {
-  description = "Existing D1 prod database ID (if any)"
+  description = "Existing D1 prod database ID"
   type        = string
   default     = ""
 }

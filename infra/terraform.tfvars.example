@@ -1,36 +1,21 @@
-# =============================================================================
-# Cloudflare Configuration
-# =============================================================================
+# Cloudflare
 cloudflare_account_id = "your-cloudflare-account-id"
 
-# =============================================================================
-# Netlify Configuration
-# =============================================================================
+# Netlify
 netlify_team_slug = "vuejs-jp"
 netlify_site_id   = "your-netlify-site-id" # For import
 
-# =============================================================================
-# Environment
-# =============================================================================
-environment = "prod" # or "dev"
-
-# =============================================================================
-# Application Configuration
-# =============================================================================
+# Application
 ga_id                 = "G-H7VEJHSZH4"
 contact_form_endpoint = "https://vuejs-jp.form.newt.so/v1/UR5LmScZc"
 site_url              = "https://vuefes.jp/"
 site_base_path        = "/2026/"
 
-# =============================================================================
 # D1 Database IDs (for import)
-# =============================================================================
 d1_dev_database_id  = "0c6b7881-3c26-472e-9276-2b71ed6af10b"
 d1_prod_database_id = "" # Set if existing
 
-# =============================================================================
-# Sensitive Variables
-# These should be set via environment variables:
+# Sensitive variables — set via environment:
 #   TF_VAR_auth_secret
 #   TF_VAR_oauth_github_client_id
 #   TF_VAR_oauth_github_client_secret
@@ -39,4 +24,3 @@ d1_prod_database_id = "" # Set if existing
 #   TF_VAR_peatix_api_origin
 #   TF_VAR_peatix_api_secret
 #   TF_VAR_peatix_event_id
-# =============================================================================

@@ -10,9 +10,16 @@ This configuration manages:
 - **Cloudflare R2**: Object storage buckets for dev/prod and Terraform state
 - **Netlify**: Site configuration and environment variables
 
+### Deploy Flow
+
+- **Preview**: Push to `main` → CI workflow builds and deploys via `netlify-cli deploy`
+- **Production**: `pnpm run release <alpha|beta|rc|minor|patch>` → tag push → release workflow builds and deploys via `netlify-cli deploy --prod`
+
+Netlify auto-builds are disabled (`stop_builds = true`). All builds are handled by GitHub Actions.
+
 ## Prerequisites
 
-1. [Terraform](https://www.terraform.io/downloads) v1.5.0 or higher
+1. [Terraform](https://www.terraform.io/downloads) v1.7.0 or higher
 2. Cloudflare API token with permissions:
    - D1: Edit
    - R2: Edit
@@ -26,7 +33,6 @@ This configuration manages:
 Before initializing Terraform, create the R2 bucket for state storage:
 
 ```bash
-# Using Cloudflare Wrangler CLI
 npx wrangler r2 bucket create vuefes-2026-tfstate
 ```
 
@@ -35,8 +41,6 @@ npx wrangler r2 bucket create vuefes-2026-tfstate
 ```bash
 # Cloudflare
 export CLOUDFLARE_API_TOKEN="your-api-token"
-export AWS_ACCESS_KEY_ID="your-r2-access-key-id"
-export AWS_SECRET_ACCESS_KEY="your-r2-secret-access-key"
 
 # Netlify
 export NETLIFY_API_TOKEN="your-netlify-token"
@@ -49,11 +53,24 @@ cp terraform.tfvars.example terraform.tfvars
 # Edit terraform.tfvars with your values
 ```
 
-### 4. Initialize Terraform
+### 4. Create backend.conf
 
 ```bash
-terraform init \
-  -backend-config="endpoints={s3=\"https://<ACCOUNT_ID>.r2.cloudflarestorage.com\"}"
+cat > backend.conf <<EOF
+endpoints = {
+  s3 = "https://<ACCOUNT_ID>.r2.cloudflarestorage.com"
+}
+EOF
+```
+
+### 5. Initialize Terraform
+
+```bash
+# R2 credentials are passed via environment variables
+# (Terraform S3 backend uses AWS SDK internally)
+AWS_ACCESS_KEY_ID=<R2_TFSTATE_ACCESS_KEY_ID> \
+AWS_SECRET_ACCESS_KEY=<R2_TFSTATE_SECRET_ACCESS_KEY> \
+terraform init -backend-config=backend.conf
 ```
 
 ## Usage
@@ -81,43 +98,45 @@ terraform apply # Apply import
 
 ## GitHub Actions
 
-The workflow in `.github/workflows/terraform.yml` runs:
+### Terraform (`.github/workflows/terraform.yml`)
 
 - **On PR**: `terraform plan` with results posted as a comment
 - **On merge to main**: `terraform apply -auto-approve`
 
+### CI (`.github/workflows/ci.yml`)
+
+- **On push**: Spell check, lint, type check, build
+- **On push to main**: Build + preview deploy to Netlify
+
+### Release (`.github/workflows/release.yml`)
+
+- **On tag push (`v*`)**: Create GitHub Release + production deploy to Netlify
+
 ### Required Secrets
 
-| Name                    | Description                              |
-| ----------------------- | ---------------------------------------- |
-| `CLOUDFLARE_API_TOKEN`  | Cloudflare API token                     |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Account ID                    |
-| `AWS_ACCESS_KEY_ID`     | R2 Access Key ID (for state backend)     |
-| `AWS_SECRET_ACCESS_KEY` | R2 Secret Access Key (for state backend) |
-| `NETLIFY_API_TOKEN`     | Netlify Personal Access Token            |
-
-### Required Variables
-
-| Name                | Description                            |
-| ------------------- | -------------------------------------- |
-| `NETLIFY_TEAM_SLUG` | Netlify team slug                      |
-| `NETLIFY_SITE_ID`   | Netlify site ID (optional, for import) |
+| Name                           | Description                              |
+| ------------------------------ | ---------------------------------------- |
+| `CLOUDFLARE_API_TOKEN`         | Cloudflare API token                     |
+| `CLOUDFLARE_ACCOUNT_ID`        | Cloudflare Account ID (vars)             |
+| `R2_TFSTATE_ACCESS_KEY_ID`     | R2 Access Key ID (for state backend)     |
+| `R2_TFSTATE_SECRET_ACCESS_KEY` | R2 Secret Access Key (for state backend) |
+| `NETLIFY_API_TOKEN`            | Netlify Personal Access Token            |
+| `NETLIFY_AUTH_TOKEN`           | Netlify auth token (for CLI deploys)     |
+| `NETLIFY_SITE_ID`              | Netlify site ID (for CLI deploys)        |
 
 ## File Structure
 
 ```
 infra/
-├── .gitignore                   # Exclude local state files
-├── README.md                    # This file
-├── versions.tf                  # Terraform/provider versions
-├── providers.tf                 # Provider configuration
-├── backend.tf                   # R2 backend configuration
-├── variables.tf                 # Input variable definitions
-├── outputs.tf                   # Output definitions
-├── terraform.tfvars.example     # Variable examples
-├── cloudflare.tf                # D1, R2 resources
-├── netlify.tf                   # Site, environment variables
-└── imports.tf                   # Existing resource imports
+├── backend.tf               # Terraform state backend (R2)
+├── host-dev-preview.tf      # Dev/preview resources (D1 dev, R2 dev)
+├── host-production.tf       # Production resources (D1 prod, R2 prod, Netlify site/build/env)
+├── imports.tf               # Existing resource imports
+├── outputs.tf               # Output definitions
+├── providers.tf             # Provider configuration
+├── variables.tf             # Input variable definitions
+├── versions.tf              # Terraform/provider versions
+└── terraform.tfvars.example # Variable examples
 ```
 
 ## Notes
