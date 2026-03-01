@@ -1,21 +1,7 @@
 import { defineEventHandler } from "h3";
 import { staffs } from "../../static-data/staffs";
-
-export type Staff = {
-  name: string;
-  avatarUrl?: string;
-  pinned?: boolean;
-  socialUrls?: {
-    x?: string;
-    github?: string;
-  };
-};
-
-export type Staffs = {
-  leaders: Staff[];
-  cores: Staff[];
-  volunteers: Staff[];
-};
+import type { Staff, Staffs } from "../../static-data/types/staff";
+import { resolveStaff } from "~~/server/static-data/utils";
 
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
@@ -35,8 +21,8 @@ function shuffleNonPinned(staffArray: Staff[]): Staff[] {
 
 export default defineEventHandler(async (): Promise<Staffs> => {
   return {
-    leaders: shuffleNonPinned(staffs.leaders),
-    cores: shuffleNonPinned(staffs.cores),
-    volunteers: staffs.volunteers, // volunteers are not shuffled
+    leaders: shuffleNonPinned(staffs.leaders.map((e) => resolveStaff(e))),
+    cores: shuffleNonPinned(staffs.cores.map((e) => resolveStaff(e))),
+    volunteers: staffs.volunteers.map((e) => resolveStaff(e)), // volunteers are not shuffled
   };
 });

@@ -4,7 +4,7 @@ import { useI18n, useFetch, useBreakpoint, computed, onMounted } from "#imports"
 import { VFSection } from "#components";
 
 import StaffGrid from "./StaffGrid.vue";
-import type { Staff } from "~~/server/api/staffs/index.get";
+import type { Staff } from "~~/server/static-data/types/staff";
 
 const { t } = useI18n();
 const bp = useBreakpoint();

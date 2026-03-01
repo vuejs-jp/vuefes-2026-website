@@ -1,11 +1,9 @@
 import { useRuntimeConfig } from "#app";
+import { createWithBase } from "~~/shared/utils/createWithBase";
 
 export function useWithBase() {
   const baseUrl = useRuntimeConfig().app.baseURL;
-
-  function withBase(path: string) {
-    return (baseUrl + path).replace(/\/\//g, "/");
-  }
+  const withBase = createWithBase(baseUrl);
 
   return withBase;
 }

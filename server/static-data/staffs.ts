@@ -1,4 +1,4 @@
-import type { Staffs } from "../api/staffs/index.get";
+import type { Staffs } from "./types/staff";
 
 export const staffs: Staffs = {
   leaders: [
