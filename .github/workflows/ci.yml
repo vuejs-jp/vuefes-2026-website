@@ -119,14 +119,3 @@ jobs:
           OAUTH_GOOGLE_CLIENT_ID: ${{ vars.OAUTH_GOOGLE_CLIENT_ID }}
           PEATIX_API_ORIGIN: ${{ vars.PEATIX_API_ORIGIN }}
           PEATIX_EVENT_ID: ${{ vars.PEATIX_EVENT_ID }}
-
-      - name: Add noindex headers for preview
-        if: github.ref == 'refs/heads/main'
-        run: cp ./infra/netlify-noindex-headers ./dist/_headers
-
-      - name: Deploy Preview
-        if: github.ref == 'refs/heads/main'
-        run: pnpm dlx netlify-cli deploy --dir=dist
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
