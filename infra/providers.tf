@@ -10,4 +10,5 @@ provider "cloudflare" {
 #   NETLIFY_API_TOKEN - Personal access token
 provider "netlify" {
   # token is read from NETLIFY_API_TOKEN env var
+  default_team_slug = var.netlify_team_slug
 }
