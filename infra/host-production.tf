@@ -12,6 +12,10 @@ resource "cloudflare_d1_database" "vuefes_2026_prod" {
   account_id = var.cloudflare_account_id
   name       = "vuefes-2026-prod"
 
+  read_replication = {
+    mode = "disabled"
+  }
+
   lifecycle {
     prevent_destroy = true
   }
