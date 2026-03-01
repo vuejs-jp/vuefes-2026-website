@@ -32,9 +32,9 @@ const { locale } = useI18n();
     </component>
 
     <div class="main-visual-body">
-      <time datetime="2025-10-25" lang="en" :aria-hidden="locale !== 'en'">OCTOBER 24, 2025</time>
+      <time datetime="2026-10-24" lang="en" :aria-hidden="locale !== 'en'">OCTOBER 24, 2026</time>
       <MainVisualGraphic :appearance="animation ? 'webgl' : 'png'" class="main-visual-graphic" />
-      <time datetime="2025-10-25" lang="ja" :aria-hidden="locale !== 'ja'">2025年10月24日</time>
+      <time datetime="2026-10-24" lang="ja" :aria-hidden="locale !== 'ja'">2026年10月24日</time>
     </div>
 
     <div class="main-visual-foot">
