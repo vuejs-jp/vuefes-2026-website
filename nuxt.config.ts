@@ -169,10 +169,7 @@ export default defineNuxtConfig({
   imports: { autoImport: false },
   devtools: { enabled: true },
   app: {
-    baseURL:
-      process.env.NODE_ENV === "production"
-        ? process.env.NUXT_BASE_PATH || "/2026/"
-        : "/",
+    baseURL: process.env.NODE_ENV === "production" ? process.env.NUXT_BASE_PATH || "/2026/" : "/",
   },
   // @nuxt/robot don't support generate robots.txt when setting baseURL
   robots: { robotsTxt: false },
@@ -182,8 +179,7 @@ export default defineNuxtConfig({
     // i18n/ja/ja.json, i18n/en/en.json
     url:
       process.env.CONTEXT === "branch-deploy"
-        ? process.env.DEPLOY_PRIME_URL ||
-          "https://main--vuefes-2026.netlify.app"
+        ? process.env.DEPLOY_PRIME_URL || "https://main--vuefes-2026.netlify.app"
         : process.env.NODE_ENV === "production"
           ? process.env.NUXT_SITE_URL || "https://vuefes.jp/"
           : "http://localhost:3000/",
