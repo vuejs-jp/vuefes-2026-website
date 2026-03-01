@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { GOODS as enGoods } from "../../../i18n/en/goods";
-import { GOODS as jaGoods } from "../../../i18n/ja/goods";
 import StorePreOrderButton from "./_components/StorePreOrderButton.vue";
 import StoreItemCard from "./_components/StoreItemCard.vue";
 import {
@@ -13,6 +11,7 @@ import {
   useHead,
   useSeoMeta,
   defineOgImage,
+  useFetch,
 } from "#imports";
 import { VFSection, JaStore, EnStore } from "#components";
 
@@ -21,7 +20,11 @@ const { t, locale } = useI18n();
 
 const runtimeConfig = useRuntimeConfig();
 
-const goods = computed(() => (locale.value === "en" ? enGoods : jaGoods));
+const { data: goodsData } = await useFetch("/api/goods", {
+  query: { locale },
+});
+
+const goods = computed(() => goodsData.value ?? []);
 const indent = computed(() => (locale.value === "en" ? "0.7em" : "0.25em"));
 
 defineOgImage({

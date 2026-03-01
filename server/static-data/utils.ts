@@ -6,6 +6,7 @@ import type {
 } from "./types/speaker";
 import type { SponsorData, Sponsor } from "./types/sponsor";
 import type { RelatedEventsData, RelatedEvents } from "./types/related-events";
+import type { Goods, GoodsData } from "./types/goods";
 
 type Locale = "ja" | "en";
 
@@ -41,4 +42,17 @@ export function resolveRelatedEvents(data: RelatedEventsData, locale: Locale): R
   const { ja, en, ...base } = data;
   const localeFields = locale === "ja" ? ja : en;
   return { ...base, ...localeFields };
+}
+
+export function resolveGoods(data: GoodsData, locale: Locale): Goods {
+  const { ja, en, specs, ...base } = data;
+  const localeFields = locale === "ja" ? ja : en;
+  return {
+    ...base,
+    ...localeFields,
+    specs: {
+      ...specs,
+      ...(locale === "ja" ? specs.ja : specs.en),
+    },
+  };
 }

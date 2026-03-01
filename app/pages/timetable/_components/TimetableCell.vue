@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useI18n, useLocaleRoute } from "#imports";
-import type { TimetableCell } from "~~/i18n/timetable";
+import type { TimetableCell } from "~~/server/static-data/types/timetable";
 import SliderIcon from "~icons/icons/timetable-slider.svg";
 
 const { type, title, startTime, endTime, speakers, colspan, rowspan, track, link } =

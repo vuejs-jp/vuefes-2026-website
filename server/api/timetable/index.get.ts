@@ -13,7 +13,7 @@ import {
   resolveSponsor,
 } from "../../static-data/utils";
 
-import type { Timetable } from "../../../i18n/timetable";
+import type { Timetable } from "../../static-data/types/timetable";
 import type { Speaker } from "../../static-data/types/speaker";
 import type { Sponsor } from "../../static-data/types/sponsor";
 

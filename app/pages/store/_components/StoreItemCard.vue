@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Goods } from "~~/i18n/goods";
+import type { Goods } from "~~/server/static-data/types/goods";
 import { useI18n } from "#imports";
 
 interface Props {

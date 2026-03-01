@@ -9,9 +9,11 @@ import {
   useHead,
   useSeoMeta,
   defineOgImage,
+  useFetch,
 } from "#imports";
 import { VFSection } from "#components";
-import { PHOTO_CATEGORIES } from "~~/i18n/photo";
+
+const { data: photoCategories } = await useFetch("/api/photo");
 
 definePageMeta({ prerender: true });
 const { t } = useI18n();
@@ -48,7 +50,7 @@ useSeoMeta({
         </template>
       </i18n-t>
       <ul class="photo-list">
-        <li v-for="category in PHOTO_CATEGORIES" :key="category.id" class="photo-list-item">
+        <li v-for="category in photoCategories" :key="category.id" class="photo-list-item">
           <a :href="category.url" target="_blank" rel="noopener noreferrer" class="photo-link">
             {{ getCategoryLabel(category.id) }}
           </a>

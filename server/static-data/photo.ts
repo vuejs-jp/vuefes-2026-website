@@ -1,7 +1,4 @@
-export interface PhotoCategory {
-  id: string;
-  url: string;
-}
+import type { PhotoCategory } from "./types/photo";
 
 export const PHOTO_CATEGORIES: PhotoCategory[] = [
   {
