@@ -10,7 +10,6 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
     "preview": "nuxt preview",
     "check": "nuxi typecheck",
     "lint": "oxlint --type-aware && textlint .",

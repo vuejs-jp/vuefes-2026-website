@@ -2,6 +2,8 @@ import { navigateTo, useLocaleRoute } from "@typed-router";
 import { defineNuxtRouteMiddleware, useAuth } from "#imports";
 
 export default defineNuxtRouteMiddleware(async (to) => {
+  if (!import.meta.vfFeatures.nameBadgeRegistration) return;
+
   const { status } = useAuth();
   const localeRoute = useLocaleRoute();
   const AUTHENTICATED_ONLY = [

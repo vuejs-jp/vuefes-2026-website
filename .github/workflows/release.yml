@@ -39,8 +39,8 @@ jobs:
       - name: Install deps
         run: pnpm install
 
-      - name: Generate
-        run: pnpm run generate
+      - name: Build
+        run: pnpm run build
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"
           CONTEXT: production
@@ -61,7 +61,7 @@ jobs:
           PEATIX_EVENT_ID: ${{ vars.PEATIX_EVENT_ID }}
 
       - name: Deploy to Netlify (Production)
-        run: pnpm netlify deploy --prod --dir=.output/public
+        run: pnpm netlify deploy --no-build --prod --dir=.output/public
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

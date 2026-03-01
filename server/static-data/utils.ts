@@ -116,4 +116,3 @@ export function resolveGoods(data: GoodsData, locale: Locale): Goods {
     };
   }
 }
-
