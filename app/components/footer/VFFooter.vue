@@ -51,6 +51,11 @@ const showTokusho = import.meta.vfFeatures.tokushoPage;
       <div class="links">
         <ul class="past-vuefes-links">
           <li>
+            <NuxtLink to="https://vuefes.jp/2025" external target="_blank"
+              >Vue Fes Japan 2025</NuxtLink
+            >
+          </li>
+          <li>
             <NuxtLink to="https://vuefes.jp/2024" external target="_blank"
               >Vue Fes Japan 2024</NuxtLink
             >
@@ -101,7 +106,7 @@ const showTokusho = import.meta.vfFeatures.tokushoPage;
       </div>
 
       <p class="text-caption">
-        © 2018-2025 Vue.js Japan Users Group some rights reserved. <br />
+        © 2018-2026 Vue.js Japan Users Group some rights reserved. <br />
         Vue.js artworks by Evan You is licensed under a Creative Commons Attribution 4.0
         International License.
       </p>

@@ -34,24 +34,27 @@ ticket:
   early: "早割"
   standard: "通常"
   priceUnit: "￥"
+  # TODO: 2026 年度のチケット価格を確定する
   generalTicket:
     title: "一般チケット"
-    earlyPrice: "7000"
-    standardPrice: "8000"
+    earlyPrice: "TBD"
+    standardPrice: "TBD"
   afterPartyTicket:
     title: "一般＋アフターパーティーチケット"
-    earlyPrice: "10000"
-    standardPrice: "11000"
+    earlyPrice: "TBD"
+    standardPrice: "TBD"
   option: オプション
   handsOn:
     title: "ハンズオン"
-    price: "0"
+    # TODO: 2026 年度のハンズオン価格を確定する
+    price: "TBD"
     attention1: "※ Vue Fes Japan へのご参加には、一般チケットも必要となります。"
     attention2: "※ 詳しくは{about}をご覧ください。"
     about: "ハンズオンについて"
   individual:
     sponsor: "個人スポンサー"
-    price: "10000"
+    # TODO: 2026 年度の個人スポンサー価格を確定する
+    price: "TBD"
     attention1: "※ Vue Fes Japan へのご参加には、一般チケットも必要となります。"
     attention2: "※ 詳しくは{about}をご覧ください。"
     about: "個人スポンサーについて"
@@ -61,9 +64,11 @@ ticket:
 nameBadge:
   title: "ネームカード"
   description: "{ticketName}をご購入後、必要な情報をご登録いただくと、当日会場にてご自身のアバター＋名前入りのネームカードがもらえます！（要ソーシャルログイン）"
-  ticketName: "Vue Fes Japan 2025 のチケット"
-  deadlineDescription: "ネームカード編集期限：2025 年 9 月 {correction} 21 日（日） 23:59"
-  correction: "29 日"
+  # TODO: 2026 年度のチケット情報を確定する
+  ticketName: "TBD"
+  # TODO: 2026 年度のネームカード編集期限を確定する
+  deadlineDescription: "TBD"
+  correction: ""
   attention: "※ネームカード作成は必須ではありません。"
   coverImageAlt: "ネームカードイメージ画像"
   confirm: 自分のネームカードを確認する
@@ -124,34 +129,38 @@ faq:
 
 event:
   title: "Event"
+  # TODO: 2026 年度のパネルディスカッション情報を確定する
   panel:
     title: "パネルディスカッション"
-    location: "FitFits with hacomonoトラック"
-    time: "16:10 - 17:10"
-    talkTitle: "フロントエンドの未来を語る"
-    talkDescription: "生成 AI の発表から数年が経ち、近年では「AI エージェント」を用いた開発スタイル（Vibe Coding）が注目されています。今後、AI の性能はさらに発展していくと予想されており、このパラダイムシフトは我々のフロントエンド開発にどのような影響を及ぼすのでしょうか。本パネルディスカッションでは、React、Vue.js、Svelte の著名な有識者である Dan Abramov、Evan You、dominikg を迎え、「生成 AI 時代におけるフロントエンドの未来」について多角的に議論していただきます。"
+    location: "TBD"
+    time: "TBD"
+    talkTitle: "TBD"
+    talkDescription: "TBD"
+  # TODO: 2026 年度の Vue Quiz 情報を確定する
   quiz:
     title: "Vue Quiz"
-    location: "サイバーエージェントトラック"
-    time: "17:20 - 17:50"
+    location: "TBD"
+    time: "TBD"
     image:
       alt1: "Vue Fes Japan 2024の縦型の垂れ幕とスクリーンが並んで表示されている会場の様子。"
       alt2: "マイクを持って話す kazupon。背後には Vue Fes のイベントロゴが投影されている。"
       alt3: "Vue Fes Japan 2024のセッション中、スクリーンを見ながら登壇者の発表を聞いている参加者たち。会場はノートパソコンを広げた人々で賑わっている。"
       alt4: "Vue Fes Japan 2024のセッション中、観客席から手を挙げて質問する参加者。前方にはスピーカーが座っている。"
+  # TODO: 2026 年度のハンズオン情報を確定する
   handsOn:
     title: "ハンズオン"
-    location: "サイバーエージェントトラック"
-    time: "12:50 - 14:50 / 15:10 - 17:10 "
+    location: "TBD"
+    time: "TBD"
     image:
       alt1: "Vue Fes Japan 2024の「Vue.js / Nuxt ハンズオン」セッションで、スライドを見ながら講義を受ける参加者たち。"
       alt2: "Vue Fes Japan 2024で登壇するAnthony。Vue Fes Japan のロゴ とスポンサーのロゴが並ぶバックパネルの前で、マイク越しに発表している。"
       alt3: "Vue Fes Japan 2024のハンズオンセッション中、スライドを見ながらノートパソコンで作業する参加者たち。講師は前方で説明を行っている。"
       alt4: "Vue Fes Japan 2024のハンズオンセッションで、右手にマイクを持ち、左手でスクリーンを指差しながら説明をするubugeeei。"
+  # TODO: 2026 年度の学生支援コンテンツ情報を確定する
   studentSupport:
     title: "学生支援コンテンツ"
-    location: "サイバーエージェントトラック"
-    time: "11:30 - 12:30"
+    location: "TBD"
+    time: "TBD"
   creativeWall:
     title: "クリエイティブウォール"
     location: "2F 受付前"
@@ -336,15 +345,18 @@ timetable:
   lunchTime: "ランチタイム"
   studentSupportProgram: "学生支援コンテンツ"
   studentSupportSponsorSession: "学生支援スポンサーセッション"
-  studentSupportProgramSessionTitle: "【学生支援コンテンツ】\nkazuponが見つけた才能たち ─ Vue.jsそしてOSSエコシステムを変える開発者発掘術"
+  # TODO: 2026 年度の学生支援プログラムセッションタイトルを確定する
+  studentSupportProgramSessionTitle: "TBD"
   break: "休憩"
   handsOnSponsorSession: "ハンズオンスポンサーセッション"
   beginnerHandsOn: "初級者向けハンズオン"
   intermediateHandsOn: "中級者向けハンズオン"
-  crossTalkTitle: "【パネルディスカッション】\nフロントエンドの未来を語る ─ React/Vue.js/Svelte が見据える次の 10 年"
+  # TODO: 2026 年度のパネルディスカッションタイトルを確定する
+  crossTalkTitle: "TBD"
   lightningTalk: "ライトニングトーク"
   transition: "転換"
-  afterParty: "アフターパーティー\nsupported by 転職ドラフト"
+  # TODO: 2026 年度のアフターパーティー情報を確定する
+  afterParty: "アフターパーティー"
   view: "タイムテーブルを見る"
   coverImageAlt: "Discover the Sessions!と書かれたタイムテーブルのカバー画像。"
 venueMap:

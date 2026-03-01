@@ -1,1 +1,2 @@
-Vue Fes Japan 2026 tickets will go on sale from 12:00 PM on Friday, August 1, 2026 (JST). General admission tickets are available in two options: with or without the after-party. We also offer optional hands-on workshop tickets and individual sponsor tickets.
+<!-- TODO: 2026 年度のチケット情報を追加する -->
+TBD

@@ -34,24 +34,27 @@ ticket:
   early: "Early Bird"
   standard: "Standard"
   priceUnit: "JPY"
+  # TODO: 2026 年度のチケット価格を確定する
   generalTicket:
     title: "General Ticket"
-    earlyPrice: "7000"
-    standardPrice: "8000"
+    earlyPrice: "TBD"
+    standardPrice: "TBD"
   afterPartyTicket:
     title: "General Admission + After-Party Ticket"
-    earlyPrice: "10000"
-    standardPrice: "11000"
+    earlyPrice: "TBD"
+    standardPrice: "TBD"
   option: "Options"
   handsOn:
     title: "Hands-on Workshop"
-    price: "0"
+    # TODO: 2026 年度のハンズオン価格を確定する
+    price: "TBD"
     attention1: "※ A general ticket is also required to participate in Vue Fes Japan."
     attention2: "※ Please see the {about} for details."
     about: "Hands-on Workshop section"
   individual:
     sponsor: "Individual Sponsor"
-    price: "10000"
+    # TODO: 2026 年度の個人スポンサー価格を確定する
+    price: "TBD"
     attention1: "※ A general ticket is also required to participate in Vue Fes Japan."
     attention2: "※ Please see the {about} for details."
     about: "Individual Sponsor section"
@@ -124,35 +127,39 @@ faq:
 
 event:
   title: "Event"
+  # TODO: 2026 年度のパネルディスカッション情報を確定する
   panel:
     title: "Panel Discussion"
     panelist: "Panelist"
-    location: "FitFits with hacomono Track"
-    time: "16:10 - 17:10"
-    talkTitle: "The Future of Frontend"
-    talkDescription: 'Several years have passed since the announcement of generative AI, and in recently, a development style "Vibe Coding" is using AI agent has been attracting attention. It''s expected the performance of AI will continue to improve in the future, but how will this paradigm shift affect our front-end development? In this panel discussion, we will welcome Dan Abramov, Evan You, and dominikg, all well-known experts in React, Vue.js, and Svelte, to discuss "the future of front-end in the era of generative AI" from various angles.'
+    location: "TBD"
+    time: "TBD"
+    talkTitle: "TBD"
+    talkDescription: "TBD"
+  # TODO: 2026 年度の Vue Quiz 情報を確定する
   quiz:
     title: "Vue Quiz"
-    location: "CyberAgent Track"
-    time: "17:20 - 17:50"
+    location: "TBD"
+    time: "TBD"
     image:
       alt1: "A vertical banner and screen displayed at the Vue Fes Japan 2024 venue."
       alt2: "Kazupon speaking while holding a microphone, with the Vue Fes event logo projected behind him."
       alt3: "During a session at Vue Fes Japan 2024, participants listen to a speaker's presentation while looking at the screen. The room is lively with people using their laptops."
       alt4: "During a session at Vue Fes Japan 2024, an attendee raises their hand to ask a question from the audience. The speakers are seated at the front of the room."
+  # TODO: 2026 年度のハンズオン情報を確定する
   handsOn:
     title: "Hands-on"
-    location: "CyberAgent Track"
-    time: "12:50 - 14:50 / 15:10 - 17:10 "
+    location: "TBD"
+    time: "TBD"
     image:
       alt1: "Participants attending the “Vue.js / Nuxt Hands-on” session at Vue Fes Japan 2024, following along with the lecture while viewing the presentation slides."
       alt2: "Anthony speaking at Vue Fes Japan 2024, delivering a presentation in front of a backdrop featuring the Vue Fes Japan logo and sponsor logos."
       alt3: "During a hands-on session at Vue Fes Japan 2024, participants work on their laptops while following the slides. The instructor is presenting at the front of the room."
       alt4: "Ubugeeei explaining during a hands-on session at Vue Fes Japan 2024, holding a microphone in his right hand and pointing to the screen with his left."
+  # TODO: 2026 年度の学生支援コンテンツ情報を確定する
   studentSupport:
     title: "Student Support Content"
-    location: "CyberAgent Track"
-    time: "11:30 - 12:30"
+    location: "TBD"
+    time: "TBD"
   creativeWall:
     title: "Creative Wall"
     location: "2F Reception Area"
@@ -337,15 +344,18 @@ timetable:
   lunchTime: "Lunch Time"
   studentSupportProgram: "Student Support Content"
   studentSupportSponsorSession: "Student Support Sponsor Session"
-  studentSupportProgramSessionTitle: "【Student Support Content】\nTalents discovered by kazupon ─ Developer discovery techniques that change Vue.js and the OSS ecosystem"
+  # TODO: 2026 年度の学生支援プログラムセッションタイトルを確定する
+  studentSupportProgramSessionTitle: "TBD"
   break: "Break"
   handsOnSponsorSession: "Hands-on Sponsor Session"
   beginnerHandsOn: "Beginner Hands-on"
   intermediateHandsOn: "Intermediate Hands-on"
-  crossTalkTitle: "【Panel Discussion】\nThe Future of Frontend: Visions from React, Vue.js, and Svelte for the Next Decade"
+  # TODO: 2026 年度のパネルディスカッションタイトルを確定する
+  crossTalkTitle: "TBD"
   lightningTalk: "Lightning Talk"
   transition: "Transition"
-  afterParty: "After Party\nsupported by Tenshoku-DRAFT"
+  # TODO: 2026 年度のアフターパーティー情報を確定する
+  afterParty: "After Party"
   view: "View Timetable"
   coverImageAlt: "A cover image for the timetable with the text 'Discover the Sessions!'"
 venueMap:

@@ -1,3 +1,2 @@
-## Join Vue Fes Japan!
-
-![Name badge image](/images/cta/ticket.png)
+<!-- TODO: 2026 年度のチケット CTA を追加する -->
+TBD

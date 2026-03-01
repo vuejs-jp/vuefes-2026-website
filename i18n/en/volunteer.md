@@ -1,1 +1,2 @@
-Volunteer staff recruitment has now closed. All applicants have been contacted via the Vue.js Japan User Group Slack or by email. If you have not received a message, please reach out through the contact form.
+<!-- TODO: 2026 年度のボランティア情報を追加する -->
+TBD
