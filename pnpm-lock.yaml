@@ -98,7 +98,7 @@ importers:
         version: 3.3.2
       nuxt:
         specifier: ^4.0.3
-        version: 4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2)
+        version: 4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2)
       nuxt-og-image:
         specifier: ^5.1.9
         version: 5.1.13(@unhead/vue@2.1.9(vue@3.6.0-beta.1(typescript@5.9.3)))(magicast@0.5.2)(unstorage@1.17.4(@netlify/blobs@10.7.0)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(ioredis@5.10.0))(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.6.0-beta.1(typescript@5.9.3))
@@ -116,10 +116,10 @@ importers:
         version: 0.32.0
       oxlint:
         specifier: ^1.41.0
-        version: 1.50.0(oxlint-tsgolint@0.11.5)
+        version: 1.50.0(oxlint-tsgolint@0.15.0)
       oxlint-tsgolint:
-        specifier: ^0.11.1
-        version: 0.11.5
+        specifier: ^0.15.0
+        version: 0.15.0
       rehype-external-links:
         specifier: ^3.0.0
         version: 3.0.0
@@ -3041,33 +3041,33 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@oxlint-tsgolint/darwin-arm64@0.11.5':
-    resolution: {integrity: sha512-mzsjJVIUgcGJovBXME63VW2Uau7MS/xCe7xdYj2BplSCuRb5Yoy7WuwCIlbD5ISHjnS6rx26oD2kmzHLRV5Wfw==}
+  '@oxlint-tsgolint/darwin-arm64@0.15.0':
+    resolution: {integrity: sha512-d7Ch+A6hic+RYrm32+Gh1o4lOrQqnFsHi721ORdHUDBiQPea+dssKUEMwIbA6MKmCy6TVJ02sQyi24OEfCiGzw==}
     cpu: [arm64]
     os: [darwin]
 
-  '@oxlint-tsgolint/darwin-x64@0.11.5':
-    resolution: {integrity: sha512-zItUS0qLzSzVy0ZQHc4MOphA9lVeP5jffsgZFLCdo+JqmkbVZ14aDtiVUHSHi2hia+qatbb109CHQ9YIl0x7+A==}
+  '@oxlint-tsgolint/darwin-x64@0.15.0':
+    resolution: {integrity: sha512-Aoai2wAkaUJqp/uEs1gml6TbaPW4YmyO5Ai/vOSkiizgHqVctjhjKqmRiWTX2xuPY94VkwOLqp+Qr3y/0qSpWQ==}
     cpu: [x64]
     os: [darwin]
 
-  '@oxlint-tsgolint/linux-arm64@0.11.5':
-    resolution: {integrity: sha512-R0r/3QTdMtIjfUOM1oxIaCV0s+j7xrnUe4CXo10ZbBzlXfMesWYNcf/oCrhsy87w0kCPFsg58nAdKaIR8xylFg==}
+  '@oxlint-tsgolint/linux-arm64@0.15.0':
+    resolution: {integrity: sha512-4og13a7ec4Vku5t2Y7s3zx6YJP6IKadb1uA9fOoRH6lm/wHWoCnxjcfJmKHXRZJII81WmbdJMSPxaBfwN/S68Q==}
     cpu: [arm64]
     os: [linux]
 
-  '@oxlint-tsgolint/linux-x64@0.11.5':
-    resolution: {integrity: sha512-g23J3T29EHWUQYC6aTwLnhwcFtjQh+VfxyGuFjYGGTLhESdlQH9E/pwsN8K9HaAiYWjI51m3r3BqQjXxEW8Jjg==}
+  '@oxlint-tsgolint/linux-x64@0.15.0':
+    resolution: {integrity: sha512-9b9xzh/1Harn3a+XiKTK/8LrWw3VcqLfYp/vhV5/zAVR2Mt0d63WSp4FL+wG7DKnI2T/CbMFUFHwc7kCQjDMzQ==}
     cpu: [x64]
     os: [linux]
 
-  '@oxlint-tsgolint/win32-arm64@0.11.5':
-    resolution: {integrity: sha512-MJNT/MPUIZKQCRtCX5s6pCnoe7If/i3RjJzFMe4kSLomRsHrNFYOJBwt4+w/Hqfyg9jNOgR8tbgdx6ofjHaPMQ==}
+  '@oxlint-tsgolint/win32-arm64@0.15.0':
+    resolution: {integrity: sha512-nNac5hewHdkk5mowOwTqB1ZD76zB/FsUiyUvdCyupq5cG54XyKqSLEp9QGbx7wFJkWCkeWmuwRed4sfpAlKaeA==}
     cpu: [arm64]
     os: [win32]
 
-  '@oxlint-tsgolint/win32-x64@0.11.5':
-    resolution: {integrity: sha512-IQmj4EkcZOBlLnj1CdxKFrWT7NAWXZ9ypZ874X/w7S5gRzB2sO4KmE6Z0MWxx05pL9AQF+CWVRjZrKVIYWTzPg==}
+  '@oxlint-tsgolint/win32-x64@0.15.0':
+    resolution: {integrity: sha512-ioAY2XLpy83E2EqOLH9p1cEgj0G2qB1lmAn0a3yFV1jHQB29LIPIKGNsu/tYCClpwmHN79pT5KZAHZOgWxxqNg==}
     cpu: [x64]
     os: [win32]
 
@@ -8137,8 +8137,8 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
-  oxlint-tsgolint@0.11.5:
-    resolution: {integrity: sha512-4uVv43EhkeMvlxDU1GUsR5P5c0q74rB/pQRhjGsTOnMIrDbg3TABTntRyeAkmXItqVEJTcDRv9+Yk+LFXkHKlg==}
+  oxlint-tsgolint@0.15.0:
+    resolution: {integrity: sha512-iwvFmhKQVZzVTFygUVI4t2S/VKEm+Mqkw3jQRJwfDuTcUYI5LCIYzdO5Dbuv4mFOkXZCcXaRRh0m+uydB5xdqw==}
     hasBin: true
 
   oxlint@1.50.0:
@@ -12912,7 +12912,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/nitro-server@4.3.1(@netlify/blobs@10.7.0)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(ioredis@5.10.0)(magicast@0.5.2)(nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2))(rolldown@1.0.0-rc.1)(typescript@5.9.3)':
+  '@nuxt/nitro-server@4.3.1(@netlify/blobs@10.7.0)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(ioredis@5.10.0)(magicast@0.5.2)(nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2))(rolldown@1.0.0-rc.1)(typescript@5.9.3)':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
@@ -12930,7 +12930,7 @@ snapshots:
       klona: 2.0.6
       mocked-exports: 0.1.1
       nitropack: 2.13.1(@netlify/blobs@10.7.0)(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(rolldown@1.0.0-rc.1)
-      nuxt: 4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2)
+      nuxt: 4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2)
       ohash: 2.0.11
       pathe: 2.0.3
       pkg-types: 2.3.0
@@ -13037,7 +13037,7 @@ snapshots:
       rc9: 3.0.0
       std-env: 3.10.0
 
-  '@nuxt/vite-builder@4.3.1(@types/node@25.3.2)(eslint@10.0.2(jiti@2.6.1))(magicast@0.5.2)(nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2))(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(yaml@2.8.2)':
+  '@nuxt/vite-builder@4.3.1(@types/node@25.3.2)(eslint@10.0.2(jiti@2.6.1))(magicast@0.5.2)(nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2))(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(yaml@2.8.2)':
     dependencies:
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
       '@rollup/plugin-replace': 6.0.3(rollup@4.59.0)
@@ -13056,7 +13056,7 @@ snapshots:
       magic-string: 0.30.21
       mlly: 1.8.0
       mocked-exports: 0.1.1
-      nuxt: 4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2)
+      nuxt: 4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2)
       pathe: 2.0.3
       pkg-types: 2.3.0
       postcss: 8.5.6
@@ -13067,7 +13067,7 @@ snapshots:
       unenv: 2.0.0-rc.24
       vite: 8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2)
       vite-node: 5.3.0(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-checker: 0.12.0(eslint@10.0.2(jiti@2.6.1))(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))
+      vite-plugin-checker: 0.12.0(eslint@10.0.2(jiti@2.6.1))(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))
       vue: 3.6.0-beta.1(typescript@5.9.3)
       vue-bundle-renderer: 2.2.0
     optionalDependencies:
@@ -13639,22 +13639,22 @@ snapshots:
   '@oxfmt/binding-win32-x64-msvc@0.32.0':
     optional: true
 
-  '@oxlint-tsgolint/darwin-arm64@0.11.5':
+  '@oxlint-tsgolint/darwin-arm64@0.15.0':
     optional: true
 
-  '@oxlint-tsgolint/darwin-x64@0.11.5':
+  '@oxlint-tsgolint/darwin-x64@0.15.0':
     optional: true
 
-  '@oxlint-tsgolint/linux-arm64@0.11.5':
+  '@oxlint-tsgolint/linux-arm64@0.15.0':
     optional: true
 
-  '@oxlint-tsgolint/linux-x64@0.11.5':
+  '@oxlint-tsgolint/linux-x64@0.15.0':
     optional: true
 
-  '@oxlint-tsgolint/win32-arm64@0.11.5':
+  '@oxlint-tsgolint/win32-arm64@0.15.0':
     optional: true
 
-  '@oxlint-tsgolint/win32-x64@0.11.5':
+  '@oxlint-tsgolint/win32-x64@0.15.0':
     optional: true
 
   '@oxlint/binding-android-arm-eabi@1.50.0':
@@ -19380,16 +19380,16 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2):
+  nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2):
     dependencies:
       '@dxup/nuxt': 0.3.2(magicast@0.5.2)
       '@nuxt/cli': 3.33.1(@nuxt/schema@4.3.1)(cac@6.7.14)(magicast@0.5.2)
       '@nuxt/devtools': 3.2.2(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.6.0-beta.1(typescript@5.9.3))
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
-      '@nuxt/nitro-server': 4.3.1(@netlify/blobs@10.7.0)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(ioredis@5.10.0)(magicast@0.5.2)(nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2))(rolldown@1.0.0-rc.1)(typescript@5.9.3)
+      '@nuxt/nitro-server': 4.3.1(@netlify/blobs@10.7.0)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(ioredis@5.10.0)(magicast@0.5.2)(nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2))(rolldown@1.0.0-rc.1)(typescript@5.9.3)
       '@nuxt/schema': 4.3.1
       '@nuxt/telemetry': 2.7.0(@nuxt/kit@4.3.1(magicast@0.5.2))
-      '@nuxt/vite-builder': 4.3.1(@types/node@25.3.2)(eslint@10.0.2(jiti@2.6.1))(magicast@0.5.2)(nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2))(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(yaml@2.8.2)
+      '@nuxt/vite-builder': 4.3.1(@types/node@25.3.2)(eslint@10.0.2(jiti@2.6.1))(magicast@0.5.2)(nuxt@4.3.1(@netlify/blobs@10.7.0)(@parcel/watcher@2.5.6)(@types/node@25.3.2)(@vue/compiler-sfc@3.6.0-beta.1)(cac@6.7.14)(db0@0.3.4(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0)))(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(eslint@10.0.2(jiti@2.6.1))(ioredis@5.10.0)(magicast@0.5.2)(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2))(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(rolldown@1.0.0-rc.1)(rollup@4.59.0)(terser@5.46.0)(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(yaml@2.8.2)
       '@unhead/vue': 2.1.9(vue@3.6.0-beta.1(typescript@5.9.3))
       '@vue/shared': 3.5.29
       c12: 3.3.3(magicast@0.5.2)
@@ -19776,16 +19776,16 @@ snapshots:
       '@oxfmt/binding-win32-ia32-msvc': 0.32.0
       '@oxfmt/binding-win32-x64-msvc': 0.32.0
 
-  oxlint-tsgolint@0.11.5:
+  oxlint-tsgolint@0.15.0:
     optionalDependencies:
-      '@oxlint-tsgolint/darwin-arm64': 0.11.5
-      '@oxlint-tsgolint/darwin-x64': 0.11.5
-      '@oxlint-tsgolint/linux-arm64': 0.11.5
-      '@oxlint-tsgolint/linux-x64': 0.11.5
-      '@oxlint-tsgolint/win32-arm64': 0.11.5
-      '@oxlint-tsgolint/win32-x64': 0.11.5
+      '@oxlint-tsgolint/darwin-arm64': 0.15.0
+      '@oxlint-tsgolint/darwin-x64': 0.15.0
+      '@oxlint-tsgolint/linux-arm64': 0.15.0
+      '@oxlint-tsgolint/linux-x64': 0.15.0
+      '@oxlint-tsgolint/win32-arm64': 0.15.0
+      '@oxlint-tsgolint/win32-x64': 0.15.0
 
-  oxlint@1.50.0(oxlint-tsgolint@0.11.5):
+  oxlint@1.50.0(oxlint-tsgolint@0.15.0):
     optionalDependencies:
       '@oxlint/binding-android-arm-eabi': 1.50.0
       '@oxlint/binding-android-arm64': 1.50.0
@@ -19806,7 +19806,7 @@ snapshots:
       '@oxlint/binding-win32-arm64-msvc': 1.50.0
       '@oxlint/binding-win32-ia32-msvc': 1.50.0
       '@oxlint/binding-win32-x64-msvc': 1.50.0
-      oxlint-tsgolint: 0.11.5
+      oxlint-tsgolint: 0.15.0
 
   p-cancelable@3.0.0: {}
 
@@ -21993,7 +21993,7 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-checker@0.12.0(eslint@10.0.2(jiti@2.6.1))(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.11.5))(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3)):
+  vite-plugin-checker@0.12.0(eslint@10.0.2(jiti@2.6.1))(optionator@0.9.4)(oxlint@1.50.0(oxlint-tsgolint@0.15.0))(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3)):
     dependencies:
       '@babel/code-frame': 7.29.0
       chokidar: 4.0.3
@@ -22007,7 +22007,7 @@ snapshots:
     optionalDependencies:
       eslint: 10.0.2(jiti@2.6.1)
       optionator: 0.9.4
-      oxlint: 1.50.0(oxlint-tsgolint@0.11.5)
+      oxlint: 1.50.0(oxlint-tsgolint@0.15.0)
       typescript: 5.9.3
       vue-tsc: 2.2.12(typescript@5.9.3)
 
