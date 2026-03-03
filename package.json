@@ -56,7 +56,7 @@
     "nuxt": "^4.0.3",
     "nuxt-og-image": "^5.1.9",
     "nuxt-typed-router": "3.8.0",
-    "openapi-fetch": "^0.14.0",
+    "openapi-fetch": "^0.17.0",
     "openapi-typescript": "^7.8.0",
     "oxfmt": "^0.32.0",
     "oxlint": "^1.41.0",
