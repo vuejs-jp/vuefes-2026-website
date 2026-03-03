@@ -33,7 +33,7 @@
     "@nuxtjs/i18n": "9.4.0",
     "@nuxtjs/seo": "^3.0.1",
     "@regle/core": "^1.18.3",
-    "@regle/rules": "^1.18.3",
+    "@regle/rules": "^1.19.16",
     "@regle/schemas": "^1.18.3",
     "@sidebase/nuxt-auth": "1.0.0",
     "@types/three": "^0.183.1",
