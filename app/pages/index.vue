@@ -105,9 +105,6 @@ useSeoMeta({ title: "" });
 <template>
   <div id="pages-index">
     <div class="section-container">
-      <!-- 初回リリース時は一番上に -->
-      <SectionMessage />
-
       <!-- フォト（イベント後に表示） -->
       <SectionPhoto v-if="SectionPhoto" />
 
@@ -141,7 +138,10 @@ useSeoMeta({ title: "" });
       <!-- ストア -->
       <SectionGrabYourGear v-if="SectionGrabYourGear" />
 
-      <SectionAccess />
+      <!-- ゲストスピーカー公開のタイミングで順番を入れ替え -->
+      <SectionAccess v-if="SectionSpeakers" />
+      <SectionMessage />
+      <SectionAccess v-if="!SectionSpeakers" />
 
       <!-- スポンサー一覧 -->
       <SectionSponsors v-if="SectionSponsors" />
