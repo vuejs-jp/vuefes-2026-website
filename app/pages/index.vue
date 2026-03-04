@@ -25,10 +25,22 @@ const SectionPhoto = import.meta.vfFeatures.photoSection
   ? defineAsyncComponent(() => import("./_components/SectionPhoto.vue"))
   : null;
 
-// スポンサー募集セクション
-const SectionSponsorWanted =
-  import.meta.vfFeatures.sponsorWanted && !import.meta.vfFeatures.sponsorClosed
-    ? defineAsyncComponent(() => import("./_components/SectionSponsorWanted.vue"))
+// スポンサー資料セクション
+const SectionSponsorDocument =
+  import.meta.vfFeatures.sponsorDocument && !import.meta.vfFeatures.sponsorClosed
+    ? defineAsyncComponent(() => import("./_components/SectionSponsorDocument.vue"))
+    : null;
+const SponsorBeforeWanted =
+  import.meta.vfFeatures.sponsorDocument &&
+  !import.meta.vfFeatures.sponsorWanted &&
+  !import.meta.vfFeatures.sponsorClosed
+    ? defineAsyncComponent(() => import("./_components/SponsorBeforeWanted.vue"))
+    : null;
+const SponsorWanted =
+  import.meta.vfFeatures.sponsorDocument &&
+  import.meta.vfFeatures.sponsorWanted &&
+  !import.meta.vfFeatures.sponsorClosed
+    ? defineAsyncComponent(() => import("./_components/SponsorWanted.vue"))
     : null;
 
 // スポンサー募集終了セクション
@@ -109,7 +121,10 @@ useSeoMeta({ title: "" });
       <SectionPhoto v-if="SectionPhoto" />
 
       <!-- スポンサー募集 -->
-      <SectionSponsorWanted v-if="SectionSponsorWanted" />
+      <SectionSponsorDocument v-if="SectionSponsorDocument">
+        <SponsorBeforeWanted v-if="SponsorBeforeWanted" />
+        <SponsorWanted v-if="SponsorWanted" />
+      </SectionSponsorDocument>
       <SectionSponsorClosed v-if="SectionSponsorClosed" />
 
       <!-- CFP -->

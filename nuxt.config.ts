@@ -12,7 +12,7 @@ const featureFlags = {
 
   // --- 4月初: 初回ティザー公開 ---
   // スポンサー資料も公開（募集フォームは非公開、募集開始日時を記載して温める）
-  sponsorDocument: false, // スポンサー資料のみ表示（募集フォームなし）
+  sponsorDocument: true, // スポンサー資料のみ表示（募集フォームなし）
 
   // --- 4月中〜末: スポンサー募集開始 ---
   sponsorWanted: false, // スポンサー募集セクション表示

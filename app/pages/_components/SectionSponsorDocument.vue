@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { HOME_HEADING_ID } from "~/constant";
 import { useBreakpoint, useI18n, useWithBase } from "#imports";
-import { VFSection, JaSponsorWanted, EnSponsorWanted } from "#components";
+import { VFSection, JaSponsorDocument, EnSponsorDocument } from "#components";
 
 const bp = useBreakpoint();
 const withBase = useWithBase();
@@ -20,6 +20,7 @@ const { locale, t } = useI18n();
       alt: t('sponsorWantedCoverImageAlt'),
     }"
   >
-    <component :is="locale === 'ja' ? JaSponsorWanted : EnSponsorWanted" />
+    <component :is="locale === 'ja' ? JaSponsorDocument : EnSponsorDocument" />
+    <slot />
   </VFSection>
 </template>
