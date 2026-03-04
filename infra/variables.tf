@@ -27,7 +27,7 @@ variable "ga_id" {
 variable "contact_form_endpoint" {
   description = "Contact form endpoint URL"
   type        = string
-  default     = "https://vuejs-jp.form.newt.so/v1/UR5LmScZc"
+  default     = "https://ssgform.com/s/ATe50Qadv1hZ"
 }
 
 variable "site_url" {

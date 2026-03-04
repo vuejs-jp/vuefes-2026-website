@@ -7,7 +7,7 @@ netlify_site_id   = "your-netlify-site-id" # For import
 
 # Application
 ga_id                 = "G-H7VEJHSZH4"
-contact_form_endpoint = "https://vuejs-jp.form.newt.so/v1/UR5LmScZc"
+contact_form_endpoint = "https://ssgform.com/s/ATe50Qadv1hZ"
 site_url              = "https://vuefes.jp/"
 site_base_path        = "/2026/"
 

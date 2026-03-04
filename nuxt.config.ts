@@ -155,8 +155,7 @@ export default defineNuxtConfig({
 
     public: {
       contactFormEndpoint:
-        process.env.NUXT_PUBLIC_CONTACT_FORM_ENDPOINT ||
-        "https://vuejs-jp.form.newt.so/v1/UR5LmScZc",
+        process.env.NUXT_PUBLIC_CONTACT_FORM_ENDPOINT || "https://ssgform.com/s/ATe50Qadv1hZ",
       siteUrl:
         process.env.NODE_ENV === "production"
           ? process.env.CONTEXT === "production"
