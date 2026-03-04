@@ -34,7 +34,7 @@
     "@nuxtjs/seo": "^3.0.1",
     "@regle/core": "^1.18.3",
     "@regle/rules": "^1.19.16",
-    "@regle/schemas": "^1.18.3",
+    "@regle/schemas": "^1.19.16",
     "@sidebase/nuxt-auth": "1.0.0",
     "@types/three": "^0.183.1",
     "@unhead/vue": "^2.0.5",

@@ -40,8 +40,8 @@ importers:
         specifier: ^1.19.16
         version: 1.19.16(vue@3.6.0-beta.1(typescript@5.9.3))
       '@regle/schemas':
-        specifier: ^1.18.3
-        version: 1.19.15(valibot@1.2.0(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(zod@3.25.76)
+        specifier: ^1.19.16
+        version: 1.19.16(valibot@1.2.0(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(zod@3.25.76)
       '@sidebase/nuxt-auth':
         specifier: 1.0.0
         version: 1.0.0(@netlify/blobs@10.7.0)(drizzle-orm@0.45.1(@opentelemetry/api@1.8.0))(magicast@0.5.2)(next-auth@4.21.1(next@13.5.11(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rolldown@1.0.0-rc.1)
@@ -3356,14 +3356,11 @@ packages:
       pinia:
         optional: true
 
-  '@regle/rules@1.19.15':
-    resolution: {integrity: sha512-qEWUhLbC3jwSg6MWD9c7qG7C30p3D4AHJvNyZ7DjLz4cmXvhe2goAiyDBeDDF78p7bVdEF7mTa3/pktbdoFtOQ==}
-
   '@regle/rules@1.19.16':
     resolution: {integrity: sha512-epoxNvJAD92rC3USWQJ7mjALg1ozE0olxvRUfTmS9Il3Kq4l4rHH96LOPukCAEXuB7PFEhJiat28XX2nk6xQnA==}
 
-  '@regle/schemas@1.19.15':
-    resolution: {integrity: sha512-3/kGBmxpAVm50afubK2TV/c0ErGQMWDXznfeL6je4zHpJyNr3LEvU/DEV3/P7EHJxutvnoX1XqNI8gZDpMXWQQ==}
+  '@regle/schemas@1.19.16':
+    resolution: {integrity: sha512-6Wdv5dLEwAFgA4QZdy6e/4n41WR1sQ5NqLNYNnUxOeFti3aHLp9dJNBHSedahPFD05GaeIQg6BwLM7in0PiNeg==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -13864,14 +13861,6 @@ snapshots:
       type-fest: 5.4.4
       vue: 3.6.0-beta.1(typescript@5.9.3)
 
-  '@regle/rules@1.19.15(vue@3.6.0-beta.1(typescript@5.9.3))':
-    dependencies:
-      '@regle/core': 1.19.15(vue@3.6.0-beta.1(typescript@5.9.3))
-      type-fest: 5.4.4
-    transitivePeerDependencies:
-      - pinia
-      - vue
-
   '@regle/rules@1.19.16(vue@3.6.0-beta.1(typescript@5.9.3))':
     dependencies:
       '@regle/core': 1.19.16(vue@3.6.0-beta.1(typescript@5.9.3))
@@ -13880,10 +13869,10 @@ snapshots:
       - pinia
       - vue
 
-  '@regle/schemas@1.19.15(valibot@1.2.0(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(zod@3.25.76)':
+  '@regle/schemas@1.19.16(valibot@1.2.0(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(zod@3.25.76)':
     dependencies:
-      '@regle/core': 1.19.15(vue@3.6.0-beta.1(typescript@5.9.3))
-      '@regle/rules': 1.19.15(vue@3.6.0-beta.1(typescript@5.9.3))
+      '@regle/core': 1.19.16(vue@3.6.0-beta.1(typescript@5.9.3))
+      '@regle/rules': 1.19.16(vue@3.6.0-beta.1(typescript@5.9.3))
       '@standard-schema/spec': 1.1.0
       type-fest: 5.4.4
     optionalDependencies:
