@@ -9,6 +9,9 @@ jobs:
   deploy:
     name: Deploy Preview to Netlify
     runs-on: ubuntu-latest
+    environment:
+      name: dev
+      url: https://main--vuefes-2026.netlify.app/2026/
     timeout-minutes: 10
     steps:
       - name: Checkout
