@@ -170,7 +170,7 @@ watch(
     <div v-if="isRoot" style="height: 100svh" />
     <div class="layout">
       <div class="side-content left-menu">
-        <div v-if="!isShowedSpMenu" class="nav-menu">
+        <div v-if="!isShowedSpMenu && menuItems.length > 1" class="nav-menu">
           <VFMenu :items="menuItems" />
         </div>
       </div>
