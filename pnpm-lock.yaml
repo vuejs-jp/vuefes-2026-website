@@ -37,8 +37,8 @@ importers:
         specifier: ^1.18.3
         version: 1.19.15(vue@3.6.0-beta.1(typescript@5.9.3))
       '@regle/rules':
-        specifier: ^1.19.16
-        version: 1.19.16(vue@3.6.0-beta.1(typescript@5.9.3))
+        specifier: ^1.20.1
+        version: 1.20.1(vue@3.6.0-beta.1(typescript@5.9.3))
       '@regle/schemas':
         specifier: ^1.19.16
         version: 1.19.16(valibot@1.2.0(typescript@5.9.3))(vue@3.6.0-beta.1(typescript@5.9.3))(zod@3.25.76)
@@ -3356,8 +3356,20 @@ packages:
       pinia:
         optional: true
 
+  '@regle/core@1.20.1':
+    resolution: {integrity: sha512-BdybQ3mnEH76NvyAnt82Nexw/9an3bX+J16aUhVbkF0Ykuw+BhOmgRpo0dLJo43c4eTTZLz745d7NBoDH32ybg==}
+    peerDependencies:
+      pinia: '>=2.2.5'
+      vue: 3.6.0-beta.1
+    peerDependenciesMeta:
+      pinia:
+        optional: true
+
   '@regle/rules@1.19.16':
     resolution: {integrity: sha512-epoxNvJAD92rC3USWQJ7mjALg1ozE0olxvRUfTmS9Il3Kq4l4rHH96LOPukCAEXuB7PFEhJiat28XX2nk6xQnA==}
+
+  '@regle/rules@1.20.1':
+    resolution: {integrity: sha512-2Pn/2dbpMjgYxT+SOOQTapnWgwy0R1xFWCcaI9DS7IzgwwLh5COVViZhBxucQOrmAYCUAry9MEdcpfDEOIby8w==}
 
   '@regle/schemas@1.19.16':
     resolution: {integrity: sha512-6Wdv5dLEwAFgA4QZdy6e/4n41WR1sQ5NqLNYNnUxOeFti3aHLp9dJNBHSedahPFD05GaeIQg6BwLM7in0PiNeg==}
@@ -13861,9 +13873,24 @@ snapshots:
       type-fest: 5.4.4
       vue: 3.6.0-beta.1(typescript@5.9.3)
 
+  '@regle/core@1.20.1(vue@3.6.0-beta.1(typescript@5.9.3))':
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+      '@vue/devtools-api': 7.7.9
+      type-fest: 5.4.4
+      vue: 3.6.0-beta.1(typescript@5.9.3)
+
   '@regle/rules@1.19.16(vue@3.6.0-beta.1(typescript@5.9.3))':
     dependencies:
       '@regle/core': 1.19.16(vue@3.6.0-beta.1(typescript@5.9.3))
+      type-fest: 5.4.4
+    transitivePeerDependencies:
+      - pinia
+      - vue
+
+  '@regle/rules@1.20.1(vue@3.6.0-beta.1(typescript@5.9.3))':
+    dependencies:
+      '@regle/core': 1.20.1(vue@3.6.0-beta.1(typescript@5.9.3))
       type-fest: 5.4.4
     transitivePeerDependencies:
       - pinia
