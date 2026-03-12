@@ -60,7 +60,7 @@
     "openapi-typescript": "^7.8.0",
     "oxfmt": "^0.32.0",
     "oxlint": "^1.41.0",
-    "oxlint-tsgolint": "^0.15.0",
+    "oxlint-tsgolint": "^0.16.0",
     "rehype-external-links": "^3.0.0",
     "rehype-stringify": "^10.0.1",
     "remark-mdc": "^3.5.3",
