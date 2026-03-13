@@ -30,20 +30,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
-          node-version: 22
-          cache: pnpm
+          version: "0.1.11"
+          node-version: "24.14.0"
+          cache: true
+          run-install: false
 
       - name: Install deps
-        run: pnpm install
+        run: vp install --frozen-lockfile
 
       - name: Build
-        run: pnpm run build
+        run: vp run build
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"
           CONTEXT: production
@@ -64,7 +63,7 @@ jobs:
           PEATIX_EVENT_ID: ${{ vars.PEATIX_EVENT_ID }}
 
       - name: Deploy to Netlify (Production)
-        run: pnpm netlify deploy --no-build --prod --dir=.output/public
+        run: vp run deploy:release
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

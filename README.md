@@ -2,19 +2,36 @@
 
 ## Requirement
 
-- [Bun](https://bun.sh/)
+- Node.js 24.14.0
+- [Vite+](https://vite.plus/) (`vp`)
 
 ## Setup
 
 ```sh
 # clone via ssh
 git clone git@github.com:vuejs-jp/vuefes-2026.git
+cd vuefes-2026
+
+# install Vite+ globally
+curl -fsSL https://vite.plus | bash
 
 # install dependencies
-pnpm install
+vp install
 
 # launch application dev server
-pnpm run dev
+vp run dev
+```
+
+This repo uses Vite+ for dependency management and task orchestration, while the app itself still runs through Nuxt and Nuxi commands wrapped as Vite Tasks. Use `vp run <task>` for commands such as `dev`, `build`, `preview`, `check`, and `deploy`.
+
+## Checks
+
+```sh
+# format, lint, textlint, spell, and typecheck
+vp run check
+
+# apply fixes, then re-run spell and typecheck
+vp run fix
 ```
 
 ## Database Migration
@@ -25,10 +42,10 @@ Requires the following environment variables: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLA
 
 ```sh
 # Generate migration files from schema changes
-pnpm run db:generate
+vp run db:generate
 
 # Apply migrations to D1
-pnpm run db:migrate
+vp run db:migrate
 ```
 
 ## Feature Flags Module

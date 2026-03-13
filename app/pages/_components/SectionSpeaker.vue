@@ -56,6 +56,8 @@ const speakers = computed<CarouselSpeaker[]>(() => {
 
   return _speakers;
 });
+
+const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { index, total });
 </script>
 
 <template>
@@ -71,7 +73,7 @@ const speakers = computed<CarouselSpeaker[]>(() => {
         :items="speakers"
         :loop="true"
         :label="t('speakers.title')"
-        :slide-label="(index, total) => t('speakers.slideLabel', { index, total })"
+        :slide-label="slideLabel"
         :prev-label="t('speakers.previous')"
         :next-label="t('speakers.next')"
       >

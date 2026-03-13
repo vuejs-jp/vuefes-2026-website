@@ -317,6 +317,19 @@ words:
   - slidesinview
   - reinit
   - regle
+  - lockfiles
+  - voidzero
+  - Vite
+  - softprops
+  - cloudflarestorage
+  - dearu
+  - desumasu
+  - dbaeumer
+  - esbenp
+  - Lokalise
+  - gruntfuggly
+  - keystyle
+  - terraformrc
 ignorePaths:
   - dist
   - node_modules
