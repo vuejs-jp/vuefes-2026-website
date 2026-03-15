@@ -2,12 +2,12 @@ back: "戻る"
 copyLink: "リンクをコピー"
 clipboard:
   copySuccess: "クリップボードにコピーしました"
-siteName: "Vue Fes Japan 2026 公式サイト"
+siteName: "Vue Fes Japan 2026公式サイト"
 
 nuxtSiteConfig:
   name: "Vue Fes Japan 2026"
   description: >
-    2026年10月25日（土）に開催される日本最大級の Vue.jsカンファレンスです。国内外の著名スピーカーによるセッションの他、LT、ハンズオン、グッズ販売などのイベントも企画しています。ぜひ一緒にVue.jsを楽しみ、盛り上げていきましょう！
+    2026年10月25日（土）に開催される日本最大級のVue.jsカンファレンスです。国内外の著名スピーカーによるセッションの他、LT、ハンズオン、グッズ販売などのイベントも企画しています。ぜひ一緒にVue.jsを楽しみ、盛り上げていきましょう！
 mainVisual:
   imageAlt: >
     Vue Fes Japan 2026のメインビジュアル。VueをイメージしたVのシルエットと、日の丸をイメージした丸のシルエットが横に並んでいる。色は深い抹茶のような色をしており、丸のシルエットには金色の墨流し模様が描かれている。
@@ -15,14 +15,14 @@ mainVisual:
     Vue Fes Japan 2026のメインビジュアルアニメーション。VueをイメージしたVのシルエットと、日本の日の丸をイメージした丸のシルエットが横に並んでおり、丸のシルエットには金色の墨流し模様が描かれている。墨が流れるアニメーションとともに一定時間で色が変化している。
 logo:
   alt: >
-    Vue Fes Japan 2026 ロゴ。VueをイメージしたVのシルエットと、日本の日の丸をイメージした丸のシルエットが横に並んでいる。色はVue.jsのロゴに使われている2色の色から作られた深い抹茶のような色。
-  shortAlt: Vue Fes Japan 2026 ロゴ
+    Vue Fes Japan 2026ロゴ。VueをイメージしたVのシルエットと、日本の日の丸をイメージした丸のシルエットが横に並んでいる。色はVue.jsのロゴに使われている2色の色から作られた深い抹茶のような色。
+  shortAlt: Vue Fes Japan 2026ロゴ
 animation:
   play: "アニメーションを再生"
   pause: "アニメーションを停止"
 
 message: "メッセージ"
-messageCoverImageAlt: Vue Fes Japan 2026 ロゴ
+messageCoverImageAlt: Vue Fes Japan 2026ロゴ
 
 ticket:
   title: "チケット"
@@ -30,11 +30,11 @@ ticket:
   coverImageAlt: "チケット販売"
   viewTicketDetails: "チケットの詳細を見る"
   type: "チケット種別"
-  typeDescription1: "一般チケットはアフターパーティーあり/なしの 2 種類があります。オプションとしてハンズオン、個人スポンサーのチケットもご用意しております。"
+  typeDescription1: "一般チケットはアフターパーティーあり/なしの2種類があります。オプションとしてハンズオン、個人スポンサーのチケットもご用意しております。"
   early: "早割"
   standard: "通常"
   priceUnit: "￥"
-  # TODO: 2026 年度のチケット価格を確定する
+  # TODO: 2026年度のチケット価格を確定する
   generalTicket:
     title: "一般チケット"
     earlyPrice: "TBD"
@@ -46,16 +46,16 @@ ticket:
   option: オプション
   handsOn:
     title: "ハンズオン"
-    # TODO: 2026 年度のハンズオン価格を確定する
+    # TODO: 2026年度のハンズオン価格を確定する
     price: "TBD"
-    attention1: "※ Vue Fes Japan へのご参加には、一般チケットも必要となります。"
+    attention1: "※ Vue Fes Japanへのご参加には、一般チケットも必要となります。"
     attention2: "※ 詳しくは{about}をご覧ください。"
     about: "ハンズオンについて"
   individual:
     sponsor: "個人スポンサー"
-    # TODO: 2026 年度の個人スポンサー価格を確定する
+    # TODO: 2026年度の個人スポンサー価格を確定する
     price: "TBD"
-    attention1: "※ Vue Fes Japan へのご参加には、一般チケットも必要となります。"
+    attention1: "※ Vue Fes Japanへのご参加には、一般チケットも必要となります。"
     attention2: "※ 詳しくは{about}をご覧ください。"
     about: "個人スポンサーについて"
   soldOut: "SOLD OUT"
@@ -64,9 +64,9 @@ ticket:
 nameBadge:
   title: "ネームカード"
   description: "{ticketName}をご購入後、必要な情報をご登録いただくと、当日会場にてご自身のアバター＋名前入りのネームカードがもらえます！（要ソーシャルログイン）"
-  # TODO: 2026 年度のチケット情報を確定する
+  # TODO: 2026年度のチケット情報を確定する
   ticketName: "TBD"
-  # TODO: 2026 年度のネームカード編集期限を確定する
+  # TODO: 2026年度のネームカード編集期限を確定する
   deadlineDescription: "TBD"
   correction: ""
   attention: "※ネームカード作成は必須ではありません。"
@@ -79,7 +79,7 @@ nameBadge:
     notCreated: "未作成"
     created: "作成済み"
   letsShare: "ネームカードをシェアしよう！"
-  joinEvent: "あなたも Vue Fes Japan に参加しませんか？"
+  joinEvent: "あなたもVue Fes Japanに参加しませんか？"
   nameBadgeDefaultImageAlt: "ネームカードイメージ画像"
   nameBadgeImageAlt: "{username}さんのネームカードイメージ画像"
   form:
@@ -91,32 +91,32 @@ nameBadge:
       description: "※全角**文字（半角**文字）まで。"
       error:
         required: "お名前は必須です"
-        tooLong: "お名前は全角 12 文字（半角 24 文字）までです"
+        tooLong: "お名前は全角12文字（半角24文字）までです"
         emoji: "絵文字は使用できません"
     avatarImage:
       label: "アバター"
       placeholder: "ファイルを選択"
-      description: "※.jpg もしくは .png のみ可能です。5MB 以下の画像を選択してください。"
+      description: "※.jpgもしくは .pngのみ可能です。5MB以下の画像を選択してください。"
       error:
         required: "アバター画像は必須です"
-        type: ".jpg もしくは .png のみ可能です"
-        size: "ファイルサイズは最大 5MB です"
+        type: ".jpgもしくは .pngのみ可能です"
+        size: "ファイルサイズは最大5MBです"
     receipt:
       label: 注文番号
-      description: ※注文番号は、チケット購入時に Peatix から送信されるメール内に含まれる領収データから確認できます。
+      description: ※注文番号は、チケット購入時にPeatixから送信されるメール内に含まれる領収データから確認できます。
       error:
         required: "注文番号は必須です"
     submitResult:
       success: "ネームカードを保存しました。"
       error: "ネームカードの保存に失敗しました。もう一度お試しください。"
-  shareText: "Vue Fes Japan 2026 に参加します！\nチケットを購入してネームカードを作成しよう！\n\n{link}\n\n#vuefes\n"
+  shareText: "Vue Fes Japan 2026に参加します！\nチケットを購入してネームカードを作成しよう！\n\n{link}\n\n#vuefes\n"
   pageTitle: "{username}さんのネームカード"
   pageTitleSponsor: "{sponsorName}のネームカード"
-  pageDescription: "Vue Fes Japan 2026 のネームカードページです。チケットを購入して、あなたのネームカードを作成しましよう！"
+  pageDescription: "Vue Fes Japan 2026のネームカードページです。チケットを購入して、あなたのネームカードを作成しましよう！"
 
 login:
-  withGoogle: "Google でログイン"
-  withGitHub: "GitHub でログイン"
+  withGoogle: "Googleでログイン"
+  withGitHub: "GitHubでログイン"
 
 individualSponsor:
   title: "個人スポンサー"
@@ -129,67 +129,67 @@ faq:
 
 event:
   title: "Event"
-  # TODO: 2026 年度のパネルディスカッション情報を確定する
+  # TODO: 2026年度のパネルディスカッション情報を確定する
   panel:
     title: "パネルディスカッション"
     location: "TBD"
     time: "TBD"
     talkTitle: "TBD"
     talkDescription: "TBD"
-  # TODO: 2026 年度の Vue Quiz 情報を確定する
+  # TODO: 2026年度のVue Quiz情報を確定する
   quiz:
     title: "Vue Quiz"
     location: "TBD"
     time: "TBD"
     image:
       alt1: "Vue Fes Japan 2024の縦型の垂れ幕とスクリーンが並んで表示されている会場の様子。"
-      alt2: "マイクを持って話す kazupon。背後には Vue Fes のイベントロゴが投影されている。"
+      alt2: "マイクを持って話すkazupon。背後にはVue Fesのイベントロゴが投影されている。"
       alt3: "Vue Fes Japan 2024のセッション中、スクリーンを見ながら登壇者の発表を聞いている参加者たち。会場はノートパソコンを広げた人々で賑わっている。"
       alt4: "Vue Fes Japan 2024のセッション中、観客席から手を挙げて質問する参加者。前方にはスピーカーが座っている。"
-  # TODO: 2026 年度のハンズオン情報を確定する
+  # TODO: 2026年度のハンズオン情報を確定する
   handsOn:
     title: "ハンズオン"
     location: "TBD"
     time: "TBD"
     image:
-      alt1: "Vue Fes Japan 2024の「Vue.js / Nuxt ハンズオン」セッションで、スライドを見ながら講義を受ける参加者たち。"
-      alt2: "Vue Fes Japan 2024で登壇するAnthony。Vue Fes Japan のロゴ とスポンサーのロゴが並ぶバックパネルの前で、マイク越しに発表している。"
+      alt1: "Vue Fes Japan 2024の「Vue.js / Nuxtハンズオン」セッションで、スライドを見ながら講義を受ける参加者たち。"
+      alt2: "Vue Fes Japan 2024で登壇するAnthony。Vue Fes Japanのロゴ とスポンサーのロゴが並ぶバックパネルの前で、マイク越しに発表している。"
       alt3: "Vue Fes Japan 2024のハンズオンセッション中、スライドを見ながらノートパソコンで作業する参加者たち。講師は前方で説明を行っている。"
       alt4: "Vue Fes Japan 2024のハンズオンセッションで、右手にマイクを持ち、左手でスクリーンを指差しながら説明をするubugeeei。"
-  # TODO: 2026 年度の学生支援コンテンツ情報を確定する
+  # TODO: 2026年度の学生支援コンテンツ情報を確定する
   studentSupport:
     title: "学生支援コンテンツ"
     location: "TBD"
     time: "TBD"
   creativeWall:
     title: "クリエイティブウォール"
-    location: "2F 受付前"
-    description: "Vue Fes Japan 名物のクリエイティブウォールが今年も登場です。Vue.js や Vue Fes Japan に対する熱い想いをぜひ書き込んでください。いつも使っている OSS ロゴと一緒に記念写真も撮影できます。"
+    location: "2F受付前"
+    description: "Vue Fes Japan名物のクリエイティブウォールが今年も登場です。Vue.jsやVue Fes Japanに対する熱い想いをぜひ書き込んでください。いつも使っているOSSロゴと一緒に記念写真も撮影できます。"
     alt: "Vue Fes Japan 2024の会場に設置されたクリエイティブウォールの前で、OSSロゴを手に笑顔でポーズをとるスタッフたち。"
   sponsorBooth:
     title: "スポンサーブースシールラリー"
-    location: "1F スポンサーブース"
+    location: "1Fスポンサーブース"
     description: "各スポンサーブースで配られるシールを12枚以上集めると、ハズレなしのくじ引きに参加できます。集めたシールの枚数に応じて最大3回まで挑戦可能です。豪華景品が当たるかも！？"
     alt: "Vue Fes Japan 2024のスポンサーブースを訪れ、展示物を見ながら楽しそうに交流する参加者たち。"
   freeDrink:
     title: "フリードリンク & スナック"
-    location: "1F・2F ホワイエ"
+    location: "1F・2Fホワイエ"
     description: "セッションやイベントで集中した後に、コーヒーやお茶はいかがですか？　お菓子も無料でご用意しています。ちょっとリフレッシュしたくなったら気軽にお立ち寄りください。"
     alt: "Vue Fes Japan 2024のドリンク＆スナックコーナーで、来場者に飲み物やお菓子を提供するスタッフたち。テーブルの前で笑顔で並んでいる。"
   festival:
     title: "縁日コーナー"
-    location: "1F ホワイエ"
-    description: "お祭り縁日の雰囲気を味わえる縁日コーナーが登場。「輪投げ」「かたぬき」「落書きせんべい」などを体験すると、Vue Fes Japan オリジナルお菓子、または懐かしの駄菓子がもらえます。"
+    location: "1Fホワイエ"
+    description: "お祭り縁日の雰囲気を味わえる縁日コーナーが登場。「輪投げ」「かたぬき」「落書きせんべい」などを体験すると、Vue Fes Japanオリジナルお菓子、または懐かしの駄菓子がもらえます。"
     alt: "色とりどりのヨーヨーや提灯、うちわなどが並ぶ、祭の雰囲気を演出した装飾コーナー。中央には「祭」と書かれた手ぬぐいが置かれている。"
   tattoo:
     title: "タトゥースペース"
-    location: "2F ホワイエ"
-    description: "腕や手足に特製タトゥーシールを貼り付けて、フェス気分を盛り上げましょう。Vue Fes Japan はもちろん、おなじみの Vue.js や Nuxt などのロゴマークをその場ですぐに付けられます。"
-    alt: "Vue Fes Japan 2024のロゴや OSS のロゴがデザインされたタトゥーシールを腕に貼っている様子。"
+    location: "2Fホワイエ"
+    description: "腕や手足に特製タトゥーシールを貼り付けて、フェス気分を盛り上げましょう。Vue Fes Japanはもちろん、おなじみのVue.jsやNuxtなどのロゴマークをその場ですぐに付けられます。"
+    alt: "Vue Fes Japan 2024のロゴやOSSのロゴがデザインされたタトゥーシールを腕に貼っている様子。"
   cocktail:
     title: "Vue Cocktail Bash"
     location: "アフターパーティー"
-    description: "昨年話題を呼んだオリジナルカクテルが、今年も帰ってきます！　Vue.js をはじめ、OSS をイメージした特別なカクテルをオリジナルレシピで開発しました。ノンアルコールもご用意しています。来場の記念に、是非ご堪能ください！"
+    description: "昨年話題を呼んだオリジナルカクテルが、今年も帰ってきます！　Vue.jsをはじめ、OSSをイメージした特別なカクテルをオリジナルレシピで開発しました。ノンアルコールもご用意しています。来場の記念に、是非ご堪能ください！"
     alt: "Vue.jsをイメージして作られたオリジナルカクテルが並んでいる。緑色のドリンクにはVueのロゴタグが付けられている。"
     attention1: "※ オリジナルカクテルのご提供は、アフターパーティーのみとなります。"
     attention2: "※ 数量限定でのご提供となります。"
@@ -197,7 +197,7 @@ event:
   view: "イベントを見る"
 speakers:
   title: "スピーカー"
-  description: "Vue Fes Japan では、Vue.js をはじめとした著名 OSS のコアチームメンバーから現場で培ったリアルな知見を届けるエンジニアまで、最前線で活躍する世界中の開発者たちが勢揃いします。"
+  description: "Vue Fes Japanでは、Vue.jsをはじめとした著名OSSのコアチームメンバーから現場で培ったリアルな知見を届けるエンジニアまで、最前線で活躍する世界中の開発者たちが勢揃いします。"
   featured: "注目のスピーカー"
   previous: "前のスピーカー"
   next: "次のスピーカー"
@@ -269,8 +269,8 @@ access:
 
 photo:
   title: "写真"
-  description: "Vue Fes Japan 2026 にご参加いただいたみなさん、ありがとうございました。当日撮影された写真を {cc0Link} にて公開しますので、ブログや SNS などにご自由にお使いください。"
-  cc0LinkText: "CC0 ライセンス"
+  description: "Vue Fes Japan 2026にご参加いただいたみなさん、ありがとうございました。当日撮影された写真を {cc0Link} にて公開しますので、ブログやSNSなどにご自由にお使いください。"
+  cc0LinkText: "CC0ライセンス"
   categories:
     preparation: "前日準備"
     beforeOpening: "開場前"
@@ -293,7 +293,7 @@ photo:
 contactForm:
   title: "お問い合わせ"
   description: >
-    Vue Fes Japan にご興味をいただき、ありがとうございます。Vue Fes Japan へのご質問およびお問い合わせは、以下のフォームよりお願いいたします。通常、担当者より 3 営業日以内にご返信いたします。3 営業日以内に返信がない場合、お手数ですが再度お問い合わせください。
+    Vue Fes Japanにご興味をいただき、ありがとうございます。Vue Fes Japanへのご質問およびお問い合わせは、以下のフォームよりお願いいたします。通常、担当者より3営業日以内にご返信いたします。3営業日以内に返信がない場合、お手数ですが再度お問い合わせください。
   formFields:
     name:
       label: "お名前"
@@ -310,7 +310,7 @@ contactForm:
   errorMessage: "送信に失敗しました。もう一度お試しください。"
 staff:
   title: "スタッフ"
-  description: "Vue Fes Japan 2026 は、Vue.js 日本ユーザーグループのスタッフによって企画・運営されています。"
+  description: "Vue Fes Japan 2026は、Vue.js日本ユーザーグループのスタッフによって企画・運営されています。"
   volunteer: "ボランティアスタッフ"
 snsIntroduction: "最新情報は公式SNSをご覧ください"
 snsIconImageAlt:
@@ -345,17 +345,17 @@ timetable:
   lunchTime: "ランチタイム"
   studentSupportProgram: "学生支援コンテンツ"
   studentSupportSponsorSession: "学生支援スポンサーセッション"
-  # TODO: 2026 年度の学生支援プログラムセッションタイトルを確定する
+  # TODO: 2026年度の学生支援プログラムセッションタイトルを確定する
   studentSupportProgramSessionTitle: "TBD"
   break: "休憩"
   handsOnSponsorSession: "ハンズオンスポンサーセッション"
   beginnerHandsOn: "初級者向けハンズオン"
   intermediateHandsOn: "中級者向けハンズオン"
-  # TODO: 2026 年度のパネルディスカッションタイトルを確定する
+  # TODO: 2026年度のパネルディスカッションタイトルを確定する
   crossTalkTitle: "TBD"
   lightningTalk: "ライトニングトーク"
   transition: "転換"
-  # TODO: 2026 年度のアフターパーティー情報を確定する
+  # TODO: 2026年度のアフターパーティー情報を確定する
   afterParty: "アフターパーティー"
   view: "タイムテーブルを見る"
   coverImageAlt: "Discover the Sessions!と書かれたタイムテーブルのカバー画像。"
@@ -370,8 +370,8 @@ relatedEvents:
 
 store:
   title: "Vue Fes Store"
-  description: "Vue Fes Japan 限定オリジナルグッズをお買い求めいただける Vue Fes Store が今年も登場。今回はサイトおよびロゴのリブランディングに伴い、グッズのデザインを一新しました。オリジナルグッズを揃えて、Vue Fes Japan を盛り上げましょう！"
-  coverImageAlt: "Check the items! のテキストとともに Vue Fes Japan 2026 の公式グッズが並んでいる。黒いパーカー、ロゴ入り T シャツ、青紫オレンジのマーブル柄のラバーバンド、ポストカードが写っている。"
+  description: "Vue Fes Japan限定オリジナルグッズをお買い求めいただけるVue Fes Storeが今年も登場。今回はサイトおよびロゴのリブランディングに伴い、グッズのデザインを一新しました。オリジナルグッズを揃えて、Vue Fes Japanを盛り上げましょう！"
+  coverImageAlt: "Check the items! のテキストとともにVue Fes Japan 2026の公式グッズが並んでいる。黒いパーカー、ロゴ入りTシャツ、青紫オレンジのマーブル柄のラバーバンド、ポストカードが写っている。"
   panel:
     title: "ストア"
   preOrder: "予約注文する"

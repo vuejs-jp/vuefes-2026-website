@@ -227,6 +227,8 @@ body {
 :root,
 [lang="ja"],
 [lang="ja-JP"] {
+  text-autospace: normal;
+
   * {
     font-family: IBMPlexSansJP-Medium;
   }

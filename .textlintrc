@@ -12,6 +12,9 @@
         "strict": false
       },
       "ja-no-space-between-full-width": false,
+      "ja-space-between-half-and-full-width": {
+        "space": "never"
+      },
       "4.3.1.丸かっこ（）": true
     }
   }
