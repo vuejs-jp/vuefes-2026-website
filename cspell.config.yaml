@@ -331,6 +331,10 @@ words:
   - gruntfuggly
   - keystyle
   - terraformrc
+  - Vize
+  - Verter
+  - Golar
+  - rebranded
 ignorePaths:
   - dist
   - node_modules
