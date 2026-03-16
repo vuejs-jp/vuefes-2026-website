@@ -5,4 +5,5 @@ Vue.jsエコシステムの発展をともに支え、エンジニアとのつ�
 ### スポンサー資料
 
 <!-- TODO: スポンサーチームからフォームが用意されたら差し替える -->
+
 [Vue Fes Japan 2026協賛のご案内](https://docs.google.com/document/d/xxx)

@@ -5,4 +5,5 @@ Would you like to join us in supporting the growth of the Vue.js ecosystem and d
 ### Sponsorship Prospectus
 
 <!-- TODO: スポンサーチームからフォームが用意されたら差し替える -->
+
 [Vue Fes Japan 2026 Sponsorship Information](https://docs.google.com/document/d/xxx)

@@ -65,7 +65,7 @@ export default defineConfig({
   run: {
     cache: {
       scripts: false,
-      tasks: true,
+      tasks: false,
     },
     tasks: {
       dev: {
@@ -117,9 +117,6 @@ export default defineConfig({
         cache: false,
       },
     },
-  },
-  fmt: {
-    ignorePatterns: ["i18n/**/*.md"],
   },
   lint: {
     options: {

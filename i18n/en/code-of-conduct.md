@@ -1,12 +1,12 @@
 In order to foster an open and friendly environment, all participants, speakers, sponsors, and staff of Vue Fes Japan 2026 are required to agree to the following Code of Conduct. As the organizer, the Vue.js Japan User Group will abide by the implementation of this Code of Conduct. We ask for the cooperation of all participants to ensure a safe environment for everyone.
 
-## No Discrimination or Harassment
+## Unacceptable Behavior
 
 We are committed to providing a safe environment for all participants regardless of age, appearance, size, gender, sexual orientation, disability, race, ethnicity, nationality, religion, educational background, social status, technology choice, or level of experience, and will not tolerate any form of discrimination.
 
-We will not tolerate any acts of harassment such as sexual expression, inappropriate physical contact, abusive, provocative or derogatory language, intentional acts of intimidation, threats, stalking, following, harassment through photography or recording, or repeated and intentional interruptions to talks or other events.
+We will not tolerate any acts of harassment such as sexual expression, inappropriate physical contact, abusive, provocative or derogatory language, intentional acts of intimidation, threats, stalking, following, harassment through photography or recording, or repeated and intentional interruptions to talks or other events. Activities unrelated to the purpose of the event are also prohibited, including solicitation, proselytizing, or promotional activities related to religion, ideology, or political beliefs.
 
-These acts of discrimination and harassment are inappropriate in any setting or location related to Vue Fes Japan 2026, including conversations, sessions, live-streamed chats, emails, and social networking sites. If, at the discretion of the Vue.js Japan User Group, you are asked to stop any of these behaviors, whether intentional or not, you must promptly comply. Failure to comply with such instructions may result in restriction of your behavior or denial of any and all participation in Vue Fes Japan 2026.
+These unacceptable behaviors are inappropriate in any setting or location related to Vue Fes Japan 2026, including conversations, sessions, live-streamed chats, emails, and social networking sites. If, at the discretion of the Vue.js Japan User Group, you are asked to stop any of these behaviors, whether intentional or not, you must promptly comply. Failure to comply with such instructions may result in restriction of your behavior or denial of any and all participation in Vue Fes Japan 2026.
 
 ## If you feel uncomfortable
 
