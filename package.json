@@ -42,7 +42,7 @@
     "node-fetch": "^3.3.2",
     "nuxt": "^4.0.3",
     "nuxt-og-image": "^5.1.9",
-    "nuxt-typed-router": "3.8.0",
+    "nuxt-typed-router": "4.0.7",
     "openapi-fetch": "^0.17.0",
     "openapi-typescript": "^7.8.0",
     "rehype-external-links": "^3.0.0",
