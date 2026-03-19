@@ -57,4 +57,5 @@ jobs:
         run: vp run deploy:preview
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
+          NETLIFY_DEPLOY_ALIAS: main
           NETLIFY_SITE_NAME: ${{ vars.NETLIFY_SITE_NAME || 'vuefes-2026' }}

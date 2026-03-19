@@ -96,78 +96,78 @@ export default defineConfig({
         cache: false,
       },
       "peatix-api-gen": {
-        command: "node --experimental-strip-types scripts/peatix-api-gen.ts",
+        command: "node scripts/peatix-api-gen.ts",
         cache: false,
       },
       boot: {
-        command: "node --experimental-strip-types scripts/boot.ts",
+        command: "node scripts/boot.ts",
         cache: false,
       },
       release: {
-        command: "node --experimental-strip-types scripts/release.ts",
+        command: "node scripts/release.ts",
         cache: false,
       },
       "netlify:bootstrap": {
-        command: "node --experimental-strip-types scripts/netlify/bootstrap.ts",
+        command: "node scripts/netlify/bootstrap.ts",
         cache: false,
       },
       "tfstate:create": {
-        command: "node --experimental-strip-types scripts/cloudflare/create-tfstate-bucket.ts",
+        command: "node scripts/cloudflare/create-tfstate-bucket.ts",
         cache: false,
       },
       deploy: {
-        command: "node --experimental-strip-types scripts/netlify/deploy.ts deploy",
+        command: "node scripts/netlify/deploy.ts deploy",
         dependsOn: ["build"],
         cache: false,
       },
       "deploy:preview": {
-        command: "node --experimental-strip-types scripts/netlify/deploy.ts preview",
+        command: "node scripts/netlify/deploy.ts preview",
         dependsOn: ["build"],
         cache: false,
       },
       "deploy:release": {
-        command: "node --experimental-strip-types scripts/netlify/deploy.ts release",
+        command: "node scripts/netlify/deploy.ts release",
         dependsOn: ["build"],
         cache: false,
       },
       "terraform:backend": {
-        command: "node --experimental-strip-types scripts/terraform/write-backend.ts",
+        command: "node scripts/terraform/write-backend.ts",
         cache: false,
       },
       "terraform:init": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts init",
+        command: "node scripts/terraform/run.ts init",
         cache: false,
       },
       "terraform:fmt": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts fmt",
+        command: "node scripts/terraform/run.ts fmt",
         cache: false,
       },
       "terraform:fmt:check": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts fmt:check",
+        command: "node scripts/terraform/run.ts fmt:check",
         cache: false,
       },
       "terraform:validate": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts validate",
+        command: "node scripts/terraform/run.ts validate",
         cache: false,
       },
       "terraform:plan": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts plan",
+        command: "node scripts/terraform/run.ts plan",
         cache: false,
       },
       "terraform:plan:ci": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts plan:ci",
+        command: "node scripts/terraform/run.ts plan:ci",
         cache: false,
       },
       "terraform:show-plan": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts show-plan",
+        command: "node scripts/terraform/run.ts show-plan",
         cache: false,
       },
       "terraform:apply": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts apply",
+        command: "node scripts/terraform/run.ts apply",
         cache: false,
       },
       "terraform:apply:ci": {
-        command: "node --experimental-strip-types scripts/terraform/run.ts apply:ci",
+        command: "node scripts/terraform/run.ts apply:ci",
         cache: false,
       },
     },

@@ -8,6 +8,8 @@ loadTaskEnv();
 const authToken = process.env.NETLIFY_AUTH_TOKEN || process.env.NETLIFY_API_TOKEN;
 const mode = process.argv[2] || "preview";
 const netlifyCli = resolve(repoRoot, "node_modules/.bin/netlify");
+const siteName = process.env.NETLIFY_SITE_NAME || "vuefes-2026";
+const previewAlias = process.env.NETLIFY_DEPLOY_ALIAS || process.env.GITHUB_REF_NAME || "main";
 
 if (!authToken) {
   console.error("NETLIFY_AUTH_TOKEN or NETLIFY_API_TOKEN is required.");
@@ -20,33 +22,33 @@ const runCli = (args: string[]) =>
     stdio: "inherit",
   });
 
+const copyPreviewHeaders = () =>
+  cpSync(
+    resolve(repoRoot, "infra/netlify-noindex-headers"),
+    resolve(repoRoot, ".output/public/_headers"),
+  );
+
 switch (mode) {
-  case "deploy":
   case "preview": {
-    cpSync(
-      resolve(repoRoot, "infra/netlify-noindex-headers"),
-      resolve(repoRoot, ".output/public/_headers"),
-    );
+    copyPreviewHeaders();
     runCli([
       "deploy",
       "--no-build",
       "--dir=.output/public",
-      "--context",
-      "deploy-preview",
+      "--alias",
+      previewAlias,
       "--site",
-      process.env.NETLIFY_SITE_NAME || "vuefes-2026",
+      siteName,
     ]);
     break;
   }
+  case "deploy": {
+    copyPreviewHeaders();
+    runCli(["deploy", "--no-build", "--dir=.output/public", "--site", siteName]);
+    break;
+  }
   case "release": {
-    runCli([
-      "deploy",
-      "--no-build",
-      "--prod",
-      "--dir=.output/public",
-      "--site",
-      process.env.NETLIFY_SITE_NAME || "vuefes-2026",
-    ]);
+    runCli(["deploy", "--no-build", "--prod", "--dir=.output/public", "--site", siteName]);
     break;
   }
   default:

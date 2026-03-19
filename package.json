@@ -8,7 +8,7 @@
   },
   "type": "module",
   "scripts": {
-    "postinstall": "node --experimental-strip-types scripts/name-badge-admin-data-gen.ts && nuxt prepare",
+    "postinstall": "node scripts/name-badge-admin-data-gen.ts && nuxt prepare",
     "prepare": "vp config"
   },
   "devDependencies": {
