@@ -33,14 +33,14 @@ const fix = [
   "nuxi typecheck",
 ].join(" && ");
 
-const netlify = "./node_modules/.bin/netlify";
-
 const buildEnv = [
   "NODE_OPTIONS",
+  "APP_ENV",
+  "APP_ORIGIN",
   "NUXT_BASE_PATH",
-  "CONTEXT",
   "AUTH_SECRET",
   "AUTH_ORIGIN",
+  "NUXT_SITE_URL",
   "CLOUDFLARE_API_TOKEN",
   "CLOUDFLARE_ACCOUNT_ID",
   "CLOUDFLARE_DATABASE_ID",
@@ -50,7 +50,7 @@ const buildEnv = [
   "OAUTH_GITHUB_CLIENT_ID",
   "OAUTH_GITHUB_CLIENT_SECRET_ID",
   "OAUTH_GOOGLE_CLIENT_ID",
-  "OAUTH_GOOGLE_CLIENT_SECRET_ID",
+  "OAUTH_GOOGLE_CLIENT_SECRET",
   "PEATIX_API_ORIGIN",
   "PEATIX_API_SECRET",
   "PEATIX_EVENT_ID",
@@ -99,21 +99,75 @@ export default defineConfig({
         command: "node --experimental-strip-types scripts/peatix-api-gen.ts",
         cache: false,
       },
+      boot: {
+        command: "node --experimental-strip-types scripts/boot.ts",
+        cache: false,
+      },
       release: {
         command: "node --experimental-strip-types scripts/release.ts",
         cache: false,
       },
+      "netlify:bootstrap": {
+        command: "node --experimental-strip-types scripts/netlify/bootstrap.ts",
+        cache: false,
+      },
+      "tfstate:create": {
+        command: "node --experimental-strip-types scripts/cloudflare/create-tfstate-bucket.ts",
+        cache: false,
+      },
       deploy: {
-        command: `${netlify} deploy --no-build --dir=.output/public`,
+        command: "node --experimental-strip-types scripts/netlify/deploy.ts deploy",
         dependsOn: ["build"],
         cache: false,
       },
       "deploy:preview": {
-        command: `${netlify} deploy --no-build --dir=.output/public`,
+        command: "node --experimental-strip-types scripts/netlify/deploy.ts preview",
+        dependsOn: ["build"],
         cache: false,
       },
       "deploy:release": {
-        command: `${netlify} deploy --no-build --prod --dir=.output/public`,
+        command: "node --experimental-strip-types scripts/netlify/deploy.ts release",
+        dependsOn: ["build"],
+        cache: false,
+      },
+      "terraform:backend": {
+        command: "node --experimental-strip-types scripts/terraform/write-backend.ts",
+        cache: false,
+      },
+      "terraform:init": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts init",
+        cache: false,
+      },
+      "terraform:fmt": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts fmt",
+        cache: false,
+      },
+      "terraform:fmt:check": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts fmt:check",
+        cache: false,
+      },
+      "terraform:validate": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts validate",
+        cache: false,
+      },
+      "terraform:plan": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts plan",
+        cache: false,
+      },
+      "terraform:plan:ci": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts plan:ci",
+        cache: false,
+      },
+      "terraform:show-plan": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts show-plan",
+        cache: false,
+      },
+      "terraform:apply": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts apply",
+        cache: false,
+      },
+      "terraform:apply:ci": {
+        command: "node --experimental-strip-types scripts/terraform/run.ts apply:ci",
         cache: false,
       },
     },

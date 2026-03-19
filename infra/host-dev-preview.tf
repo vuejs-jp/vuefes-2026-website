@@ -22,7 +22,7 @@ resource "cloudflare_r2_bucket" "vuefes_2026_dev" {
 # Netlify D1 binding (multi-context)
 resource "netlify_environment_variable" "d1_database_id" {
   site_id = data.netlify_site.vuefes_2026.id
-  key     = "D1_DATABASE_ID"
+  key     = "CLOUDFLARE_DATABASE_ID"
   values = [
     { context = "production", value = cloudflare_d1_database.vuefes_2026_prod.id },
     { context = "deploy-preview", value = cloudflare_d1_database.vuefes_2026_dev.id },
@@ -34,7 +34,7 @@ resource "netlify_environment_variable" "d1_database_id" {
 # Netlify R2 binding (multi-context)
 resource "netlify_environment_variable" "r2_bucket_name" {
   site_id = data.netlify_site.vuefes_2026.id
-  key     = "R2_BUCKET_NAME"
+  key     = "CLOUDFLARE_R2_BUCKET_NAME"
   values = [
     { context = "production", value = cloudflare_r2_bucket.vuefes_2026_prod.name },
     { context = "deploy-preview", value = cloudflare_r2_bucket.vuefes_2026_dev.name },

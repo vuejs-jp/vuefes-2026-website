@@ -31,9 +31,10 @@ resource "cloudflare_r2_bucket" "vuefes_2026_prod" {
 # Netlify Site
 # -----------------------------------------------------------------------------
 
-# Site is created manually via Netlify dashboard; referenced here as data source.
+# The blank site itself is bootstrapped with the Netlify CLI.
+# Terraform manages the site's settings after bootstrap.
 data "netlify_site" "vuefes_2026" {
-  name      = "vuefes-2026"
+  name      = var.netlify_site_name
   team_slug = var.netlify_team_slug
 }
 
@@ -42,8 +43,8 @@ data "netlify_site" "vuefes_2026" {
 # Production deploys: tag push triggers production deploy via release workflow.
 resource "netlify_site_build_settings" "vuefes_2026" {
   site_id           = data.netlify_site.vuefes_2026.id
-  build_command     = "pnpm rebuild && pnpm build"
-  publish_directory = "dist/"
+  build_command     = "vp run build"
+  publish_directory = ".output/public"
   production_branch = "main"
   stop_builds       = true
   pretty_urls       = true

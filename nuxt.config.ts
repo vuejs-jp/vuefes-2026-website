@@ -4,7 +4,33 @@ import type { NuxtPage } from "nuxt/schema";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-// Use `process.env.CONTEXT !== "production"` for dev only features
+const localPort = process.env.PORT || "3000";
+const localOrigin = `http://localhost:${localPort}`;
+const appEnv =
+  process.env.APP_ENV || (process.env.NODE_ENV === "production" ? "production" : "development");
+const appBasePath =
+  process.env.NODE_ENV === "production" ? process.env.NUXT_BASE_PATH || "/2026/" : "/";
+
+const normalizeOrigin = (value: string) => value.replace(/\/+$/, "");
+const normalizePath = (value: string) => {
+  if (!value) {
+    return "/";
+  }
+
+  const withLeadingSlash = value.startsWith("/") ? value : `/${value}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+};
+
+const joinUrl = (origin: string, path: string) =>
+  new URL(path, `${normalizeOrigin(origin)}/`).toString();
+
+const appOrigin =
+  process.env.APP_ORIGIN || (appEnv === "production" ? "https://vuefes.jp" : localOrigin);
+const publicSiteUrl = joinUrl(appOrigin, normalizePath(appBasePath));
+const siteOrigin = new URL(process.env.NUXT_SITE_URL || joinUrl(appOrigin, "/")).origin;
+const authOrigin =
+  process.env.AUTH_ORIGIN || joinUrl(appOrigin, `${normalizePath(appBasePath)}api/auth`);
+
 const featureFlags = {
   // ========================================================================
   // イベント開催前のフェーズベースフラグ
@@ -134,34 +160,19 @@ export default defineNuxtConfig({
     githubClientSecret: process.env.OAUTH_GITHUB_CLIENT_SECRET_ID,
     googleClientId: process.env.OAUTH_GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.OAUTH_GOOGLE_CLIENT_SECRET,
-    authOrigin:
-      process.env.NODE_ENV === "production"
-        ? process.env.CONTEXT === "production"
-          ? "https://vuefes.jp/2026/api/auth"
-          : `${process.env.DEPLOY_PRIME_URL}/2026/api/auth`
-        : `http://localhost:${process.env.PORT || 3000}/api/auth`,
+    authOrigin,
 
     // for Peatix API
     peatixApiOrigin: process.env.PEATIX_API_ORIGIN,
     peatixApiSecret: process.env.PEATIX_API_SECRET,
     peatixEventId: process.env.PEATIX_EVENT_ID,
 
-    siteUrl:
-      process.env.NODE_ENV === "production"
-        ? process.env.CONTEXT === "production"
-          ? "https://vuefes.jp/2026/"
-          : `${process.env.DEPLOY_PRIME_URL}/2026/`
-        : "http://localhost:3000/",
+    siteUrl: publicSiteUrl,
 
     public: {
       contactFormEndpoint:
         process.env.NUXT_PUBLIC_CONTACT_FORM_ENDPOINT || "https://ssgform.com/s/ATe50Qadv1hZ",
-      siteUrl:
-        process.env.NODE_ENV === "production"
-          ? process.env.CONTEXT === "production"
-            ? "https://vuefes.jp/2026/"
-            : `${process.env.DEPLOY_PRIME_URL}/2026/`
-          : "http://localhost:3000/",
+      siteUrl: publicSiteUrl,
     },
   },
   components: [{ path: "~/components", pathPrefix: false }],
@@ -176,12 +187,7 @@ export default defineNuxtConfig({
   site: {
     // The name and description are set for each language in the following files:
     // i18n/ja/ja.json, i18n/en/en.json
-    url:
-      process.env.CONTEXT === "branch-deploy"
-        ? process.env.DEPLOY_PRIME_URL || "https://main--vuefes-2026.netlify.app"
-        : process.env.NODE_ENV === "production"
-          ? process.env.NUXT_SITE_URL || "https://vuefes.jp/"
-          : "http://localhost:3000/",
+    url: siteOrigin,
   },
 
   plugins: ["~/plugins/v-click-outside.ts"],
@@ -281,12 +287,7 @@ export default defineNuxtConfig({
 
   auth: {
     disableServerSideAuth: !featureFlags.nameBadgeRegistration,
-    baseURL:
-      process.env.NODE_ENV === "production"
-        ? process.env.CONTEXT === "production"
-          ? "https://vuefes.jp/2026/api/auth"
-          : `${process.env.DEPLOY_PRIME_URL}/2026/api/auth`
-        : `http://localhost:${process.env.PORT || 3000}/api/auth`,
+    baseURL: authOrigin,
     provider: {
       type: "authjs",
       addDefaultCallbackUrl: true,

@@ -3,7 +3,7 @@ cloudflare_account_id = "your-cloudflare-account-id"
 
 # Netlify
 netlify_team_slug = "vuejs-jp"
-netlify_site_id   = "your-netlify-site-id" # For import
+netlify_site_name = "vuefes-2026"
 
 # Application
 ga_id                 = "G-H7VEJHSZH4"

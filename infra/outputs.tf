@@ -30,7 +30,6 @@ output "netlify_site_id" {
   value       = data.netlify_site.vuefes_2026.id
 }
 
-
 output "netlify_site_name" {
   description = "Netlify Site Name"
   value       = data.netlify_site.vuefes_2026.name

@@ -2,7 +2,7 @@
 
 ## Requirement
 
-- Node.js 24.14.0
+- Nix with flakes enabled
 - [Vite+](https://vite.plus/) (`vp`)
 
 ## Setup
@@ -11,8 +11,12 @@
 # clone via ssh
 git clone git@github.com:vuejs-jp/vuefes-2026.git
 cd vuefes-2026
+git submodule update --init --recursive
 
-# install Vite+ globally
+# enter the dev shell (Node.js 24 + Terraform)
+nix develop
+
+# install Vite+ globally if you don't have it yet
 curl -fsSL https://vite.plus | bash
 
 # install dependencies
@@ -22,7 +26,71 @@ vp install
 vp run dev
 ```
 
-This repo uses Vite+ for dependency management and task orchestration, while the app itself still runs through Nuxt and Nuxi commands wrapped as Vite Tasks. Use `vp run <task>` for commands such as `dev`, `build`, `preview`, `check`, and `deploy`.
+The Nix dev shell provides the runtime used by this repo, and Vite+ handles package management and task execution.
+This repo uses Vite+ for dependency management and task orchestration, while the app itself still runs through Nuxt, Netlify CLI, and Terraform wrapped as Vite Tasks. Use `vp run <task>` for commands such as `dev`, `build`, `preview`, `check`, `deploy:*`, and `terraform:*`.
+
+## Yearly Rollover
+
+When you copy this repository for the next year, start with:
+
+```sh
+vp run boot 2027
+```
+
+`vp run boot <year>` rewrites the in-repo year strings automatically and prints a clear TODO list for the remaining manual work:
+
+- review the generated diff
+- replace logo / visual assets managed in Google Drive
+- initialize the `netlify-master` submodule
+- update `netlify-master/netlify.toml` redirects
+- commit and push the redirect change in `vuejs-jp/vuefes-2019`
+
+## Netlify Deploy
+
+Fill `.env` or `.env.local` from [`.env.example`](/Users/ubugeeei/projects/personal/oss/vuejs-jp/vuefes-2026/.env.example) before running deploy or Terraform tasks.
+Production values are `APP_ORIGIN=https://vuefes.jp` and `NUXT_BASE_PATH=/2026/`. If you set `NUXT_SITE_URL`, keep it origin-only as `https://vuefes.jp/`.
+
+### First-Time Setup
+
+1. Create the blank Netlify site from CLI.
+2. Apply Terraform so site settings, env vars, and domains are managed as code.
+3. After that, use tag push for production deploys.
+
+```sh
+# one-time tfstate bucket bootstrap
+vp run tfstate:create
+
+# one-time blank site bootstrap for Netlify
+vp run netlify:bootstrap
+
+# apply Netlify / Cloudflare settings via Vite tasks
+vp run terraform:plan
+
+vp run terraform:apply
+```
+
+### Day-To-Day
+
+```sh
+# preview / draft deploy to the year site
+vp run deploy:preview
+
+# production deploy to the year site
+vp run deploy:release
+
+# normal production flow from GitHub Actions
+vp run release patch
+```
+
+`vp run release <alpha|beta|rc|minor|patch>` creates and pushes a `v*` tag, and the tag push triggers the production workflow.
+
+`vp run tfstate:create`, `vp run netlify:bootstrap`, `vp run terraform:init`, `vp run terraform:plan`, `vp run terraform:apply`, and `vp run deploy:*` all read settings from `.env` or `.env.local`.
+
+### Root Redirect Hub
+
+The root `vuefes.jp` redirect hub is maintained in [`netlify-master`](./netlify-master), which is a git submodule pointing at `vuejs-jp/vuefes-2019`.
+
+When the current year changes, update the redirect rules in the submodule and open a pull request against `vuejs-jp/vuefes-2019`. The 2026 repository no longer deploys the root site from GitHub Actions.
 
 ## Checks
 

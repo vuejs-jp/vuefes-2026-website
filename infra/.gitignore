@@ -4,6 +4,8 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+backend.conf
+tfplan
 
 # Crash log files
 crash.log

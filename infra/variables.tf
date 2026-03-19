@@ -11,10 +11,10 @@ variable "netlify_team_slug" {
   default     = "core-staff"
 }
 
-variable "netlify_site_id" {
-  description = "Netlify site ID (for import)"
+variable "netlify_site_name" {
+  description = "Netlify site name for the year-specific site"
   type        = string
-  default     = "f0c9dd8c-9333-4197-a783-09646a6f84a5"
+  default     = "vuefes-2026"
 }
 
 # Application
@@ -31,7 +31,7 @@ variable "contact_form_endpoint" {
 }
 
 variable "site_url" {
-  description = "Production site URL"
+  description = "Production site origin URL for nuxt-site-config (no path)"
   type        = string
   default     = "https://vuefes.jp/"
 }

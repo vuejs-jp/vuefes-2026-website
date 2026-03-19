@@ -6,7 +6,7 @@ on:
 
 jobs:
   check:
-    name: Check
+    name: Check and Build
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -28,3 +28,26 @@ jobs:
 
       - name: Check
         run: vp run check
+
+      - name: Build
+        run: vp run build
+        env:
+          APP_ENV: ci
+          APP_ORIGIN: https://ci.example.com
+          NODE_OPTIONS: "--max-old-space-size=4096"
+          NUXT_BASE_PATH: /2026/
+          NUXT_SITE_URL: https://ci.example.com/
+          AUTH_SECRET: dummy
+          CLOUDFLARE_API_TOKEN: dummy
+          CLOUDFLARE_ACCOUNT_ID: dummy
+          CLOUDFLARE_DATABASE_ID: dummy
+          CLOUDFLARE_R2_ACCESS_KEY_ID: dummy
+          CLOUDFLARE_R2_SECRET_ACCESS: dummy
+          CLOUDFLARE_R2_BUCKET_NAME: dummy
+          OAUTH_GITHUB_CLIENT_ID: dummy
+          OAUTH_GITHUB_CLIENT_SECRET_ID: dummy
+          OAUTH_GOOGLE_CLIENT_ID: dummy
+          OAUTH_GOOGLE_CLIENT_SECRET: dummy
+          PEATIX_API_ORIGIN: https://example.com
+          PEATIX_API_SECRET: dummy
+          PEATIX_EVENT_ID: dummy

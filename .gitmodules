@@ -1,0 +1,3 @@
+[submodule "netlify-master"]
+	path = netlify-master
+	url = git@github.com:vuejs-jp/vuefes-2019.git

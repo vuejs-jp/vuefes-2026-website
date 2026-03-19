@@ -12,12 +12,12 @@ const TARGETS: Record<string, string> = {
 const bumpTarget = process.argv[2];
 
 if (!bumpTarget || !(bumpTarget in TARGETS)) {
-  console.error(`Usage: pnpm run release <${Object.keys(TARGETS).join("|")}>`);
+  console.error(`Usage: vp run release <${Object.keys(TARGETS).join("|")}>`);
   process.exit(1);
 }
 
 // Bump version (without git commit/tag — we handle that ourselves)
-execSync(`npm version ${TARGETS[bumpTarget]} --no-git-tag-version`, { stdio: "inherit" });
+execSync(`vp pm version ${TARGETS[bumpTarget]} --no-git-tag-version`, { stdio: "inherit" });
 
 // Read the new version
 const pkg = JSON.parse(readFileSync("package.json", "utf-8"));
@@ -27,6 +27,7 @@ const tag = `v${pkg.version}`;
 execSync("git add package.json", { stdio: "inherit" });
 execSync(`git commit -m "${tag}"`, { stdio: "inherit" });
 execSync(`git tag ${tag}`, { stdio: "inherit" });
-execSync("git push && git push --tags", { stdio: "inherit" });
+execSync("git push", { stdio: "inherit" });
+execSync("git push --tags", { stdio: "inherit" });
 
 console.log(`\n✅ Released ${tag}`);
