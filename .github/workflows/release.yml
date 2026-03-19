@@ -41,8 +41,8 @@ jobs:
       - name: Install deps
         run: vp install --frozen-lockfile
 
-      - name: Build
-        run: vp run build
+      - name: Build and Deploy to Netlify (Production)
+        run: vp run deploy:release
         env:
           APP_ENV: production
           APP_ORIGIN: https://vuefes.jp
@@ -63,9 +63,5 @@ jobs:
           OAUTH_GOOGLE_CLIENT_ID: ${{ vars.OAUTH_GOOGLE_CLIENT_ID }}
           PEATIX_API_ORIGIN: ${{ vars.PEATIX_API_ORIGIN }}
           PEATIX_EVENT_ID: ${{ vars.PEATIX_EVENT_ID }}
-
-      - name: Deploy to Netlify (Production)
-        run: vp run deploy:release
-        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
           NETLIFY_SITE_NAME: ${{ vars.NETLIFY_SITE_NAME || 'vuefes-2026' }}
