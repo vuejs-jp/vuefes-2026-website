@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { cpSync } from "node:fs";
+import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { loadTaskEnv, repoRoot } from "../shared/load-env.ts";
 
@@ -10,6 +10,7 @@ const mode = process.argv[2] || "preview";
 const netlifyCli = resolve(repoRoot, "node_modules/.bin/netlify");
 const siteName = process.env.NETLIFY_SITE_NAME || "vuefes-2026";
 const previewAlias = process.env.NETLIFY_DEPLOY_ALIAS || process.env.GITHUB_REF_NAME || "main";
+const buildDir = resolve(repoRoot, ".output/public");
 
 if (!authToken) {
   console.error("NETLIFY_AUTH_TOKEN or NETLIFY_API_TOKEN is required.");
@@ -22,19 +23,52 @@ const runCli = (args: string[]) =>
     stdio: "inherit",
   });
 
-const copyPreviewHeaders = () =>
-  cpSync(
-    resolve(repoRoot, "infra/netlify-noindex-headers"),
-    resolve(repoRoot, ".output/public/_headers"),
-  );
+const normalizeBasePath = (value: string) => {
+  if (!value || value === "/") {
+    return "/";
+  }
+
+  const withLeadingSlash = value.startsWith("/") ? value : `/${value}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+};
+
+const prepareDeployDir = () => {
+  const basePath = normalizeBasePath(process.env.NUXT_BASE_PATH || "/");
+
+  if (basePath === "/") {
+    return buildDir;
+  }
+
+  const deployRoot = resolve(repoRoot, ".output/netlify");
+  const nestedDir = resolve(deployRoot, basePath.slice(1, -1));
+
+  rmSync(deployRoot, {
+    force: true,
+    recursive: true,
+  });
+  mkdirSync(deployRoot, {
+    recursive: true,
+  });
+  cpSync(buildDir, nestedDir, {
+    recursive: true,
+  });
+  writeFileSync(resolve(deployRoot, "_redirects"), `/ ${basePath} 302\n`);
+
+  return deployRoot;
+};
+
+const copyPreviewHeaders = (deployDir: string) =>
+  cpSync(resolve(repoRoot, "infra/netlify-noindex-headers"), resolve(deployDir, "_headers"));
+
+const deployDir = prepareDeployDir();
 
 switch (mode) {
   case "preview": {
-    copyPreviewHeaders();
+    copyPreviewHeaders(deployDir);
     runCli([
       "deploy",
       "--no-build",
-      "--dir=.output/public",
+      `--dir=${deployDir}`,
       "--alias",
       previewAlias,
       "--site",
@@ -43,12 +77,12 @@ switch (mode) {
     break;
   }
   case "deploy": {
-    copyPreviewHeaders();
-    runCli(["deploy", "--no-build", "--dir=.output/public", "--site", siteName]);
+    copyPreviewHeaders(deployDir);
+    runCli(["deploy", "--no-build", `--dir=${deployDir}`, "--site", siteName]);
     break;
   }
   case "release": {
-    runCli(["deploy", "--no-build", "--prod", "--dir=.output/public", "--site", siteName]);
+    runCli(["deploy", "--no-build", "--prod", `--dir=${deployDir}`, "--site", siteName]);
     break;
   }
   default:
