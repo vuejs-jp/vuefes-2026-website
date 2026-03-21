@@ -163,16 +163,23 @@ function printTodo(args: { currentYear: string; targetYear: string; changedFiles
     "   - Also review visual areas where the year is visible, such as `app/components/mainVisual/MainVisual.vue`",
   );
   console.log("");
-  console.log("3. Initialize the submodule");
+  console.log(`3. Clean up ${currentYear} images in public/images/`);
+  console.log(
+    `   - Remove assets that are no longer needed (e.g. ${currentYear} sponsor logos, event photos, OG Images)`,
+  );
+  console.log(`   - Replace assets that carry over but need updating for ${targetYear}`);
+  console.log("   - Directories to review: `public/images/`");
+  console.log("");
+  console.log("4. Initialize the submodule");
   console.log("   - `git submodule update --init --recursive`");
   console.log("");
-  console.log("4. Update the root redirect");
+  console.log("5. Update the root redirect");
   console.log("   - Target: `netlify-master/netlify.toml`");
   console.log(`   - Add: \`from = "/${targetYear}/*"\``);
   console.log(`   - Add: \`to = "https://vuefes-${targetYear}.netlify.app/${targetYear}/:splat"\``);
   console.log(`   - Update the catch-all destination to \`"/${targetYear}/:splat"\``);
   console.log("");
-  console.log("5. Commit and push the submodule change, then open a PR");
+  console.log("6. Commit and push the submodule change, then open a PR");
   console.log(`   - \`git -C netlify-master switch -c ${redirectBranch}\``);
   console.log("   - `git -C netlify-master add netlify.toml`");
   console.log(
@@ -181,12 +188,12 @@ function printTodo(args: { currentYear: string; targetYear: string; changedFiles
   console.log(`   - \`git -C netlify-master push -u origin ${redirectBranch}\``);
   console.log("   - Open a pull request against `vuejs-jp/vuefes-2019`");
   console.log("");
-  console.log("6. After the vuefes-2019 PR is merged, update the submodule pointer in this repo");
+  console.log("7. After the vuefes-2019 PR is merged, update the submodule pointer in this repo");
   console.log("   - `git submodule update --remote -- netlify-master`");
   console.log("   - `git add netlify-master`");
   console.log('   - `git commit -m "chore: bump vuefes-2019 submodule"`');
   console.log("");
-  console.log("7. Run the final checks");
+  console.log("8. Run the final checks");
   console.log("   - `vp run check`");
   console.log("   - Run `vp run build` if needed");
 }
