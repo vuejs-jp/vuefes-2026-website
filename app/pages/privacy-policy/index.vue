@@ -21,7 +21,9 @@ const { locale, t } = useI18n();
 const localePath = useLocalePath();
 
 defineOgImage({
-  url: `${runtimeConfig.public.siteUrl}images/og/privacy-policy.png`,
+  // TODO: OG Imageが用意されたらURLを更新する
+  // url: `${runtimeConfig.public.siteUrl}images/og/privacy-policy.png`,
+  url: "https://vuefes.jp/2026/og-image.png",
 });
 useSeoMeta({
   title: t("privacyPolicy"),
