@@ -120,13 +120,6 @@ useSeoMeta({ title: "" });
       <!-- フォト（イベント後に表示） -->
       <SectionPhoto v-if="SectionPhoto" />
 
-      <!-- スポンサー募集 -->
-      <SectionSponsorDocument v-if="SectionSponsorDocument">
-        <SponsorBeforeWanted v-if="SponsorBeforeWanted" />
-        <SponsorWanted v-if="SponsorWanted" />
-      </SectionSponsorDocument>
-      <SectionSponsorClosed v-if="SectionSponsorClosed" />
-
       <!-- CFP -->
       <SectionCfpOpen v-if="SectionCfpOpen" />
       <SectionCfpClosed v-if="SectionCfpClosed" />
@@ -153,13 +146,22 @@ useSeoMeta({ title: "" });
       <!-- ストア -->
       <SectionGrabYourGear v-if="SectionGrabYourGear" />
 
+      <!-- スポンサー一覧 -->
+      <SectionSponsors v-if="SectionSponsors" />
+
       <!-- ゲストスピーカー公開のタイミングで順番を入れ替え -->
       <SectionAccess v-if="SectionSpeakers" />
       <SectionMessage />
-      <SectionAccess v-if="!SectionSpeakers" />
 
-      <!-- スポンサー一覧 -->
-      <SectionSponsors v-if="SectionSponsors" />
+      <!-- スポンサー募集 -->
+      <SectionSponsorDocument v-if="SectionSponsorDocument">
+        <SponsorBeforeWanted v-if="SponsorBeforeWanted" />
+        <SponsorWanted v-if="SponsorWanted" />
+      </SectionSponsorDocument>
+      <SectionSponsorClosed v-if="SectionSponsorClosed" />
+
+      <!-- ゲストスピーカー公開のタイミングで順番を入れ替え -->
+      <SectionAccess v-if="!SectionSpeakers" />
 
       <SectionContact />
 
