@@ -17,7 +17,7 @@ if (!bumpTarget || !(bumpTarget in TARGETS)) {
 }
 
 // Bump version (without git commit/tag — we handle that ourselves)
-execSync(`vp pm version ${TARGETS[bumpTarget]} --no-git-tag-version`, { stdio: "inherit" });
+execSync(`vpx pnpm version ${TARGETS[bumpTarget]} --no-git-tag-version`, { stdio: "inherit" });
 
 // Read the new version
 const pkg = JSON.parse(readFileSync("package.json", "utf-8"));
