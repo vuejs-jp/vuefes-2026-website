@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, useTemplateRef, watchEffect } from "vue";
+import { useWithBase } from "~/composables/useWithBase";
 
 const { name, userRole, avatarImageUrl, width, height, aspectRatio } = defineProps<{
   userRole: "Attendee" | "Attendee+Party" | "Sponsor" | "Speaker" | "Staff";
@@ -14,38 +15,40 @@ const { name, userRole, avatarImageUrl, width, height, aspectRatio } = definePro
   aspectRatio?: string;
 }>();
 
+const withBase = useWithBase();
+
 const variants = computed(() => {
   switch (userRole) {
     case "Attendee+Party":
       return {
         color: "#007f62",
-        baseImageUrl: "/images/name-badge/party.png",
-        avatarPlaceholderImageUrl: "/images/name-badge/party-avatar.png",
+        baseImageUrl: withBase("/images/name-badge/party.png"),
+        avatarPlaceholderImageUrl: withBase("/images/name-badge/party-avatar.png"),
       };
     case "Sponsor":
       return {
         color: "#f66c21",
-        baseImageUrl: "/images/name-badge/sponsor.png",
-        avatarPlaceholderImageUrl: "/images/name-badge/sponsor-avatar.png",
+        baseImageUrl: withBase("/images/name-badge/sponsor.png"),
+        avatarPlaceholderImageUrl: withBase("/images/name-badge/sponsor-avatar.png"),
       };
     case "Speaker":
       return {
         color: "#8314d3",
-        baseImageUrl: "/images/name-badge/speaker.png",
-        avatarPlaceholderImageUrl: "/images/name-badge/speaker-avatar.png",
+        baseImageUrl: withBase("/images/name-badge/speaker.png"),
+        avatarPlaceholderImageUrl: withBase("/images/name-badge/speaker-avatar.png"),
       };
     case "Staff":
       return {
         color: "#ffffff",
-        baseImageUrl: "/images/name-badge/staff.png",
-        avatarPlaceholderImageUrl: "/images/name-badge/staff-avatar.png",
+        baseImageUrl: withBase("/images/name-badge/staff.png"),
+        avatarPlaceholderImageUrl: withBase("/images/name-badge/staff-avatar.png"),
       };
     case "Attendee":
     default:
       return {
         color: "#385FCC",
-        baseImageUrl: "/images/name-badge/default.png",
-        avatarPlaceholderImageUrl: "/images/name-badge/default-avatar.png",
+        baseImageUrl: withBase("/images/name-badge/default.png"),
+        avatarPlaceholderImageUrl: withBase("/images/name-badge/default-avatar.png"),
       };
   }
 });
