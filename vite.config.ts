@@ -125,6 +125,10 @@ export default defineConfig({
         dependsOn: ["build"],
         cache: false,
       },
+      "deploy:pr-preview": {
+        command: "node scripts/netlify/deploy.ts pr-preview",
+        cache: false,
+      },
       "deploy:release": {
         command: "node scripts/netlify/deploy.ts release",
         dependsOn: ["build"],

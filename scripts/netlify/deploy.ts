@@ -63,6 +63,19 @@ const copyPreviewHeaders = (deployDir: string) =>
 const deployDir = prepareDeployDir();
 
 switch (mode) {
+  case "pr-preview": {
+    copyPreviewHeaders(deployDir);
+    runCli([
+      "deploy",
+      "--no-build",
+      `--dir=${deployDir}`,
+      "--alias",
+      previewAlias,
+      "--site",
+      siteName,
+    ]);
+    break;
+  }
   case "preview": {
     copyPreviewHeaders(deployDir);
     runCli([
