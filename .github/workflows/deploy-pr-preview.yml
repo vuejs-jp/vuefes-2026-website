@@ -7,30 +7,66 @@ on:
     types:
       - opened
       - synchronize
+      - reopened
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number to deploy preview for
+        required: true
+        type: string
 
 jobs:
+  meta:
+    name: Resolve Preview Metadata
+    runs-on: ubuntu-latest
+    outputs:
+      pr_number: ${{ steps.vars.outputs.pr_number }}
+      deploy_alias: ${{ steps.vars.outputs.deploy_alias }}
+      site_name: ${{ steps.vars.outputs.site_name }}
+      preview_origin: ${{ steps.vars.outputs.preview_origin }}
+      preview_url: ${{ steps.vars.outputs.preview_url }}
+    steps:
+      - name: Compute URLs
+        id: vars
+        env:
+          PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }}
+          SITE_NAME: ${{ vars.NETLIFY_SITE_NAME || 'vuefes-2026' }}
+        run: |
+          DEPLOY_ALIAS="deploy-pr-preview-${PR_NUMBER}"
+          PREVIEW_ORIGIN="https://${DEPLOY_ALIAS}--${SITE_NAME}.netlify.app"
+          PREVIEW_URL="${PREVIEW_ORIGIN}/2026/"
+
+          echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
+          echo "deploy_alias=${DEPLOY_ALIAS}" >> "$GITHUB_OUTPUT"
+          echo "site_name=${SITE_NAME}" >> "$GITHUB_OUTPUT"
+          echo "preview_origin=${PREVIEW_ORIGIN}" >> "$GITHUB_OUTPUT"
+          echo "preview_url=${PREVIEW_URL}" >> "$GITHUB_OUTPUT"
+
   deploy:
     name: Deploy PR Preview to Netlify
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.repository
-    env:
-      NETLIFY_DEPLOY_ALIAS: deploy-preview-${{ github.event.pull_request.number }}
-      NETLIFY_SITE_NAME: ${{ vars.NETLIFY_SITE_NAME || 'vuefes-2026' }}
+    needs: meta
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]')
     environment:
       name: dev
-      url: ${{ format('https://{0}--{1}.netlify.app/2026/', env.NETLIFY_DEPLOY_ALIAS, env.NETLIFY_SITE_NAME) }}
+      url: ${{ needs.meta.outputs.preview_url }}
     permissions:
       contents: read
-      pull-requests: write
     timeout-minutes: 10
     concurrency:
-      group: deploy-pr-preview-${{ github.event.pull_request.number }}
+      group: deploy-pr-preview-${{ needs.meta.outputs.pr_number }}
       cancel-in-progress: true
+    env:
+      NETLIFY_DEPLOY_ALIAS: ${{ needs.meta.outputs.deploy_alias }}
+      NETLIFY_SITE_NAME: ${{ needs.meta.outputs.site_name }}
+      NETLIFY_DEPLOY_ORIGIN: ${{ needs.meta.outputs.preview_origin }}
+      NETLIFY_DEPLOY_URL: ${{ needs.meta.outputs.preview_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/pull/{0}/head', needs.meta.outputs.pr_number) || github.ref }}
 
       - name: Setup Vite+
         uses: voidzero-dev/setup-vp@b5d848f5a62488f3d3d920f8aa6ac318a60c5f07 # v1
@@ -47,10 +83,10 @@ jobs:
         run: vp run deploy:preview
         env:
           APP_ENV: preview
-          APP_ORIGIN: ${{ format('https://{0}--{1}.netlify.app', env.NETLIFY_DEPLOY_ALIAS, env.NETLIFY_SITE_NAME) }}
+          APP_ORIGIN: ${{ env.NETLIFY_DEPLOY_ORIGIN }}
           NODE_OPTIONS: "--max-old-space-size=4096"
           NUXT_BASE_PATH: /2026/
-          NUXT_SITE_URL: ${{ format('https://{0}--{1}.netlify.app/', env.NETLIFY_DEPLOY_ALIAS, env.NETLIFY_SITE_NAME) }}
+          NUXT_SITE_URL: ${{ format('{0}/', env.NETLIFY_DEPLOY_ORIGIN) }}
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_R2_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
@@ -67,21 +103,35 @@ jobs:
           PEATIX_EVENT_ID: ${{ vars.PEATIX_EVENT_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
 
+  comment:
+    name: Comment PR with Preview URL
+    runs-on: ubuntu-latest
+    needs:
+      - meta
+      - deploy
+    if: needs.deploy.result == 'success'
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
       - name: Comment PR
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const marker = '<!-- netlify-pr-preview -->';
+            const previewUrl = '${{ needs.meta.outputs.preview_url }}';
             const body = [
               marker,
               'PR preview has been deployed.',
               '',
-              '${{ format('https://{0}--{1}.netlify.app/2026/', env.NETLIFY_DEPLOY_ALIAS, env.NETLIFY_SITE_NAME) }}',
+              previewUrl,
             ].join('\n');
 
+            const issueNumber = Number('${{ needs.meta.outputs.pr_number }}');
+
             const { data: comments } = await github.rest.issues.listComments({
-              issue_number: context.issue.number,
+              issue_number: issueNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
@@ -101,7 +151,7 @@ jobs:
             }
 
             await github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: issueNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body,
