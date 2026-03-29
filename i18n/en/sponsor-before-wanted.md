@@ -1,3 +1,3 @@
-### Sponsorship Application Period
+### Sponsorship Applications Open
 
-Scheduled to start on Tuesday, April 7, 2026, at 12:00 JST.
+Opens at 12:00 JST on Tuesday, April 7, 2026.
