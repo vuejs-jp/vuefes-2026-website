@@ -1,5 +1,5 @@
 ### Sponsor Application Form
 
-If you are interested in becoming a sponsor, please submit your application using the link below:
+If you are interested in becoming a sponsor, please apply using the form below:
 
-[Sponsor Application Form](https://docs.google.com/forms/d/e/1FAIpQLSdGUfbrTDlnaws2MbGzEWW_B6aRGQ2_aPB97tc8zJOmmtIRRg/viewform?usp=header)
+[Sponsor Application Form](https://forms.gle/JRLsjYvfKAwzdrr5A)
