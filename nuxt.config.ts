@@ -41,7 +41,7 @@ const featureFlags = {
   sponsorDocument: true, // スポンサー資料のみ表示（募集フォームなし）
 
   // --- 4月中〜末: スポンサー募集開始 ---
-  sponsorWanted: false, // スポンサー募集セクション表示
+  sponsorWanted: true, // スポンサー募集セクション表示
   sponsorClosed: false, // スポンサー募集終了メッセージ
 
   // --- 5月末: ゲストスピーカー公開 ---
