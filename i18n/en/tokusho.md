@@ -8,7 +8,7 @@ Yoshiya OKI
 
 ## Location
 
-5-26-29 Nakano, Nakano-ku, Tokyo 164-0001, Japan
+KM Building 301, 5-60-13 Nakano, Nakano-ku, Tokyo 164-0001, Japan
 
 ## Phone Number
 
