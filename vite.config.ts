@@ -35,6 +35,7 @@ const fix = [
 
 const buildEnv = [
   "NODE_OPTIONS",
+  "NITRO_PRESET",
   "APP_ENV",
   "APP_ORIGIN",
   "NUXT_BASE_PATH",

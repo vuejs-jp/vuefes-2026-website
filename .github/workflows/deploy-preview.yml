@@ -36,6 +36,7 @@ jobs:
           APP_ENV: preview
           APP_ORIGIN: ${{ format('https://main--{0}.netlify.app', vars.NETLIFY_SITE_NAME || 'vuefes-2026') }}
           NODE_OPTIONS: "--max-old-space-size=4096"
+          NITRO_PRESET: netlify
           NUXT_BASE_PATH: /2026/
           NUXT_SITE_URL: ${{ format('https://main--{0}.netlify.app/', vars.NETLIFY_SITE_NAME || 'vuefes-2026') }}
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}

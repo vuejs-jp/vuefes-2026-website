@@ -85,6 +85,7 @@ jobs:
           APP_ENV: preview
           APP_ORIGIN: ${{ env.NETLIFY_DEPLOY_ORIGIN }}
           NODE_OPTIONS: "--max-old-space-size=4096"
+          NITRO_PRESET: netlify
           NUXT_BASE_PATH: /2026/
           NUXT_SITE_URL: ${{ format('{0}/', env.NETLIFY_DEPLOY_ORIGIN) }}
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}

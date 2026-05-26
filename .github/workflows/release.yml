@@ -47,6 +47,7 @@ jobs:
           APP_ENV: production
           APP_ORIGIN: https://vuefes.jp
           NODE_OPTIONS: "--max-old-space-size=4096"
+          NITRO_PRESET: netlify
           NUXT_BASE_PATH: /2026/
           NUXT_SITE_URL: https://vuefes.jp/
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}

@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { loadTaskEnv, repoRoot } from "../shared/load-env.ts";
 
@@ -11,6 +11,8 @@ const netlifyCli = resolve(repoRoot, "node_modules/.bin/netlify");
 const siteName = process.env.NETLIFY_SITE_NAME || "vuefes-2026";
 const previewAlias = process.env.NETLIFY_DEPLOY_ALIAS || process.env.GITHUB_REF_NAME || "main";
 const buildDir = resolve(repoRoot, ".output/public");
+const netlifyNitroPublishDir = resolve(repoRoot, "dist");
+const netlifyNitroFunctionsDir = resolve(repoRoot, ".netlify/functions-internal");
 
 if (!authToken) {
   console.error("NETLIFY_AUTH_TOKEN or NETLIFY_API_TOKEN is required.");
@@ -34,6 +36,21 @@ const normalizeBasePath = (value: string) => {
 
 const prepareDeployDir = () => {
   const basePath = normalizeBasePath(process.env.NUXT_BASE_PATH || "/");
+
+  if (process.env.NITRO_PRESET?.startsWith("netlify")) {
+    if (!existsSync(netlifyNitroPublishDir) || !existsSync(netlifyNitroFunctionsDir)) {
+      console.error(
+        "Netlify Nitro output is missing. Run the build with NITRO_PRESET=netlify before deploying.",
+      );
+      process.exit(1);
+    }
+
+    if (basePath !== "/") {
+      writeFileSync(resolve(netlifyNitroPublishDir, "_redirects"), `/ ${basePath} 302\n`);
+    }
+
+    return netlifyNitroPublishDir;
+  }
 
   if (basePath === "/") {
     return buildDir;

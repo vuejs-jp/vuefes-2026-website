@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
-import { computed, useI18n, useFetch } from "#imports";
+import { computed, useI18n, useLazyFetch, useState, watch } from "#imports";
 import { EnSpeaker, JaSpeaker, VFButton, VFCarousel } from "#components";
 import type { Speaker } from "~~/server/static-data/types/speaker";
 import { HOME_HEADING_ID } from "~/constant";
@@ -8,8 +8,9 @@ import { HOME_HEADING_ID } from "~/constant";
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
 
-const { data: speakersData } = await useFetch("/api/speakers", {
+const { data: speakersData } = useLazyFetch("/api/speakers", {
   query: { locale },
+  server: false,
 });
 
 interface ColorSet {
@@ -36,18 +37,59 @@ type CarouselSpeaker = Omit<Speaker, "id" | "color"> & {
   color: ColorSet;
 };
 
-const speakers = computed<CarouselSpeaker[]>(() => {
-  const colorSetIter = new ColorSetIter();
-
+const attendedSpeakers = computed(() => {
   const allSpeakers = [
     ...(speakersData.value?.sessionSpeakers ?? []),
     ...(speakersData.value?.panelDiscussionSpeakers ?? []),
   ];
 
-  const _speakers = allSpeakers
+  return allSpeakers
     .filter((it, index, speakers) => index === speakers.findIndex((s) => s.name === it.name))
-    .filter((it) => it.attendedIndex !== undefined)
-    .sort((a, b) => a.attendedIndex! - b.attendedIndex!)
+    .filter((it) => it.attendedIndex !== undefined);
+});
+
+const EVAN_YOU_ID = "yyx990803";
+const RANDOM_SPEAKER_COUNT = 4;
+const featuredSpeakerIds = useState<string[]>("featured-speaker-ids", () => []);
+
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i]!, shuffled[j]!] = [shuffled[j]!, shuffled[i]!];
+  }
+  return shuffled;
+}
+
+watch(
+  attendedSpeakers,
+  (attendedSpeakers) => {
+    if (attendedSpeakers.length === 0) return;
+    if (
+      featuredSpeakerIds.value.length > 0 &&
+      featuredSpeakerIds.value.every((id) => attendedSpeakers.some((speaker) => speaker.id === id))
+    ) {
+      return;
+    }
+
+    const evanYou = attendedSpeakers.find((it) => it.id === EVAN_YOU_ID);
+
+    featuredSpeakerIds.value = [
+      evanYou?.id,
+      ...shuffleArray(attendedSpeakers.filter((it) => it.id !== EVAN_YOU_ID))
+        .slice(0, RANDOM_SPEAKER_COUNT)
+        .map((it) => it.id),
+    ].filter((id): id is string => id !== undefined);
+  },
+  { immediate: true },
+);
+
+const speakers = computed<CarouselSpeaker[]>(() => {
+  const colorSetIter = new ColorSetIter();
+
+  const _speakers = featuredSpeakerIds.value
+    .map((id) => attendedSpeakers.value.find((it) => it.id === id))
+    .filter((it): it is Speaker => it !== undefined)
     .map((it) => ({
       ...it,
       id: it.name,
@@ -68,8 +110,9 @@ const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { 
       {{ t("speakers.featured") }}
     </h3>
 
-    <div class="carousel">
+    <div class="carousel" :aria-busy="speakers.length === 0">
       <VFCarousel
+        v-if="speakers.length > 0"
         :items="speakers"
         :loop="true"
         :label="t('speakers.title')"
@@ -128,6 +171,14 @@ const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { 
 @import "~/assets/styles/custom-media-query.css";
 
 .section-speakers {
+  --speaker-card-height: 341px;
+  --vf-carousel-navigation-gap: 16px;
+  --vf-carousel-navigation-button-size: 48px;
+  --speaker-carousel-height: calc(
+    var(--speaker-card-height) + var(--vf-carousel-navigation-gap) +
+      var(--vf-carousel-navigation-button-size)
+  );
+
   container-type: inline-size;
   overflow: hidden;
   h3.featured-speaker-heading {
@@ -145,7 +196,7 @@ const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { 
   .speaker-card {
     position: relative;
     border-radius: 10px;
-    height: 341px;
+    height: var(--speaker-card-height);
     overflow: hidden;
     margin-inline: 0.55rem;
     border: 1px solid var(--color-divider-light);
@@ -190,6 +241,7 @@ const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { 
 
 .carousel {
   width: 120cqw;
+  min-height: var(--speaker-carousel-height);
   margin: 0 calc(50% - 60cqw) 32px;
 
   @media (--carousel) {

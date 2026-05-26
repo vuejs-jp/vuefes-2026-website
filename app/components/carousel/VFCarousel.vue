@@ -209,15 +209,15 @@ watchEffect((onCleanup) => {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 16px;
+    margin-top: var(--vf-carousel-navigation-gap, 16px);
   }
 
   .button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: var(--vf-carousel-navigation-button-size, 48px);
+    height: var(--vf-carousel-navigation-button-size, 48px);
     border-radius: 50%;
     border: 1px solid var(--color-base);
     background-color: transparent;

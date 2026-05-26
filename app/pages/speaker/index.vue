@@ -37,6 +37,8 @@ const SectionId = {
   PanelDiscussion: "panel-discussion",
 } as const;
 
+const isSeparateSpeakingType = import.meta.vfFeatures.separateSpeakingType;
+
 const route = useRoute();
 
 useQueryHashSync({ queryKey: "section" });
@@ -72,42 +74,58 @@ useSeoMeta({
     <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
     <h1>Speaker</h1>
 
-    <VFSection :id="SectionId.Sessions" :title="t('speakers.sessions.title')" wide>
-      <component :is="locale === 'ja' ? JaSpeaker : EnSpeaker" class="description" />
+    <template v-if="!isSeparateSpeakingType">
+      <VFSection :id="SectionId.Sessions" title="" wide>
+        <component :is="locale === 'ja' ? JaSpeaker : EnSpeaker" class="description" />
 
-      <ul class="speakers">
-        <SpeakerCard
-          v-for="speaker in sessionSpeakers"
-          :key="speaker.id"
-          :to="localeRoute({ name: 'speaker-speakerId', params: { speakerId: speaker.id } })"
-          class="speaker-card-link"
-          :speaker="speaker"
+        <ul class="speakers">
+          <SpeakerCard
+            v-for="speaker in [...sessionSpeakers, ...ltSpeakers, ...panelSpeakers]"
+            :key="speaker.id"
+            class="speaker-card-link"
+            :speaker="speaker"
+          />
+        </ul>
+      </VFSection>
+    </template>
+    <template v-else>
+      <VFSection :id="SectionId.Sessions" :title="t('speakers.sessions.title')" wide>
+        <component :is="locale === 'ja' ? JaSpeaker : EnSpeaker" class="description" />
+
+        <ul class="speakers">
+          <SpeakerCard
+            v-for="speaker in sessionSpeakers"
+            :key="speaker.id"
+            :to="localeRoute({ name: 'speaker-speakerId', params: { speakerId: speaker.id } })"
+            class="speaker-card-link"
+            :speaker="speaker"
+          />
+        </ul>
+      </VFSection>
+
+      <VFSection :id="SectionId.LightningTalks" :title="t('speakers.lightningTalks.title')" wide>
+        <!-- <component :is="locale === 'ja' ? JaSpeaker : EnSpeaker" class="description" /> -->
+        <ul class="speakers">
+          <SpeakerCard
+            v-for="speaker in ltSpeakers"
+            :key="speaker.id"
+            :speaker="speaker"
+            :to="localeRoute({ name: 'speaker-speakerId', params: { speakerId: speaker.id } })"
+          />
+        </ul>
+      </VFSection>
+
+      <VFSection :id="SectionId.PanelDiscussion" :title="t('speakers.panel.title')" wide>
+        <component
+          :is="locale === 'ja' ? JaPanelDiscussion : EnPanelDiscussion"
+          class="description"
         />
-      </ul>
-    </VFSection>
 
-    <VFSection :id="SectionId.LightningTalks" :title="t('speakers.lightningTalks.title')" wide>
-      <!-- <component :is="locale === 'ja' ? JaSpeaker : EnSpeaker" class="description" /> -->
-      <ul class="speakers">
-        <SpeakerCard
-          v-for="speaker in ltSpeakers"
-          :key="speaker.id"
-          :speaker="speaker"
-          :to="localeRoute({ name: 'speaker-speakerId', params: { speakerId: speaker.id } })"
-        />
-      </ul>
-    </VFSection>
-
-    <VFSection :id="SectionId.PanelDiscussion" :title="t('speakers.panel.title')" wide>
-      <component
-        :is="locale === 'ja' ? JaPanelDiscussion : EnPanelDiscussion"
-        class="description"
-      />
-
-      <ul class="speakers">
-        <SpeakerCard v-for="speaker in panelSpeakers" :key="speaker.name" :speaker="speaker" />
-      </ul>
-    </VFSection>
+        <ul class="speakers">
+          <SpeakerCard v-for="speaker in panelSpeakers" :key="speaker.name" :speaker="speaker" />
+        </ul>
+      </VFSection>
+    </template>
   </div>
 </template>
 

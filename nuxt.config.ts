@@ -46,7 +46,7 @@ const featureFlags = {
 
   // --- 5月末: ゲストスピーカー公開 ---
   // CFP募集が始まることを匂わせる、トーク内容はまだ決まってないので一覧だけ
-  guestSpeakers: false, // スピーカーセクション/ページ表示
+  guestSpeakers: true, // スピーカーセクション/ページ表示
 
   // --- 6月初: スポンサー公開 & CFP募集公開 ---
   // 抽選のもの(プラチナ等)が決まった段階で暫定公開、追加があれば随時
@@ -63,6 +63,7 @@ const featureFlags = {
   // --- この間のいつか: タイムテーブル、CFPスピーカー、イベント（ハンズオン）、スポンサー ---
   // イベントは最低限ハンズオンは必須（チケットが別なので）、スピーカー一覧もあれば better
   timetable: false, // タイムテーブル表示
+  separateSpeakingType: false, // スピーカー一覧で登壇形式によるセクション分けを行う
   cfpSpeakerList: false, // CFPスピーカー一覧表示
   eventPage: false, // イベントページ有効化（ハンズオン必須）
 
