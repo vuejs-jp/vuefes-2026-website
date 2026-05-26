@@ -133,9 +133,6 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
 <style scoped>
 @import "~/assets/styles/custom-media-query.css";
 
-.sponsor-list:first-child {
-  margin-top: -2rem;
-}
 .sponsor-list:not(:first-child) {
   margin-top: 2rem;
 }

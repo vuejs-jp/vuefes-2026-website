@@ -31,10 +31,5 @@ const localeRoute = useLocaleRoute();
 
 .button-container {
   text-align: center;
-
-  margin-top: -32px;
-  @media (--mobile) {
-    margin-top: -24px;
-  }
 }
 </style>

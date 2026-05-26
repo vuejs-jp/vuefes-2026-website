@@ -52,6 +52,15 @@ const slidesInView = ref<number[]>([]);
 const canScrollPrev = ref(false);
 const canScrollNext = ref(false);
 
+/**
+ * スライドが操作・読み上げ対象かを返す。
+ * ビュー内に見えているスライド（中央＋左右に見切れているもの）を対象とする。
+ * embla 初期化前（slidesInView が空）はすべて対象として扱い、
+ * ハイドレーション前にすべてが inert になるのを防ぐ。
+ */
+const isSlideActive = (index: number) =>
+  slidesInView.value.length === 0 || slidesInView.value.includes(index);
+
 const scrollPrev = () => {
   emblaApi.value?.goToPrev();
 };
@@ -105,8 +114,8 @@ watchEffect((onCleanup) => {
           role="group"
           aria-roledescription="slide"
           :aria-label="slideLabel(index + 1, items.length)"
-          :aria-hidden="index !== selectedIndex ? 'true' : undefined"
-          :inert="index !== selectedIndex ? true : undefined"
+          :aria-hidden="isSlideActive(index) ? undefined : 'true'"
+          :inert="isSlideActive(index) ? undefined : true"
         >
           <slot
             name="slide"

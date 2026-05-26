@@ -40,11 +40,17 @@ const currentSpeaker = computed(() =>
   speakers.value.find((speaker) => speaker.id === route.params.speakerId),
 );
 
+const pageDescription = computed(
+  () => currentSpeaker.value?.talkTitle || currentSpeaker.value?.bio || t("speakers.description"),
+);
+
+const splitLines = (text?: string) => (text ? text.split("\n") : []);
+
 useSeoMeta({
   title: () => currentSpeaker.value?.name || t("speakers.title"),
   ogTitle: () => currentSpeaker.value?.name || t("speakers.title"),
-  description: () => currentSpeaker.value?.talkTitle,
-  ogDescription: () => currentSpeaker.value?.talkTitle,
+  description: () => pageDescription.value,
+  ogDescription: () => pageDescription.value,
 });
 
 defineOgImage({
@@ -93,17 +99,11 @@ const trackStyles = computed(() => ({
     <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
     <h1>Speaker</h1>
 
-    <VFSection
-      :title="
-        currentSpeaker?.type === 'session'
-          ? t('speakers.sessions.information')
-          : t('speakers.lightningTalks.information')
-      "
-    >
-      <div class="speaker-track" :style="trackStyles">
+    <VFSection>
+      <div v-if="currentSpeaker.talkTrack" class="speaker-track" :style="trackStyles">
         {{ t(`timetable.track.${currentSpeaker.talkTrack}`) }}
       </div>
-      <div class="speaker-time" :style="trackStyles">
+      <div v-if="currentSpeaker.talkSchedule" class="speaker-time" :style="trackStyles">
         {{ currentSpeaker.talkSchedule }}
       </div>
 
@@ -112,13 +112,13 @@ const trackStyles = computed(() => ({
           <img :src="currentSpeaker.avatarUrl" :alt="currentSpeaker.name" />
         </div>
         <div class="speaker-details">
-          <h3 class="session-title">
+          <h3 v-if="currentSpeaker.talkTitle" class="session-title">
             {{ currentSpeaker.talkTitle }}
           </h3>
 
-          <p v-if="currentSpeaker.talkOverview" class="session-overview">
+          <div v-if="currentSpeaker.talkOverview" class="session-overview">
             <template
-              v-for="(paragraph, idx) in currentSpeaker.talkOverview?.split('\n')"
+              v-for="(paragraph, idx) in splitLines(currentSpeaker.talkOverview)"
               :key="idx"
             >
               <template v-if="paragraph">
@@ -132,20 +132,20 @@ const trackStyles = computed(() => ({
                 <span class="session-overview-spacer"></span>
               </template>
             </template>
-          </p>
+          </div>
 
           <div class="speaker-meta">
-            <p v-if="currentSpeaker.title" class="speaker-title">
-              {{ currentSpeaker.title }}
-            </p>
             <p v-if="currentSpeaker.affiliation" class="speaker-affiliation">
               {{ currentSpeaker.affiliation }}
             </p>
+            <p v-if="currentSpeaker.title" class="speaker-title">
+              {{ currentSpeaker.title }}
+            </p>
           </div>
 
-          <h3 class="speaker-name">
+          <h2 class="speaker-name">
             {{ currentSpeaker.name }}
-          </h3>
+          </h2>
 
           <div v-if="currentSpeaker.socialUrls" class="speaker-social">
             <a
@@ -172,21 +172,32 @@ const trackStyles = computed(() => ({
             >
               <BlueskyIcon width="1.5rem" height="1.5rem" />
             </a>
+          </div>
+
+          <div v-if="currentSpeaker.bio" class="speaker-bio">
+            <div class="speaker-bio-body">
+              <template v-for="(paragraph, idx) in splitLines(currentSpeaker.bio)" :key="idx">
+                <p v-if="paragraph">
+                  {{ paragraph }}
+                </p>
+                <span v-else class="speaker-bio-spacer"></span>
+              </template>
+            </div>
           </div>
         </div>
 
         <!-- Mobile layout -->
         <div class="speaker-meta-mobile">
-          <p v-if="currentSpeaker.title" class="speaker-title">
-            {{ currentSpeaker.title }}
-          </p>
           <p v-if="currentSpeaker.affiliation" class="speaker-affiliation">
             {{ currentSpeaker.affiliation }}
           </p>
+          <p v-if="currentSpeaker.title" class="speaker-title">
+            {{ currentSpeaker.title }}
+          </p>
 
-          <h3 class="speaker-name">
+          <h2 class="speaker-name">
             {{ currentSpeaker.name }}
-          </h3>
+          </h2>
 
           <div v-if="currentSpeaker.socialUrls" class="speaker-social">
             <a
@@ -216,12 +227,23 @@ const trackStyles = computed(() => ({
           </div>
         </div>
 
-        <h3 class="session-title-mobile">
-          {{ currentSpeaker.talkTitle || "TBD" }}
+        <div v-if="currentSpeaker.bio" class="speaker-bio-mobile">
+          <div class="speaker-bio-body">
+            <template v-for="(paragraph, idx) in splitLines(currentSpeaker.bio)" :key="idx">
+              <p v-if="paragraph">
+                {{ paragraph }}
+              </p>
+              <span v-else class="speaker-bio-spacer"></span>
+            </template>
+          </div>
+        </div>
+
+        <h3 v-if="currentSpeaker.talkTitle" class="session-title-mobile">
+          {{ currentSpeaker.talkTitle }}
         </h3>
 
-        <p v-if="currentSpeaker.talkOverview" class="session-overview-mobile">
-          <template v-for="(paragraph, idx) in currentSpeaker.talkOverview?.split('\n')" :key="idx">
+        <div v-if="currentSpeaker.talkOverview" class="session-overview-mobile">
+          <template v-for="(paragraph, idx) in splitLines(currentSpeaker.talkOverview)" :key="idx">
             <template v-if="paragraph">
               <p :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''">
                 {{ paragraph }}
@@ -231,7 +253,7 @@ const trackStyles = computed(() => ({
               <span class="session-overview-spacer"></span>
             </template>
           </template>
-        </p>
+        </div>
       </div>
 
       <div class="back-to-speakers">
@@ -366,7 +388,7 @@ const trackStyles = computed(() => ({
       }
     }
 
-    h3.speaker-name {
+    h2.speaker-name {
       margin: 0.25rem 0;
       font-size: 1.125rem;
       line-height: 1.6875rem;
@@ -379,6 +401,20 @@ const trackStyles = computed(() => ({
         width: 1.5rem;
         height: 1.5rem;
         display: inline-flex;
+      }
+    }
+
+    .speaker-bio {
+      margin-top: 2.5rem;
+
+      .speaker-bio-body {
+        display: grid;
+        row-gap: 1rem;
+
+        p {
+          margin: 0;
+          line-height: 1.7;
+        }
       }
     }
   }
@@ -433,6 +469,26 @@ const trackStyles = computed(() => ({
     }
   }
 
+  .speaker-bio-mobile {
+    display: none;
+
+    @media (--mobile) {
+      display: block;
+      grid-column: 1 / -1;
+      margin-top: 1.5rem;
+    }
+
+    .speaker-bio-body {
+      display: grid;
+      row-gap: 1rem;
+
+      p {
+        margin: 0;
+        line-height: 1.7;
+      }
+    }
+  }
+
   .session-overview-mobile {
     display: none;
     margin-bottom: 1rem;
@@ -448,6 +504,11 @@ const trackStyles = computed(() => ({
   .session-overview-spacer {
     display: block;
     height: 1.25em;
+  }
+
+  .speaker-bio-spacer {
+    display: block;
+    height: 0.25rem;
   }
 }
 </style>

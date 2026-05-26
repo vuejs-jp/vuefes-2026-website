@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
 import { computed, useI18n, useLazyFetch, useState, watch } from "#imports";
-import { EnSpeaker, JaSpeaker, VFButton, VFCarousel } from "#components";
+import { EnSpeaker, JaSpeaker, NuxtLink, VFButton, VFCarousel } from "#components";
 import type { Speaker } from "~~/server/static-data/types/speaker";
 import { HOME_HEADING_ID } from "~/constant";
 
@@ -34,6 +34,7 @@ class ColorSetIter {
 
 type CarouselSpeaker = Omit<Speaker, "id" | "color"> & {
   id: string;
+  speakerId: string;
   color: ColorSet;
 };
 
@@ -93,6 +94,7 @@ const speakers = computed<CarouselSpeaker[]>(() => {
     .map((it) => ({
       ...it,
       id: it.name,
+      speakerId: it.id,
       color: colorSetIter.next(),
     }));
 
@@ -121,7 +123,12 @@ const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { 
         :next-label="t('speakers.next')"
       >
         <template #slide="{ data: speaker }">
-          <div class="speaker-card">
+          <NuxtLink
+            :to="
+              localeRoute({ name: 'speaker-speakerId', params: { speakerId: speaker.speakerId } })
+            "
+            class="speaker-card"
+          >
             <img
               :src="speaker.avatarUrl"
               :alt="`${speaker.name}${speaker.affiliation ? `, ${speaker.affiliation}` : ''}${speaker.title ? `, ${speaker.title}` : ''}`"
@@ -154,7 +161,7 @@ const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { 
             >
               {{ speaker.name }}
             </p>
-          </div>
+          </NuxtLink>
         </template>
       </VFCarousel>
     </div>
@@ -194,12 +201,15 @@ const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { 
   }
 
   .speaker-card {
+    display: block;
     position: relative;
     border-radius: 10px;
     height: var(--speaker-card-height);
     overflow: hidden;
     margin-inline: 0.55rem;
     border: 1px solid var(--color-divider-light);
+    color: inherit;
+    text-decoration: none;
 
     .speaker-avatar {
       position: absolute;
@@ -207,6 +217,13 @@ const slideLabel = (index: number, total: number) => t("speakers.slideLabel", { 
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    @media (any-hover: hover) {
+      &:hover .speaker-avatar {
+        transform: scale(1.05);
+      }
     }
 
     .speaker-affiliation {

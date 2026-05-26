@@ -85,7 +85,8 @@ defineSlots<{
     }
   }
 
-  .section-content-inner {
+  /* タイトルがある場合のみ、タイトルと中身の間に余白を付ける */
+  .section-content-inner:not(:first-child) {
     margin-top: 2rem;
 
     @media (--mobile) {

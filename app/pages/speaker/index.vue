@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
 import SpeakerCard from "./_components/SpeakerCard.vue";
-import { VFSection, JaSpeaker, EnSpeaker, JaPanelDiscussion, EnPanelDiscussion } from "#components";
+import {
+  VFSection,
+  VFButton,
+  JaSpeaker,
+  EnSpeaker,
+  JaPanelDiscussion,
+  EnPanelDiscussion,
+} from "#components";
 import {
   computed,
   defineRouteRules,
@@ -13,6 +20,7 @@ import {
   defineOgImage,
   useQueryHashSync,
   useRoute,
+  useRouter,
   useFetch,
 } from "#imports";
 
@@ -22,6 +30,15 @@ defineRouteRules({ prerender: false });
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
+const router = useRouter();
+
+const goBack = () => {
+  if (window.history.length > 1) {
+    router.back();
+  } else {
+    router.push(localeRoute({ name: "index" }));
+  }
+};
 
 const { data: speakersData } = await useFetch("/api/speakers", {
   query: { locale },
@@ -30,6 +47,14 @@ const { data: speakersData } = await useFetch("/api/speakers", {
 const sessionSpeakers = computed(() => speakersData.value?.sessionSpeakers ?? []);
 const ltSpeakers = computed(() => speakersData.value?.ltSpeakers ?? []);
 const panelSpeakers = computed(() => speakersData.value?.panelDiscussionSpeakers ?? []);
+const allSpeakers = computed(() => {
+  return [...sessionSpeakers.value, ...ltSpeakers.value, ...panelSpeakers.value]
+    .filter((speaker, index, speakers) => index === speakers.findIndex((s) => s.id === speaker.id))
+    .sort(
+      (a, b) =>
+        (a.attendedIndex ?? Number.MAX_SAFE_INTEGER) - (b.attendedIndex ?? Number.MAX_SAFE_INTEGER),
+    );
+});
 
 const SectionId = {
   Sessions: "sessions",
@@ -80,12 +105,19 @@ useSeoMeta({
 
         <ul class="speakers">
           <SpeakerCard
-            v-for="speaker in [...sessionSpeakers, ...ltSpeakers, ...panelSpeakers]"
+            v-for="speaker in allSpeakers"
             :key="speaker.id"
+            :to="localeRoute({ name: 'speaker-speakerId', params: { speakerId: speaker.id } })"
             class="speaker-card-link"
             :speaker="speaker"
           />
         </ul>
+
+        <div class="back-to-top">
+          <VFButton outlined @click="goBack">
+            {{ t("back") }}
+          </VFButton>
+        </div>
       </VFSection>
     </template>
     <template v-else>
@@ -122,8 +154,19 @@ useSeoMeta({
         />
 
         <ul class="speakers">
-          <SpeakerCard v-for="speaker in panelSpeakers" :key="speaker.name" :speaker="speaker" />
+          <SpeakerCard
+            v-for="speaker in panelSpeakers"
+            :key="speaker.id"
+            :speaker="speaker"
+            :to="localeRoute({ name: 'speaker-speakerId', params: { speakerId: speaker.id } })"
+          />
         </ul>
+
+        <div class="back-to-top">
+          <VFButton outlined @click="goBack">
+            {{ t("back") }}
+          </VFButton>
+        </div>
       </VFSection>
     </template>
   </div>
@@ -147,6 +190,16 @@ useSeoMeta({
 
     @media (--mobile) {
       padding: 2.5rem 0.75rem;
+    }
+  }
+
+  .back-to-top {
+    display: grid;
+    place-items: center;
+    margin-top: 2rem;
+
+    @media (--mobile) {
+      margin-top: 1.5rem;
     }
   }
 

@@ -204,9 +204,10 @@ speakers:
   viewAll: "View All Speakers"
   sessions:
     title: "Sessions"
-    information: "Session Information"
+    information: "Speaker Information"
   panel:
     title: "Panel Discussion"
+    information: "Speaker Information"
   lightningTalks:
     title: "Lightning Talks"
     information: "Lightning Talk Information"

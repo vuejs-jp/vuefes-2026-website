@@ -33,14 +33,12 @@ const localeRoute = useLocaleRoute();
 @import "~/assets/styles/custom-media-query.css";
 
 .button-container {
-  margin-top: -32px;
   display: flex;
   justify-content: center;
   column-gap: 32px;
   text-align: center;
 
   @media (--mobile) {
-    margin-top: -24px;
     flex-direction: column;
     align-items: center;
     row-gap: 24px;

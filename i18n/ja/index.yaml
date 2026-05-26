@@ -205,9 +205,10 @@ speakers:
   viewAll: "すべてのスピーカーを見る"
   sessions:
     title: "セッション"
-    information: "セッション情報"
+    information: "スピーカー情報"
   panel:
     title: "パネルディスカッション"
+    information: "スピーカー情報"
   lightningTalks:
     title: "ライトニングトーク"
     information: "ライトニングトーク情報"

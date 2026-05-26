@@ -27,7 +27,9 @@ defineProps<{
 <template>
   <li class="speaker">
     <component :is="to ? NuxtLink : 'div'" :to="to" class="speaker-card-link">
-      <img :src="speaker.avatarUrl" :alt="''" class="speaker-image" />
+      <div class="speaker-image-wrapper">
+        <img :src="speaker.avatarUrl" :alt="''" class="speaker-image" />
+      </div>
       <p class="speaker-affiliation text-caption">
         {{ speaker.affiliation }}<br v-if="speaker.affiliation && speaker.title" />
         {{ speaker.title }}
@@ -64,12 +66,19 @@ defineProps<{
     color: inherit;
   }
 
-  .speaker-image {
+  .speaker-image-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 10px;
-    object-fit: cover;
+    overflow: hidden;
     border: 1px solid var(--color-divider-light);
+  }
+
+  .speaker-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
   }
 
   .speaker-affiliation {
@@ -83,8 +92,19 @@ defineProps<{
     font-size: 18px;
     line-height: 1.5;
     margin: 0.25rem 0 0;
+    transition: color 0.2s;
     @media (--mobile) {
       font-size: 16px;
+    }
+  }
+
+  @media (any-hover: hover) {
+    .speaker-card-link:hover .speaker-image {
+      transform: scale(1.05);
+    }
+
+    .speaker-card-link:hover .speaker-name {
+      color: var(--color-base);
     }
   }
 

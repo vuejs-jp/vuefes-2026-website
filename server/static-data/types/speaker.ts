@@ -4,6 +4,7 @@ export interface SpeakerLocaleFields {
   affiliation?: string;
   talkTitle?: string;
   talkOverview?: string;
+  bio?: string;
 }
 
 export interface SpeakerData {
@@ -39,6 +40,7 @@ export interface Speaker {
   talkTrack?: "hacomono" | "mates" | "feature" | "cyberAgent";
   talkTitle?: string;
   talkOverview?: string;
+  bio?: string;
   socialUrls?: {
     x?: string;
     bluesky?: string;
