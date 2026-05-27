@@ -84,7 +84,7 @@ const featureFlags = {
   // アクセスは常に表示
 
   // --- 学生支援（時期は要調整） ---
-  studentSupportOpen: false, // 学生支援募集セクション
+  studentSupportOpen: true, // 学生支援募集セクション
   studentSupportClosed: false, // 学生支援募集終了
   studentSupportEvent: false, // イベントページの学生支援コンテンツ
 
