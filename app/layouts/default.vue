@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useScroll } from "@vueuse/core";
-import { useLocaleRoute, type RoutesNamesList } from "@typed-router";
+import { useLocaleRoute } from "@typed-router";
 import {
   computed,
   nextTick,
@@ -112,24 +112,22 @@ const isShowedSpCta = computed(() => {
   return targetBp.includes(bp.value) && (!isRoot.value || y.value > 450);
 });
 
-const WIDE_ROUTE_NAMES: RoutesNamesList[] = [
-  "speaker",
-  "speaker-speakerId",
-  "ticket",
-  "ticket-userId",
-  "ticket-userId-edit",
-  "sponsors",
-  "sponsors-sponsorId",
-  "event",
-  "related-events",
-  "store",
+const stripLocalePath = (path: string) =>
+  path === "/en" ? "/" : path.startsWith("/en/") ? path.slice(3) : path;
+
+const WIDE_ROUTE_PATHS = [
+  "/speaker",
+  "/ticket",
+  "/sponsors",
+  "/event",
+  "/related-events",
+  "/store",
 ];
 
-const isWidenContent = computed(() =>
-  WIDE_ROUTE_NAMES.map((r) => localeRoute(r as string)?.name as string | undefined)
-    .filter((it) => !!it)
-    .includes(route.name?.toString() ?? ""),
-);
+const isWidenContent = computed(() => {
+  const path = stripLocalePath(route.path);
+  return WIDE_ROUTE_PATHS.some((widePath) => path === widePath || path.startsWith(`${widePath}/`));
+});
 
 const isTimetable = computed(
   () => localeRoute("timetable" as string).name === route.name?.toString(),
