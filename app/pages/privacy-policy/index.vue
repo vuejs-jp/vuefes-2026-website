@@ -57,7 +57,7 @@ useSeoMeta({
   .privacy-content {
     padding: 3rem 3.5rem;
 
-    :deep(p:first-of-type) {
+    :deep([data-vf-mdc] > p:first-of-type) {
       margin-top: 3rem;
     }
     :deep(ul) {
@@ -77,7 +77,7 @@ useSeoMeta({
     @media (--mobile) {
       padding: 2rem 1.5rem 3rem;
 
-      :deep(p:first-of-type) {
+      :deep([data-vf-mdc] > p:first-of-type) {
         margin-top: 1.5rem;
       }
     }
