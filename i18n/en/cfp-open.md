@@ -1,3 +1,3 @@
-<!-- TODO: 2026 年度の CFP 募集情報を追加する -->
+Vue Fes Japan is actively seeking speakers for sessions and lightning talks. We welcome all proposals that benefit Vue.js developers, including technical topics! Why not share your knowledge and experience at Vue Fes Japan, which is expected to attract many participants from both Japan and abroad?
 
-TBD
+Application Period: June 1, 2026, 12:00 JST – June 30, 2026, 20:59 JST.

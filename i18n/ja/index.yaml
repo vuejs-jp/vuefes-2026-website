@@ -218,8 +218,10 @@ speakers:
     title: "スポンサーセッション"
 
 cfp:
-  title: "セッションスピーカー募集"
-  apply: "応募はこちら"
+  title: "プロポーザル募集"
+  apply: "申し込む"
+  coverImageAlt: "プロポーザル募集のカバー画像"
+  applyLink: "https://docs.google.com/forms/d/e/1FAIpQLSdOoLR6qpKpj7LA_SR54JEe9Yx9APOmSGdhEHsp93V8vsVoOw/viewform?usp=header"
 
 student:
   title: "学生支援制度"

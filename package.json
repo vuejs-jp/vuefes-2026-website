@@ -11,6 +11,9 @@
     "postinstall": "node scripts/name-badge-admin-data-gen.ts && nuxt prepare",
     "prepare": "vp config"
   },
+  "dependencies": {
+    "temporal-polyfill-lite": "^0.4.0"
+  },
   "devDependencies": {
     "@auth/drizzle-adapter": "^1.10.0",
     "@aws-sdk/client-s3": "^3.842.0",

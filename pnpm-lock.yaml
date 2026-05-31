@@ -12,6 +12,10 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      temporal-polyfill-lite:
+        specifier: ^0.4.0
+        version: 0.4.0
     devDependencies:
       '@auth/drizzle-adapter':
         specifier: ^1.10.0
@@ -9713,6 +9717,9 @@ packages:
 
   teex@1.0.1:
     resolution: {integrity: sha512-eYE6iEI62Ni1H8oIa7KlDU6uQBtqr4Eajni3wX7rpfXD8ysFx8z0+dri+KWEPWpBsxXfxu58x/0jvTVT1ekOSg==}
+
+  temporal-polyfill-lite@0.4.0:
+    resolution: {integrity: sha512-Bwx9kt1xDsMqOKsRuprWwMaO+pOLa24/k1+CAcbSeFQkURnoPZibg4shuTPEDsqiinCefHiiN2jf4bnOXwNbbQ==}
 
   terminal-link@4.0.0:
     resolution: {integrity: sha512-lk+vH+MccxNqgVqSnkMVKx4VLJfnLjDBGzH16JVZjKE2DoxP57s6/vt6JmXV5I3jBcfGrxNrYtC+mPtU7WJztA==}
@@ -21968,6 +21975,8 @@ snapshots:
     transitivePeerDependencies:
       - bare-abort-controller
       - react-native-b4a
+
+  temporal-polyfill-lite@0.4.0: {}
 
   terminal-link@4.0.0:
     dependencies:

@@ -219,6 +219,8 @@ speakers:
 cfp:
   title: "Call for Proposals"
   apply: "Apply Here"
+  coverImageAlt: "Call for Proposals cover image"
+  applyLink: "https://docs.google.com/forms/d/e/1FAIpQLSfpEFc6XHAgaA_-1dOMZhYoFCthBQ9DYmE3wukJAO-TR6VJpA/viewform?usp=header"
 
 student:
   title: "Student Support Program"

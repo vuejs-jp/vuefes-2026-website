@@ -1,6 +1,7 @@
 import Icons from "unplugin-icons/vite";
 import { FileSystemIconLoader } from "unplugin-icons/loaders";
 import type { NuxtPage } from "nuxt/schema";
+import type { Temporal } from "temporal-polyfill-lite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
@@ -30,6 +31,31 @@ const publicSiteUrl = joinUrl(appOrigin, normalizePath(appBasePath));
 const siteOrigin = new URL(process.env.NUXT_SITE_URL || joinUrl(appOrigin, "/")).origin;
 const authOrigin =
   process.env.AUTH_ORIGIN || joinUrl(appOrigin, `${normalizePath(appBasePath)}api/auth`);
+type ButtonActivationPeriod = {
+  startsAt: Temporal.ZonedDateTimeLikeObject;
+  endsAt: Temporal.ZonedDateTimeLikeObject;
+};
+
+const buttonActivationPeriods = {
+  cfpApply: {
+    startsAt: {
+      year: 2026,
+      month: 6,
+      day: 1,
+      hour: 12,
+      minute: 0,
+      timeZone: "Asia/Tokyo",
+    },
+    endsAt: {
+      year: 2026,
+      month: 6,
+      day: 30,
+      hour: 20,
+      minute: 59,
+      timeZone: "Asia/Tokyo",
+    },
+  },
+} satisfies Record<string, ButtonActivationPeriod>;
 
 const featureFlags = {
   // ========================================================================
@@ -51,7 +77,7 @@ const featureFlags = {
   // --- 6月初: スポンサー公開 & CFP募集公開 ---
   // 抽選のもの(プラチナ等)が決まった段階で暫定公開、追加があれば随時
   sponsorList: false, // スポンサー一覧セクション/ページ
-  cfpOpen: false, // CFP募集中セクション
+  cfpOpen: true, // CFP募集中セクション
 
   // --- 6月末: CFP募集〆切 ---
   cfpClosed: false, // CFP募集終了メッセージ
@@ -173,6 +199,7 @@ export default defineNuxtConfig({
     public: {
       contactFormEndpoint:
         process.env.NUXT_PUBLIC_CONTACT_FORM_ENDPOINT || "https://ssgform.com/s/ATe50Qadv1hZ",
+      buttonActivationPeriods,
       siteUrl: publicSiteUrl,
     },
   },
