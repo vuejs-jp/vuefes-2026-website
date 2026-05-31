@@ -33,7 +33,7 @@ const authOrigin =
   process.env.AUTH_ORIGIN || joinUrl(appOrigin, `${normalizePath(appBasePath)}api/auth`);
 type ButtonActivationPeriod = {
   startsAt: Temporal.ZonedDateTimeLikeObject;
-  endsAt: Temporal.ZonedDateTimeLikeObject;
+  endsAt?: Temporal.ZonedDateTimeLikeObject;
 };
 
 const buttonActivationPeriods = {
@@ -52,6 +52,17 @@ const buttonActivationPeriods = {
       day: 30,
       hour: 20,
       minute: 59,
+      second: 59,
+      timeZone: "Asia/Tokyo",
+    },
+  },
+  studentApply: {
+    startsAt: {
+      year: 2026,
+      month: 6,
+      day: 1,
+      hour: 12,
+      minute: 0,
       timeZone: "Asia/Tokyo",
     },
   },

@@ -2,5 +2,4 @@ Vue Fes Japan 2026では、未来のエンジニアを応援する新たな取�
 
 詳細は、以下の募集要項をご覧ください。
 
-[募集要項](https://esa-pages.io/p/sharing/6906/posts/1668/32a492374d2c90a9918b.html)
-[申し込む](https://forms.gle/RSeNzPjCwzHbN9L26)
+応募開始: 2026年6月1日（月）12:00 ～

@@ -225,7 +225,9 @@ cfp:
 student:
   title: "Student Support Program"
   guideline: "Application Guidelines"
+  guidelineLink: "https://esa-pages.io/p/sharing/6906/posts/1668/32a492374d2c90a9918b.html"
   apply: "Apply Here"
+  applyLink: "https://forms.gle/RSeNzPjCwzHbN9L26"
 
 volunteer:
   title: "Volunteer Staff"

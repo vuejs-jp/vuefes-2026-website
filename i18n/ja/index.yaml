@@ -226,7 +226,9 @@ cfp:
 student:
   title: "学生支援制度"
   guideline: "募集要項"
-  apply: "応募はこちら"
+  guidelineLink: "https://esa-pages.io/p/sharing/6906/posts/1668/32a492374d2c90a9918b.html"
+  apply: "申し込む"
+  applyLink: "https://forms.gle/RSeNzPjCwzHbN9L26"
 
 volunteer:
   title: "ボランティアスタッフ"
