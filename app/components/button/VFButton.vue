@@ -105,8 +105,14 @@ a {
   &.button-outlined {
     background-color: transparent;
     border: 1px solid var(--color-place-holder);
+    box-shadow: inset 0 0 0 0 transparent;
     color: var(--color-text-default);
     text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      color 0.2s ease;
   }
 
   &.button-icon {
@@ -149,20 +155,23 @@ button {
   &.button-outlined {
     @media (any-hover: hover) {
       &:enabled:hover {
-        background-color: inherit;
-        border: 1px solid var(--color-base);
-        color: var(--color-base);
+        background-color: var(--color-base);
+        border-color: var(--color-base);
+        box-shadow: inset 0 0 0 1px var(--color-base);
+        color: var(--color-white);
       }
     }
 
     &:enabled:active {
-      background-color: inherit;
-      border: 1px solid var(--color-base);
-      color: var(--color-base);
+      background-color: var(--color-base);
+      border-color: var(--color-base);
+      box-shadow: inset 0 0 0 1px var(--color-base);
+      color: var(--color-white);
     }
 
     &:disabled {
       border: 1px solid var(--color-divider-light);
+      box-shadow: none;
       color: var(--color-divider-light);
     }
   }
@@ -192,15 +201,17 @@ a {
   &.button-outlined {
     @media (any-hover: hover) {
       &:hover {
-        background-color: inherit;
-        border: 1px solid var(--color-base);
-        color: var(--color-base);
+        background-color: var(--color-base);
+        border-color: var(--color-base);
+        box-shadow: inset 0 0 0 1px var(--color-base);
+        color: var(--color-white);
       }
     }
     &:active {
-      background-color: inherit;
-      border: 1px solid var(--color-base);
-      color: var(--color-base);
+      background-color: var(--color-base);
+      border-color: var(--color-base);
+      box-shadow: inset 0 0 0 1px var(--color-base);
+      color: var(--color-white);
     }
   }
 
