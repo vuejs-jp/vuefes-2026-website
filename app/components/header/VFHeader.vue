@@ -35,6 +35,7 @@ const [animationEnabled, setAnimationEnabled, isWebGLSupported] = useAnimationSt
           <NuxtLink
             :to="switchLocalePath('ja')"
             lang="ja"
+            replace
             title="日本語に切り替え"
             :class="{ active: locale === 'ja' }"
           >
@@ -44,6 +45,7 @@ const [animationEnabled, setAnimationEnabled, isWebGLSupported] = useAnimationSt
           <NuxtLink
             :to="switchLocalePath('en')"
             lang="en"
+            replace
             title="Switch to English"
             :class="{ active: locale === 'en' }"
           >
