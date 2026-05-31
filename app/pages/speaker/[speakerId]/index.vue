@@ -134,6 +134,10 @@ const trackStyles = computed(() => ({
             </template>
           </div>
 
+          <h2 class="speaker-name">
+            {{ currentSpeaker.name }}
+          </h2>
+
           <div class="speaker-meta">
             <dl v-if="currentSpeaker.affiliation" class="speaker-affiliation">
               <dt>{{ t("speakers.affiliation") }}</dt>
@@ -143,37 +147,6 @@ const trackStyles = computed(() => ({
               <dt>{{ t("speakers.speakerTitle") }}</dt>
               <dd>{{ currentSpeaker.title }}</dd>
             </dl>
-          </div>
-
-          <h2 class="speaker-name">
-            {{ currentSpeaker.name }}
-          </h2>
-
-          <div v-if="currentSpeaker.socialUrls" class="speaker-social">
-            <a
-              v-if="currentSpeaker.socialUrls.github"
-              :href="currentSpeaker.socialUrls.github"
-              target="_blank"
-              aria-label="GitHub"
-            >
-              <GithubIcon width="1.5rem" height="1.5rem" />
-            </a>
-            <a
-              v-if="currentSpeaker.socialUrls.x"
-              :href="currentSpeaker.socialUrls.x"
-              target="_blank"
-              aria-label="X (Twitter)"
-            >
-              <XIcon width="1.5rem" height="1.5rem" />
-            </a>
-            <a
-              v-if="currentSpeaker.socialUrls.bluesky"
-              :href="currentSpeaker.socialUrls.bluesky"
-              target="_blank"
-              aria-label="Bluesky"
-            >
-              <BlueskyIcon width="1.5rem" height="1.5rem" />
-            </a>
           </div>
 
           <div v-if="currentSpeaker.bio" class="speaker-bio">
@@ -186,22 +159,6 @@ const trackStyles = computed(() => ({
               </template>
             </div>
           </div>
-        </div>
-
-        <!-- Mobile layout -->
-        <div class="speaker-meta-mobile">
-          <dl v-if="currentSpeaker.affiliation" class="speaker-affiliation">
-            <dt>{{ t("speakers.affiliation") }}</dt>
-            <dd>{{ currentSpeaker.affiliation }}</dd>
-          </dl>
-          <dl v-if="currentSpeaker.title" class="speaker-title">
-            <dt>{{ t("speakers.speakerTitle") }}</dt>
-            <dd>{{ currentSpeaker.title }}</dd>
-          </dl>
-
-          <h2 class="speaker-name">
-            {{ currentSpeaker.name }}
-          </h2>
 
           <div v-if="currentSpeaker.socialUrls" class="speaker-social">
             <a
@@ -231,6 +188,22 @@ const trackStyles = computed(() => ({
           </div>
         </div>
 
+        <!-- Mobile layout -->
+        <div class="speaker-meta-mobile">
+          <h2 class="speaker-name">
+            {{ currentSpeaker.name }}
+          </h2>
+
+          <dl v-if="currentSpeaker.affiliation" class="speaker-affiliation">
+            <dt>{{ t("speakers.affiliation") }}</dt>
+            <dd>{{ currentSpeaker.affiliation }}</dd>
+          </dl>
+          <dl v-if="currentSpeaker.title" class="speaker-title">
+            <dt>{{ t("speakers.speakerTitle") }}</dt>
+            <dd>{{ currentSpeaker.title }}</dd>
+          </dl>
+        </div>
+
         <div v-if="currentSpeaker.bio" class="speaker-bio-mobile">
           <div class="speaker-bio-body">
             <template v-for="(paragraph, idx) in splitLines(currentSpeaker.bio)" :key="idx">
@@ -240,6 +213,33 @@ const trackStyles = computed(() => ({
               <span v-else class="speaker-bio-spacer"></span>
             </template>
           </div>
+        </div>
+
+        <div v-if="currentSpeaker.socialUrls" class="speaker-social-mobile">
+          <a
+            v-if="currentSpeaker.socialUrls.github"
+            :href="currentSpeaker.socialUrls.github"
+            target="_blank"
+            aria-label="GitHub"
+          >
+            <GithubIcon width="1.5rem" height="1.5rem" />
+          </a>
+          <a
+            v-if="currentSpeaker.socialUrls.x"
+            :href="currentSpeaker.socialUrls.x"
+            target="_blank"
+            aria-label="X (Twitter)"
+          >
+            <XIcon width="1.5rem" height="1.5rem" />
+          </a>
+          <a
+            v-if="currentSpeaker.socialUrls.bluesky"
+            :href="currentSpeaker.socialUrls.bluesky"
+            target="_blank"
+            aria-label="Bluesky"
+          >
+            <BlueskyIcon width="1.5rem" height="1.5rem" />
+          </a>
         </div>
 
         <h3 v-if="currentSpeaker.talkTitle" class="session-title-mobile">
@@ -417,7 +417,7 @@ const trackStyles = computed(() => ({
     }
 
     h2.speaker-name {
-      margin: 0.25rem 0;
+      margin: 0 0 0.25rem;
       font-size: 1.125rem;
       line-height: 1.6875rem;
     }
@@ -425,6 +425,7 @@ const trackStyles = computed(() => ({
     .speaker-social {
       display: flex;
       gap: 0.25rem;
+      margin-top: 1.5rem;
       a {
         width: 1.5rem;
         height: 1.5rem;
@@ -485,19 +486,9 @@ const trackStyles = computed(() => ({
     }
 
     .speaker-name {
-      margin: 0.25rem 0;
+      margin: 0 0 0.25rem;
       font-size: 1rem;
       line-height: 1.5rem;
-    }
-
-    .speaker-social {
-      display: flex;
-      gap: 0.25rem;
-      a {
-        width: 1.5rem;
-        height: 1.5rem;
-        display: inline-flex;
-      }
     }
   }
 
@@ -535,6 +526,23 @@ const trackStyles = computed(() => ({
         margin: 0;
         line-height: 1.7;
       }
+    }
+  }
+
+  .speaker-social-mobile {
+    display: none;
+
+    @media (--mobile) {
+      display: flex;
+      grid-column: 1 / -1;
+      gap: 0.25rem;
+      margin-top: 1rem;
+    }
+
+    a {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: inline-flex;
     }
   }
 
