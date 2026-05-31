@@ -11,4 +11,4 @@ At Vue Fes Japan 2026, prominent OSS developers from across the JavaScript commu
 
 Come join us and experience the excitement and inspiration firsthand!
 
-Kazuya Kawaguchi, Representative of the Vue.js Japan User Group ([@kazu_pon](https://github.com/kazupon))
+Kazuya Kawaguchi, Representative of the Vue.js Japan User Group ([@kazupon](https://github.com/kazupon))

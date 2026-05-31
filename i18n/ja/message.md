@@ -10,4 +10,4 @@ Vue Fes Japan 2026には、Evan氏をはじめJavaScriptコミュニティで活
 
 ぜひ一緒に、熱狂と刺激を体感しましょう！
 
-Vue.js日本ユーザーグループ代表 川口 和也（[@kazu_pon](https://github.com/kazupon)）
+Vue.js日本ユーザーグループ代表 川口 和也（[@kazupon](https://github.com/kazupon)）
