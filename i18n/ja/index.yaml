@@ -203,6 +203,8 @@ speakers:
   next: "次のスピーカー"
   slideLabel: "{total}件中{index}件目"
   viewAll: "すべてのスピーカーを見る"
+  affiliation: "所属"
+  speakerTitle: "肩書き"
   sessions:
     title: "セッション"
     information: "スピーカー情報"

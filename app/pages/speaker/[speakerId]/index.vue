@@ -135,12 +135,14 @@ const trackStyles = computed(() => ({
           </div>
 
           <div class="speaker-meta">
-            <p v-if="currentSpeaker.affiliation" class="speaker-affiliation">
-              {{ currentSpeaker.affiliation }}
-            </p>
-            <p v-if="currentSpeaker.title" class="speaker-title">
-              {{ currentSpeaker.title }}
-            </p>
+            <dl v-if="currentSpeaker.affiliation" class="speaker-affiliation">
+              <dt>{{ t("speakers.affiliation") }}</dt>
+              <dd>{{ currentSpeaker.affiliation }}</dd>
+            </dl>
+            <dl v-if="currentSpeaker.title" class="speaker-title">
+              <dt>{{ t("speakers.speakerTitle") }}</dt>
+              <dd>{{ currentSpeaker.title }}</dd>
+            </dl>
           </div>
 
           <h2 class="speaker-name">
@@ -188,12 +190,14 @@ const trackStyles = computed(() => ({
 
         <!-- Mobile layout -->
         <div class="speaker-meta-mobile">
-          <p v-if="currentSpeaker.affiliation" class="speaker-affiliation">
-            {{ currentSpeaker.affiliation }}
-          </p>
-          <p v-if="currentSpeaker.title" class="speaker-title">
-            {{ currentSpeaker.title }}
-          </p>
+          <dl v-if="currentSpeaker.affiliation" class="speaker-affiliation">
+            <dt>{{ t("speakers.affiliation") }}</dt>
+            <dd>{{ currentSpeaker.affiliation }}</dd>
+          </dl>
+          <dl v-if="currentSpeaker.title" class="speaker-title">
+            <dt>{{ t("speakers.speakerTitle") }}</dt>
+            <dd>{{ currentSpeaker.title }}</dd>
+          </dl>
 
           <h2 class="speaker-name">
             {{ currentSpeaker.name }}
@@ -380,10 +384,34 @@ const trackStyles = computed(() => ({
     }
 
     .speaker-meta {
+      display: grid;
+      row-gap: 0.125rem;
+
       .speaker-title,
       .speaker-affiliation {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 0.375rem;
+        align-items: baseline;
         font-size: 0.6875rem;
         line-height: 1.0313rem;
+        margin: 0;
+      }
+
+      dt {
+        font-size: inherit;
+        line-height: inherit;
+        color: var(--color-text-default);
+        opacity: 0.72;
+      }
+
+      dt::after {
+        content: ":";
+      }
+
+      dd {
+        font-size: inherit;
+        line-height: inherit;
         margin: 0;
       }
     }
@@ -430,8 +458,29 @@ const trackStyles = computed(() => ({
 
     .speaker-title,
     .speaker-affiliation {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 0.375rem;
+      align-items: baseline;
       font-size: 0.625rem;
       line-height: 0.9375rem;
+      margin: 0;
+    }
+
+    dt {
+      font-size: inherit;
+      line-height: inherit;
+      color: var(--color-text-default);
+      opacity: 0.72;
+    }
+
+    dt::after {
+      content: ":";
+    }
+
+    dd {
+      font-size: inherit;
+      line-height: inherit;
       margin: 0;
     }
 

@@ -202,6 +202,8 @@ speakers:
   next: "Next Speaker"
   slideLabel: "{index} of {total}"
   viewAll: "View All Speakers"
+  affiliation: "Affiliation"
+  speakerTitle: "Title"
   sessions:
     title: "Sessions"
     information: "Speaker Information"
