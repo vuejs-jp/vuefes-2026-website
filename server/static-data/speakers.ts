@@ -10,8 +10,8 @@ const EVAN_YOU: SpeakerData = {
   talkSchedule: "",
   talkTrack: undefined,
   socialUrls: {
-    x: "https://x.com/youyuxi",
-    bluesky: "https://bsky.app/profile/evan.me",
+    x: "https://x.com/evanyou",
+    bluesky: "https://bsky.app/profile/evanyou.me",
     github: "https://github.com/yyx990803",
   },
   ja: {
@@ -107,7 +107,7 @@ const CHARLES_WANG: SpeakerData = {
   talkTrack: undefined,
   socialUrls: {
     x: "https://x.com/wan9chi",
-    bluesky: "https://bsky.app/profile/wan9chi",
+    bluesky: "https://bsky.app/profile/wan9chi.bsky.social",
     github: "https://github.com/wan9chi",
   },
   ja: {
@@ -139,6 +139,7 @@ const UBUGEEEI: SpeakerData = {
   talkTrack: undefined,
   socialUrls: {
     x: "https://x.com/ubugeeei",
+    bluesky: "https://bsky.app/profile/ubugeeei.dev",
     github: "https://github.com/ubugeeei",
   },
   ja: {
@@ -294,7 +295,7 @@ const YUSUKE_WADA: SpeakerData = {
   talkTrack: undefined,
   socialUrls: {
     x: "https://x.com/yusukebe",
-    bluesky: "https://bsky.app/profile/yusukebe",
+    bluesky: "https://bsky.app/profile/yusukebe.bsky.social",
     github: "https://github.com/yusukebe",
   },
   ja: {
