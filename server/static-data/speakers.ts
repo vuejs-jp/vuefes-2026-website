@@ -286,7 +286,7 @@ const KONGKEIT_KHUNPANITCHOT: SpeakerData = {
 
 const YUSUKE_WADA: SpeakerData = {
   id: "yusukebe",
-  avatarUrl: "/images/avatars/yusuke-wada.jpeg",
+  avatarUrl: "/images/avatars/yusuke-wada.jpg",
   color: "default",
   attendedIndex: 10,
   sponsorId: undefined,
