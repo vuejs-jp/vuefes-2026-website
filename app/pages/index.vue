@@ -69,6 +69,7 @@ const SectionSponsors = import.meta.vfFeatures.sponsorList
   : null;
 
 // 学生支援募集中セクション
+const studentSupportDisabled = import.meta.vfFeatures.photoSection;
 const SectionStudentSupportOpen =
   import.meta.vfFeatures.studentSupportOpen && !import.meta.vfFeatures.studentSupportClosed
     ? defineAsyncComponent(() => import("./_components/SectionStudentSupportOpen.vue"))
@@ -134,7 +135,7 @@ useSeoMeta({ title: "" });
       <SectionEvent v-if="SectionEvent" />
 
       <!-- 学生支援 -->
-      <SectionStudentSupportOpen v-if="SectionStudentSupportOpen" />
+      <SectionStudentSupportOpen studentSupportDisabled v-if="SectionStudentSupportOpen" />
       <SectionStudentSupportClosed v-if="SectionStudentSupportClosed" />
 
       <!-- ボランティア -->

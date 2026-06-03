@@ -4,18 +4,25 @@ import { useI18n, useRuntimeConfig, useCurrentInstant, computed } from "#imports
 import { VFSection, JaStudentSupportOpen, EnStudentSupportOpen } from "#components";
 import { HOME_HEADING_ID } from "~/constant";
 
+const { studentSupportDisabled } = defineProps({
+  studentSupportDisabled: {
+    type: Boolean,
+    required: true,
+  },
+});
+
 const { locale, t } = useI18n();
 const runtimeConfig = useRuntimeConfig();
 
 const currentInstant = useCurrentInstant();
 const studentApplyPeriod = runtimeConfig.public.buttonActivationPeriods.studentApply;
 const studentApplyStartsAt = Temporal.ZonedDateTime.from(studentApplyPeriod.startsAt).toInstant();
-// const isStudentApplyActive = computed(
-//   () =>
-//     currentInstant.value !== null &&
-//     Temporal.Instant.compare(currentInstant.value, studentApplyStartsAt) >= 0,
-// );
-const isStudentApplyActive = false;
+const isStudentApplyActive = computed(
+  () =>
+    currentInstant.value !== null &&
+    Temporal.Instant.compare(currentInstant.value, studentApplyStartsAt) >= 0 &&
+    !studentSupportDisabled,
+);
 </script>
 
 <template>

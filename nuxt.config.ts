@@ -122,7 +122,8 @@ const featureFlags = {
 
   // --- 学生支援（時期は要調整） ---
   studentSupportOpen: true, // 学生支援募集セクション
-  studentSupportClosed: false, // 学生支援募集終了
+  studentSupportDisabled: false, // 学生支援募集のボタンを非活性(募集終了後、文言掲出までの暫定措置)
+  studentSupportClosed: true, // 学生支援募集終了
   studentSupportEvent: false, // イベントページの学生支援コンテンツ
 
   // ========================================================================
