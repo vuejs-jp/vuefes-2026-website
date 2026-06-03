@@ -10,11 +10,12 @@ const runtimeConfig = useRuntimeConfig();
 const currentInstant = useCurrentInstant();
 const studentApplyPeriod = runtimeConfig.public.buttonActivationPeriods.studentApply;
 const studentApplyStartsAt = Temporal.ZonedDateTime.from(studentApplyPeriod.startsAt).toInstant();
-const isStudentApplyActive = computed(
-  () =>
-    currentInstant.value !== null &&
-    Temporal.Instant.compare(currentInstant.value, studentApplyStartsAt) >= 0,
-);
+// const isStudentApplyActive = computed(
+//   () =>
+//     currentInstant.value !== null &&
+//     Temporal.Instant.compare(currentInstant.value, studentApplyStartsAt) >= 0,
+// );
+const isStudentApplyActive = false;
 </script>
 
 <template>
