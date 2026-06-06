@@ -2,14 +2,11 @@
 import TimetableHead from "./_components/TimetableHead.vue";
 import TimetableCell from "./_components/TimetableCell.vue";
 import TimetableCard from "./_components/TimetableCard.vue";
+import { useScrollPosition } from "~/composables/useScrollPosition";
 import { VFSection } from "#components";
 import {
   defineOgImage,
   defineRouteRules,
-  nextTick,
-  onBeforeRouteLeave,
-  onBeforeUnmount,
-  onMounted,
   useBreakpoint,
   useFetch,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -17,7 +14,6 @@ import {
   useI18n,
   useRuntimeConfig,
   useSeoMeta,
-  useState,
   useWithBase,
 } from "#imports";
 
@@ -32,34 +28,7 @@ const { data: timetable } = await useFetch("/api/timetable", {
   query: { locale: locale.value },
 });
 
-const timetableScrollPosition = useState<number>("timetableScrollPosition", () => 0);
-
-onBeforeRouteLeave(() => {
-  timetableScrollPosition.value = window.scrollY;
-});
-
-onMounted(() => {
-  if (timetableScrollPosition.value > 0) {
-    nextTick(() => {
-      window.scrollTo({
-        top: timetableScrollPosition.value,
-        behavior: "instant",
-      });
-    });
-  }
-});
-
-if (import.meta.client) {
-  function savePosition() {
-    timetableScrollPosition.value = window.scrollY;
-  }
-
-  window.addEventListener("pagehide", savePosition);
-
-  onBeforeUnmount(() => {
-    window.removeEventListener("pagehide", savePosition);
-  });
-}
+useScrollPosition("timetableScrollPosition");
 
 defineOgImage({
   url: `${runtimeConfig.public.siteUrl}images/og/timetable.png`,

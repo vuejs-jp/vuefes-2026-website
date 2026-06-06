@@ -2,6 +2,7 @@
 import SectionAccess from "./_components/SectionAccess.vue";
 import SectionContact from "./_components/SectionContact.vue";
 import SectionMessage from "./_components/SectionMessage.vue";
+import { useScrollPosition } from "~/composables/useScrollPosition";
 
 import {
   defineRouteRules,
@@ -16,6 +17,7 @@ import {
 defineRouteRules({ prerender: true });
 
 const { t } = useI18n();
+useScrollPosition("indexScrollPosition");
 
 // === 条件付きコンポーネントローディング ===
 // フラグが false の場合、コンポーネントはバンドルに含まれません
