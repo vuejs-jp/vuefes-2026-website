@@ -9,10 +9,14 @@ import {
   watch,
   useI18n,
   type Breakpoint,
+  type Component,
+  type ComputedRef,
 } from "#imports";
 import {
   EnCtaTicket,
   JaCtaTicket,
+  EnCtaCfp,
+  JaCtaCfp,
   MainVisual,
   VFCta,
   VFFooter,
@@ -80,20 +84,49 @@ const menuItems = computed<MenuItemProps[]>(() =>
   ].filter((it) => !!it),
 );
 
-const cta = computed(() =>
-  import.meta.vfFeatures.ctaTicket
-    ? {
-        props: {
-          actionButton: {
-            label: t("ticket.details"),
-            link: localeRoute({ name: "ticket" }).path,
-          },
-          openerText: "Ticket",
-        },
-        content: locale.value === "ja" ? JaCtaTicket : EnCtaTicket,
-      }
-    : null,
-);
+type CtaConfig = {
+  props: {
+    actionButton: {
+      label: string;
+      link: string;
+    };
+    openerText: string;
+  };
+  content: Component;
+};
+const ctaConfigs: ComputedRef<Record<NonNullable<typeof viewedCta>, CtaConfig>> = computed(() => ({
+  ticket: {
+    props: {
+      actionButton: {
+        label: t("ticket.details"),
+        link: localeRoute({ name: "ticket" }).path,
+      },
+      openerText: "Ticket",
+    },
+    content: locale.value === "ja" ? JaCtaTicket : EnCtaTicket,
+  },
+  cfp: {
+    props: {
+      actionButton: {
+        label: t("cfp.apply"),
+        link: t("cfp.applyLink"),
+      },
+      openerText: "CFP",
+    },
+    content: locale.value === "ja" ? JaCtaCfp : EnCtaCfp,
+  },
+}));
+
+const viewedCta: "ticket" | "cfp" | null = (() => {
+  if (import.meta.vfFeatures.ctaTicket) {
+    return "ticket";
+  } else if (import.meta.vfFeatures.ctaCfp) {
+    return "cfp";
+  } else {
+    return null;
+  }
+})();
+const cta = computed(() => (viewedCta ? ctaConfigs.value[viewedCta] : null));
 
 const { y } = useScroll(window);
 const isShowedSpMenu = computed(() => {
@@ -198,12 +231,7 @@ watch(
 
     <Transition>
       <VFSpCta
-        v-if="
-          isShowedSpCta &&
-          cta &&
-          // NOTE: When already on /ticket, don't show the menu as clicking the link won't navigate and could be confusing
-          route.path !== localeRoute({ name: 'ticket' }).path
-        "
+        v-if="isShowedSpCta && cta && route.path !== cta.props.actionButton.link"
         v-bind="cta.props"
       >
         <component :is="cta.content" />
