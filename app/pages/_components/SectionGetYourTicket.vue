@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
 import { HOME_HEADING_ID } from "~/constant";
-import { useBreakpoint, useI18n, useWithBase } from "#imports";
+import { useCoverImage, useI18n } from "#imports";
 import { VFSection, JaGetYourTicket, EnGetYourTicket } from "#components";
 
-const bp = useBreakpoint();
-const withBase = useWithBase();
+const coverImage = useCoverImage();
 const { locale, t } = useI18n();
 const localeRoute = useLocaleRoute();
 </script>
@@ -15,11 +14,11 @@ const localeRoute = useLocaleRoute();
     :id="HOME_HEADING_ID.ticket"
     :title="t('ticket.title')"
     :cover-image="{
-      src:
-        bp === 'pc'
-          ? withBase('/images/top/cover/get-your-ticket-pc.png')
-          : withBase('/images/top/cover/get-your-ticket-sp.png'),
       alt: t('ticket.coverImageAlt'),
+      image: {
+        pc: coverImage('get-your-ticket-pc', 'jpg'),
+        sp: coverImage('get-your-ticket-sp', 'jpg'),
+      },
     }"
   >
     <component :is="locale === 'ja' ? JaGetYourTicket : EnGetYourTicket" />

@@ -19,11 +19,11 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
   <VFSection
     :id="HOME_HEADING_ID.sponsorWanted"
     :cover-image="{
-      src:
-        bp === 'pc'
-          ? withBase('/images/top/cover/sponsors-pc.svg')
-          : withBase('/images/top/cover/sponsors-sp.svg'),
       alt: t('sponsors.coverImageAlt'),
+      image: {
+        pc: { src: withBase('/images/top/cover/sponsors-pc.svg') },
+        sp: { src: withBase('/images/top/cover/sponsors-sp.svg') },
+      },
     }"
   >
     <div class="sponsor-list">

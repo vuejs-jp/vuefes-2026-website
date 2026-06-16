@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { VFHeading } from "#components";
+import VFImage, { type Props as VFImageProps } from "../image/VFImage.vue";
 
 const {
   title,
@@ -12,10 +13,7 @@ const {
   /** @default 2 */
   heading?: 1 | 2 | 3 | 4 | 5 | 6;
 
-  coverImage?: {
-    src: string;
-    alt: string;
-  };
+  coverImage?: VFImageProps;
 
   id?: string;
 }>();
@@ -28,7 +26,14 @@ defineSlots<{
 <template>
   <section class="vf-section">
     <div v-if="coverImage" class="section-cover-wrapper">
-      <img :src="coverImage.src" :alt="coverImage.alt" />
+      <VFImage
+        :image="coverImage.image"
+        :alt="coverImage.alt"
+        :width="coverImage.width ?? 684"
+        :height="coverImage.height ?? 385"
+        :sizes="coverImage.sizes"
+        :loading="coverImage.loading ?? 'lazy'"
+      />
     </div>
     <div class="section-content">
       <div v-if="title">
@@ -57,18 +62,13 @@ defineSlots<{
   width: 100%;
 
   .section-cover-wrapper {
-    /* for preventing CLS */
-    aspect-ratio: 682 / 383.867;
     width: 100%;
 
-    img {
+    :deep(img) {
+      display: block;
       border-radius: var(--radius-m) var(--radius-m) 0 0;
       width: 100%;
       height: auto;
-      @media (--mobile) {
-        max-width: none;
-        width: 100%;
-      }
     }
   }
 

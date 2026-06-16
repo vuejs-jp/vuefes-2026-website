@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { HOME_HEADING_ID } from "~/constant";
-import { useBreakpoint, useI18n, useWithBase } from "#imports";
+import { useCoverImage, useI18n } from "#imports";
 import { VFSection, JaMessage, EnMessage } from "#components";
 
-const bp = useBreakpoint();
-const withBase = useWithBase();
+const coverImage = useCoverImage();
 const { locale, t } = useI18n();
 </script>
 
@@ -13,11 +12,11 @@ const { locale, t } = useI18n();
     :id="HOME_HEADING_ID.message"
     :title="t('message')"
     :cover-image="{
-      src:
-        bp === 'pc'
-          ? withBase('/images/top/cover/message-pc.png')
-          : withBase('/images/top/cover/message-sp.png'),
       alt: t('messageCoverImageAlt'),
+      image: {
+        pc: coverImage('message-pc'),
+        sp: coverImage('message-sp'),
+      },
     }"
   >
     <component :is="locale === 'ja' ? JaMessage : EnMessage" />

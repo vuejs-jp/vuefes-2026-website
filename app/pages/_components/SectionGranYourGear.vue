@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { HOME_HEADING_ID } from "~/constant";
-import { useI18n, useWithBase } from "#imports";
+import { useCoverImage, useI18n } from "#imports";
 import { VFSection, JaCheckTheItems, EnCheckTheItems } from "#components";
 
-const withBase = useWithBase();
+const coverImage = useCoverImage();
 const { locale, t } = useI18n();
 </script>
 
@@ -12,8 +12,11 @@ const { locale, t } = useI18n();
     :id="HOME_HEADING_ID.store"
     :title="t('store.panel.title')"
     :cover-image="{
-      src: withBase('/images/top/cover/grab-your-gear.png'),
       alt: t('store.coverImageAlt'),
+      image: {
+        pc: coverImage('store-pc', 'jpg'),
+        sp: coverImage('store-sp', 'jpg'),
+      },
     }"
   >
     <component :is="locale === 'ja' ? JaCheckTheItems : EnCheckTheItems" />

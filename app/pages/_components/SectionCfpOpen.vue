@@ -2,10 +2,9 @@
 import { Temporal } from "temporal-polyfill-lite";
 import { computed } from "vue";
 import { HOME_HEADING_ID } from "~/constant";
-import { useI18n, useWithBase, useBreakpoint, useRuntimeConfig, useCurrentInstant } from "#imports";
+import { useI18n, useWithBase, useRuntimeConfig, useCurrentInstant } from "#imports";
 import { VFSection, JaCfpOpen, EnCfpOpen } from "#components";
 
-const bp = useBreakpoint();
 const withBase = useWithBase();
 const { locale, t } = useI18n();
 const runtimeConfig = useRuntimeConfig();
@@ -27,11 +26,11 @@ const isCfpApplyActive = computed(
     :id="HOME_HEADING_ID.cfp"
     :title="t('cfp.title')"
     :cover-image="{
-      src:
-        bp === 'pc'
-          ? withBase('/images/top/cover/cfp-pc.svg')
-          : withBase('/images/top/cover/cfp-sp.svg'),
       alt: t('cfp.coverImageAlt'),
+      image: {
+        pc: { src: withBase('/images/top/cover/cfp-pc.svg') },
+        sp: { src: withBase('/images/top/cover/cfp-sp.svg') },
+      },
     }"
   >
     <component :is="locale === 'ja' ? JaCfpOpen : EnCfpOpen" />

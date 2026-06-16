@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { HOME_HEADING_ID } from "~/constant";
-import { useBreakpoint, useI18n, useWithBase } from "#imports";
+import { useI18n, useWithBase } from "#imports";
 import { VFSection, JaVolunteer, EnVolunteer } from "#components";
 
-const bp = useBreakpoint();
 const withBase = useWithBase();
 const { locale, t } = useI18n();
 </script>
@@ -13,11 +12,11 @@ const { locale, t } = useI18n();
     :id="HOME_HEADING_ID.volunteer"
     :title="t('volunteer.title')"
     :cover-image="{
-      src:
-        bp === 'pc'
-          ? withBase('/images/top/cover/volunteer-pc.svg')
-          : withBase('/images/top/cover/volunteer-sp.svg'),
       alt: t('volunteer.coverImageAlt'),
+      image: {
+        pc: { src: withBase('/images/top/cover/volunteer-pc.svg') },
+        sp: { src: withBase('/images/top/cover/volunteer-sp.svg') },
+      },
     }"
   >
     <component :is="locale === 'ja' ? JaVolunteer : EnVolunteer" />

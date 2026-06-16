@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
-import { useBreakpoint, useI18n, useWithBase } from "#imports";
+import { useCoverImage, useI18n } from "#imports";
 
-const bp = useBreakpoint();
-const withBase = useWithBase();
+const coverImage = useCoverImage();
 const { t } = useI18n();
 const localeRoute = useLocaleRoute();
 </script>
@@ -11,11 +10,11 @@ const localeRoute = useLocaleRoute();
 <template>
   <VFSection
     :cover-image="{
-      src:
-        bp === 'pc'
-          ? withBase('/images/top/cover/event-pc.png')
-          : withBase('/images/top/cover/event-sp.png'),
       alt: t('event.coverImageAlt'),
+      image: {
+        pc: coverImage('event-pc', 'jpg'),
+        sp: coverImage('event-sp', 'jpg'),
+      },
     }"
   >
     <div class="button-container">
