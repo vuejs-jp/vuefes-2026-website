@@ -39,14 +39,7 @@ type CarouselSpeaker = Omit<Speaker, "id" | "color"> & {
 };
 
 const attendedSpeakers = computed(() => {
-  const allSpeakers = [
-    ...(speakersData.value?.sessionSpeakers ?? []),
-    ...(speakersData.value?.panelDiscussionSpeakers ?? []),
-  ];
-
-  return allSpeakers
-    .filter((it, index, speakers) => index === speakers.findIndex((s) => s.name === it.name))
-    .filter((it) => it.attendedIndex !== undefined);
+  return (speakersData.value?.speakers ?? []).filter((it) => it.attendedIndex !== undefined);
 });
 
 const EVAN_YOU_ID = "yyx990803";
@@ -66,14 +59,17 @@ watch(
   attendedSpeakers,
   (attendedSpeakers) => {
     if (attendedSpeakers.length === 0) return;
+    const evanYou = attendedSpeakers.find((it) => it.id === EVAN_YOU_ID);
+    const featuredSpeakerCount = Math.min(
+      attendedSpeakers.length,
+      RANDOM_SPEAKER_COUNT + (evanYou ? 1 : 0),
+    );
     if (
-      featuredSpeakerIds.value.length > 0 &&
+      featuredSpeakerIds.value.length === featuredSpeakerCount &&
       featuredSpeakerIds.value.every((id) => attendedSpeakers.some((speaker) => speaker.id === id))
     ) {
       return;
     }
-
-    const evanYou = attendedSpeakers.find((it) => it.id === EVAN_YOU_ID);
 
     featuredSpeakerIds.value = [
       evanYou?.id,

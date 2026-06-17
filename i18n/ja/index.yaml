@@ -338,10 +338,10 @@ timetable:
   title: "タイムテーブル"
   description: "Vue Fes Japan 2026のタイムテーブルです。"
   track:
-    hacomono: "FitFits with hacomonoトラック"
-    mates: "メイツトラック"
-    feature: "フューチャーアーキテクトトラック"
-    cyberAgent: "サイバーエージェントトラック"
+    track1: "FitFits with hacomonoトラック"
+    track2: "メイツトラック"
+    track3: "フューチャーアーキテクトトラック"
+    track4: "サイバーエージェントトラック"
   slider: "発表資料"
   session: "セッション"
   # Timetable content translations
@@ -358,6 +358,7 @@ timetable:
   handsOnSponsorSession: "ハンズオンスポンサーセッション"
   beginnerHandsOn: "初級者向けハンズオン"
   intermediateHandsOn: "中級者向けハンズオン"
+  panelDiscussion: "パネルディスカッション"
   # TODO: 2026年度のパネルディスカッションタイトルを確定する
   crossTalkTitle: "TBD"
   lightningTalk: "ライトニングトーク"

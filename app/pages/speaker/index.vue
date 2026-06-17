@@ -48,12 +48,10 @@ const sessionSpeakers = computed(() => speakersData.value?.sessionSpeakers ?? []
 const ltSpeakers = computed(() => speakersData.value?.ltSpeakers ?? []);
 const panelSpeakers = computed(() => speakersData.value?.panelDiscussionSpeakers ?? []);
 const allSpeakers = computed(() => {
-  return [...sessionSpeakers.value, ...ltSpeakers.value, ...panelSpeakers.value]
-    .filter((speaker, index, speakers) => index === speakers.findIndex((s) => s.id === speaker.id))
-    .sort(
-      (a, b) =>
-        (a.attendedIndex ?? Number.MAX_SAFE_INTEGER) - (b.attendedIndex ?? Number.MAX_SAFE_INTEGER),
-    );
+  return [...(speakersData.value?.speakers ?? [])].sort(
+    (a, b) =>
+      (a.attendedIndex ?? Number.MAX_SAFE_INTEGER) - (b.attendedIndex ?? Number.MAX_SAFE_INTEGER),
+  );
 });
 
 const SectionId = {

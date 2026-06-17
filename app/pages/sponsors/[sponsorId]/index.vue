@@ -4,6 +4,7 @@ import SponsorTag from "../_components/SponsorTag.vue";
 import XIcon from "~icons/icons/ic_x";
 import GithubIcon from "~icons/icons/ic_github";
 import BlueskyIcon from "~icons/icons/ic_bluesky";
+import { TIMETABLE_TRACKS } from "~~/server/static-data/timetable";
 import type { Sponsor } from "~~/server/static-data/types/sponsor";
 import {
   computed,
@@ -18,9 +19,7 @@ import {
   useFetch,
 } from "#imports";
 import { VFSection } from "#components";
-
-type TalkTrack = "hacomono" | "mates" | "feature" | "cyberAgent";
-type TrackColor = "primary" | "purple" | "orange" | "navy";
+import type { Program } from "~~/server/static-data/types/program.js";
 
 definePageMeta({ prerender: true });
 
@@ -62,25 +61,21 @@ defineOgImage({
   },
 });
 
-const accentColorName = (talkTrack: TalkTrack): TrackColor => {
-  switch (talkTrack) {
-    case "hacomono":
-      return "primary";
-    case "mates":
-      return "purple";
-    case "feature":
-      return "orange";
-    case "cyberAgent":
-      return "navy";
-    default:
-      return "primary";
+const trackStyles = (tracks: Program["tracks"]) => {
+  const track = tracks[0];
+  if (!track) {
+    return {
+      "--base-color": "var(--color-primary-base)",
+      "--sub-color": "var(--color-primary-sub)",
+    };
   }
-};
 
-const trackStyles = (talkTrack: TalkTrack) => ({
-  "--base-color": `var(--color-${accentColorName(talkTrack)}-base)`,
-  "--sub-color": `var(--color-${accentColorName(talkTrack)}-sub)`,
-});
+  const accentColorName = TIMETABLE_TRACKS[track]?.color ?? "primary";
+  return {
+    "--base-color": `var(--color-${accentColorName}-base)`,
+    "--sub-color": `var(--color-${accentColorName}-sub)`,
+  };
+};
 
 onMounted(async () => {
   if (!route.hash) return;
@@ -127,37 +122,36 @@ onMounted(async () => {
         {{ currentSponsor.description }}
       </div>
 
-      <div v-if="currentSponsor.session" class="sponsor-session">
+      <div v-if="currentSponsor.program.length" class="sponsor-session">
         <hr />
 
         <div
-          v-for="session in currentSponsor.session"
-          :key="session.speaker.id"
+          v-for="program in currentSponsor.program"
+          :key="program.id"
           class="sponsor-speaker-item"
         >
           <div
-            v-if="session.speaker.talkTrack"
+            v-if="program.tracks.length"
             class="session-track"
-            :style="trackStyles(session.speaker.talkTrack)"
+            :style="trackStyles(program.tracks)"
           >
             <div class="speaker-track">
-              {{ t(`timetable.track.${session.speaker.talkTrack}`) }}
+              <template v-for="(track, index) in program.tracks" :key="track">
+                <template v-if="index > 0"> / </template>
+                {{ t(`timetable.track.${track}`) }}
+              </template>
             </div>
-            <div class="speaker-time">
-              {{ session.speaker.talkSchedule }}
+            <div v-if="program.start && program.end" class="speaker-time">
+              {{ program.start }} - {{ program.end }}
             </div>
-          </div>
-
-          <div class="session-speaker-image">
-            <img :src="session.speaker.avatarUrl" :alt="session.speaker.name" loading="lazy" />
           </div>
 
           <div class="session-detail">
-            <h4 :id="session.speaker.id" class="sponsor-speaker-title">
-              {{ session.title }}
+            <h4 :id="program.id" class="sponsor-speaker-title">
+              {{ program.title }}
             </h4>
-            <p v-if="session.overview" class="sponsor-speaker-overview">
-              <template v-for="(paragraph, idx) in session.overview?.split('\n')" :key="idx">
+            <p v-if="program.overview" class="sponsor-speaker-overview">
+              <template v-for="(paragraph, idx) in program.overview?.split('\n')" :key="idx">
                 <template v-if="paragraph">
                   <p
                     :style="
@@ -174,44 +168,51 @@ onMounted(async () => {
             </p>
           </div>
 
-          <div class="speaker">
-            <p class="speaker-affiliation">
-              {{ session.speaker.affiliation
-              }}<br v-if="session.speaker.affiliation && session.speaker.title" />
-              {{ session.speaker.title }}
-            </p>
+          <div class="session-speakers">
+            <div v-for="speaker in program.speakers" :key="speaker.id" class="session-speaker">
+              <div class="session-speaker-image">
+                <img :src="speaker.avatarUrl" :alt="speaker.name" loading="lazy" />
+              </div>
 
-            <div class="speaker-name">
-              {{ session.speaker.name }}
-            </div>
+              <div class="speaker">
+                <p class="speaker-affiliation">
+                  {{ speaker.affiliation }}<br v-if="speaker.affiliation && speaker.title" />
+                  {{ speaker.title }}
+                </p>
 
-            <div class="speaker-socials">
-              <NuxtLink
-                v-if="session.speaker.socialUrls?.github"
-                :to="session.speaker.socialUrls.github"
-                external
-                target="_blank"
-              >
-                <GithubIcon :aria-label="t('snsIconImageAlt.github')" role="img" />
-              </NuxtLink>
+                <div class="speaker-name">
+                  {{ speaker.name }}
+                </div>
 
-              <NuxtLink
-                v-if="session.speaker.socialUrls?.x"
-                :to="session.speaker.socialUrls.x"
-                external
-                target="_blank"
-              >
-                <XIcon :aria-label="t('snsIconImageAlt.x')" role="img" />
-              </NuxtLink>
+                <div class="speaker-socials">
+                  <NuxtLink
+                    v-if="speaker.socialUrls?.github"
+                    :to="speaker.socialUrls.github"
+                    external
+                    target="_blank"
+                  >
+                    <GithubIcon :aria-label="t('snsIconImageAlt.github')" role="img" />
+                  </NuxtLink>
 
-              <NuxtLink
-                v-if="session.speaker.socialUrls?.bluesky"
-                :to="session.speaker.socialUrls.bluesky"
-                external
-                target="_blank"
-              >
-                <BlueskyIcon :aria-label="t('snsIconImageAlt.bluesky')" role="img" />
-              </NuxtLink>
+                  <NuxtLink
+                    v-if="speaker.socialUrls?.x"
+                    :to="speaker.socialUrls.x"
+                    external
+                    target="_blank"
+                  >
+                    <XIcon :aria-label="t('snsIconImageAlt.x')" role="img" />
+                  </NuxtLink>
+
+                  <NuxtLink
+                    v-if="speaker.socialUrls?.bluesky"
+                    :to="speaker.socialUrls.bluesky"
+                    external
+                    target="_blank"
+                  >
+                    <BlueskyIcon :aria-label="t('snsIconImageAlt.bluesky')" role="img" />
+                  </NuxtLink>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -295,13 +296,8 @@ onMounted(async () => {
 
 .sponsor-speaker-item {
   display: grid;
-  grid-template-columns: calc(180 / 832 * 100%) 1fr;
-  grid-template-rows: repeat(3, auto);
-  grid-template-areas: "track track" "image session" "image speaker";
-  gap: 1rem 2rem;
+  gap: 1rem;
   @media (--mobile) {
-    grid-template-columns: repeat(2, calc(50% - 0.75rem));
-    grid-template-areas: "track track" "image speaker" "session session";
     gap: 1.5rem;
   }
 }
@@ -323,7 +319,6 @@ onMounted(async () => {
 }
 
 .session-detail {
-  grid-area: session;
   h4 {
     margin: 0 0 1.5rem;
     font-size: var(--typography-h2-size);
@@ -339,8 +334,25 @@ onMounted(async () => {
     margin-top: 8px;
   }
 }
+
+.session-speakers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 2rem;
+}
+
+.session-speaker {
+  display: grid;
+  grid-template-columns: minmax(8rem, 11.25rem) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+
+  @media (--mobile) {
+    grid-template-columns: repeat(2, calc(50% - 0.75rem));
+  }
+}
+
 .session-speaker-image {
-  grid-area: image;
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 10px;
@@ -350,9 +362,6 @@ onMounted(async () => {
   }
 }
 
-.speaker {
-  grid-area: speaker;
-}
 .speaker-affiliation {
   margin: 0;
   font-size: var(--typography-caption-size);
@@ -393,7 +402,7 @@ onMounted(async () => {
 }
 
 .session-track {
-  grid-area: track;
+  width: fit-content;
 }
 
 .speaker-track {

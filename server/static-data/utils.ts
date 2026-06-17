@@ -1,10 +1,6 @@
-import type {
-  SpeakerData,
-  Speaker,
-  StudentSupportSpeakerData,
-  StudentSupportSpeaker,
-} from "./types/speaker";
+import type { SpeakerData, Speaker } from "./types/speaker";
 import type { SponsorData, Sponsor } from "./types/sponsor";
+import type { ProgramData, Program } from "./types/program";
 import type { RelatedEventsData, RelatedEvents } from "./types/related-events";
 import type { Goods, GoodsData } from "./types/goods";
 import { createWithBase } from "../../shared/utils/createWithBase";
@@ -32,36 +28,48 @@ export function resolveSpeaker(data: SpeakerData, locale: Locale): Speaker {
   }
 }
 
-export function resolveStudentSupportSpeaker(
-  data: StudentSupportSpeakerData,
+export function resolveProgram(
+  data: ProgramData,
+  speakers: readonly SpeakerData[],
   locale: Locale,
-): StudentSupportSpeaker {
-  const { ja, en, ...base } = data;
+): Program {
+  const { ja, en, speakerIds, ...base } = data;
   const localeFields = locale === "ja" ? ja : en;
-  return { ...resolveBaseUrls(base), ...localeFields };
 
-  type BaseData = Omit<StudentSupportSpeakerData, "ja" | "en">;
-  function resolveBaseUrls(base: BaseData): BaseData {
-    return {
-      ...base,
-      avatarUrl: withBase(base.avatarUrl),
-    };
-  }
+  return {
+    ...base,
+    ...localeFields,
+    speakers: speakerIds.map((speakerId) => {
+      const speaker = speakers.find((candidate) => candidate.id === speakerId);
+      if (!speaker) {
+        throw new Error(`Speaker not found: ${speakerId}`);
+      }
+      return resolveSpeaker(speaker, locale);
+    }),
+  };
 }
 
-export function resolveSponsor(data: SponsorData, locale: Locale): Sponsor {
-  const { ja, en, session, ...base } = data;
+export function resolveSponsor(
+  data: SponsorData,
+  programs: readonly ProgramData[],
+  speakers: readonly SpeakerData[],
+  locale: Locale,
+): Sponsor {
+  const { ja, en, programIds, ...base } = data;
   const localeFields = locale === "ja" ? ja : en;
   return {
     ...resolveBaseUrls(base),
     ...localeFields,
-    session: session?.map((s) => ({
-      ...(locale === "ja" ? s.ja : s.en),
-      speaker: resolveSpeaker(s.speaker, locale),
-    })),
+    program: programIds.map((programId) => {
+      const program = programs.find((candidate) => candidate.id === programId);
+      if (!program) {
+        throw new Error(`Program not found: ${programId}`);
+      }
+      return resolveProgram(program, speakers, locale);
+    }),
   };
 
-  type BaseData = Omit<SponsorData, "ja" | "en" | "session">;
+  type BaseData = Omit<SponsorData, "ja" | "en" | "programIds">;
   function resolveBaseUrls(base: BaseData): BaseData {
     return {
       ...base,

@@ -54,8 +54,16 @@ const { data: speakersData } = await useFetch("/api/speakers", {
   query: { locale },
 });
 
-const panelSpeakers = computed(() => speakersData.value?.panelDiscussionSpeakers ?? []);
-const studentSupportSpeakers = computed(() => speakersData.value?.studentSupportSpeakers ?? []);
+const panelSpeakers = computed(
+  () =>
+    speakersData.value?.programs.find((program) => program.id === "panel-discussion")?.speakers ??
+    [],
+);
+const studentSupportSpeakers = computed(
+  () =>
+    speakersData.value?.programs.find((program) => program.id === "student-support-contents")
+      ?.speakers ?? [],
+);
 
 const quizImageList = [
   { src: withBase("/images/event/quiz_1.jpg"), alt: t("event.quiz.image.alt1") },

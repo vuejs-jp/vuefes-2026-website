@@ -1,28 +1,24 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useI18n, useLocaleRoute } from "#imports";
+import { useI18n, useLocalePath } from "#imports";
 import type { TimetableCell } from "~~/server/static-data/types/timetable";
 import SliderIcon from "~icons/icons/timetable-slider";
 
-const { type, title, startTime, endTime, speakers, track, link } = defineProps<TimetableCell>();
+const {
+  type,
+  heading,
+  headingUrl,
+  startTime,
+  endTime,
+  color: selectedColor,
+  programs,
+  track,
+} = defineProps<TimetableCell>();
 const { t } = useI18n();
-const localeRoute = useLocaleRoute();
+const localePath = useLocalePath();
 
 const accentColorName = computed(() => {
-  switch (track) {
-    case "hacomono":
-      return "primary";
-    case "mates":
-      return "purple";
-    case "feature":
-      return "orange";
-    case "cyberAgent":
-      return "navy";
-    case "blank":
-      return "blank";
-    default:
-      return "primary";
-  }
+  return selectedColor ?? "primary";
 });
 
 const backgroundColor = computed(() => `var(--color-${accentColorName.value}-sub)`);
@@ -33,7 +29,7 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
 <template>
   <div class="cell">
     <div class="cell-inner">
-      <template v-if="track && track != 'blank'">
+      <template v-if="track">
         <div class="track">
           {{ t(`timetable.track.${track}`) }}
         </div>
@@ -44,51 +40,36 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
       </div>
       <template v-if="type === 'schedule'">
         <div class="schedule-title">
-          {{ title }}
+          {{ heading }}
         </div>
       </template>
 
       <template v-else>
-        <div v-if="type === 'event' && link" class="title">
-          <NuxtLink
-            :to="{
-              path: '/event',
-              query: { session: link },
-              hash: `#${link}`,
-            }"
-          >
-            {{ title }}
+        <div v-if="headingUrl" class="title">
+          <NuxtLink :to="localePath(headingUrl)">
+            {{ heading }}
           </NuxtLink>
         </div>
         <div v-else class="title">
-          {{ title }}
+          {{ heading }}
         </div>
         <div
-          v-if="speakers"
+          v-if="programs.length"
           class="speakers"
-          :style="{ '--speaker-gap': type === 'lightningTalk' ? '24px' : undefined }"
+          :style="{
+            '--speaker-gap': type === 'lightningTalk' ? '24px' : undefined,
+          }"
         >
-          <template v-for="speaker in speakers" :key="speaker.id">
+          <template v-for="program in programs" :key="program.id">
             <div :class="{ 'event-speaker': type === 'event' }">
-              <div v-if="speaker.talkTitle" class="title">
-                <NuxtLink
-                  :to="
-                    localeRoute(
-                      speaker.sponsorId === undefined
-                        ? { name: 'speaker-speakerId', params: { speakerId: speaker.id } }
-                        : {
-                            name: 'sponsors-sponsorId',
-                            params: { sponsorId: speaker.sponsorId },
-                            hash: `#${speaker.id}`,
-                          },
-                    ) || (speaker.sponsorId === undefined ? '/speakers' : '/sponsors')
-                  "
-                >
-                  {{ speaker.talkTitle }}
+              <div v-if="program.title && program.title !== heading" class="title">
+                <NuxtLink v-if="program.url" :to="localePath(program.url)">
+                  {{ program.title }}
                 </NuxtLink>
+                <template v-else>{{ program.title }}</template>
               </div>
 
-              <div class="speaker-item">
+              <div v-for="speaker in program.speakers" :key="speaker.id" class="speaker-item">
                 <div v-if="speaker.avatarUrl" class="avatar">
                   <img :src="speaker.avatarUrl" :alt="speaker.name" />
                 </div>
@@ -99,13 +80,11 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
                   <p v-if="speaker.title" class="job-title">
                     {{ speaker.title }}
                   </p>
-                  <p class="name">
-                    {{ speaker.name }}
-                  </p>
+                  <p class="name">{{ speaker.name }}</p>
                 </div>
               </div>
               <!-- eslint-disable-next-line vuejs-accessibility/anchor-has-content -->
-              <a v-if="speaker.slide" :href="speaker.slide" class="slide" target="_blank">
+              <a v-if="program.slideUrl" :href="program.slideUrl" class="slide" target="_blank">
                 <SliderIcon :aria-label="t('timetable.slider')" role="img" />
               </a>
             </div>
@@ -118,7 +97,7 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
 
 <style scoped>
 .cell {
-  --color-blank-sub: rgba(239, 239, 239, 1);
+  --color-grey-sub: rgba(239, 239, 239, 1);
   padding: 16px;
   border-radius: 8px;
   vertical-align: top;

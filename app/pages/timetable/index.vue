@@ -2,6 +2,7 @@
 import TimetableHead from "./_components/TimetableHead.vue";
 import TimetableCell from "./_components/TimetableCell.vue";
 import TimetableCard from "./_components/TimetableCard.vue";
+import { createDesktopTimetable, createMobileTimetable } from "./_utils/builders/";
 import { useScrollPosition } from "~/composables/useScrollPosition";
 import { VFSection } from "#components";
 import {
@@ -15,6 +16,7 @@ import {
   useRuntimeConfig,
   useSeoMeta,
   useWithBase,
+  computed,
 } from "#imports";
 
 defineRouteRules({ prerender: true });
@@ -24,9 +26,13 @@ const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 const bp = useBreakpoint();
 
-const { data: timetable } = await useFetch("/api/timetable", {
+const { data: timetableItems } = await useFetch("/api/timetable", {
   query: { locale: locale.value },
 });
+
+const isPc = computed(() => bp.value === "pc");
+const desktopRows = computed(() => createDesktopTimetable(timetableItems.value ?? []));
+const mobileGroups = computed(() => createMobileTimetable(timetableItems.value ?? []));
 
 useScrollPosition("timetableScrollPosition");
 
@@ -47,18 +53,18 @@ useSeoMeta({
     <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
     <h1>Timetable</h1>
     <VFSection :title="t('timetable.title')">
-      <template v-if="timetable">
-        <table v-if="bp === 'pc'" class="timetable-content">
+      <template v-if="timetableItems">
+        <table v-if="isPc" class="timetable-content">
           <thead>
             <tr>
-              <TimetableHead color="primary" :title="t('timetable.track.hacomono')" />
-              <TimetableHead color="purple" :title="t('timetable.track.mates')" />
-              <TimetableHead color="orange" :title="t('timetable.track.feature')" />
-              <TimetableHead color="navy" :title="t('timetable.track.cyberAgent')" />
+              <TimetableHead color="primary" :title="t('timetable.track.track1')" />
+              <TimetableHead color="purple" :title="t('timetable.track.track2')" />
+              <TimetableHead color="orange" :title="t('timetable.track.track3')" />
+              <TimetableHead color="navy" :title="t('timetable.track.track4')" />
             </tr>
           </thead>
           <tbody>
-            <tr v-for="row in timetable.rows" :key="row.id">
+            <tr v-for="row in desktopRows" :key="row.id">
               <TimetableCell
                 v-for="cell in row.cells"
                 :key="cell.id"
@@ -70,15 +76,11 @@ useSeoMeta({
         </table>
 
         <div v-else class="timetable-mobile">
-          <template v-for="row in timetable.rows" :key="row.id">
-            <div v-if="row.time" class="row-time">
-              {{ row.time }}
+          <template v-for="group in mobileGroups" :key="group.id">
+            <div class="row-time">
+              {{ group.time }}
             </div>
-            <template v-if="row.cells.length > 0">
-              <template v-for="cell in row.cells">
-                <TimetableCard v-if="!cell.isPcOnly" :key="cell.id" v-bind="cell" />
-              </template>
-            </template>
+            <TimetableCard v-for="card in group.cards" :key="card.id" v-bind="card" />
           </template>
         </div>
       </template>

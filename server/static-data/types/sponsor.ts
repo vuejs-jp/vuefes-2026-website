@@ -1,48 +1,24 @@
-import type { SpeakerData, Speaker } from "./speaker";
-
-export interface SponsorLocaleFields {
-  name: string;
-  logoImageAlt: string;
-  description?: string;
-}
-
-export interface SponsorSessionLocaleFields {
-  title: string;
-  overview: string;
-}
-
-export interface SponsorSessionData {
-  speaker: SpeakerData;
-  ja: SponsorSessionLocaleFields;
-  en: SponsorSessionLocaleFields;
-}
-
-export interface SponsorData {
-  id: string;
-  logoImageUrl: string;
-  linkUrl: string;
-  plan: "platina" | "gold" | "silver" | "bronze" | "creative" | "option-only";
-  option?: Option[];
-  session?: SponsorSessionData[];
-  ja: SponsorLocaleFields;
-  en: SponsorLocaleFields;
-}
+import type { Program } from "./program";
 
 export interface Sponsor {
   id: string;
-  name: string;
   logoImageUrl: string;
-  logoImageAlt: string;
   linkUrl: string;
   plan: "platina" | "gold" | "silver" | "bronze" | "creative" | "option-only";
   option?: Option[];
+  program: Program[];
+  name: string;
+  logoImageAlt: string;
   description?: string;
-  session?: {
-    title: string;
-    overview: string;
-    speaker: Speaker;
-  }[];
 }
+
+type LocaleFieldsKey = "name" | "logoImageAlt" | "description";
+type SponsorLocaleFields = Pick<Sponsor, LocaleFieldsKey>;
+export type SponsorData = Omit<Sponsor, LocaleFieldsKey | "program"> & {
+  programIds: string[];
+  ja: SponsorLocaleFields;
+  en: SponsorLocaleFields;
+};
 
 export type Option =
   | "hall-naming-rights"

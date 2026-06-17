@@ -3,6 +3,8 @@ import { useLocaleRoute, useRoute } from "@typed-router";
 import XIcon from "~icons/icons/ic_x";
 import GithubIcon from "~icons/icons/ic_github";
 import BlueskyIcon from "~icons/icons/ic_bluesky";
+import { TIMETABLE_TRACKS } from "~~/server/static-data/timetable";
+import type { Program } from "~~/server/static-data/types/program";
 import {
   computed,
   defineOgImage,
@@ -27,21 +29,25 @@ const { data: speakersData } = await useFetch("/api/speakers", {
   query: { locale },
 });
 
-const speakers = computed(() => [
-  ...(speakersData.value?.sessionSpeakers ?? []).map((it) => ({ ...it, type: "session" as const })),
-  ...(speakersData.value?.ltSpeakers ?? []).map((it) => ({ ...it, type: "lt" as const })),
-  ...(speakersData.value?.panelDiscussionSpeakers ?? []).map((it) => ({
-    ...it,
-    type: "panel" as const,
-  })),
-]);
-
 const currentSpeaker = computed(() =>
-  speakers.value.find((speaker) => speaker.id === route.params.speakerId),
+  speakersData.value?.speakers.find((speaker) => speaker.id === route.params.speakerId),
+);
+
+const currentPrograms = computed(
+  () =>
+    speakersData.value?.programs.filter(
+      (program) =>
+        program.type !== "panelDiscussion" &&
+        program.type !== "event" &&
+        program.speakers.some((speaker) => speaker.id === route.params.speakerId),
+    ) ?? [],
 );
 
 const pageDescription = computed(
-  () => currentSpeaker.value?.talkTitle || currentSpeaker.value?.bio || t("speakers.description"),
+  () =>
+    currentPrograms.value.find((program) => program.title)?.title ||
+    currentSpeaker.value?.bio ||
+    t("speakers.description"),
 );
 
 const splitLines = (text?: string) => (text ? text.split("\n") : []);
@@ -72,26 +78,14 @@ const goBack = () => {
   }
 };
 
-// FIXME: Timetableでも使ってるのでどっかに切り出しておきたい
-const accentColorName = computed(() => {
-  switch (currentSpeaker.value?.talkTrack) {
-    case "hacomono":
-      return "primary";
-    case "mates":
-      return "purple";
-    case "feature":
-      return "orange";
-    case "cyberAgent":
-      return "navy";
-    default:
-      return "primary";
-  }
-});
-
-const trackStyles = computed(() => ({
-  "--base-color": `var(--color-${accentColorName.value}-base)`,
-  "--sub-color": `var(--color-${accentColorName.value}-sub)`,
-}));
+const trackStyles = (tracks: Program["tracks"]) => {
+  const track = tracks[0];
+  const accentColorName = track ? (TIMETABLE_TRACKS[track]?.color ?? "primary") : "primary";
+  return {
+    "--base-color": `var(--color-${accentColorName}-base)`,
+    "--sub-color": `var(--color-${accentColorName}-sub)`,
+  };
+};
 </script>
 
 <template>
@@ -100,11 +94,23 @@ const trackStyles = computed(() => ({
     <h1>Speaker</h1>
 
     <VFSection>
-      <div v-if="currentSpeaker.talkTrack" class="speaker-track" :style="trackStyles">
-        {{ t(`timetable.track.${currentSpeaker.talkTrack}`) }}
-      </div>
-      <div v-if="currentSpeaker.talkSchedule" class="speaker-time" :style="trackStyles">
-        {{ currentSpeaker.talkSchedule }}
+      <div
+        v-for="program in currentPrograms.filter(
+          (program) => program.tracks.length > 0 || (program.start && program.end),
+        )"
+        :key="program.id"
+        class="speaker-program-schedule"
+        :style="trackStyles(program.tracks)"
+      >
+        <div v-if="program.tracks.length" class="speaker-track">
+          <template v-for="(track, index) in program.tracks" :key="track">
+            <template v-if="index > 0"> / </template>
+            {{ t(`timetable.track.${track}`) }}
+          </template>
+        </div>
+        <div v-if="program.start && program.end" class="speaker-time">
+          {{ program.start }} - {{ program.end }}
+        </div>
       </div>
 
       <div class="speaker-information">
@@ -112,26 +118,27 @@ const trackStyles = computed(() => ({
           <img :src="currentSpeaker.avatarUrl" :alt="currentSpeaker.name" />
         </div>
         <div class="speaker-details">
-          <h3 v-if="currentSpeaker.talkTitle" class="session-title">
-            {{ currentSpeaker.talkTitle }}
-          </h3>
+          <div v-for="program in currentPrograms" :key="program.id" class="speaker-program">
+            <h3 v-if="program.title" class="session-title">
+              {{ program.title }}
+            </h3>
 
-          <div v-if="currentSpeaker.talkOverview" class="session-overview">
-            <template
-              v-for="(paragraph, idx) in splitLines(currentSpeaker.talkOverview)"
-              :key="idx"
-            >
-              <template v-if="paragraph">
-                <p
-                  :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''"
-                >
-                  {{ paragraph }}
-                </p>
+            <div v-if="program.overview" class="session-overview">
+              <template v-for="(paragraph, idx) in splitLines(program.overview)" :key="idx">
+                <template v-if="paragraph">
+                  <p
+                    :style="
+                      paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''
+                    "
+                  >
+                    {{ paragraph }}
+                  </p>
+                </template>
+                <template v-else>
+                  <span class="session-overview-spacer"></span>
+                </template>
               </template>
-              <template v-else>
-                <span class="session-overview-spacer"></span>
-              </template>
-            </template>
+            </div>
           </div>
 
           <h2 class="speaker-name">
@@ -242,21 +249,25 @@ const trackStyles = computed(() => ({
           </a>
         </div>
 
-        <h3 v-if="currentSpeaker.talkTitle" class="session-title-mobile">
-          {{ currentSpeaker.talkTitle }}
-        </h3>
+        <div v-for="program in currentPrograms" :key="program.id" class="speaker-program-mobile">
+          <h3 v-if="program.title" class="session-title-mobile">
+            {{ program.title }}
+          </h3>
 
-        <div v-if="currentSpeaker.talkOverview" class="session-overview-mobile">
-          <template v-for="(paragraph, idx) in splitLines(currentSpeaker.talkOverview)" :key="idx">
-            <template v-if="paragraph">
-              <p :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''">
-                {{ paragraph }}
-              </p>
+          <div v-if="program.overview" class="session-overview-mobile">
+            <template v-for="(paragraph, idx) in splitLines(program.overview)" :key="idx">
+              <template v-if="paragraph">
+                <p
+                  :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''"
+                >
+                  {{ paragraph }}
+                </p>
+              </template>
+              <template v-else>
+                <span class="session-overview-spacer"></span>
+              </template>
             </template>
-            <template v-else>
-              <span class="session-overview-spacer"></span>
-            </template>
-          </template>
+          </div>
         </div>
       </div>
 
@@ -333,6 +344,11 @@ const trackStyles = computed(() => ({
     margin-bottom: 24px;
     font-size: 12px;
   }
+}
+
+.speaker-program-schedule + .speaker-program-schedule,
+.speaker-program + .speaker-program {
+  margin-top: 2rem;
 }
 
 .speaker-information {
@@ -502,6 +518,15 @@ const trackStyles = computed(() => ({
     overflow-wrap: anywhere;
     word-break: normal;
     line-break: strict;
+
+    @media (--mobile) {
+      display: block;
+      grid-column: 1 / -1;
+    }
+  }
+
+  .speaker-program-mobile {
+    display: none;
 
     @media (--mobile) {
       display: block;

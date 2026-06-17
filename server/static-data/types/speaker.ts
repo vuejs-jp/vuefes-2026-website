@@ -1,53 +1,23 @@
-export interface SpeakerLocaleFields {
-  name: string;
-  title?: string;
-  affiliation?: string;
-  talkTitle?: string;
-  talkOverview?: string;
-  bio?: string;
-}
-
-export interface SpeakerData {
-  id: string;
-  avatarUrl: string;
-  color: "default" | "purple" | "orange" | "navy";
-  attendedIndex?: number;
-  sponsorId?: string;
-  slide?: string;
-  talkSchedule?: string;
-  talkTrack?: "hacomono" | "mates" | "feature" | "cyberAgent";
-  socialUrls?: {
-    x?: string;
-    bluesky?: string;
-    github?: string;
-    mastodon?: string;
-  };
-  ja: SpeakerLocaleFields;
-  en: SpeakerLocaleFields;
-}
-
 export interface Speaker {
   id: string;
-  name: string;
   avatarUrl: string;
   color: "default" | "purple" | "orange" | "navy";
   attendedIndex?: number;
-  affiliation?: string;
-  title?: string;
-  sponsorId?: string;
-  slide?: string;
-  talkSchedule?: string;
-  talkTrack?: "hacomono" | "mates" | "feature" | "cyberAgent";
-  talkTitle?: string;
-  talkOverview?: string;
-  bio?: string;
   socialUrls?: {
     x?: string;
     bluesky?: string;
     github?: string;
     mastodon?: string;
   };
+  name: string;
+  title?: string;
+  affiliation?: string;
+  bio?: string;
 }
 
-export type StudentSupportSpeakerData = Omit<SpeakerData, "id" | "color">;
-export type StudentSupportSpeaker = Omit<Speaker, "id" | "color">;
+type LocaleFieldsKey = "name" | "title" | "affiliation" | "bio";
+type SpeakerLocaleFields = Pick<Speaker, LocaleFieldsKey>;
+export type SpeakerData = Omit<Speaker, LocaleFieldsKey> & {
+  ja: SpeakerLocaleFields;
+  en: SpeakerLocaleFields;
+};
