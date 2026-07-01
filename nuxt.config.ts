@@ -95,7 +95,7 @@ const featureFlags = {
   cfpClosed: false, // CFP募集終了メッセージ
 
   // --- 7月初: ボランティアスタッフ募集 ---
-  volunteerOpen: false, // ボランティア募集セクション
+  volunteerOpen: true, // ボランティア募集セクション
   volunteerClosed: false, // ボランティア募集終了
 
   // --- この間のいつか: タイムテーブル、CFPスピーカー、イベント（ハンズオン）、スポンサー ---
