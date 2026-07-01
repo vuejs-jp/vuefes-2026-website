@@ -85,7 +85,9 @@ const SectionStudentSupportClosed = import.meta.vfFeatures.studentSupportClosed
 // ボランティア募集セクション
 const SectionVolunteer =
   import.meta.vfFeatures.volunteerOpen || import.meta.vfFeatures.volunteerClosed
-    ? defineAsyncComponent(() => import("./_components/SectionVolunteer.vue"))
+    ? import.meta.vfFeatures.volunteerOpen && !import.meta.vfFeatures.volunteerClosed
+      ? defineAsyncComponent(() => import("./_components/SectionVolunteer.vue"))
+      : defineAsyncComponent(() => import("./_components/SectionVolunteerClosed.vue"))
     : null;
 
 // チケット販売セクション
@@ -123,6 +125,9 @@ useSeoMeta({ title: "" });
       <!-- フォト（イベント後に表示） -->
       <SectionPhoto v-if="SectionPhoto" />
 
+      <!-- ボランティア -->
+      <SectionVolunteer v-if="SectionVolunteer" />
+
       <!-- CFP -->
       <SectionCfpOpen v-if="SectionCfpOpen" />
       <SectionCfpClosed v-if="SectionCfpClosed" />
@@ -139,9 +144,6 @@ useSeoMeta({ title: "" });
       <!-- 学生支援 -->
       <SectionStudentSupportOpen studentSupportDisabled v-if="SectionStudentSupportOpen" />
       <SectionStudentSupportClosed v-if="SectionStudentSupportClosed" />
-
-      <!-- ボランティア -->
-      <SectionVolunteer v-if="SectionVolunteer" />
 
       <!-- チケット -->
       <SectionGetYourTicket v-if="SectionGetYourTicket" />

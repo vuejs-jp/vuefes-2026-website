@@ -20,6 +20,12 @@ const { locale, t } = useI18n();
     }"
   >
     <component :is="locale === 'ja' ? JaVolunteer : EnVolunteer" />
+
+    <div class="volunteer-apply-button">
+      <VFButton :link="t('volunteer.applyLink')">
+        {{ t("volunteer.applyButton") }}
+      </VFButton>
+    </div>
   </VFSection>
 </template>
 
