@@ -2,4 +2,4 @@ Vue Fes Japan 2026 is recruiting volunteer staff to help with event operations o
 
 Note: Volunteer staff applications are limited to individuals who reside in Japan and can speak Japanese.
 
-Application Period: Tuesday, July 1, 2025, 3:00 AM – Thursday, July 31, 2025, 2:59 PM (UTC)
+Application Period: Tuesday, July 1, 2026, 3:00 AM – Thursday, July 31, 2025, 2:59 PM (UTC)
