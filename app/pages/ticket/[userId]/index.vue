@@ -13,6 +13,7 @@ import {
 } from "#imports";
 
 import { VFNameBadgePreview, VFSection, VFToast } from "#components";
+import { NAME_BADGE_PREVIEW_LAYOUT } from "~/composables/useNameBadgePreview";
 import { useToast } from "~/components/toast/VFToast.vue";
 
 import XIcon from "~icons/icons/ic_x";
@@ -93,17 +94,7 @@ function copyUrl() {
           :avatar-image-url="nameBadgeData?.avatarUrl"
           :lang="nameBadgeData?.lang ?? undefined"
           v-bind="
-            bp === 'mobile'
-              ? {
-                  width: '100%',
-                  height: '284px',
-                  aspectRatio: '200 / 284',
-                }
-              : {
-                  width: '100%',
-                  height: '360px',
-                  aspectRatio: '253.52 / 360',
-                }
+            bp === 'mobile' ? NAME_BADGE_PREVIEW_LAYOUT.mobile : NAME_BADGE_PREVIEW_LAYOUT.desktop
           "
         />
       </div>

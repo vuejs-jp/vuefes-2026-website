@@ -359,6 +359,9 @@ words:
   - alistaiir
   - Nijibox
   - mnmxmx
+  - tresjs
+  - metalness
+  - lerp
 ignorePaths:
   - dist
   - node_modules

@@ -21,6 +21,7 @@ import {
 import type { VFFile } from "~/components/form/VFFileInput.vue";
 import { VFFileInput, VFNameBadgePreview, VFSection, VFToast } from "#components";
 import { useToast } from "~/components/toast/VFToast.vue";
+import { NAME_BADGE_PREVIEW_LAYOUT } from "~/composables/useNameBadgePreview";
 
 const { t } = useI18n();
 const title = () => `${t("nuxtSiteConfig.name")} %separator %s`;
@@ -179,17 +180,7 @@ async function submit() {
           :avatar-image-url="state.avatarImage?.objectURL"
           :lang="nameBadgeData?.lang ?? undefined"
           v-bind="
-            bp == 'mobile'
-              ? {
-                  width: '100%',
-                  height: '284px',
-                  aspectRatio: '200 / 284',
-                }
-              : {
-                  width: '100%',
-                  height: '360px',
-                  aspectRatio: '253.52 / 360',
-                }
+            bp === 'mobile' ? NAME_BADGE_PREVIEW_LAYOUT.mobile : NAME_BADGE_PREVIEW_LAYOUT.desktop
           "
         />
       </div>
