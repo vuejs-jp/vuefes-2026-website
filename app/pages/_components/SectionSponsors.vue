@@ -30,13 +30,13 @@ const hasOptionSponsors = (options?: OptionSponsor[] | null): boolean =>
       },
     }"
   >
-    <div v-if="hasSponsors(sponsorsData?.PLATINA)" class="sponsor-list">
-      <VFHeading id="platina-sponsors">
-        {{ t("sponsors.platinaSponsor") }}
+    <div v-if="hasSponsors(sponsorsData?.PLATINUM)" class="sponsor-list">
+      <VFHeading id="platinum-sponsors">
+        {{ t("sponsors.platinumSponsor") }}
       </VFHeading>
       <div class="sponsor-grid-container">
         <SponsorGrid
-          :sponsors="sponsorsData?.PLATINA ?? []"
+          :sponsors="sponsorsData?.PLATINUM ?? []"
           :columns="bp === 'mobile' ? 1 : 2"
           gap="24px"
           image-only

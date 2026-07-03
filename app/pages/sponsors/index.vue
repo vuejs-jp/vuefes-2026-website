@@ -43,12 +43,12 @@ useSeoMeta({
     <h1>Sponsor</h1>
 
     <VFSection
-      v-if="hasSponsors(sponsorsData?.PLATINA)"
-      id="platina-sponsor"
-      :title="t('sponsors.platinaSponsor')"
+      v-if="hasSponsors(sponsorsData?.PLATINUM)"
+      id="platinum-sponsor"
+      :title="t('sponsors.platinumSponsor')"
     >
       <SponsorGrid
-        :sponsors="sponsorsData?.PLATINA ?? []"
+        :sponsors="sponsorsData?.PLATINUM ?? []"
         :columns="bp === 'mobile' ? 1 : 2"
         :gap="bp === 'mobile' ? '24px' : '32px'"
       />

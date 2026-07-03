@@ -9,7 +9,7 @@ export default defineEventHandler(
   (
     event,
   ): {
-    PLATINA: Sponsor[];
+    PLATINUM: Sponsor[];
     GOLD: Sponsor[];
     SILVER: Sponsor[];
     BRONZE: Sponsor[];
@@ -23,7 +23,7 @@ export default defineEventHandler(
     const locale = (query.locale as "ja" | "en") || "ja";
 
     return {
-      PLATINA: SPONSORS.PLATINA.map((s) => resolveSponsor(s, PROGRAMS, SPEAKERS, locale)),
+      PLATINUM: SPONSORS.PLATINUM.map((s) => resolveSponsor(s, PROGRAMS, SPEAKERS, locale)),
       GOLD: SPONSORS.GOLD.map((s) => resolveSponsor(s, PROGRAMS, SPEAKERS, locale)),
       SILVER: SPONSORS.SILVER.map((s) => resolveSponsor(s, PROGRAMS, SPEAKERS, locale)),
       BRONZE: SPONSORS.BRONZE.map((s) => resolveSponsor(s, PROGRAMS, SPEAKERS, locale)),

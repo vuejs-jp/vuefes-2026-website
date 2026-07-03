@@ -22,7 +22,7 @@ export default defineEventHandler(
     const locale = (query.locale as "ja" | "en") || "ja";
 
     const speakerPrograms = excludeSponsorPrograms(PROGRAMS, [
-      ...SPONSORS.PLATINA,
+      ...SPONSORS.PLATINUM,
       ...SPONSORS.GOLD,
       ...SPONSORS.SILVER,
       ...SPONSORS.BRONZE,

@@ -1,11 +1,11 @@
 import type { SponsorData, Option, OptionSponsorData } from "./types/sponsor";
 
-const SPONSORS_PLATINA: SponsorData[] = [
+const SPONSORS_PLATINUM: SponsorData[] = [
   {
     id: "link-and-motivation",
-    plan: "platina",
+    plan: "platinum",
     option: ["after-party"],
-    logoImageUrl: "/images/sponsor-logo/platina/link-and-motivation.png",
+    logoImageUrl: "/images/sponsor-logo/platinum/link-and-motivation.png",
     ja: {
       name: "株式会社リンクアンドモチベーション",
       linkUrl: "https://www.lmi.ne.jp/",
@@ -23,8 +23,8 @@ const SPONSORS_PLATINA: SponsorData[] = [
   },
   {
     id: "dress-code",
-    plan: "platina",
-    logoImageUrl: "/images/sponsor-logo/platina/dress-code.png",
+    plan: "platinum",
+    logoImageUrl: "/images/sponsor-logo/platinum/dress-code.png",
     ja: {
       name: "Dress Code株式会社",
       linkUrl: "https://www.dress-code.com/ja",
@@ -42,8 +42,8 @@ const SPONSORS_PLATINA: SponsorData[] = [
   },
   {
     id: "vercel",
-    plan: "platina",
-    logoImageUrl: "/images/sponsor-logo/platina/vercel.png",
+    plan: "platinum",
+    logoImageUrl: "/images/sponsor-logo/platinum/vercel.png",
     ja: {
       name: "Vercel inc.",
       linkUrl: "http://vercel.com/",
@@ -61,8 +61,8 @@ const SPONSORS_PLATINA: SponsorData[] = [
   },
   {
     id: "bengo4",
-    plan: "platina",
-    logoImageUrl: "/images/sponsor-logo/platina/bengo4.png",
+    plan: "platinum",
+    logoImageUrl: "/images/sponsor-logo/platinum/bengo4.png",
     ja: {
       name: "弁護士ドットコム株式会社",
       linkUrl: "https://www.bengo4.com/corporate/",
@@ -80,8 +80,8 @@ const SPONSORS_PLATINA: SponsorData[] = [
   },
   {
     id: "cloudflare",
-    plan: "platina",
-    logoImageUrl: "/images/sponsor-logo/platina/cloudflare.png",
+    plan: "platinum",
+    logoImageUrl: "/images/sponsor-logo/platinum/cloudflare.png",
     ja: {
       name: "Cloudflare, Inc.",
       linkUrl: "https://www.cloudflare.com/",
@@ -99,8 +99,8 @@ const SPONSORS_PLATINA: SponsorData[] = [
   },
   {
     id: "unique-vision",
-    plan: "platina",
-    logoImageUrl: "/images/sponsor-logo/platina/unique-vision.png",
+    plan: "platinum",
+    logoImageUrl: "/images/sponsor-logo/platinum/unique-vision.png",
     ja: {
       name: "ユニークビジョン株式会社",
       linkUrl: "https://www.uniquevision.co.jp/",
@@ -631,7 +631,7 @@ const SPONSORS_CREATIVE: SponsorData[] = [];
 const SPONSORS_INDIVIDUAL: string[] = [];
 
 const filterSponsorsByOption = (option: Option): SponsorData[] => [
-  ...SPONSORS_PLATINA.filter((sponsor) => sponsor.option?.includes(option)),
+  ...SPONSORS_PLATINUM.filter((sponsor) => sponsor.option?.includes(option)),
   ...SPONSORS_GOLD.filter((sponsor) => sponsor.option?.includes(option)),
   ...SPONSORS_SILVER.filter((sponsor) => sponsor.option?.includes(option)),
   ...SPONSORS_BRONZE.filter((sponsor) => sponsor.option?.includes(option)),
@@ -715,7 +715,7 @@ const SPONSORS_OPTION: OptionSponsorData[] = [
 ];
 
 export const SPONSORS = {
-  PLATINA: SPONSORS_PLATINA,
+  PLATINUM: SPONSORS_PLATINUM,
   GOLD: SPONSORS_GOLD,
   SILVER: SPONSORS_SILVER,
   BRONZE: SPONSORS_BRONZE,

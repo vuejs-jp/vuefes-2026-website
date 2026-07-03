@@ -4,7 +4,7 @@ export interface Sponsor {
   id: string;
   logoImageUrl: string;
   linkUrl: string;
-  plan: "platina" | "gold" | "silver" | "bronze" | "creative" | "option-only";
+  plan: "platinum" | "gold" | "silver" | "bronze" | "creative" | "option-only";
   option?: Option[];
   program?: Program[];
   name: string;

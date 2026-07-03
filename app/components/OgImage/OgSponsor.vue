@@ -4,7 +4,7 @@ import { computed, useRuntimeConfig } from "#imports";
 const { logoImageUrl, plan = "OPTION_ONLY" } = defineProps<{
   name: string;
   logoImageUrl: string;
-  plan?: "PLATINA" | "GOLD" | "SILVER" | "BRONZE" | "OPTION_ONLY" | "CREATIVE";
+  plan?: "PLATINUM" | "GOLD" | "SILVER" | "BRONZE" | "OPTION_ONLY" | "CREATIVE";
 }>();
 
 const planName = computed(() => {
@@ -24,7 +24,7 @@ const SPONSOR_TAG_STYLE_BASE = {
 
 const variants = computed(() => {
   switch (planName.value) {
-    case "PLATINA":
+    case "PLATINUM":
       return {
         baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/purple.png`,
         baseColor: "#8314d3",

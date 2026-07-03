@@ -27,7 +27,7 @@ defineProps({
   background: #fae8e4;
 }
 
-.sponsor-tag--platina {
+.sponsor-tag--platinum {
   background: linear-gradient(
     270deg,
     #eeeeee 0%,
