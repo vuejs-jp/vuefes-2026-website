@@ -247,7 +247,7 @@ const SPONSORS_GOLD: SponsorData[] = [
       linkUrl: "https://generosity.co.jp/",
       logoImageAlt: "GENEROSITY inc. logo",
       description:
-        "株式会社GENEROSITYは、リアルとデジタルを掛け合わせて新たな体験価値を創造するブランドエクスペリエンススタジオです。Webサイトやアプリ開発に加え、イベント会場や商業空間の大型ディスプレイ向けUI設計、バックエンドやインフラ領域にも挑戦できます。自ら作った体験が現場で人々の笑顔や感動につながる瞬間を見届けながら成長できる環境です。人の心を動かす体験を、ともに創る仲間を募集しています。",
+        "At GENEROSITY inc., engineering extends beyond the screen. Our team designs and builds interactive experiences for real-world spaces, where interface design must consider not only pixels but also physical scale, viewing distance, and the way people naturally interact with technology. The development process spans the full technology stack, from frontend applications to backend systems and cloud infrastructure, providing opportunities to grow as a versatile engineer. Perhaps the most rewarding part is experiencing your work in the real world—visiting the venue, watching people interact with what you’ve built, and seeing the smiles on their faces as they enjoy the experience.",
     },
   },
   {
