@@ -406,24 +406,26 @@ const SPONSORS_SILVER: SponsorData[] = [
         "Mates Inc. provides ICT educational materials “aim@” with high reproducibility and learning outcomes under the mission of “updating education”. We are looking for engineers who can work together to create products that improve education.",
     },
   },
-  // {
-  //   id: "medpeer",
-  //   plan: "silver",
-  //   option: ["room-naming-rights"],
-  //   logoImageUrl: "/images/sponsor-logo/silver/medpeer.png",
-  //   ja: {
-  //     name: "メドピア株式会社",
-  //     linkUrl: "https://medpeer.co.jp/",
-  //     logoImageAlt: "メドピア株式会社のロゴ",
-  //     description: "",
-  //   },
-  //   en: {
-  //     name: "MedPeer.inc",
-  //     linkUrl: "https://medpeer.co.jp/",
-  //     logoImageAlt: "[MedPeer]logo",
-  //     description: "",
-  //   },
-  // },
+  {
+    id: "medpeer",
+    plan: "silver",
+    option: ["room-naming-rights"],
+    logoImageUrl: "/images/sponsor-logo/silver/medpeer.png",
+    ja: {
+      name: "メドピア株式会社",
+      linkUrl: "https://medpeer.co.jp/",
+      logoImageAlt: "メドピア株式会社のロゴ",
+      description:
+        "ヘルステックの常識を塗り替える。\nメドピアは医師が創業し20余年の今、AIファーストな第二創業期。\nVue.js・Nuxtで主要プロダクトを磨き、技術で医療の未来を塗り替える挑戦を共にしませんか。",
+    },
+    en: {
+      name: "MedPeer.inc",
+      linkUrl: "https://medpeer.co.jp/",
+      logoImageAlt: "[MedPeer]logo",
+      description:
+        "Redefining what health tech can be.\nStarted by a doctor and now more than 20 years in, MedPeer has entered a second founding era, going AI-first.\nWe build our core products on Vue.js and Nuxt, working to change the future of healthcare through technology. Come build it with us.",
+    },
+  },
   // {
   //   id: "istyle",
   //   plan: "silver",
