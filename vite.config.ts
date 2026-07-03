@@ -14,7 +14,7 @@ const runOnGitFiles = (command: string, patterns: string[]) =>
 
 const spell = [
   "git ls-files --cached --others --exclude-standard",
-  "cspell lint --file-list stdin --no-must-find-files --cache",
+  "cspell lint --file-list stdin --no-must-find-files --no-cache",
 ].join(" | ");
 
 const check = [

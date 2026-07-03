@@ -259,11 +259,14 @@ sponsors:
   liveTranslationSponsor: "Live Translation Sponsor"
   nameBadgeSponsor: "Name Badge Sponsor"
   afterPartySponsor: "After Party Sponsor"
-  studentSupportSponsor: "Student Support Sponsor"
+  studentSupportStandardSponsor: "Student Support Sponsor Standard"
+  studentSupportMiniSponsor: "Student Support Sponsor Mini"
   staffTShirtsSponsor: "Staff T-shirts Sponsor"
   exhibitionSponsor: "Exhibition Sponsor"
   intermissionSlideSponsor: "Intermission Slide Sponsor"
   jobBoardSponsor: "Job Board Sponsor"
+  mediaSponsor: "Media Sponsor"
+  toolSponsor: "Tool Sponsor"
 
   details: "Sponsor Details"
 

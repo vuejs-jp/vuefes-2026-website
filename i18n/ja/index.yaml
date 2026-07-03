@@ -260,11 +260,14 @@ sponsors:
   liveTranslationSponsor: "ライブ翻訳スポンサー"
   nameBadgeSponsor: "ネームカードスポンサー"
   afterPartySponsor: "アフターパーティースポンサー"
-  studentSupportSponsor: "学生支援スポンサー"
+  studentSupportStandardSponsor: "学生支援スポンサースタンダード"
+  studentSupportMiniSponsor: "学生支援スポンサーミニ"
   staffTShirtsSponsor: "スタッフTシャツスポンサー"
   exhibitionSponsor: "展示スポンサー"
   intermissionSlideSponsor: "幕間スライドスポンサー"
   jobBoardSponsor: "ジョブボードスポンサー"
+  mediaSponsor: "メディアスポンサー"
+  toolSponsor: "ツールスポンサー"
 
   details: "スポンサー情報"
 

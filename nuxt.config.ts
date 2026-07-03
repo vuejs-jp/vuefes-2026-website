@@ -87,7 +87,7 @@ const featureFlags = {
 
   // --- 6月初: スポンサー公開 & CFP募集公開 ---
   // 抽選のもの(プラチナ等)が決まった段階で暫定公開、追加があれば随時
-  sponsorList: false, // スポンサー一覧セクション/ページ
+  sponsorList: true, // スポンサー一覧セクション/ページ
   cfpOpen: false, // CFP募集中セクション
   ctaCfp: false, // CFP募集CTA表示
 

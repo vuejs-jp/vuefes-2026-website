@@ -60,7 +60,7 @@ export function resolveSponsor(
   return {
     ...resolveBaseUrls(base),
     ...localeFields,
-    program: programIds.map((programId) => {
+    program: programIds?.map((programId) => {
       const program = programs.find((candidate) => candidate.id === programId);
       if (!program) {
         throw new Error(`Program not found: ${programId}`);

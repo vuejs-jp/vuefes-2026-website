@@ -4,9 +4,11 @@ useGitIgnore: true
 words:
   - abramov
   - acconect
+  - agentic
   - Ainoya
   - akinori
   - Akryum
+  - alistaiir
   - allscale
   - allspeed
   - andpad
@@ -17,9 +19,9 @@ words:
   - astuki
   - atsuki
   - authjs
+  - autodocs
   - autolinks
   - autospace
-  - autodocs
   - barai
   - bengo
   - bsky
@@ -27,28 +29,39 @@ words:
   - bunx
   - ceroan
   - chau
+  - chibivue
   - chiyoda
   - choco
   - chooseicon
+  - cloudflarestorage
   - cloudsign
+  - coderabbit
   - codmon
   - Colada
   - corons
   - cosme
   - cosmonic
   - crayfisher
+  - Creatorsgarten
   - crowdsourcing
+  - crowlKats
   - cyberagent
   - dagashi
   - Daisuke
   - danielroe
   - databank
   - dateness
+  - dbaeumer
+  - dearu
   - Delton
+  - Denoland
   - dero
+  - desumasu
   - dominikg
+  - Elysia
   - embla
   - emscripten
+  - esbenp
   - escentier
   - evenodd
   - ffef
@@ -60,11 +73,15 @@ words:
   - Fujimoto
   - Fujishiro
   - FUJITA
+  - Furukawa
   - gaearon
   - genj
+  - Golar
+  - gruntfuggly
   - guillaume
   - Gura
   - Haba
+  - hackz
   - hacomono
   - Hanako
   - hannoeru
@@ -76,7 +93,9 @@ words:
   - Hasuto
   - healthtech
   - hecateball
+  - HENKA
   - hennge
+  - HENNKA
   - hikkobay
   - hinomaru
   - Hiranuma
@@ -84,6 +103,7 @@ words:
   - Hiroki
   - hiroko
   - hiroshi
+  - icubedsystems
   - ikkyu
   - Ikuta
   - ikyu
@@ -108,8 +128,8 @@ words:
   - karancoro
   - karte
   - katanuki
-  - katayama
   - Katashin
+  - katayama
   - Kato
   - katsuhiro
   - kawaguchi
@@ -118,13 +138,18 @@ words:
   - kazuya
   - keigo
   - keihin
+  - Kettmeir
+  - keystyle
   - kgierke
+  - Khunpanitchot
   - kiaking
+  - kickflow
   - kinto
   - Kobari
   - kodomon
   - Kogure
   - kokoe
+  - Kongkeit
   - Kota
   - kotafujishiro
   - koya
@@ -133,16 +158,21 @@ words:
   - kurawa
   - kzhrk
   - lacunarity
+  - ldfcorp
   - leaysgur
+  - lerp
   - lightningcss
   - Livesense
   - livestreaming
+  - lockfiles
+  - Lokalise
   - lycorp
   - magcho
   - marunouchi
   - Masato
   - matcha
   - medpeer
+  - metalness
   - mew-ton
   - misaki
   - mita
@@ -150,10 +180,12 @@ words:
   - mizdra
   - mizukirimatsu
   - mnch
+  - mnmxmx
   - moabear
   - mooncat
   - Moriguin
   - morishita
+  - Morote
   - Murata
   - NAGAI
   - naitokosuke
@@ -163,17 +195,18 @@ words:
   - nakano
   - nakayama
   - nakayamaakinori
-  - napi
   - nami
   - Naoki
   - naokihaba
+  - napi
   - naramochi
   - Natsuki
   - neginasu
   - Neko
+  - Nijibox
   - Nishihara
-  - nixpkgs
   - nitropack
+  - nixpkgs
   - Nobuaki
   - nofa
   - noindex
@@ -195,17 +228,23 @@ words:
   - oxfmt
   - oxlint
   - palt
+  - Parsa
   - pcnextbutton
   - pcprevbutton
   - peatix
   - pkgs
   - pontaxx
   - ponyoxa
+  - Pooya
+  - posva
   - posx
   - presigner
   - QUIC
   - Rahul
   - Rakuten
+  - rebranded
+  - regle
+  - reinit
   - Rinchoku
   - ritogk
   - RIZAP
@@ -219,6 +258,7 @@ words:
   - Ryutaro
   - Saburo
   - saito
+  - saltyaom
   - sano
   - sasagar
   - sasagawaki
@@ -235,7 +275,9 @@ words:
   - Shota
   - sidebase
   - sigrea
+  - slidesinview
   - snufkin
+  - softprops
   - Spidernight
   - ssssota
   - stockmark
@@ -243,15 +285,21 @@ words:
   - sugiura
   - sumi
   - suminagashi
+  - supporterz
   - takumi
   - tanaka
   - teachme
   - tebiki
+  - techbowl
+  - techworld
   - tenshoku
   - tenugui
+  - terraformrc
   - Tetone
   - textareas
   - textlint
+  - tfstate
+  - tfvars
   - themself
   - thiha
   - Thorsten
@@ -266,6 +314,7 @@ words:
   - totocalcio
   - toyo
   - tozai
+  - tresjs
   - Tsai
   - tsgolint
   - Tsuchiya
@@ -281,12 +330,17 @@ words:
   - valibot
   - Vashishtha
   - vejhszh
+  - Verter
   - visasq
+  - Vite
+  - Vize
+  - voidzero
   - vuefes
   - vuejs
   - Vuelidate
   - vuetify
   - vueuse
+  - Wada
   - wattanx
   - webauthn
   - webgl
@@ -300,6 +354,7 @@ words:
   - yappli
   - Yogo
   - yoshiya
+  - Yosuke
   - Yuhei
   - Yuichi
   - yuichkun
@@ -309,59 +364,15 @@ words:
   - Yurika
   - Yusa
   - Yusuke
+  - yusukebe
   - yuta
   - Yuto
   - zari
   - zauel
   - zauer
   - zeiri
+  - Zeirishi
   - ZOZO
-  - kickflow
-  - tfstate
-  - tfvars
-  - slidesinview
-  - reinit
-  - regle
-  - lockfiles
-  - voidzero
-  - Vite
-  - softprops
-  - cloudflarestorage
-  - dearu
-  - desumasu
-  - dbaeumer
-  - esbenp
-  - Lokalise
-  - gruntfuggly
-  - keystyle
-  - terraformrc
-  - Vize
-  - Verter
-  - Golar
-  - rebranded
-  - chibivue
-  - Creatorsgarten
-  - Denoland
-  - Elysia
-  - Furukawa
-  - Yosuke
-  - Wada
-  - Kongkeit
-  - Kettmeir
-  - Khunpanitchot
-  - Morote
-  - Parsa
-  - posva
-  - Pooya
-  - saltyaom
-  - yusukebe
-  - crowlKats
-  - alistaiir
-  - Nijibox
-  - mnmxmx
-  - tresjs
-  - metalness
-  - lerp
 ignorePaths:
   - dist
   - node_modules

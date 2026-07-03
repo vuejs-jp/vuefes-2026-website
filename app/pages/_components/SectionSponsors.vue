@@ -13,6 +13,10 @@ const localeRoute = useLocaleRoute();
 const { data: sponsorsData } = await useFetch("/api/sponsors", {
   query: { locale },
 });
+
+const hasSponsors = (sponsors?: unknown[] | null): boolean => (sponsors?.length ?? 0) > 0;
+const hasOptionSponsors = (options?: OptionSponsor[] | null): boolean =>
+  options?.some((option) => option.data.length > 0) ?? false;
 </script>
 
 <template>
@@ -26,7 +30,7 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
       },
     }"
   >
-    <div class="sponsor-list">
+    <div v-if="hasSponsors(sponsorsData?.PLATINA)" class="sponsor-list">
       <VFHeading id="platina-sponsors">
         {{ t("sponsors.platinaSponsor") }}
       </VFHeading>
@@ -40,7 +44,7 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
       </div>
     </div>
 
-    <div class="sponsor-list">
+    <div v-if="hasSponsors(sponsorsData?.GOLD)" class="sponsor-list">
       <VFHeading id="gold-sponsors">
         {{ t("sponsors.goldSponsor") }}
       </VFHeading>
@@ -54,7 +58,7 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
       </div>
     </div>
 
-    <div class="sponsor-list">
+    <div v-if="hasSponsors(sponsorsData?.SILVER)" class="sponsor-list">
       <VFHeading id="silver-sponsors">
         {{ t("sponsors.silverSponsor") }}
       </VFHeading>
@@ -68,7 +72,7 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
       </div>
     </div>
 
-    <div class="sponsor-list">
+    <div v-if="hasSponsors(sponsorsData?.BRONZE)" class="sponsor-list">
       <VFHeading id="bronze-sponsors">
         {{ t("sponsors.bronzeSponsor") }}
       </VFHeading>
@@ -82,7 +86,7 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
       </div>
     </div>
 
-    <div class="sponsor-list">
+    <div v-if="hasOptionSponsors(sponsorsData?.OPTION)" class="sponsor-list">
       <VFHeading id="option-sponsors">
         {{ t("sponsors.optionSponsor") }}
       </VFHeading>
@@ -99,7 +103,7 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
       </div>
     </div>
 
-    <div class="sponsor-list">
+    <div v-if="hasSponsors(sponsorsData?.CREATIVE)" class="sponsor-list">
       <VFHeading id="creative-sponsors">
         {{ t("sponsors.creativeSponsor") }}
       </VFHeading>
@@ -113,7 +117,7 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
       </div>
     </div>
 
-    <div class="sponsor-list">
+    <div v-if="hasSponsors(sponsorsData?.INDIVIDUAL)" class="sponsor-list">
       <VFHeading id="individual-sponsors">
         {{ t("sponsors.individualSponsor") }}
       </VFHeading>

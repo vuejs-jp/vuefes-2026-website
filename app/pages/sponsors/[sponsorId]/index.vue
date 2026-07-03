@@ -32,6 +32,86 @@ const { data: sponsorsData } = await useFetch("/api/sponsors", {
 });
 
 type SponsorWithPlan = Omit<Sponsor, "plan"> & { plan: string };
+type TextSegment =
+  | {
+      type: "text";
+      text: string;
+    }
+  | {
+      type: "link";
+      text: string;
+      href: string;
+    };
+type TextParagraph =
+  | {
+      type: "spacer";
+    }
+  | {
+      type: "content";
+      segments: [TextSegment, ...TextSegment[]];
+      hangingIndent: boolean;
+    };
+
+const urlPattern = /https?:\/\/[^\s<>"']+/g;
+const trailingUrlPunctuationPattern = /[),.;:!?、。）」』】]+$/;
+
+const splitTextByUrls = (text?: string): TextSegment[] => {
+  if (!text) return [];
+
+  const segments: TextSegment[] = [];
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(urlPattern)) {
+    const rawUrl = match[0];
+    const matchIndex = match.index ?? 0;
+    const trailingPunctuation = rawUrl.match(trailingUrlPunctuationPattern)?.[0] ?? "";
+    const url = rawUrl.slice(0, rawUrl.length - trailingPunctuation.length);
+
+    if (matchIndex > lastIndex) {
+      segments.push({ type: "text", text: text.slice(lastIndex, matchIndex) });
+    }
+
+    if (url) {
+      segments.push({ type: "link", text: url, href: url });
+    }
+
+    if (trailingPunctuation) {
+      segments.push({ type: "text", text: trailingPunctuation });
+    }
+
+    lastIndex = matchIndex + rawUrl.length;
+  }
+
+  if (lastIndex < text.length) {
+    segments.push({ type: "text", text: text.slice(lastIndex) });
+  }
+
+  return segments;
+};
+
+const hasSegments = (segments: TextSegment[]): segments is [TextSegment, ...TextSegment[]] =>
+  segments.length > 0;
+
+const splitTextIntoParagraphs = (text?: string): TextParagraph[] => {
+  if (!text) return [];
+
+  return text.split(/\r?\n/).map((paragraph) => {
+    if (paragraph.trim().length === 0) {
+      return { type: "spacer" };
+    }
+
+    const segments = splitTextByUrls(paragraph);
+    if (!hasSegments(segments)) {
+      return { type: "spacer" };
+    }
+
+    return {
+      type: "content",
+      segments,
+      hangingIndent: paragraph.trimStart().startsWith("・"),
+    };
+  });
+};
 
 const sponsors = computed((): SponsorWithPlan[] => {
   if (!sponsorsData.value) return [];
@@ -95,12 +175,12 @@ onMounted(async () => {
     <VFSection :title="t('sponsors.details')">
       <div class="sponsor-images">
         <div class="image">
-          <NuxtLink :to="currentSponsor.linkUrl" external target="_blank">
+          <NuxtLink :to="currentSponsor.linkUrl.trim()" external target="_blank">
             <img :src="currentSponsor.logoImageUrl" :alt="currentSponsor.logoImageAlt" />
           </NuxtLink>
         </div>
         <NuxtLink
-          :to="currentSponsor.linkUrl"
+          :to="currentSponsor.linkUrl.trim()"
           external
           target="_blank"
           style="text-decoration: none"
@@ -119,10 +199,36 @@ onMounted(async () => {
         </li>
       </ul>
       <div class="sponsor-description">
-        {{ currentSponsor.description }}
+        <template
+          v-for="(paragraph, paragraphIndex) in splitTextIntoParagraphs(currentSponsor.description)"
+          :key="paragraphIndex"
+        >
+          <span
+            v-if="paragraph.type === 'spacer'"
+            class="text-paragraph-spacer"
+            aria-hidden="true"
+          ></span>
+          <p
+            v-else-if="paragraph.type === 'content'"
+            class="text-paragraph"
+            :class="{ 'text-paragraph-hanging-indent': paragraph.hangingIndent }"
+          >
+            <span v-for="(segment, segmentIndex) in paragraph.segments" :key="segmentIndex">
+              <a
+                v-if="segment.type === 'link'"
+                :href="segment.href"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ segment.text }}
+              </a>
+              <template v-else>{{ segment.text }}</template>
+            </span>
+          </p>
+        </template>
       </div>
 
-      <div v-if="currentSponsor.program.length" class="sponsor-session">
+      <div v-if="currentSponsor.program?.length" class="sponsor-session">
         <hr />
 
         <div
@@ -150,22 +256,35 @@ onMounted(async () => {
             <h4 :id="program.id" class="sponsor-speaker-title">
               {{ program.title }}
             </h4>
-            <p v-if="program.overview" class="sponsor-speaker-overview">
-              <template v-for="(paragraph, idx) in program.overview?.split('\n')" :key="idx">
-                <template v-if="paragraph">
-                  <p
-                    :style="
-                      paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''
-                    "
-                  >
-                    {{ paragraph }}
-                  </p>
-                </template>
-                <template v-else>
-                  <span class="sponsor-speaker-overview-spacer"></span>
-                </template>
+            <div v-if="program.overview" class="sponsor-speaker-overview">
+              <template
+                v-for="(paragraph, paragraphIndex) in splitTextIntoParagraphs(program.overview)"
+                :key="paragraphIndex"
+              >
+                <span
+                  v-if="paragraph.type === 'spacer'"
+                  class="text-paragraph-spacer"
+                  aria-hidden="true"
+                ></span>
+                <p
+                  v-else-if="paragraph.type === 'content'"
+                  class="text-paragraph"
+                  :class="{ 'text-paragraph-hanging-indent': paragraph.hangingIndent }"
+                >
+                  <span v-for="(segment, segmentIndex) in paragraph.segments" :key="segmentIndex">
+                    <a
+                      v-if="segment.type === 'link'"
+                      :href="segment.href"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {{ segment.text }}
+                    </a>
+                    <template v-else>{{ segment.text }}</template>
+                  </span>
+                </p>
               </template>
-            </p>
+            </div>
           </div>
 
           <div class="session-speakers">
@@ -304,18 +423,50 @@ onMounted(async () => {
 
 .sponsor-speaker-overview {
   margin-bottom: 2.5rem;
-  white-space: pre-wrap;
+
   @media (--mobile) {
     margin-bottom: 2.25rem;
   }
 }
 
-.sponsor-speaker-overview-spacer {
+.sponsor-description,
+.sponsor-speaker-overview {
+  a {
+    color: var(--color-primary-base);
+    overflow-wrap: anywhere;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.text-paragraph {
+  margin: 0;
+
+  & + & {
+    margin-top: 8px;
+  }
+}
+
+.text-paragraph-spacer {
   display: block;
   height: 1.25em;
+  margin-top: 0;
+
   @media (--mobile) {
     height: 1rem;
   }
+}
+
+.text-paragraph + .text-paragraph-spacer {
+  margin-top: 0;
+}
+
+.text-paragraph-hanging-indent {
+  padding-left: 1em;
+  text-indent: -1em;
 }
 
 .session-detail {
@@ -329,9 +480,6 @@ onMounted(async () => {
       margin-bottom: 0.5rem;
       scroll-margin-top: 74px;
     }
-  }
-  p {
-    margin-top: 8px;
   }
 }
 

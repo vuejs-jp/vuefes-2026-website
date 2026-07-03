@@ -6,16 +6,16 @@ export interface Sponsor {
   linkUrl: string;
   plan: "platina" | "gold" | "silver" | "bronze" | "creative" | "option-only";
   option?: Option[];
-  program: Program[];
+  program?: Program[];
   name: string;
   logoImageAlt: string;
   description?: string;
 }
 
-type LocaleFieldsKey = "name" | "logoImageAlt" | "description";
+type LocaleFieldsKey = "name" | "logoImageAlt" | "description" | "linkUrl";
 type SponsorLocaleFields = Pick<Sponsor, LocaleFieldsKey>;
 export type SponsorData = Omit<Sponsor, LocaleFieldsKey | "program"> & {
-  programIds: string[];
+  programIds?: string[];
   ja: SponsorLocaleFields;
   en: SponsorLocaleFields;
 };
@@ -27,11 +27,14 @@ export type Option =
   | "live-translation"
   | "name-badge"
   | "after-party"
-  | "student-support"
+  | "student-support-standard"
+  | "student-support-mini"
   | "staff-t-shirts"
   | "exhibition"
   | "intermission-slide"
-  | "job-board";
+  | "job-board"
+  | "media"
+  | "tool";
 
 export interface OptionSponsorData {
   title: string;

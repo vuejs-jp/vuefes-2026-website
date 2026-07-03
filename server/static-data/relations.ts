@@ -3,7 +3,7 @@ type ProgramReference = {
 };
 
 type SponsorProgramReference = {
-  programIds: readonly string[];
+  programIds?: readonly string[];
 };
 
 export function excludeSponsorPrograms<TProgram extends ProgramReference>(

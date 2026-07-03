@@ -24,6 +24,10 @@ const bp = useBreakpoint();
 const { data: sponsorsData } = await useFetch("/api/sponsors", {
   query: { locale },
 });
+const hasSponsors = (sponsors?: unknown[] | null): boolean => (sponsors?.length ?? 0) > 0;
+const hasOptionSponsors = (options?: OptionSponsor[] | null): boolean =>
+  options?.some((option) => option.data.length > 0) ?? false;
+
 defineOgImage({
   url: `${runtimeConfig.public.siteUrl}images/og/sponsors.png`,
 });
@@ -38,7 +42,11 @@ useSeoMeta({
     <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
     <h1>Sponsor</h1>
 
-    <VFSection id="platina-sponsor" :title="t('sponsors.platinaSponsor')">
+    <VFSection
+      v-if="hasSponsors(sponsorsData?.PLATINA)"
+      id="platina-sponsor"
+      :title="t('sponsors.platinaSponsor')"
+    >
       <SponsorGrid
         :sponsors="sponsorsData?.PLATINA ?? []"
         :columns="bp === 'mobile' ? 1 : 2"
@@ -46,7 +54,11 @@ useSeoMeta({
       />
     </VFSection>
 
-    <VFSection id="gold-sponsor" :title="t('sponsors.goldSponsor')">
+    <VFSection
+      v-if="hasSponsors(sponsorsData?.GOLD)"
+      id="gold-sponsor"
+      :title="t('sponsors.goldSponsor')"
+    >
       <SponsorGrid
         :sponsors="sponsorsData?.GOLD ?? []"
         :columns="bp === 'mobile' ? 2 : 3"
@@ -54,7 +66,11 @@ useSeoMeta({
       />
     </VFSection>
 
-    <VFSection id="silver-sponsor" :title="t('sponsors.silverSponsor')">
+    <VFSection
+      v-if="hasSponsors(sponsorsData?.SILVER)"
+      id="silver-sponsor"
+      :title="t('sponsors.silverSponsor')"
+    >
       <SponsorGrid
         :sponsors="sponsorsData?.SILVER ?? []"
         :columns="bp === 'mobile' ? 2 : 4"
@@ -62,7 +78,11 @@ useSeoMeta({
       />
     </VFSection>
 
-    <VFSection id="bronze-sponsor" :title="t('sponsors.bronzeSponsor')">
+    <VFSection
+      v-if="hasSponsors(sponsorsData?.BRONZE)"
+      id="bronze-sponsor"
+      :title="t('sponsors.bronzeSponsor')"
+    >
       <SponsorGrid
         :sponsors="sponsorsData?.BRONZE ?? []"
         :columns="bp === 'mobile' ? 2 : 4"
@@ -70,7 +90,11 @@ useSeoMeta({
       />
     </VFSection>
 
-    <VFSection id="option-sponsor" :title="t('sponsors.optionSponsor')">
+    <VFSection
+      v-if="hasOptionSponsors(sponsorsData?.OPTION)"
+      id="option-sponsor"
+      :title="t('sponsors.optionSponsor')"
+    >
       <div v-for="option in (sponsorsData?.OPTION ?? []) as OptionSponsor[]" :key="option.title">
         <div v-if="option.data.length > 0" class="sponsor-option-container">
           <h2 class="sponsor-option-title">
@@ -81,7 +105,11 @@ useSeoMeta({
       </div>
     </VFSection>
 
-    <VFSection id="creative-sponsor" :title="t('sponsors.creativeSponsor')">
+    <VFSection
+      v-if="hasSponsors(sponsorsData?.CREATIVE)"
+      id="creative-sponsor"
+      :title="t('sponsors.creativeSponsor')"
+    >
       <SponsorGrid
         :sponsors="sponsorsData?.CREATIVE ?? []"
         :columns="bp === 'mobile' ? 2 : 3"
@@ -89,7 +117,11 @@ useSeoMeta({
       />
     </VFSection>
 
-    <VFSection id="individual-sponsor" :title="t('sponsors.individualSponsor')">
+    <VFSection
+      v-if="hasSponsors(sponsorsData?.INDIVIDUAL)"
+      id="individual-sponsor"
+      :title="t('sponsors.individualSponsor')"
+    >
       <div class="sponsor-individual-container">
         <span v-for="(name, index) in sponsorsData?.INDIVIDUAL ?? []" :key="index">{{ name }}</span>
       </div>
