@@ -17,6 +17,8 @@ import {
   JaCtaTicket,
   EnCtaCfp,
   JaCtaCfp,
+  EnCtaVolunteer,
+  JaCtaVolunteer,
   MainVisual,
   VFCta,
   VFFooter,
@@ -115,13 +117,25 @@ const ctaConfigs: ComputedRef<Record<NonNullable<typeof viewedCta>, CtaConfig>> 
     },
     content: locale.value === "ja" ? JaCtaCfp : EnCtaCfp,
   },
+  volunteer: {
+    props: {
+      actionButton: {
+        label: t("volunteer.applyButtonShort"),
+        link: t("volunteer.applyLink"),
+      },
+      openerText: "Volunteer",
+    },
+    content: locale.value === "ja" ? JaCtaVolunteer : EnCtaVolunteer,
+  },
 }));
 
-const viewedCta: "ticket" | "cfp" | null = (() => {
+const viewedCta: "ticket" | "cfp" | "volunteer" | null = (() => {
   if (import.meta.vfFeatures.ctaTicket) {
     return "ticket";
   } else if (import.meta.vfFeatures.ctaCfp) {
     return "cfp";
+  } else if (import.meta.vfFeatures.ctaVolunteer) {
+    return "volunteer";
   } else {
     return null;
   }
