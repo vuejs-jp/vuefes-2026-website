@@ -20,7 +20,7 @@
     "@aws-sdk/s3-request-presigner": "^3.842.0",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/scripts": "0.13.2",
-    "@nuxtjs/i18n": "9.4.0",
+    "@nuxtjs/i18n": "10.4.0",
     "@nuxtjs/seo": "^3.0.1",
     "@ox-content/napi": "^2.31.0",
     "@regle/core": "^1.18.3",
