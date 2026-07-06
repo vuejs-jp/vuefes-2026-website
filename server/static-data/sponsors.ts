@@ -448,23 +448,23 @@ const SPONSORS_SILVER: SponsorData[] = [
   // },
 ];
 const SPONSORS_BRONZE: SponsorData[] = [
-  // {
-  //   id: "stores",
-  //   plan: "bronze",
-  //   logoImageUrl: "/images/sponsor-logo/bronze/stores.png",
-  //   ja: {
-  //     name: "STORES 株式会社",
-  //     linkUrl: "",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  //   en: {
-  //     name: "STORES, Inc.",
-  //     linkUrl: "",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  // },
+  {
+    id: "stores",
+    plan: "bronze",
+    logoImageUrl: "/images/sponsor-logo/bronze/stores.png",
+    ja: {
+      name: "STORES 株式会社",
+      linkUrl: "https://jobs.st.inc/",
+      logoImageAlt: "STORES 株式会社",
+      description: "",
+    },
+    en: {
+      name: "STORES, Inc.",
+      linkUrl: "https://jobs.st.inc/",
+      logoImageAlt: "STORES, Inc.",
+      description: "",
+    },
+  },
   {
     id: "i-cubed-systems",
     plan: "bronze",
