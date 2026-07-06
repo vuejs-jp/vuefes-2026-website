@@ -195,23 +195,27 @@ const SPONSORS_GOLD: SponsorData[] = [
         'hacomono is a leading vertical SaaS provider tailored for the wellness industry, trusted by over 11,000 facilities nationwide, including junior sports schools and public centers. In March 2026, the company expanded its portfolio by launching "FitFits," a new service designed directly for consumers (to-C).',
     },
   },
-  // {
-  //   id: "kickflow",
-  //   plan: "gold",
-  //   logoImageUrl: "/images/sponsor-logo/gold/kickflow.png",
-  //   ja: {
-  //     name: "株式会社kickflow",
-  //     linkUrl: "",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  //   en: {
-  //     name: "kickflow, Inc.",
-  //     linkUrl: "",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  // },
+  {
+    id: "kickflow",
+    plan: "gold",
+    logoImageUrl: "/images/sponsor-logo/gold/kickflow.png",
+    ja: {
+      name: "株式会社kickflow",
+      linkUrl:
+        "https://careers.kickflow.co.jp/?utm_source=vuefes&utm_medium=sponsor_logo&utm_campaign=vuefes2026_sponsor",
+      logoImageAlt: "株式会社kickflow",
+      description:
+        "私たちは、中堅〜大企業向けの稟議・ワークフローSaaS「kickflow」を開発しています。顧客の価値にフォーカスしながら、フロントエンドはVue/Nuxtで構築し、AIを前提とした開発文化のもと、少人数チームで爆速開発を大切にしています。ぜひブースにお立ち寄りください。",
+    },
+    en: {
+      name: "kickflow, Inc.",
+      linkUrl:
+        "https://careers.kickflow.co.jp/?utm_source=vuefes&utm_medium=sponsor_logo&utm_campaign=vuefes2026_sponsor",
+      logoImageAlt: "kickflow, Inc.",
+      description:
+        "We develop kickflow, a cloud-based approval and workflow SaaS built for mid-to-large enterprises. With a focus on customer value, our frontend is built with Vue and Nuxt, and within an AI-first development culture, our small team values rapid development. Please stop by our booth!",
+    },
+  },
   {
     id: "coderabbit",
     plan: "gold",
