@@ -307,23 +307,25 @@ const SPONSORS_GOLD: SponsorData[] = [
         'We are developing "Liny," a service that achieves customer communication exactly the way you want it. With personalized approaches tailored to each customer, we aim to enrich communication experiences in the digital age.',
     },
   },
-  // {
-  //   id: "ldfcorp",
-  //   plan: "gold",
-  //   logoImageUrl: "/images/sponsor-logo/gold/ldfcorp.png",
-  //   ja: {
-  //     name: "LINE Digital Frontier株式会社",
-  //     linkUrl: "",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  //   en: {
-  //     name: "LINE Digital Frontier Corp.",
-  //     linkUrl: "",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  // },
+  {
+    id: "ldfcorp",
+    plan: "gold",
+    logoImageUrl: "/images/sponsor-logo/gold/line-digital-frontier.png",
+    ja: {
+      name: "LINE Digital Frontier株式会社",
+      linkUrl: "https://ldfcorp.com/ja",
+      logoImageAlt: "LINE Digital Frontier 株式会社",
+      description:
+        "LINE Digital Frontier 株式会社は、スマートフォンやタブレットで気軽にマンガ作品が楽しめる電子コミックサービス「LINEマンガ」、国内最大級の電子書籍販売サービス「ebookjapan」と、紙書籍オンライン販売サービス「bookfan」を運営しています。「マンガの未来を創る」べく、ユーザー、クリエイター、そしてパートナー企業に対して最高の価値を提供し続けてまいります。",
+    },
+    en: {
+      name: "LINE Digital Frontier Corp.",
+      linkUrl: "https://ldfcorp.com/ja",
+      logoImageAlt: " LINE Digital Frontier Corp. ",
+      description:
+        'LINE Digital Frontier Corp. operates "LINE MANGA," an electronic comic service that allows users to easily enjoy manga on smartphones and tablets; "ebookjapan," one of the largest electronic book retail services in Japan; and "bookfan," an online service for physical books. Aiming to "create the future of manga," we will continue to provide the greatest possible value to our users, creators, and partner companies.',
+    },
+  },
   {
     id: "mov",
     plan: "gold",

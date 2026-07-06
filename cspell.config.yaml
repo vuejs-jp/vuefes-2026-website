@@ -373,6 +373,8 @@ words:
   - zeiri
   - Zeirishi
   - ZOZO
+  - ebookjapan
+  - bookfan
 ignorePaths:
   - dist
   - node_modules
