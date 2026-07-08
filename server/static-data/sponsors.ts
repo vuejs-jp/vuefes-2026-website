@@ -432,24 +432,26 @@ const SPONSORS_SILVER: SponsorData[] = [
         "Redefining what health tech can be.\nStarted by a doctor and now more than 20 years in, MedPeer has entered a second founding era, going AI-first.\nWe build our core products on Vue.js and Nuxt, working to change the future of healthcare through technology. Come build it with us.",
     },
   },
-  // {
-  //   id: "istyle",
-  //   plan: "silver",
-  //   option: ["intermission-slide", "job-board"],
-  //   logoImageUrl: "/images/sponsor-logo/silver/istyle.png",
-  //   ja: {
-  //     name: "株式会社アイスタイル",
-  //     linkUrl: "https://www.istyle.co.jp/",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  //   en: {
-  //     name: "istyle, Inc.",
-  //     linkUrl: "https://www.istyle.co.jp/",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  // },
+  {
+    id: "istyle",
+    plan: "silver",
+    option: ["intermission-slide", "job-board"],
+    logoImageUrl: "/images/sponsor-logo/silver/istyle.png",
+    ja: {
+      name: "株式会社アイスタイル",
+      linkUrl: "https://www.istyle.co.jp/",
+      logoImageAlt: "株式会社アイスタイルのロゴ",
+      description:
+        "株式会社アイスタイルは、美容系総合サービス「@cosme（アットコスメ）」とEC・店舗を運営し、生活者情報を活用する企業横断型の新しいマーケティングプラットフォームを提供しています。",
+    },
+    en: {
+      name: "istyle, Inc.",
+      linkUrl: "https://www.istyle.co.jp/en/",
+      logoImageAlt: "istyle logo",
+      description:
+        "istyle, Inc. operates @cosme, a leading beauty platform, along with E-commerce and physical stores. By leveraging consumer data, we strive to build a new cross-organizational infrastructure that empowers innovative services.",
+    },
+  },
 ];
 const SPONSORS_BRONZE: SponsorData[] = [
   {
