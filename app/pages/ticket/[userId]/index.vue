@@ -30,14 +30,11 @@ const expiredNameBadgeRegistration = import.meta.vfFeatures.expiredNameBadgeRegi
 const { data: session, status } = useAuth();
 const route = useRoute("ticket-userId");
 const { data: nameBadgeData } = useFetch(`/api/name-badge/${route.params.userId}`);
-defineOgImage({
-  component: "OgNameBadge",
-  props: {
-    name: () => nameBadgeData.value?.name,
-    userRole: () => nameBadgeData.value?.role,
-    avatarImageUrl: () => nameBadgeData.value?.avatarUrl,
-    lang: () => nameBadgeData.value?.lang,
-  },
+defineOgImage("OgNameBadge", {
+  name: () => nameBadgeData.value?.name ?? undefined,
+  userRole: () => nameBadgeData.value?.role ?? undefined,
+  avatarImageUrl: () => nameBadgeData.value?.avatarUrl,
+  lang: () => nameBadgeData.value?.lang ?? undefined,
 });
 
 useSeoMeta({

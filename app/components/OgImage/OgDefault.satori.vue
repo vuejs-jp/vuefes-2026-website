@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRuntimeConfig, computed } from "#imports";
+import { resolveOgImageUrl } from "./utils";
 
 defineProps<{
   titleJa: string;
@@ -7,8 +8,12 @@ defineProps<{
 }>();
 
 const runtimeConfig = useRuntimeConfig();
-const baseImageUrl = computed(() => `${runtimeConfig.siteUrl}images/og/default.png`);
-const noiseImageUrl = computed(() => `${runtimeConfig.siteUrl}images/og/noise.png`);
+const baseImageUrl = computed(() =>
+  resolveOgImageUrl(runtimeConfig.siteUrl, "images/og/default.png"),
+);
+const noiseImageUrl = computed(() =>
+  resolveOgImageUrl(runtimeConfig.siteUrl, "images/og/noise.png"),
+);
 </script>
 
 <template>
@@ -38,7 +43,7 @@ const noiseImageUrl = computed(() => `${runtimeConfig.siteUrl}images/og/noise.pn
         width: '100%',
         objectFit: 'cover',
         color: '#007f62',
-        fontFamily: 'ClashDisplay-Medium, IBMPlexSansJP-SemiBold',
+        fontFamily: 'OgClashDisplay-Medium, OgIBMPlexSansJP-SemiBold',
       }"
     >
       <div

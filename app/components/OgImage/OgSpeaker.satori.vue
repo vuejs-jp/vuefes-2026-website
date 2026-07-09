@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, useRuntimeConfig } from "#imports";
+import { resolveOgImageUrl } from "./utils";
 
 const { avatarUrl, color, speakerTitle, affiliation } = defineProps<{
   name: string;
@@ -10,35 +11,45 @@ const { avatarUrl, color, speakerTitle, affiliation } = defineProps<{
 }>();
 
 const runtimeConfig = useRuntimeConfig();
-const avatarImageFullUrl = computed(
-  () => `${runtimeConfig.siteUrl}${avatarUrl.startsWith("/") ? avatarUrl.slice(1) : avatarUrl}`,
-);
+const avatarImageFullUrl = computed(() => resolveOgImageUrl(runtimeConfig.siteUrl, avatarUrl));
 const description = computed(() => speakerTitle || affiliation);
 
 const variants = computed(() => {
   switch (color) {
     case "purple":
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/purple.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/purple.png",
+        ),
         baseColor: "#8314d3",
         subColor: "#d0edf2",
       };
     case "orange":
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/orange.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/orange.png",
+        ),
         baseColor: "#f66c21",
         subColor: "#def7d1",
       };
     case "navy":
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/navy.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/navy.png",
+        ),
         baseColor: "#385FCC",
         subColor: "#ffdaff",
       };
     case "default":
     default:
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/default.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/default.png",
+        ),
         baseColor: "#007f62",
         subColor: "#fae8e4",
       };
@@ -86,7 +97,7 @@ const variants = computed(() => {
         fontSize: '30px',
         backgroundColor: variants.baseColor,
         color: variants.subColor,
-        fontFamily: 'JetBrainsMono-Regular, IBMPlexSansJP-Regular',
+        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
         padding: '20px',
       }"
     >
@@ -102,7 +113,7 @@ const variants = computed(() => {
         fontSize: '40px',
         backgroundColor: variants.subColor,
         color: variants.baseColor,
-        fontFamily: 'JetBrainsMono-Regular, IBMPlexSansJP-Regular',
+        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
         lineHeight: '90%',
         padding: '25px 45px',
         borderRadius: '125px',
@@ -129,7 +140,7 @@ const variants = computed(() => {
       <div
         :style="{
           margin: '0 auto',
-          fontFamily: 'IBMPlexSansJP-Regular, JetBrainsMono-Regular',
+          fontFamily: 'OgIBMPlexSansJP-Regular, OgJetBrainsMono-Regular',
         }"
       >
         {{ description }}

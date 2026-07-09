@@ -3,7 +3,6 @@ import { VFSection, VFButton } from "#components";
 
 import {
   computed,
-  defineOgImage,
   useI18n,
   useRuntimeConfig,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,12 +36,9 @@ const dateOption = computed(() =>
       },
 );
 
-defineOgImage({
-  url: `${runtimeConfig.public.siteUrl}images/og/related-events.png`,
-});
-
 useSeoMeta({
   title: t("relatedEvents.sectionTitle"),
+  ogImage: `${runtimeConfig.public.siteUrl}images/og/related-events.png`,
   ogTitle: t("relatedEvents.sectionTitle"),
 });
 </script>

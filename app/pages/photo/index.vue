@@ -8,7 +8,6 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useSeoMeta,
-  defineOgImage,
   useFetch,
 } from "#imports";
 import { VFSection } from "#components";
@@ -25,12 +24,9 @@ function getCategoryLabel(id: string): string {
   return t(`photo.categories.${id}`);
 }
 
-defineOgImage({
-  url: `${runtimeConfig.public.siteUrl}images/og/photo.png`,
-});
-
 useSeoMeta({
   title: t("photo.title"),
+  ogImage: `${runtimeConfig.public.siteUrl}images/og/photo.png`,
   ogTitle: t("photo.title"),
   description: t("photo.description"),
   ogDescription: t("photo.description"),

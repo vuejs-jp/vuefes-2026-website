@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, useRuntimeConfig } from "#imports";
+import { resolveOgImageUrl } from "./utils";
 
 const { name, userRole, avatarImageUrl } = defineProps<{
   name?: string;
@@ -9,39 +10,57 @@ const { name, userRole, avatarImageUrl } = defineProps<{
 }>();
 
 const runtimeConfig = useRuntimeConfig();
+const avatarImageFullUrl = computed(() =>
+  avatarImageUrl ? resolveOgImageUrl(runtimeConfig.siteUrl, avatarImageUrl) : undefined,
+);
 
 const variants = computed(() => {
   switch (userRole) {
     case "Attendee+Party":
       return {
         color: "#007f62",
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/name-badge/party.png`,
-        nameBadgeBaseImageUrl: `${runtimeConfig.siteUrl}images/name-badge/party.png`,
+        baseImageUrl: resolveOgImageUrl(runtimeConfig.siteUrl, "images/og/name-badge/party.png"),
+        nameBadgeBaseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/name-badge/party.png",
+        ),
       };
     case "Sponsor":
       return {
         color: "#f66c21",
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/name-badge/sponsor.png`,
-        nameBadgeBaseImageUrl: `${runtimeConfig.siteUrl}images/name-badge/sponsor.png`,
+        baseImageUrl: resolveOgImageUrl(runtimeConfig.siteUrl, "images/og/name-badge/sponsor.png"),
+        nameBadgeBaseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/name-badge/sponsor.png",
+        ),
       };
     case "Speaker":
       return {
         color: "#8314d3",
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/name-badge/speaker.png`,
-        nameBadgeBaseImageUrl: `${runtimeConfig.siteUrl}images/name-badge/speaker.png`,
+        baseImageUrl: resolveOgImageUrl(runtimeConfig.siteUrl, "images/og/name-badge/speaker.png"),
+        nameBadgeBaseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/name-badge/speaker.png",
+        ),
       };
     case "Staff":
       return {
         color: "#ffffff",
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/name-badge/staff.png`,
-        nameBadgeBaseImageUrl: `${runtimeConfig.siteUrl}images/name-badge/staff.png`,
+        baseImageUrl: resolveOgImageUrl(runtimeConfig.siteUrl, "images/og/name-badge/staff.png"),
+        nameBadgeBaseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/name-badge/staff.png",
+        ),
       };
     case "Attendee":
     default:
       return {
         color: "#385FCC",
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/name-badge/default.png`,
-        nameBadgeBaseImageUrl: `${runtimeConfig.siteUrl}images/name-badge/default.png`,
+        baseImageUrl: resolveOgImageUrl(runtimeConfig.siteUrl, "images/og/name-badge/default.png"),
+        nameBadgeBaseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/name-badge/default.png",
+        ),
       };
   }
 });
@@ -117,7 +136,7 @@ const nameTransform = computed(() => {
         color: variants.color,
         fontSize: '1.5rem',
         fontWeight: 'bold',
-        fontFamily: 'JetBrainsMono-Regular, IBMPlexSansJP-Regular',
+        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
         transform: nameTransform,
         transformOrigin: 'left center',
         whiteSpace: 'nowrap',
@@ -137,7 +156,7 @@ const nameTransform = computed(() => {
         color: variants.color,
         fontSize: '1.5rem',
         fontWeight: 'bold',
-        fontFamily: 'JetBrainsMono-Regular, IBMPlexSansJP-Regular',
+        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
       }"
     >
       {{ lang }}
@@ -157,8 +176,8 @@ const nameTransform = computed(() => {
       }"
     >
       <img
-        v-if="avatarImageUrl"
-        :src="avatarImageUrl"
+        v-if="avatarImageFullUrl"
+        :src="avatarImageFullUrl"
         alt="Avatar"
         :style="{
           width: '100%',

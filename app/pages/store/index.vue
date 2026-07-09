@@ -10,7 +10,6 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useSeoMeta,
-  defineOgImage,
   useFetch,
 } from "#imports";
 import { VFSection, JaStore, EnStore } from "#components";
@@ -27,12 +26,9 @@ const { data: goodsData } = await useFetch("/api/goods", {
 const goods = computed(() => goodsData.value ?? []);
 const indent = computed(() => (locale.value === "en" ? "0.7em" : "0.25em"));
 
-defineOgImage({
-  url: `${runtimeConfig.public.siteUrl}images/og/store.png`,
-});
-
 useSeoMeta({
   title: t("store.title"),
+  ogImage: `${runtimeConfig.public.siteUrl}images/og/store.png`,
   ogTitle: t("store.title"),
   description: t("store.description"),
   ogDescription: t("store.description"),

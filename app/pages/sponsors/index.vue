@@ -10,7 +10,6 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useSeoMeta,
-  defineOgImage,
   useFetch,
 } from "#imports";
 import { VFSection } from "#components";
@@ -28,11 +27,9 @@ const hasSponsors = (sponsors?: unknown[] | null): boolean => (sponsors?.length 
 const hasOptionSponsors = (options?: OptionSponsor[] | null): boolean =>
   options?.some((option) => option.data.length > 0) ?? false;
 
-defineOgImage({
-  url: `${runtimeConfig.public.siteUrl}images/og/sponsors.png`,
-});
 useSeoMeta({
   title: t("sponsors.title"),
+  ogImage: `${runtimeConfig.public.siteUrl}images/og/sponsors.png`,
   ogTitle: t("sponsors.title"),
 });
 </script>

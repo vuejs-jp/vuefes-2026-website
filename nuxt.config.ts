@@ -164,6 +164,7 @@ export default defineNuxtConfig({
   modules: [
     "./modules/00.feature-flags.ts",
     "@nuxt/a11y",
+    "@nuxt/fonts",
     "@nuxt/scripts",
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
@@ -296,22 +297,41 @@ export default defineNuxtConfig({
     },
     enabled: true,
     runtimeCacheStorage: false,
-    fonts: [
+  },
+
+  fonts: {
+    families: [
       {
-        name: "JetBrainsMono-Regular",
-        path: "/fonts/og/JetBrainsMono-Regular.ttf",
+        name: "OgJetBrainsMono-Regular",
+        src: "/fonts/og/JetBrainsMono-Regular.ttf",
+        weight: 400,
+        style: "normal",
+        global: true,
+        preload: false,
       },
       {
-        name: "IBMPlexSansJP-Regular",
-        path: "/fonts/og/IBMPlexSansJP-Regular.ttf",
+        name: "OgIBMPlexSansJP-Regular",
+        src: "/fonts/og/IBMPlexSansJP-Regular.ttf",
+        weight: 400,
+        style: "normal",
+        global: true,
+        preload: false,
       },
       {
-        name: "IBMPlexSansJP-SemiBold",
-        path: "/fonts/og/IBMPlexSansJP-SemiBold.ttf",
+        name: "OgIBMPlexSansJP-SemiBold",
+        src: "/fonts/og/IBMPlexSansJP-SemiBold.ttf",
+        weight: 400,
+        style: "normal",
+        global: true,
+        preload: false,
       },
       {
-        name: "ClashDisplay-Medium",
-        path: "/fonts/og/ClashDisplay-Medium.ttf",
+        name: "OgClashDisplay-Medium",
+        src: "/fonts/og/ClashDisplay-Medium.ttf",
+        weight: 400,
+        style: "normal",
+        global: true,
+        preload: false,
       },
     ],
   },

@@ -131,14 +131,18 @@ useSeoMeta({
   ogTitle: () => `Vue Fes Japan 2026 - ${currentSponsor.value?.name || t("sponsors.title")}`,
 });
 
-defineOgImage({
-  component: "OgSponsor",
-
-  props: {
-    name: () => currentSponsor.value?.name,
-    logoImageUrl: () => currentSponsor.value?.logoImageUrl,
-    plan: () => currentSponsor.value?.plan,
-  },
+defineOgImage("OgSponsor", {
+  name: () => currentSponsor.value?.name ?? "",
+  logoImageUrl: () => currentSponsor.value?.logoImageUrl ?? "",
+  plan: () =>
+    currentSponsor.value?.plan as
+      | "PLATINUM"
+      | "GOLD"
+      | "SILVER"
+      | "BRONZE"
+      | "OPTION_ONLY"
+      | "CREATIVE"
+      | undefined,
 });
 
 const trackStyles = (tracks: Program["tracks"]) => {

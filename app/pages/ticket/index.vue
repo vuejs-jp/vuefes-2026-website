@@ -8,7 +8,6 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useSeoMeta,
-  defineOgImage,
 } from "#imports";
 import {
   VFButton,
@@ -54,12 +53,9 @@ async function handleClockGitHubSignIn() {
   });
 }
 
-defineOgImage({
-  component: "root",
-  url: `${runtimeConfig.public.siteUrl}images/og/ticket.png`,
-});
 useSeoMeta({
   title: t("ticket.title"),
+  ogImage: `${runtimeConfig.public.siteUrl}images/og/ticket.png`,
   ogTitle: t("ticket.title"),
 });
 </script>

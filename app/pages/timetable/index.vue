@@ -6,7 +6,6 @@ import { createDesktopTimetable, createMobileTimetable } from "./_utils/builders
 import { useScrollPosition } from "~/composables/useScrollPosition";
 import { VFSection } from "#components";
 import {
-  defineOgImage,
   defineRouteRules,
   useBreakpoint,
   useFetch,
@@ -36,12 +35,9 @@ const mobileGroups = computed(() => createMobileTimetable(timetableItems.value ?
 
 useScrollPosition("timetableScrollPosition");
 
-defineOgImage({
-  url: `${runtimeConfig.public.siteUrl}images/og/timetable.png`,
-});
-
 useSeoMeta({
   title: () => `Vue Fes Japan 2026 - ${t("timetable.title")}`,
+  ogImage: `${runtimeConfig.public.siteUrl}images/og/timetable.png`,
   ogTitle: () => `Vue Fes Japan 2026 - ${t("timetable.title")}`,
   description: () => t("timetable.description"),
   ogDescription: () => t("timetable.description"),

@@ -10,7 +10,6 @@ import {
   useSeoMeta,
   useLocalePath,
   useRuntimeConfig,
-  defineOgImage,
 } from "#imports";
 
 defineRouteRules({ prerender: true });
@@ -20,11 +19,9 @@ const { locale, t } = useI18n();
 
 const localePath = useLocalePath();
 
-defineOgImage({
-  url: `${runtimeConfig.public.siteUrl}images/og/privacy-policy.png`,
-});
 useSeoMeta({
   title: t("privacyPolicy"),
+  ogImage: `${runtimeConfig.public.siteUrl}images/og/privacy-policy.png`,
 });
 </script>
 

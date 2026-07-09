@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, useRuntimeConfig } from "#imports";
+import { resolveOgImageUrl } from "./utils";
 
 const { logoImageUrl, plan = "OPTION_ONLY" } = defineProps<{
   name: string;
@@ -12,10 +13,7 @@ const planName = computed(() => {
 });
 
 const runtimeConfig = useRuntimeConfig();
-const logoImageFullUrl = computed(
-  () =>
-    `${runtimeConfig.siteUrl}${logoImageUrl.startsWith("/") ? logoImageUrl.slice(1) : logoImageUrl}`,
-);
+const logoImageFullUrl = computed(() => resolveOgImageUrl(runtimeConfig.siteUrl, logoImageUrl));
 
 const SPONSOR_TAG_STYLE_BASE = {
   alignItems: "center",
@@ -26,7 +24,10 @@ const variants = computed(() => {
   switch (planName.value) {
     case "PLATINUM":
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/purple.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/purple.png",
+        ),
         baseColor: "#8314d3",
         subColor: "#d0edf2",
         sponsorTagStyle: {
@@ -37,7 +38,10 @@ const variants = computed(() => {
       };
     case "GOLD":
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/default.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/default.png",
+        ),
         baseColor: "#007f62",
         subColor: "#fae8e4",
         sponsorTagStyle: {
@@ -47,7 +51,10 @@ const variants = computed(() => {
       };
     case "SILVER":
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/orange.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/orange.png",
+        ),
         baseColor: "#f66c21",
         subColor: "#def7d1",
         sponsorTagStyle: {
@@ -58,7 +65,10 @@ const variants = computed(() => {
     case "BRONZE":
     default:
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/navy.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/navy.png",
+        ),
         baseColor: "#385FCC",
         subColor: "#ffdaff",
         sponsorTagStyle: {
@@ -68,7 +78,10 @@ const variants = computed(() => {
       };
     case "OPTION":
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/orange.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/orange.png",
+        ),
         baseColor: "#f66c21",
         subColor: "#def7d1",
         sponsorTagStyle: {
@@ -78,7 +91,10 @@ const variants = computed(() => {
       };
     case "CREATIVE":
       return {
-        baseImageUrl: `${runtimeConfig.siteUrl}images/og/speaker-or-sponsor/default.png`,
+        baseImageUrl: resolveOgImageUrl(
+          runtimeConfig.siteUrl,
+          "images/og/speaker-or-sponsor/default.png",
+        ),
         baseColor: "#007f62",
         subColor: "#fae8e4",
         sponsorTagStyle: {
@@ -122,18 +138,26 @@ const variants = computed(() => {
       }"
     />
 
-    <img
-      :src="logoImageFullUrl"
-      alt="Sponsor Logo"
+    <div
       :style="{
         position: 'absolute',
+        top: '90px',
+        right: '0',
+        bottom: '90px',
         width: '50%',
-        top: '50%',
-        left: '75%',
-        transform: 'translate(-50%, -50%)',
         zIndex: 2,
       }"
-    />
+    >
+      <img
+        :src="logoImageFullUrl"
+        alt="Sponsor Logo"
+        :style="{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain',
+        }"
+      />
+    </div>
 
     <div
       :style="{
@@ -154,7 +178,7 @@ const variants = computed(() => {
       <div
         :style="{
           margin: '0 auto',
-          fontFamily: 'JetBrainsMono-Regular, IBMPlexSansJP-Regular',
+          fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
         }"
       >
         {{ name }}
@@ -171,7 +195,7 @@ const variants = computed(() => {
         fontWeight: 'bold',
         fontSize: '30px',
         zIndex: 4,
-        fontFamily: 'JetBrainsMono-Regular, IBMPlexSansJP-Regular',
+        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
         ...variants.sponsorTagStyle,
       }"
     >

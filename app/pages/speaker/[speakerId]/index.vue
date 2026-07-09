@@ -59,15 +59,12 @@ useSeoMeta({
   ogDescription: () => pageDescription.value,
 });
 
-defineOgImage({
-  component: "OgSpeaker",
-  props: {
-    name: () => currentSpeaker.value?.name,
-    avatarUrl: () => currentSpeaker.value?.avatarUrl,
-    speakerTitle: () => currentSpeaker.value?.title,
-    affiliation: () => currentSpeaker.value?.affiliation,
-    color: () => currentSpeaker.value?.color || "default",
-  },
+defineOgImage("OgSpeaker", {
+  name: () => currentSpeaker.value?.name ?? "",
+  avatarUrl: () => currentSpeaker.value?.avatarUrl ?? "",
+  speakerTitle: () => currentSpeaker.value?.title,
+  affiliation: () => currentSpeaker.value?.affiliation,
+  color: () => currentSpeaker.value?.color || "default",
 });
 
 const goBack = () => {

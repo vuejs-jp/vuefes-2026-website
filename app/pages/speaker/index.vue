@@ -17,7 +17,6 @@ import {
   useSeoMeta,
   useI18n,
   useRuntimeConfig,
-  defineOgImage,
   useQueryHashSync,
   useRoute,
   useRouter,
@@ -66,17 +65,15 @@ const route = useRoute();
 
 useQueryHashSync({ queryKey: "section" });
 
-defineOgImage({
-  url:
-    route.query.section === SectionId.PanelDiscussion
-      ? `${runtimeConfig.public.siteUrl}images/og/panel-discussion.png`
-      : `${runtimeConfig.public.siteUrl}images/og/speaker.png`,
-});
 useSeoMeta({
   title: () =>
     route.query.section === SectionId.PanelDiscussion
       ? t("event.panel.talkTitle")
       : t("speakers.title"),
+  ogImage: () =>
+    route.query.section === SectionId.PanelDiscussion
+      ? `${runtimeConfig.public.siteUrl}images/og/panel-discussion.png`
+      : `${runtimeConfig.public.siteUrl}images/og/speaker.png`,
   ogTitle: () =>
     route.query.section === SectionId.PanelDiscussion
       ? t("event.panel.talkTitle")
