@@ -27,7 +27,7 @@
     "@regle/rules": "^1.20.1",
     "@regle/schemas": "^1.20.4",
     "@sidebase/nuxt-auth": "1.0.0",
-    "@tresjs/core": "^5.8.0",
+    "@tresjs/core": "^5.8.3",
     "@types/node": "^25.5.0",
     "@types/three": "^0.183.1",
     "@unhead/vue": "^2.0.5",
