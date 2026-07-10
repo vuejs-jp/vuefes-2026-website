@@ -562,24 +562,24 @@ const SPONSORS_OPTION_ONLY: SponsorData[] = [
       description: "",
     },
   },
-  // {
-  //   id: "hackz",
-  //   plan: "option-only",
-  //   option: ["student-support-mini"],
-  //   logoImageUrl: "/images/sponsor-logo/option-only/hackz.png",
-  //   ja: {
-  //     name: "株式会社ハックツ",
-  //     linkUrl: "https://hackz.team",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  //   en: {
-  //     name: "Hack’z Inc.",
-  //     linkUrl: "https://hackz.team",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  // },
+  {
+    id: "hackz",
+    plan: "option-only",
+    option: ["student-support-mini"],
+    logoImageUrl: "/images/sponsor-logo/option-only/hackz.png",
+    ja: {
+      name: "株式会社ハックツ",
+      linkUrl: "https://hackz.team",
+      logoImageAlt: "株式会社ハックツ ロゴ",
+      description: "",
+    },
+    en: {
+      name: "Hack’z Inc.",
+      linkUrl: "https://hackz.team",
+      logoImageAlt: "Hack'z inc. logo",
+      description: "",
+    },
+  },
   {
     id: "tech-world",
     plan: "option-only",
