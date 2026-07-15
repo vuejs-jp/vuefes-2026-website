@@ -489,23 +489,23 @@ const SPONSORS_BRONZE: SponsorData[] = [
       description: "",
     },
   },
-  // {
-  //   id: "crowd-works",
-  //   plan: "bronze",
-  //   logoImageUrl: "/images/sponsor-logo/bronze/crowd-works.png",
-  //   ja: {
-  //     name: "株式会社クラウドワークス",
-  //     linkUrl: "",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  //   en: {
-  //     name: "CrowdWorks, Inc.",
-  //     linkUrl: "",
-  //     logoImageAlt: "",
-  //     description: "",
-  //   },
-  // },
+  {
+    id: "crowd-works",
+    plan: "bronze",
+    logoImageUrl: "/images/sponsor-logo/bronze/crowd-works.png",
+    ja: {
+      name: "株式会社クラウドワークス",
+      linkUrl: "https://crowdworks.co.jp",
+      logoImageAlt: "株式会社クラウドワークスのロゴ",
+      description: "",
+    },
+    en: {
+      name: "CrowdWorks, Inc.",
+      linkUrl: "https://crowdworks.co.jp/en",
+      logoImageAlt: "CrowdWorks, Inc. logo",
+      description: "",
+    },
+  },
 ];
 const SPONSORS_OPTION_ONLY: SponsorData[] = [
   {
