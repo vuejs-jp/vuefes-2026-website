@@ -55,6 +55,8 @@ export type NameBadgePreviewSimulationSnapshot = {
   tipY: number;
   velX: number;
   velY: number;
+  ropeX: Float32Array;
+  ropeY: Float32Array;
 };
 
 export type NameBadgePreviewCameraMotionSnapshot = {

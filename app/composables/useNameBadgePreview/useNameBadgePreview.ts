@@ -25,6 +25,7 @@ import {
   NAME_BADGE_ROPE_TUNING,
   NAME_BADGE_SPRING_TUNING,
   NAME_BADGE_ROPE_VISUAL_TUNING,
+  NAME_BADGE_SLOT_TUNING,
   NAME_BADGE_CARD_SURFACE_TUNING,
   NAME_BADGE_PREVIEW_TEXTURE_TUNING,
   NAME_BADGE_PREVIEW_AVATAR_TUNING,
@@ -50,7 +51,7 @@ export function useNameBadgePreview(props: NameBadgePreviewProps) {
     useTresCamera(NAME_BADGE_PREVIEW_CAMERA_TUNING);
   const { disposeObject3D } = useTresObject3D();
 
-  const layout = createLayoutModel(propRefs);
+  const layout = createLayoutModel(propRefs, stageRef);
   const interaction = createInteractionModel({ stageRef, layout });
   const texture = createTextureModel({ layout, props: propRefs });
   const scene = createSceneModel({
@@ -124,24 +125,64 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
-function createRoundedRectShape(width: number, height: number, radius: number) {
+function drawRoundedRect<TPath extends THREE.Path>(
+  path: TPath,
+  width: number,
+  height: number,
+  radius: number,
+  centerX = 0,
+  centerY = 0,
+) {
   const halfWidth = width * 0.5;
   const halfHeight = height * 0.5;
   const r = clamp(radius, 0, Math.min(halfWidth, halfHeight));
 
-  const shape = new THREE.Shape();
-  shape.moveTo(-halfWidth + r, -halfHeight);
-  shape.lineTo(halfWidth - r, -halfHeight);
-  shape.quadraticCurveTo(halfWidth, -halfHeight, halfWidth, -halfHeight + r);
-  shape.lineTo(halfWidth, halfHeight - r);
-  shape.quadraticCurveTo(halfWidth, halfHeight, halfWidth - r, halfHeight);
-  shape.lineTo(-halfWidth + r, halfHeight);
-  shape.quadraticCurveTo(-halfWidth, halfHeight, -halfWidth, halfHeight - r);
-  shape.lineTo(-halfWidth, -halfHeight + r);
-  shape.quadraticCurveTo(-halfWidth, -halfHeight, -halfWidth + r, -halfHeight);
-  shape.closePath();
+  path.moveTo(centerX - halfWidth + r, centerY - halfHeight);
+  path.lineTo(centerX + halfWidth - r, centerY - halfHeight);
+  path.quadraticCurveTo(
+    centerX + halfWidth,
+    centerY - halfHeight,
+    centerX + halfWidth,
+    centerY - halfHeight + r,
+  );
+  path.lineTo(centerX + halfWidth, centerY + halfHeight - r);
+  path.quadraticCurveTo(
+    centerX + halfWidth,
+    centerY + halfHeight,
+    centerX + halfWidth - r,
+    centerY + halfHeight,
+  );
+  path.lineTo(centerX - halfWidth + r, centerY + halfHeight);
+  path.quadraticCurveTo(
+    centerX - halfWidth,
+    centerY + halfHeight,
+    centerX - halfWidth,
+    centerY + halfHeight - r,
+  );
+  path.lineTo(centerX - halfWidth, centerY - halfHeight + r);
+  path.quadraticCurveTo(
+    centerX - halfWidth,
+    centerY - halfHeight,
+    centerX - halfWidth + r,
+    centerY - halfHeight,
+  );
+  path.closePath();
 
-  return shape;
+  return path;
+}
+
+function createRoundedRectShape(width: number, height: number, radius: number) {
+  return drawRoundedRect(new THREE.Shape(), width, height, radius);
+}
+
+function createRoundedRectPath(
+  width: number,
+  height: number,
+  radius: number,
+  centerX: number,
+  centerY: number,
+) {
+  return drawRoundedRect(new THREE.Path(), width, height, radius, centerX, centerY);
 }
 
 function remapCardUvToRect(
@@ -167,7 +208,10 @@ function remapCardUvToRect(
   uv.needsUpdate = true;
 }
 
-function createLayoutModel(props: NameBadgePreviewPropRefs): NameBadgePreviewLayout {
+function createLayoutModel(
+  props: NameBadgePreviewPropRefs,
+  stageRef: Ref<HTMLElement | null>,
+): NameBadgePreviewLayout {
   const withBase = useWithBase();
 
   const defaultBaseImageUrl = withBase("/images/name-badge/default.png");
@@ -210,9 +254,11 @@ function createLayoutModel(props: NameBadgePreviewPropRefs): NameBadgePreviewLay
     return 0.5;
   });
 
-  const stageWidth = computed(() =>
+  const preferredStageWidth = computed(() =>
     Math.max(280, resolvedCardWidth.value + NAME_BADGE_PREVIEW_STAGE_LAYOUT.paddingX * 2),
   );
+  const observedStageWidth = ref(0);
+  const stageWidth = computed(() => observedStageWidth.value || preferredStageWidth.value);
   const stageHeight = computed(
     () =>
       resolvedCardHeight.value +
@@ -234,9 +280,33 @@ function createLayoutModel(props: NameBadgePreviewPropRefs): NameBadgePreviewLay
   );
 
   const stageStyle = computed(() => ({
-    width: `${stageWidth.value}px`,
+    width: `min(100%, ${preferredStageWidth.value}px)`,
     height: `${stageHeight.value}px`,
   }));
+
+  let resizeObserver: ResizeObserver | null = null;
+  watch(
+    stageRef,
+    (stage) => {
+      resizeObserver?.disconnect();
+      resizeObserver = null;
+      observedStageWidth.value = 0;
+      if (!import.meta.client || !stage) return;
+
+      resizeObserver = new ResizeObserver(([entry]) => {
+        const width = entry?.contentRect.width ?? 0;
+        if (width <= 0 || Math.abs(width - observedStageWidth.value) < 0.5) return;
+        observedStageWidth.value = width;
+      });
+      resizeObserver.observe(stage);
+    },
+    { flush: "post" },
+  );
+
+  onBeforeUnmount(() => {
+    resizeObserver?.disconnect();
+    resizeObserver = null;
+  });
 
   return {
     defaultBaseImageUrl,
@@ -312,6 +382,13 @@ function createInteractionModel(params: {
     dragTargetX: 0,
     dragTargetY: 0,
   };
+  const ropeParticleCount = NAME_BADGE_SPRING_TUNING.ropePhysicsSegments + 1;
+  const ropeLastIndex = ropeParticleCount - 1;
+  const ropeX = new Float32Array(ropeParticleCount);
+  const ropeY = new Float32Array(ropeParticleCount);
+  const ropePreviousX = new Float32Array(ropeParticleCount);
+  const ropePreviousY = new Float32Array(ropeParticleCount);
+  let physicsAccumulatorSeconds = 0;
 
   const handleStagePointerMove = (event: PointerEvent) => {
     const local = pointerToLocal(event);
@@ -374,50 +451,25 @@ function createInteractionModel(params: {
   };
 
   const stepSimulation = (deltaSeconds: number) => {
-    if (isDragging.value) {
-      const target = projectTipWithinBounds(motion.dragTargetX, motion.dragTargetY);
-      const follow = smoothingFactor(NAME_BADGE_SPRING_TUNING.dragFollowSpeed, deltaSeconds);
+    const fixedStepSeconds = NAME_BADGE_SPRING_TUNING.fixedStepSeconds;
+    physicsAccumulatorSeconds = Math.min(
+      physicsAccumulatorSeconds +
+        clamp(deltaSeconds, 0, NAME_BADGE_SPRING_TUNING.maxFrameDeltaSeconds),
+      fixedStepSeconds * NAME_BADGE_SPRING_TUNING.maxSubsteps,
+    );
 
-      const previousX = motion.tipX;
-      const previousY = motion.tipY;
-
-      motion.tipX += (target.x - motion.tipX) * follow;
-      motion.tipY += (target.y - motion.tipY) * follow;
-
-      motion.velX = (motion.tipX - previousX) / Math.max(deltaSeconds, 0.0001);
-      motion.velY = (motion.tipY - previousY) / Math.max(deltaSeconds, 0.0001);
-    } else {
-      const targetX = params.layout.anchorX.value;
-      const targetY = params.layout.anchorY.value + params.layout.ropeRestLength.value;
-      const dx = motion.tipX - targetX;
-      const dy = motion.tipY - targetY;
-
-      const accelX =
-        -NAME_BADGE_SPRING_TUNING.returnSpring * dx -
-        NAME_BADGE_SPRING_TUNING.returnDamping * motion.velX;
-      const accelY =
-        -NAME_BADGE_SPRING_TUNING.returnSpring * dy -
-        NAME_BADGE_SPRING_TUNING.returnDamping * motion.velY;
-
-      motion.velX += accelX * deltaSeconds;
-      motion.velY += accelY * deltaSeconds;
-
-      motion.velX *= NAME_BADGE_SPRING_TUNING.velocityDecay;
-      motion.velY *= NAME_BADGE_SPRING_TUNING.velocityDecay;
-
-      motion.tipX += motion.velX * deltaSeconds;
-      motion.tipY += motion.velY * deltaSeconds;
-    }
-
-    const constrained = projectTipWithinBounds(motion.tipX, motion.tipY, isEntryPhase);
-    motion.tipX = constrained.x;
-    motion.tipY = constrained.y;
-
-    if (
-      isEntryPhase &&
-      motion.tipY >= params.layout.anchorY.value + NAME_BADGE_ROPE_TUNING.stageBoundsInsetTop
+    let completedSteps = 0;
+    while (
+      physicsAccumulatorSeconds >= fixedStepSeconds &&
+      completedSteps < NAME_BADGE_SPRING_TUNING.maxSubsteps
     ) {
-      isEntryPhase = false;
+      const ropeIsTaut = stepRopePhysics(fixedStepSeconds);
+      physicsAccumulatorSeconds -= fixedStepSeconds;
+      completedSteps += 1;
+
+      if (isEntryPhase && ropeIsTaut) {
+        isEntryPhase = false;
+      }
     }
 
     const restY = params.layout.anchorY.value + params.layout.ropeRestLength.value;
@@ -427,14 +479,7 @@ function createInteractionModel(params: {
       Math.hypot(motion.velX, motion.velY) < NAME_BADGE_SPRING_TUNING.settleVelocity;
 
     if (isSettled && !isDragging.value) {
-      motion.tipX = params.layout.anchorX.value;
-      motion.tipY = restY;
-      motion.velX = 0;
-      motion.velY = 0;
-    }
-
-    function smoothingFactor(speed: number, deltaSeconds: number) {
-      return 1 - Math.exp(-speed * deltaSeconds);
+      initializeStraightRope();
     }
   };
 
@@ -450,13 +495,23 @@ function createInteractionModel(params: {
     );
     const start = mode === "entry" ? entry : rest;
 
-    motion.tipX = start.x;
-    motion.tipY = start.y;
-    motion.velX = 0;
-    motion.velY = 0;
+    physicsAccumulatorSeconds = 0;
     motion.dragTargetX = start.x;
     motion.dragTargetY = start.y;
     isEntryPhase = mode === "entry";
+
+    if (mode === "entry") {
+      initializeFoldedRope(start.x, start.y);
+      const fixedStepSeconds = NAME_BADGE_SPRING_TUNING.fixedStepSeconds;
+      ropePreviousX[ropeLastIndex] =
+        ropeX[ropeLastIndex]! - NAME_BADGE_ROPE_TUNING.initialTipVelX * fixedStepSeconds;
+      ropePreviousY[ropeLastIndex] =
+        ropeY[ropeLastIndex]! - NAME_BADGE_ROPE_TUNING.initialTipVelY * fixedStepSeconds;
+      syncMotionFromRope(fixedStepSeconds);
+      return;
+    }
+
+    initializeStraightRope();
   };
 
   const getSimulationSnapshot = (): NameBadgePreviewSimulationSnapshot => {
@@ -465,6 +520,8 @@ function createInteractionModel(params: {
       tipY: motion.tipY,
       velX: motion.velX,
       velY: motion.velY,
+      ropeX,
+      ropeY,
     };
   };
 
@@ -487,6 +544,239 @@ function createInteractionModel(params: {
     getCameraMotionSnapshot,
   };
 
+  function stepRopePhysics(stepSeconds: number) {
+    const tipPinned = isDragging.value;
+    integrateRopeParticles(stepSeconds, tipPinned);
+
+    if (tipPinned) {
+      const target = projectTipWithinBounds(motion.dragTargetX, motion.dragTargetY);
+      const follow = smoothingFactor(NAME_BADGE_SPRING_TUNING.dragFollowSpeed, stepSeconds);
+      const currentX = ropeX[ropeLastIndex]!;
+      const currentY = ropeY[ropeLastIndex]!;
+
+      ropePreviousX[ropeLastIndex] = currentX;
+      ropePreviousY[ropeLastIndex] = currentY;
+      ropeX[ropeLastIndex] = currentX + (target.x - currentX) * follow;
+      ropeY[ropeLastIndex] = currentY + (target.y - currentY) * follow;
+    }
+
+    solveRopeConstraints(tipPinned);
+    constrainRopeTipToStage();
+    syncMotionFromRope(stepSeconds);
+
+    const directDistance = Math.hypot(
+      motion.tipX - params.layout.anchorX.value,
+      motion.tipY - params.layout.anchorY.value,
+    );
+    return directDistance >= params.layout.ropeRestLength.value * 0.992;
+  }
+
+  function integrateRopeParticles(stepSeconds: number, tipPinned: boolean) {
+    const displacementDamping = Math.exp(-NAME_BADGE_SPRING_TUNING.airDrag * stepSeconds);
+    const gravityStep = NAME_BADGE_SPRING_TUNING.gravity * stepSeconds * stepSeconds;
+
+    for (let index = 1; index < ropeParticleCount; index += 1) {
+      if (tipPinned && index === ropeLastIndex) continue;
+
+      const currentX = ropeX[index]!;
+      const currentY = ropeY[index]!;
+      const displacementX = (currentX - ropePreviousX[index]!) * displacementDamping;
+      const displacementY = (currentY - ropePreviousY[index]!) * displacementDamping;
+
+      ropePreviousX[index] = currentX;
+      ropePreviousY[index] = currentY;
+      ropeX[index] = currentX + displacementX;
+      ropeY[index] = currentY + displacementY + gravityStep;
+    }
+  }
+
+  function solveRopeConstraints(
+    tipPinned: boolean,
+    iterations: number = NAME_BADGE_SPRING_TUNING.constraintIterations,
+  ) {
+    const segmentLength = params.layout.ropeRestLength.value / ropeLastIndex;
+
+    for (let iteration = 0; iteration < iterations; iteration += 1) {
+      pinRopeAnchor();
+
+      for (let index = 0; index < ropeLastIndex; index += 1) {
+        const nextIndex = index + 1;
+        const dx = ropeX[nextIndex]! - ropeX[index]!;
+        const dy = ropeY[nextIndex]! - ropeY[index]!;
+        const distance = Math.hypot(dx, dy);
+        if (distance < 0.0001) continue;
+
+        const inverseMassA = index === 0 ? 0 : 1;
+        const inverseMassB =
+          nextIndex === ropeLastIndex
+            ? tipPinned
+              ? 0
+              : NAME_BADGE_SPRING_TUNING.cardInverseMass
+            : 1;
+        const totalInverseMass = inverseMassA + inverseMassB;
+        if (totalInverseMass === 0) continue;
+
+        const errorRatio = (distance - segmentLength) / distance;
+        const correctionX = dx * errorRatio;
+        const correctionY = dy * errorRatio;
+
+        ropeX[index] = ropeX[index]! + correctionX * (inverseMassA / totalInverseMass);
+        ropeY[index] = ropeY[index]! + correctionY * (inverseMassA / totalInverseMass);
+        ropeX[nextIndex] = ropeX[nextIndex]! - correctionX * (inverseMassB / totalInverseMass);
+        ropeY[nextIndex] = ropeY[nextIndex]! - correctionY * (inverseMassB / totalInverseMass);
+      }
+
+      if (tipPinned) {
+        const target = projectTipWithinBounds(motion.dragTargetX, motion.dragTargetY);
+        ropeX[ropeLastIndex] = target.x;
+        ropeY[ropeLastIndex] = target.y;
+      }
+    }
+
+    pinRopeAnchor();
+  }
+
+  function constrainRopeTipToStage() {
+    const currentX = ropeX[ropeLastIndex]!;
+    const currentY = ropeY[ropeLastIndex]!;
+    const constrained = projectTipWithinBounds(currentX, currentY, isEntryPhase, false);
+    ropeX[ropeLastIndex] = constrained.x;
+    ropeY[ropeLastIndex] = constrained.y;
+
+    if (
+      !isDragging.value &&
+      (Math.abs(constrained.x - currentX) > 0.001 || Math.abs(constrained.y - currentY) > 0.001)
+    ) {
+      ropePreviousX[ropeLastIndex] = constrained.x;
+      ropePreviousY[ropeLastIndex] = constrained.y;
+    }
+  }
+
+  function pinRopeAnchor() {
+    const anchorX = params.layout.anchorX.value;
+    const anchorY = params.layout.anchorY.value;
+    ropeX[0] = anchorX;
+    ropeY[0] = anchorY;
+    ropePreviousX[0] = anchorX;
+    ropePreviousY[0] = anchorY;
+  }
+
+  function syncMotionFromRope(stepSeconds: number) {
+    motion.tipX = ropeX[ropeLastIndex]!;
+    motion.tipY = ropeY[ropeLastIndex]!;
+    motion.velX =
+      (ropeX[ropeLastIndex]! - ropePreviousX[ropeLastIndex]!) / Math.max(stepSeconds, 0.0001);
+    motion.velY =
+      (ropeY[ropeLastIndex]! - ropePreviousY[ropeLastIndex]!) / Math.max(stepSeconds, 0.0001);
+  }
+
+  function initializeStraightRope() {
+    const anchorX = params.layout.anchorX.value;
+    const anchorY = params.layout.anchorY.value;
+    const segmentLength = params.layout.ropeRestLength.value / ropeLastIndex;
+
+    for (let index = 0; index < ropeParticleCount; index += 1) {
+      const x = anchorX;
+      const y = anchorY + segmentLength * index;
+      ropeX[index] = x;
+      ropeY[index] = y;
+      ropePreviousX[index] = x;
+      ropePreviousY[index] = y;
+    }
+
+    isEntryPhase = false;
+    physicsAccumulatorSeconds = 0;
+    motion.tipX = ropeX[ropeLastIndex]!;
+    motion.tipY = ropeY[ropeLastIndex]!;
+    motion.velX = 0;
+    motion.velY = 0;
+    motion.dragTargetX = motion.tipX;
+    motion.dragTargetY = motion.tipY;
+  }
+
+  function initializeFoldedRope(tipX: number, tipY: number) {
+    const anchorX = params.layout.anchorX.value;
+    const anchorY = params.layout.anchorY.value;
+    const targetLength = params.layout.ropeRestLength.value;
+    let minimumAmplitude = 0;
+    let maximumAmplitude = targetLength;
+
+    for (let iteration = 0; iteration < 24; iteration += 1) {
+      const amplitude = (minimumAmplitude + maximumAmplitude) * 0.5;
+      if (measureFoldedRopeLength(amplitude, anchorX, anchorY, tipX, tipY) < targetLength) {
+        minimumAmplitude = amplitude;
+      } else {
+        maximumAmplitude = amplitude;
+      }
+    }
+
+    writeFoldedRope((minimumAmplitude + maximumAmplitude) * 0.5, anchorX, anchorY, tipX, tipY);
+    motion.dragTargetX = tipX;
+    motion.dragTargetY = tipY;
+    solveRopeConstraints(true, 64);
+
+    for (let index = 0; index < ropeParticleCount; index += 1) {
+      ropePreviousX[index] = ropeX[index]!;
+      ropePreviousY[index] = ropeY[index]!;
+    }
+
+    function measureFoldedRopeLength(
+      amplitude: number,
+      anchorX: number,
+      anchorY: number,
+      tipX: number,
+      tipY: number,
+    ) {
+      let length = 0;
+      let previousX = anchorX;
+      let previousY = anchorY;
+
+      for (let index = 1; index < ropeParticleCount; index += 1) {
+        const point = foldedPoint(index, amplitude, anchorX, anchorY, tipX, tipY);
+        length += Math.hypot(point.x - previousX, point.y - previousY);
+        previousX = point.x;
+        previousY = point.y;
+      }
+
+      return length;
+    }
+
+    function writeFoldedRope(
+      amplitude: number,
+      anchorX: number,
+      anchorY: number,
+      tipX: number,
+      tipY: number,
+    ) {
+      for (let index = 0; index < ropeParticleCount; index += 1) {
+        const point = foldedPoint(index, amplitude, anchorX, anchorY, tipX, tipY);
+        ropeX[index] = point.x;
+        ropeY[index] = point.y;
+      }
+    }
+
+    function foldedPoint(
+      index: number,
+      amplitude: number,
+      anchorX: number,
+      anchorY: number,
+      tipX: number,
+      tipY: number,
+    ) {
+      const ratio = index / ropeLastIndex;
+      const envelope = Math.sin(Math.PI * ratio);
+      const wave = Math.sin(Math.PI * 2 * NAME_BADGE_SPRING_TUNING.entryWaveCount * ratio);
+      return {
+        x: anchorX + (tipX - anchorX) * ratio + wave * envelope * amplitude,
+        y: anchorY + (tipY - anchorY) * ratio,
+      };
+    }
+  }
+
+  function smoothingFactor(speed: number, deltaSeconds: number) {
+    return 1 - Math.exp(-speed * deltaSeconds);
+  }
+
   function pointerToLocal(event: PointerEvent) {
     if (!params.stageRef.value) return null;
     const bounds = params.stageRef.value.getBoundingClientRect();
@@ -496,12 +786,24 @@ function createInteractionModel(params: {
     };
   }
 
-  function projectTipWithinBounds(x: number, y: number, allowAboveTop = false) {
+  function projectTipWithinBounds(
+    x: number,
+    y: number,
+    allowAboveTop = false,
+    constrainToRope = true,
+  ) {
     const halfCardWidth = params.layout.resolvedCardWidth.value * 0.5;
+    const minVisibleCardWidth =
+      params.layout.resolvedCardWidth.value *
+      clamp(NAME_BADGE_ROPE_TUNING.minVisibleCardRatio, 0.5, 1);
+    const horizontalOverflow = params.layout.resolvedCardWidth.value - minVisibleCardWidth;
     let nx = clamp(
       x,
-      halfCardWidth + NAME_BADGE_ROPE_TUNING.stageBoundsInsetX,
-      params.layout.stageWidth.value - halfCardWidth - NAME_BADGE_ROPE_TUNING.stageBoundsInsetX,
+      halfCardWidth - horizontalOverflow + NAME_BADGE_ROPE_TUNING.stageBoundsInsetX,
+      params.layout.stageWidth.value -
+        halfCardWidth +
+        horizontalOverflow -
+        NAME_BADGE_ROPE_TUNING.stageBoundsInsetX,
     );
     let ny = clamp(
       y,
@@ -516,7 +818,7 @@ function createInteractionModel(params: {
     const maxDistance = params.layout.ropeRestLength.value + NAME_BADGE_ROPE_TUNING.maxDragExtra;
     const distance = Math.hypot(dx, dy);
 
-    if (distance > maxDistance) {
+    if (constrainToRope && distance > maxDistance) {
       const ratio = maxDistance / distance;
       nx = params.layout.anchorX.value + dx * ratio;
       ny = params.layout.anchorY.value + dy * ratio;
@@ -1026,14 +1328,26 @@ function createSceneModel(params: {
   let cardPivot: THREE.Group | null = null;
   let cardMesh: THREE.Mesh<THREE.ExtrudeGeometry, THREE.Material[]> | null = null;
   let cardSurfaceMesh: THREE.Mesh<THREE.ShapeGeometry, THREE.MeshPhysicalMaterial> | null = null;
+  let slotRimMesh: THREE.Mesh<THREE.ShapeGeometry, THREE.MeshBasicMaterial> | null = null;
+  let strapThroughMesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshStandardMaterial> | null = null;
   let ropeMesh: THREE.Mesh<THREE.BufferGeometry, THREE.MeshStandardMaterial> | null = null;
   let ropeUvAttribute: THREE.BufferAttribute | null = null;
   let ropeClothTexture: THREE.CanvasTexture | null = null;
   let ropeClothBumpTexture: THREE.CanvasTexture | null = null;
   let keyLight: THREE.DirectionalLight | null = null;
+  let highlightLight: THREE.PointLight | null = null;
   let ropeCurvePositions: Float32Array | null = null;
   let ropeRibbonPositions: Float32Array | null = null;
   let ropePositionAttribute: THREE.BufferAttribute | null = null;
+  const highlightRaycaster = new THREE.Raycaster();
+  const highlightPointerNdc = new THREE.Vector2();
+  const highlightPlane = new THREE.Plane();
+  const highlightPlaneNormal = new THREE.Vector3();
+  const highlightPlanePoint = new THREE.Vector3();
+  const highlightPlaneQuaternion = new THREE.Quaternion();
+  const highlightIntersection = new THREE.Vector3();
+  const highlightCameraPosition = new THREE.Vector3();
+  const cardAttachmentOffset = new THREE.Vector3();
 
   function toWorldX(px: number) {
     const pxPerWorld =
@@ -1074,7 +1388,6 @@ function createSceneModel(params: {
     const weaveSpacing = NAME_BADGE_ROPE_VISUAL_TUNING.ropeWeaveSpacingPx;
     const weaveThickness = NAME_BADGE_ROPE_VISUAL_TUNING.ropeWeaveThicknessPx;
     const weaveOffset = NAME_BADGE_ROPE_VISUAL_TUNING.ropeWeaveOffsetPx;
-
     const colorCanvas = document.createElement("canvas");
     colorCanvas.width = width;
     colorCanvas.height = height;
@@ -1083,42 +1396,31 @@ function createSceneModel(params: {
 
     const bodyGradient = colorContext.createLinearGradient(0, 0, 0, height);
     bodyGradient.addColorStop(0, NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadShadowColor);
-    bodyGradient.addColorStop(0.35, NAME_BADGE_ROPE_VISUAL_TUNING.ropeColor);
-    bodyGradient.addColorStop(0.65, NAME_BADGE_ROPE_VISUAL_TUNING.ropeColor);
+    bodyGradient.addColorStop(0.12, NAME_BADGE_ROPE_VISUAL_TUNING.ropeColor);
+    bodyGradient.addColorStop(0.5, NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadMidColor);
+    bodyGradient.addColorStop(0.88, NAME_BADGE_ROPE_VISUAL_TUNING.ropeColor);
     bodyGradient.addColorStop(1, NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadShadowColor);
     colorContext.fillStyle = bodyGradient;
     colorContext.fillRect(0, 0, width, height);
 
-    drawWeavePass(colorContext, {
-      direction: 1,
-      stroke: NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadShadowColor,
-      alphaEven: 0.42,
-      alphaOdd: 0.26,
-      lineWidth: weaveThickness,
-      shift: 10,
+    drawLongitudinalFibers(colorContext, {
+      dark: NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadShadowColor,
+      light: NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadHighlightColor,
+      darkAlpha: 0.42,
+      lightAlpha: 0.36,
     });
-    drawWeavePass(colorContext, {
-      direction: -1,
-      stroke: NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadMidColor,
-      alphaEven: 0.36,
-      alphaOdd: 0.22,
-      lineWidth: weaveThickness * 0.95,
-      shift: weaveSpacing * 1.5,
-    });
-    drawWeavePass(colorContext, {
-      direction: 1,
-      stroke: NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadHighlightColor,
-      alphaEven: 0.18,
-      alphaOdd: 0.08,
-      lineWidth: Math.max(1, weaveThickness * 0.42),
-      shift: weaveSpacing * 0.25,
+    drawTwillCells(colorContext, {
+      dark: NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadShadowColor,
+      light: NAME_BADGE_ROPE_VISUAL_TUNING.ropeThreadHighlightColor,
+      darkAlpha: 0.46,
+      lightAlpha: 0.4,
     });
 
     const edgeShade = colorContext.createLinearGradient(0, 0, 0, height);
-    edgeShade.addColorStop(0, "rgba(0, 0, 0, 0.30)");
-    edgeShade.addColorStop(0.2, "rgba(0, 0, 0, 0.02)");
-    edgeShade.addColorStop(0.8, "rgba(0, 0, 0, 0.02)");
-    edgeShade.addColorStop(1, "rgba(0, 0, 0, 0.30)");
+    edgeShade.addColorStop(0, "rgba(0, 0, 0, 0.62)");
+    edgeShade.addColorStop(0.08, "rgba(0, 0, 0, 0.08)");
+    edgeShade.addColorStop(0.92, "rgba(0, 0, 0, 0.08)");
+    edgeShade.addColorStop(1, "rgba(0, 0, 0, 0.62)");
     colorContext.fillStyle = edgeShade;
     colorContext.fillRect(0, 0, width, height);
 
@@ -1127,7 +1429,7 @@ function createSceneModel(params: {
     for (let y = 0; y < height; y += 1) {
       for (let x = 0; x < width; x += 1) {
         const index = (y * width + x) * 4;
-        const grain = (((x * 13 + y * 17) % 11) - 5) * 0.8;
+        const grain = (((x * 13 + y * 17) % 17) - 8) * 0.42;
         colorData[index + 0] = clamp(colorData[index + 0]! + grain, 0, 255);
         colorData[index + 1] = clamp(colorData[index + 1]! + grain, 0, 255);
         colorData[index + 2] = clamp(colorData[index + 2]! + grain, 0, 255);
@@ -1143,29 +1445,18 @@ function createSceneModel(params: {
 
     bumpContext.fillStyle = "#7f7f7f";
     bumpContext.fillRect(0, 0, width, height);
-    drawWeavePass(bumpContext, {
-      direction: 1,
-      stroke: "#9f9f9f",
-      alphaEven: 0.34,
-      alphaOdd: 0.2,
-      lineWidth: weaveThickness,
-      shift: 0,
+    drawLongitudinalFibers(bumpContext, {
+      dark: "#676767",
+      light: "#959595",
+      darkAlpha: 0.42,
+      lightAlpha: 0.42,
     });
-    drawWeavePass(bumpContext, {
-      direction: -1,
-      stroke: "#636363",
-      alphaEven: 0.3,
-      alphaOdd: 0.18,
-      lineWidth: weaveThickness * 0.95,
-      shift: weaveSpacing * 0.5,
+    drawTwillCells(bumpContext, {
+      dark: "#5e5e5e",
+      light: "#a5a5a5",
+      darkAlpha: 0.42,
+      lightAlpha: 0.48,
     });
-
-    const bumpCenter = bumpContext.createLinearGradient(0, 0, 0, height);
-    bumpCenter.addColorStop(0, "rgba(102, 102, 102, 0.35)");
-    bumpCenter.addColorStop(0.5, "rgba(150, 150, 150, 0.25)");
-    bumpCenter.addColorStop(1, "rgba(102, 102, 102, 0.35)");
-    bumpContext.fillStyle = bumpCenter;
-    bumpContext.fillRect(0, 0, width, height);
 
     const bumpImageData = bumpContext.getImageData(0, 0, width, height);
     const bumpData = bumpImageData.data;
@@ -1202,40 +1493,58 @@ function createSceneModel(params: {
 
     return { colorTexture, bumpTexture };
 
-    function drawWeavePass(
+    function drawLongitudinalFibers(
       context: CanvasRenderingContext2D,
-      pass: {
-        direction: 1 | -1;
-        stroke: string;
-        alphaEven: number;
-        alphaOdd: number;
-        lineWidth: number;
-        shift: number;
+      colors: {
+        dark: string;
+        light: string;
+        darkAlpha: number;
+        lightAlpha: number;
       },
     ) {
       context.save();
-      context.strokeStyle = pass.stroke;
-      context.lineWidth = pass.lineWidth;
       context.lineCap = "round";
-      const start = -height - weaveSpacing;
-      const end = width + height + weaveSpacing;
-
-      let stripeIndex = 0;
-      for (let x = start; x <= end; x += weaveSpacing) {
-        const offset = pass.shift + (stripeIndex % 2 === 0 ? weaveOffset : -weaveOffset);
-        context.globalAlpha = stripeIndex % 2 === 0 ? pass.alphaEven : pass.alphaOdd;
+      for (let y = weaveSpacing * 0.25; y < height; y += weaveSpacing * 0.5) {
+        const fiberIndex = Math.round(y / (weaveSpacing * 0.5));
+        context.strokeStyle = fiberIndex % 2 === 0 ? colors.light : colors.dark;
+        context.globalAlpha = fiberIndex % 2 === 0 ? colors.lightAlpha : colors.darkAlpha;
+        context.lineWidth = fiberIndex % 3 === 0 ? weaveThickness * 1.15 : weaveThickness * 0.72;
         context.beginPath();
-        if (pass.direction === 1) {
-          context.moveTo(x + offset, 0);
-          context.lineTo(x + height + offset, height);
-        } else {
-          context.moveTo(x + offset, height);
-          context.lineTo(x + height + offset, 0);
-        }
+        context.moveTo(0, y);
+        context.lineTo(width, y + (fiberIndex % 2 === 0 ? 0.35 : -0.35));
         context.stroke();
-        stripeIndex += 1;
       }
+      context.restore();
+    }
 
+    function drawTwillCells(
+      context: CanvasRenderingContext2D,
+      colors: {
+        dark: string;
+        light: string;
+        darkAlpha: number;
+        lightAlpha: number;
+      },
+    ) {
+      context.save();
+      context.lineCap = "round";
+      context.lineWidth = weaveThickness;
+      let row = 0;
+      for (let y = -weaveSpacing; y < height + weaveSpacing; y += weaveSpacing) {
+        const rowShift = (row % 2) * weaveOffset;
+        let column = 0;
+        for (let x = -weaveSpacing + rowShift; x < width + weaveSpacing; x += weaveSpacing) {
+          const isHighlight = (row + column) % 2 === 0;
+          context.strokeStyle = isHighlight ? colors.light : colors.dark;
+          context.globalAlpha = isHighlight ? colors.lightAlpha : colors.darkAlpha;
+          context.beginPath();
+          context.moveTo(x, y + weaveSpacing * 0.72);
+          context.lineTo(x + weaveSpacing * 0.72, y);
+          context.stroke();
+          column += 1;
+        }
+        row += 1;
+      }
       context.restore();
     }
   }
@@ -1257,6 +1566,18 @@ function createSceneModel(params: {
       cardSurfaceMesh.material.dispose();
       cardSurfaceMesh = null;
     }
+    if (slotRimMesh) {
+      cardPivot.remove(slotRimMesh);
+      slotRimMesh.geometry.dispose();
+      slotRimMesh.material.dispose();
+      slotRimMesh = null;
+    }
+    if (strapThroughMesh) {
+      cardPivot.remove(strapThroughMesh);
+      strapThroughMesh.geometry.dispose();
+      strapThroughMesh.material.dispose();
+      strapThroughMesh = null;
+    }
 
     const cardWidthWorld =
       NAME_BADGE_PREVIEW_WORLD_TUNING.cardHeightWorld * params.layout.resolvedAspect.value;
@@ -1267,6 +1588,10 @@ function createSceneModel(params: {
       cardWidthWorld * 0.5,
       cardHeightWorld * 0.5,
     );
+    const ropeWidthPx = NAME_BADGE_ROPE_VISUAL_TUNING.ropeWidthPx;
+    const slotWidthWorld = toWorldSize(ropeWidthPx * NAME_BADGE_SLOT_TUNING.widthToRopeRatio);
+    const slotHeightWorld = toWorldSize(ropeWidthPx * NAME_BADGE_SLOT_TUNING.heightToRopeRatio);
+    const slotCenterY = cardHeightWorld * 0.5 - toWorldSize(params.layout.attachOffset.value);
 
     params.texture.ensureTextureResources();
     const frontTexture = params.texture.getFrontTexture();
@@ -1279,11 +1604,17 @@ function createSceneModel(params: {
       transparent: true,
     });
 
-    const sideMaterial = new THREE.MeshBasicMaterial({
-      color: "#d5d7dd",
+    const sideMaterial = new THREE.MeshStandardMaterial({
+      color: "#aeb2bb",
+      roughness: 0.86,
+      metalness: 0,
+      side: THREE.DoubleSide,
     });
 
     const shape = createRoundedRectShape(cardWidthWorld, cardHeightWorld, cardCornerRadiusWorld);
+    shape.holes.push(
+      createRoundedRectPath(slotWidthWorld, slotHeightWorld, slotHeightWorld * 0.5, 0, slotCenterY),
+    );
     const geometry = new THREE.ExtrudeGeometry(shape, {
       depth: cardDepthWorld,
       bevelEnabled: false,
@@ -1330,18 +1661,99 @@ function createSceneModel(params: {
     cardSurfaceMesh.receiveShadow = false;
     cardSurfaceMesh.renderOrder = 1;
     cardPivot.add(cardSurfaceMesh);
+
+    const slotRimWidthWorld = toWorldSize(ropeWidthPx * NAME_BADGE_SLOT_TUNING.rimWidthToRopeRatio);
+    const slotRimShape = createRoundedRectShape(
+      slotWidthWorld + slotRimWidthWorld * 2,
+      slotHeightWorld + slotRimWidthWorld * 2,
+      slotHeightWorld * 0.5 + slotRimWidthWorld,
+    );
+    slotRimShape.holes.push(
+      createRoundedRectPath(slotWidthWorld, slotHeightWorld, slotHeightWorld * 0.5, 0, 0),
+    );
+    const slotRimGeometry = new THREE.ShapeGeometry(
+      slotRimShape,
+      NAME_BADGE_PREVIEW_WORLD_TUNING.cardCornerSegments,
+    );
+    const slotRimMaterial = new THREE.MeshBasicMaterial({
+      color: NAME_BADGE_SLOT_TUNING.rimColor,
+      transparent: true,
+      opacity: NAME_BADGE_SLOT_TUNING.rimOpacity,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    });
+    slotRimMesh = new THREE.Mesh(slotRimGeometry, slotRimMaterial);
+    slotRimMesh.position.set(
+      0,
+      slotCenterY,
+      cardDepthWorld * 0.5 + NAME_BADGE_CARD_SURFACE_TUNING.surfaceLayerOffsetWorld * 2,
+    );
+    slotRimMesh.castShadow = false;
+    slotRimMesh.receiveShadow = false;
+    slotRimMesh.renderOrder = 2;
+    cardPivot.add(slotRimMesh);
+
+    if (ropeMesh) {
+      const passThroughLengthPx = ropeWidthPx * NAME_BADGE_SLOT_TUNING.passThroughLengthToRopeRatio;
+      const strapGeometry = new THREE.PlaneGeometry(
+        toWorldSize(ropeWidthPx),
+        toWorldSize(passThroughLengthPx),
+      );
+      const strapUvs = strapGeometry.getAttribute("uv");
+      for (let i = 0; i < strapUvs.count; i += 1) {
+        const acrossRope = strapUvs.getX(i);
+        const alongRope = strapUvs.getY(i);
+        strapUvs.setXY(
+          i,
+          1 + (alongRope - 0.5) * (passThroughLengthPx / params.layout.ropeRestLength.value),
+          acrossRope,
+        );
+      }
+      strapUvs.needsUpdate = true;
+
+      const strapMaterial = ropeMesh.material.clone();
+      strapMaterial.side = THREE.DoubleSide;
+      strapThroughMesh = new THREE.Mesh(strapGeometry, strapMaterial);
+      strapThroughMesh.position.set(0, slotCenterY, -cardDepthWorld * 0.2);
+      strapThroughMesh.castShadow = false;
+      strapThroughMesh.receiveShadow = false;
+      cardPivot.add(strapThroughMesh);
+    }
+  }
+
+  function updateHighlightLight(
+    cameraMotion: NameBadgePreviewCameraMotionSnapshot,
+    context: TresContextWithClock,
+  ) {
+    if (!highlightLight || !cardPivot) return;
+
+    const activeCamera = context.camera.activeCamera.value;
+    if (!activeCamera) return;
+
+    highlightPointerNdc.set(cameraMotion.normalizedX, cameraMotion.normalizedY);
+    highlightRaycaster.setFromCamera(highlightPointerNdc, activeCamera);
+
+    cardPivot.updateWorldMatrix(true, false);
+    cardPivot.getWorldPosition(highlightPlanePoint);
+    cardPivot.getWorldQuaternion(highlightPlaneQuaternion);
+    highlightPlaneNormal.set(0, 0, 1).applyQuaternion(highlightPlaneQuaternion).normalize();
+    highlightPlane.setFromNormalAndCoplanarPoint(highlightPlaneNormal, highlightPlanePoint);
+
+    const intersection = highlightRaycaster.ray.intersectPlane(
+      highlightPlane,
+      highlightIntersection,
+    );
+    if (!intersection) return;
+
+    activeCamera.getWorldPosition(highlightCameraPosition);
+    highlightLight.position
+      .copy(highlightCameraPosition)
+      .lerp(intersection, NAME_BADGE_PREVIEW_SCENE_TUNING.highlightLightRayDepthRatio);
   }
 
   function updateCardTransform() {
     if (!cardPivot) return;
     const simulation = params.interaction.getSimulationSnapshot();
-
-    const cardCenterX = simulation.tipX;
-    const cardCenterY =
-      simulation.tipY -
-      params.layout.attachOffset.value +
-      params.layout.resolvedCardHeight.value * 0.5;
-    cardPivot.position.set(toWorldX(cardCenterX), toWorldY(cardCenterY), 0);
 
     const roll = THREE.MathUtils.degToRad(
       clamp(
@@ -1371,6 +1783,18 @@ function createSceneModel(params: {
     cardPivot.rotation.x = THREE.MathUtils.lerp(cardPivot.rotation.x, targetPitch, 0.16);
     cardPivot.rotation.y = THREE.MathUtils.lerp(cardPivot.rotation.y, targetYaw, 0.16);
     cardPivot.rotation.z = THREE.MathUtils.lerp(cardPivot.rotation.z, roll, 0.16);
+
+    cardAttachmentOffset
+      .set(
+        0,
+        NAME_BADGE_PREVIEW_WORLD_TUNING.cardHeightWorld * 0.5 -
+          toWorldSize(params.layout.attachOffset.value),
+        0,
+      )
+      .applyQuaternion(cardPivot.quaternion);
+    cardPivot.position
+      .set(toWorldX(simulation.tipX), toWorldY(simulation.tipY), 0)
+      .sub(cardAttachmentOffset);
   }
 
   function updateRopeGeometry() {
@@ -1378,24 +1802,13 @@ function createSceneModel(params: {
       return;
     }
     const simulation = params.interaction.getSimulationSnapshot();
-
-    const ropeDx = simulation.tipX - params.layout.anchorX.value;
-    const ropeDy = simulation.tipY - params.layout.anchorY.value;
-    const sway = clamp(
-      Math.abs(ropeDx) * 0.16 + Math.max(0, ropeDy - params.layout.ropeRestLength.value) * 0.24,
-      0,
-      28,
-    );
-
-    const cp1x = params.layout.anchorX.value + ropeDx * 0.2;
-    const cp1y = params.layout.anchorY.value + params.layout.ropeRestLength.value * 0.45 + sway;
-    const cp2x = simulation.tipX - ropeDx * 0.18;
-    const cp2y = simulation.tipY - params.layout.ropeRestLength.value * 0.24 + sway * 0.3;
+    const physicsSegmentCount = simulation.ropeX.length - 1;
 
     for (let i = 0; i <= NAME_BADGE_ROPE_VISUAL_TUNING.ropeSegments; i += 1) {
-      const t = i / NAME_BADGE_ROPE_VISUAL_TUNING.ropeSegments;
-      const px = cubicBezier(t, params.layout.anchorX.value, cp1x, cp2x, simulation.tipX);
-      const py = cubicBezier(t, params.layout.anchorY.value, cp1y, cp2y, simulation.tipY);
+      const physicsPosition =
+        (i / NAME_BADGE_ROPE_VISUAL_TUNING.ropeSegments) * physicsSegmentCount;
+      const px = sampleRopeComponent(simulation.ropeX, physicsPosition);
+      const py = sampleRopeComponent(simulation.ropeY, physicsPosition);
 
       ropeCurvePositions[i * 3 + 0] = toWorldX(px);
       ropeCurvePositions[i * 3 + 1] = toWorldY(py);
@@ -1439,9 +1852,26 @@ function createSceneModel(params: {
     ropeMesh.geometry.computeBoundingSphere();
     ropePositionAttribute.needsUpdate = true;
 
-    function cubicBezier(t: number, p0: number, p1: number, p2: number, p3: number) {
-      const inv = 1 - t;
-      return inv * inv * inv * p0 + 3 * inv * inv * t * p1 + 3 * inv * t * t * p2 + t * t * t * p3;
+    function sampleRopeComponent(points: Float32Array, position: number) {
+      const point1Index = Math.min(physicsSegmentCount, Math.floor(position));
+      const point2Index = Math.min(physicsSegmentCount, point1Index + 1);
+      const point0Index = Math.max(0, point1Index - 1);
+      const point3Index = Math.min(physicsSegmentCount, point2Index + 1);
+      const t = position - point1Index;
+      const point0 = points[point0Index] ?? 0;
+      const point1 = points[point1Index] ?? 0;
+      const point2 = points[point2Index] ?? point1;
+      const point3 = points[point3Index] ?? point2;
+      const tSquared = t * t;
+      const tCubed = tSquared * t;
+
+      return (
+        0.5 *
+        (2 * point1 +
+          (-point0 + point2) * t +
+          (2 * point0 - 5 * point1 + 4 * point2 - point3) * tSquared +
+          (-point0 + 3 * point1 - 3 * point2 + point3) * tCubed)
+      );
     }
   }
 
@@ -1471,14 +1901,18 @@ function createSceneModel(params: {
       ropeClothTexture?.dispose();
       ropeClothBumpTexture?.dispose();
       if (keyLight?.parent) keyLight.parent.remove(keyLight);
+      if (highlightLight?.parent) highlightLight.parent.remove(highlightLight);
       cardPivot = null;
       cardMesh = null;
       cardSurfaceMesh = null;
+      slotRimMesh = null;
+      strapThroughMesh = null;
       ropeMesh = null;
       ropeUvAttribute = null;
       ropeClothTexture = null;
       ropeClothBumpTexture = null;
       keyLight = null;
+      highlightLight = null;
       ropeCurvePositions = null;
       ropeRibbonPositions = null;
       ropePositionAttribute = null;
@@ -1496,6 +1930,14 @@ function createSceneModel(params: {
       );
       keyLight.position.set(...NAME_BADGE_PREVIEW_SCENE_TUNING.keyLightPosition);
       threeScene.add(keyLight);
+    }
+
+    if (!highlightLight) {
+      highlightLight = new THREE.PointLight(
+        NAME_BADGE_PREVIEW_SCENE_TUNING.highlightLightColor,
+        NAME_BADGE_PREVIEW_SCENE_TUNING.highlightLightIntensity,
+      );
+      threeScene.add(highlightLight);
     }
 
     if (!cardPivot) {
@@ -1586,9 +2028,10 @@ function createSceneModel(params: {
     params.setRangeMotionFromNormalized(cameraMotion.normalizedX, cameraMotion.normalizedY, 0);
     params.applyActiveCameraSettings(context);
 
-    const deltaSeconds = clamp(context.delta, 1 / 120, 1 / 30);
+    const deltaSeconds = clamp(context.delta, 0, NAME_BADGE_SPRING_TUNING.maxFrameDeltaSeconds);
     params.interaction.stepSimulation(deltaSeconds);
     syncThreeScene();
+    updateHighlightLight(cameraMotion, context);
   }
 
   onBeforeUnmount(() => {
@@ -1596,6 +2039,8 @@ function createSceneModel(params: {
     params.disposeObject3D(ropeMesh);
     cardMesh = null;
     cardSurfaceMesh = null;
+    slotRimMesh = null;
+    strapThroughMesh = null;
     ropeClothTexture?.dispose();
     ropeClothBumpTexture?.dispose();
     ropeUvAttribute = null;
@@ -1603,6 +2048,8 @@ function createSceneModel(params: {
     ropeClothBumpTexture = null;
     if (keyLight?.parent) keyLight.parent.remove(keyLight);
     keyLight = null;
+    if (highlightLight?.parent) highlightLight.parent.remove(highlightLight);
+    highlightLight = null;
 
     params.texture.disposeTextureResources();
     params.resetRangeMotion();

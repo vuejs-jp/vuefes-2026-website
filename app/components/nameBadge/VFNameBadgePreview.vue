@@ -59,6 +59,8 @@ const {
 
 .name-badge-preview-stage {
   position: relative;
+  max-width: 100%;
+  min-width: 0;
   overflow: hidden;
   border-radius: 0.75rem;
   touch-action: none;
