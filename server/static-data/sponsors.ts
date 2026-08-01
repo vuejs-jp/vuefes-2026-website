@@ -634,6 +634,24 @@ const SPONSORS_OPTION_ONLY: SponsorData[] = [
       description: "",
     },
   },
+  {
+    id: "minato-dev",
+    plan: "option-only",
+    option: ["student-support-mini"],
+    logoImageUrl: "/images/sponsor-logo/option-only/minato-dev.png",
+    ja: {
+      name: "Minato.dev",
+      linkUrl: "https://minato-dev.connpass.com/",
+      logoImageAlt: "Minato.devのロゴ",
+      description: "",
+    },
+    en: {
+      name: "Minato.dev",
+      linkUrl: "https://minato-dev.connpass.com/",
+      logoImageAlt: "Minato.dev logo",
+      description: "",
+    },
+  },
 ];
 const SPONSORS_CREATIVE: SponsorData[] = [];
 const SPONSORS_INDIVIDUAL: string[] = [];

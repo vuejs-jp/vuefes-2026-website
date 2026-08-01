@@ -378,6 +378,7 @@ words:
   - ZOZO
   - ebookjapan
   - bookfan
+  - minato
 ignorePaths:
   - dist
   - node_modules
