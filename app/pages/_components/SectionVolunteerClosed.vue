@@ -7,7 +7,7 @@ const { locale, t } = useI18n();
 </script>
 
 <template>
-  <VFSection :id="HOME_HEADING_ID.sponsorClosed" :title="t('sponsorClosed')">
+  <VFSection :id="HOME_HEADING_ID.volunteer" :title="t('volunteer.title')">
     <component :is="locale === 'ja' ? JaVolunteerClosed : EnVolunteerClosed" />
   </VFSection>
 </template>

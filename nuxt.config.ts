@@ -96,8 +96,8 @@ const featureFlags = {
 
   // --- 7月初: ボランティアスタッフ募集 ---
   volunteerOpen: true, // ボランティア募集セクション
-  volunteerClosed: false, // ボランティア募集終了
-  ctaVolunteer: true, // ボランティア募集CTA表示
+  volunteerClosed: true, // ボランティア募集終了
+  ctaVolunteer: false, // ボランティア募集CTA表示
 
   // --- この間のいつか: タイムテーブル、CFPスピーカー、イベント（ハンズオン）、スポンサー ---
   // イベントは最低限ハンズオンは必須（チケットが別なので）、スピーカー一覧もあれば better
