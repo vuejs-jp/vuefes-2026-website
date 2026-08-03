@@ -11,6 +11,7 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useI18n,
+  useRuntimeConfig,
   useSeoMeta,
 } from "#imports";
 
@@ -32,6 +33,10 @@ const expiredNameBadgeRegistration = import.meta.vfFeatures.expiredNameBadgeRegi
 
 const { data: session, status } = useAuth();
 const route = useRoute("ticket-userId");
+const shareUrl = new URL(
+  `ticket/${route.params.userId}`,
+  useRuntimeConfig().public.siteUrl,
+).toString();
 const { data: nameBadgeData } = await useFetch(`/api/name-badge/${route.params.userId}`);
 defineOgImage("OgNameBadge", {
   name: () => nameBadgeData.value?.name ?? undefined,
@@ -54,29 +59,24 @@ useSeoMeta({
 });
 
 function handleClickXIcon() {
-  const shareUrl = window.location.href.endsWith("/")
-    ? window.location.href
-    : `${window.location.href}/`;
   const shareText = t("nameBadge.shareText", { link: shareUrl });
   const url = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
   const _ = window.open(url, "_blank") ?? navigateTo(url, { external: true });
 }
 
 function handleClickBlueskyIcon() {
-  const shareUrl = window.location.href;
   const shareText = t("nameBadge.shareText", { link: shareUrl });
   const url = `https://bsky.app/intent/compose?text=${encodeURIComponent(shareText)}`;
   const _ = window.open(url, "_blank") ?? navigateTo(url, { external: true });
 }
 
 function handleClickFacebookIcon() {
-  const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+  const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
   const _ = window.open(url, "_blank") ?? navigateTo(url, { external: true });
 }
 
 function copyUrl() {
-  const url = window.location.href;
-  navigator.clipboard.writeText(url).then(() => {
+  navigator.clipboard.writeText(shareUrl).then(() => {
     toast.open({ type: "success", message: t("clipboard.copySuccess") });
   });
 }
