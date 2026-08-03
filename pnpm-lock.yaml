@@ -61,13 +61,13 @@ importers:
         version: 1.0.0(@electric-sql/pglite@0.3.16)(@netlify/blobs@10.7.0)(better-sqlite3@12.8.0)(drizzle-orm@0.45.1(@electric-sql/pglite@0.3.16)(@opentelemetry/api@1.8.0)(better-sqlite3@12.8.0)(pg@8.20.0))(magicast@0.5.3)(next-auth@4.21.1(next@13.5.11(@babel/core@7.29.7)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rolldown@1.2.0)
       '@tresjs/core':
         specifier: ^5.8.3
-        version: 5.8.3(three@0.183.2)(vue@3.6.0-beta.1(typescript@5.9.3))
+        version: 5.8.3(three@0.185.1)(vue@3.6.0-beta.1(typescript@5.9.3))
       '@types/node':
         specifier: ^25.5.0
         version: 25.5.0
       '@types/three':
-        specifier: ^0.183.1
-        version: 0.183.1
+        specifier: ^0.185.1
+        version: 0.185.1
       '@unhead/vue':
         specifier: ^3.2.1
         version: 3.2.1(@modelcontextprotocol/sdk@1.27.1(zod@3.25.76))(@voidzero-dev/vite-plus-core@0.1.11(@types/node@25.5.0)(esbuild@0.25.12)(jiti@2.7.0)(terser@5.49.0)(typescript@5.9.3)(yaml@2.8.3))(crossws@0.4.9(srvx@0.11.22))(esbuild@0.25.12)(lightningcss@1.31.1)(rolldown@1.2.0)(rollup@4.62.2)(typescript@5.9.3)(vue@3.6.0-beta.1(typescript@5.9.3))
@@ -147,8 +147,8 @@ importers:
         specifier: github:vuejs-jp/textlint-rule-preset-vuejs-jp
         version: https://codeload.github.com/vuejs-jp/textlint-rule-preset-vuejs-jp/tar.gz/d62d64c25aed61a5f7455028b31aca7640181a13(textlint@15.5.2)
       three:
-        specifier: ^0.183.1
-        version: 0.183.2
+        specifier: ^0.185.1
+        version: 0.185.1
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -4759,8 +4759,8 @@ packages:
   '@types/stats.js@0.17.4':
     resolution: {integrity: sha512-jIBvWWShCvlBqBNIZt0KAshWpvSjhkwkEu4ZUcASoAvhmrgAUI2t1dXrjSL4xXVLB4FznPrIsX3nKXFl/Dt4vA==}
 
-  '@types/three@0.183.1':
-    resolution: {integrity: sha512-f2Pu5Hrepfgavttdye3PsH5RWyY/AvdZQwIVhrc4uNtvF7nOWJacQKcoVJn0S4f0yYbmAE6AR+ve7xDcuYtMGw==}
+  '@types/three@0.185.1':
+    resolution: {integrity: sha512-db1xTb+EgYF2didW+eudSvVPtn75zo+fGsY8ShQrJY/B5ZBmC2Fiaykv3aImHAlCNEGuMPkPGXBJGLwzu5mC7A==}
 
   '@types/triple-beam@1.3.5':
     resolution: {integrity: sha512-6WaYesThRMCl19iryMYP7/x2OVgCtbIVflDGFpWnb9irXI3UjYE4AzmYuiUKY1AJstGijoY+MgUszMgRxIYTYw==}
@@ -5229,9 +5229,6 @@ packages:
     resolution: {integrity: sha512-bZpge9eSXwa4ToSiqJ7j6KRwhAsneMFoSz3LMWKQDkqimm3D/tbFlrklrs/IOqC8tEcYmXQZJ6N0UrjhBirVCg==}
     peerDependencies:
       vue: 3.6.0-beta.1
-
-  '@webgpu/types@0.1.69':
-    resolution: {integrity: sha512-RPmm6kgRbI8e98zSD3RVACvnuktIja5+yLgDAkTmxLr90BEwdTXRQWNLF3ETTTyH/8mKhznZuN5AveXYFEsMGQ==}
 
   '@whatwg-node/disposablestack@0.0.6':
     resolution: {integrity: sha512-LOtTn+JgJvX8WfBVJtF08TGrdjuFzGJc4mkP8EdDI8ADbvO7kiexYep1o8dwnt0okb0jYclCDXF13xU7Ge4zSw==}
@@ -6994,11 +6991,11 @@ packages:
     resolution: {integrity: sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==}
     engines: {node: ^12.20 || >= 14.13}
 
-  fflate@0.7.4:
-    resolution: {integrity: sha512-5u2V/CDW15QM1XbbgS+0DfPxVB+jUKhWEKuuFuHncbk3tEEqzmoXL+2KyOFuKGqOnmdIy0/davWF1CkuwtibCw==}
+  fflate@0.7.5:
+    resolution: {integrity: sha512-QieYf//cis6ywHNi5qW1+PXPQ4bC+XVJAtS4AXIML8P76GroEiOxm/oQtn1f02UkJY1+KsXMJcC+R2v/Eg4G3g==}
 
-  fflate@0.8.2:
-    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
+  fflate@0.8.3:
+    resolution: {integrity: sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA==}
 
   figures@3.2.0:
     resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
@@ -8497,8 +8494,8 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
-  meshoptimizer@1.0.1:
-    resolution: {integrity: sha512-Vix+QlA1YYT3FwmBBZ+49cE5y/b+pRrcXKqGpS5ouh33d3lSp2PoTpCw19E0cKDFWalembrHnIaZetf27a+W2g==}
+  meshoptimizer@1.1.1:
+    resolution: {integrity: sha512-oRFNWJRDA/WTrVj7NWvqa5HqE1t9MYDj2VaWirQCzCCrAd2GHrqR/sQezCxiWATPNlKTcRaPRHPJwIRoPBAp5g==}
 
   micro-memoize@5.1.1:
     resolution: {integrity: sha512-QDwluos8YeMijiKxZGwaV4f4tzj0soS6+xcsJhJ3+4wdEIHMyKbIKVUziebOgWX3e6yiijdoaHo+9tyhbnaWXA==}
@@ -8675,6 +8672,11 @@ packages:
 
   nanoid@3.3.16:
     resolution: {integrity: sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@3.3.17:
+    resolution: {integrity: sha512-xQLf0A3HOMlgHq0n247/LRuAOYmB7dXJ/DvAxGvsSBij45XtBSmQycu+F8ODbHwns/XyFZagyL1+J0Offw1E0g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -10726,8 +10728,8 @@ packages:
     resolution: {integrity: sha512-4iMVL6HAINXWf1ZKZjIPcz5wYaOdPhtO8ATvZ+Xqp3BTdaqtAwQkNmKORqcIo5YkQqGXq5cwfswDwMqqQNrpJA==}
     engines: {node: '>=20'}
 
-  three@0.183.2:
-    resolution: {integrity: sha512-di3BsL2FEQ1PA7Hcvn4fyJOlxRRgFYBpMTcyOgkwJIaDOdJMebEFPA+t98EvjuljDx4hNulAGwF6KIjtwI5jgQ==}
+  three@0.185.1:
+    resolution: {integrity: sha512-5aojFCXKwnjBRZvUnt3WFfEcvUJgkN5LlijRFN95hMy8WVkG4I0QNcJE+OuWvuJ0bOdStrbfXn0pkd6/QyiAlg==}
 
   through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}
@@ -16165,7 +16167,7 @@ snapshots:
 
   '@shuding/opentype.js@1.4.0-beta.0':
     dependencies:
-      fflate: 0.7.4
+      fflate: 0.7.5
       string.prototype.codepointat: 0.2.1
 
   '@sidebase/nuxt-auth@1.0.0(@electric-sql/pglite@0.3.16)(@netlify/blobs@10.7.0)(better-sqlite3@12.8.0)(drizzle-orm@0.45.1(@electric-sql/pglite@0.3.16)(@opentelemetry/api@1.8.0)(better-sqlite3@12.8.0)(pg@8.20.0))(magicast@0.5.3)(next-auth@4.21.1(next@13.5.11(@babel/core@7.29.7)(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rolldown@1.2.0)':
@@ -16746,13 +16748,13 @@ snapshots:
 
   '@tokenizer/token@0.3.0': {}
 
-  '@tresjs/core@5.8.3(three@0.183.2)(vue@3.6.0-beta.1(typescript@5.9.3))':
+  '@tresjs/core@5.8.3(three@0.185.1)(vue@3.6.0-beta.1(typescript@5.9.3))':
     dependencies:
       '@pmndrs/pointer-events': 6.6.30
       '@vue/devtools-api': 8.1.5
       '@vueuse/core': 14.3.0(vue@3.6.0-beta.1(typescript@5.9.3))
       radashi: 12.9.1
-      three: 0.183.2
+      three: 0.185.1
       vue: 3.6.0-beta.1(typescript@5.9.3)
 
   '@tsconfig/node10@1.0.12': {}
@@ -16809,15 +16811,14 @@ snapshots:
 
   '@types/stats.js@0.17.4': {}
 
-  '@types/three@0.183.1':
+  '@types/three@0.185.1':
     dependencies:
       '@dimforge/rapier3d-compat': 0.12.0
       '@tweenjs/tween.js': 23.1.3
       '@types/stats.js': 0.17.4
       '@types/webxr': 0.5.24
-      '@webgpu/types': 0.1.69
-      fflate: 0.8.2
-      meshoptimizer: 1.0.1
+      fflate: 0.8.3
+      meshoptimizer: 1.1.1
 
   '@types/triple-beam@1.3.5': {}
 
@@ -17441,8 +17442,6 @@ snapshots:
   '@vueuse/shared@14.3.0(vue@3.6.0-beta.1(typescript@5.9.3))':
     dependencies:
       vue: 3.6.0-beta.1(typescript@5.9.3)
-
-  '@webgpu/types@0.1.69': {}
 
   '@whatwg-node/disposablestack@0.0.6':
     dependencies:
@@ -19420,9 +19419,9 @@ snapshots:
       node-domexception: 1.0.0
       web-streams-polyfill: 3.3.3
 
-  fflate@0.7.4: {}
+  fflate@0.7.5: {}
 
-  fflate@0.8.2: {}
+  fflate@0.8.3: {}
 
   figures@3.2.0:
     dependencies:
@@ -21078,7 +21077,7 @@ snapshots:
 
   merge2@1.4.1: {}
 
-  meshoptimizer@1.0.1: {}
+  meshoptimizer@1.1.1: {}
 
   micro-memoize@5.1.1:
     dependencies:
@@ -21263,6 +21262,8 @@ snapshots:
   nanoid@3.3.15: {}
 
   nanoid@3.3.16: {}
+
+  nanoid@3.3.17: {}
 
   nanoid@5.1.6: {}
 
@@ -23025,7 +23026,7 @@ snapshots:
 
   postcss@8.4.31:
     dependencies:
-      nanoid: 3.3.16
+      nanoid: 3.3.17
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -24383,7 +24384,7 @@ snapshots:
     dependencies:
       real-require: 0.2.0
 
-  three@0.183.2: {}
+  three@0.185.1: {}
 
   through2@2.0.5:
     dependencies:
