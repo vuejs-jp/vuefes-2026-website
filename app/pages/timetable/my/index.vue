@@ -239,20 +239,7 @@ async function copyTimetableImage() {
 
   try {
     const blobPromise = createTimetableImage();
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
-    try {
-      await Promise.race([
-        navigator.clipboard.write([new ClipboardItem({ "image/png": blobPromise })]),
-        new Promise<never>((_, reject) => {
-          timeoutId = setTimeout(() => reject(new Error("Clipboard write timed out")), 5000);
-        }),
-      ]);
-    } finally {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    }
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": blobPromise })]);
 
     toast.open({ type: "success", message: t("myTimetable.imageCopied") });
   } catch {
