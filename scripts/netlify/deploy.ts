@@ -9,13 +9,21 @@ const authToken = process.env.NETLIFY_AUTH_TOKEN || process.env.NETLIFY_API_TOKE
 const mode = process.argv[2] || "preview";
 const netlifyCli = resolve(repoRoot, "node_modules/.bin/netlify");
 const siteName = process.env.NETLIFY_SITE_NAME || "vuefes-2026";
-const previewAlias = process.env.NETLIFY_DEPLOY_ALIAS || process.env.GITHUB_REF_NAME || "main";
+const previewAlias = process.env.NETLIFY_DEPLOY_ALIAS || "preview-main";
+const productionBranch = process.env.NETLIFY_PRODUCTION_BRANCH || "main";
 const buildDir = resolve(repoRoot, ".output/public");
 const netlifyNitroPublishDir = resolve(repoRoot, "dist");
 const netlifyNitroFunctionsDir = resolve(repoRoot, ".netlify/functions-internal");
 
 if (!authToken) {
   console.error("NETLIFY_AUTH_TOKEN or NETLIFY_API_TOKEN is required.");
+  process.exit(1);
+}
+
+if (["preview", "pr-preview"].includes(mode) && previewAlias === productionBranch) {
+  console.error(
+    `NETLIFY_DEPLOY_ALIAS must not match the Netlify production branch (${productionBranch}).`,
+  );
   process.exit(1);
 }
 
