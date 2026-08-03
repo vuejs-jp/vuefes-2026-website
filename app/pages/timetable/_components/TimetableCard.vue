@@ -2,7 +2,14 @@
 import { computed } from "vue";
 import { useI18n, useLocalePath } from "#imports";
 import type { TimetableCell } from "~~/server/static-data/types/timetable";
+import TimetableSelectCheckbox from "./TimetableSelectCheckbox.vue";
 import SliderIcon from "~icons/icons/timetable-slider";
+import {
+  useMyTimetableItemSelection,
+  type MyTimetableSelectableProps,
+} from "~/composables/useMyTimetableItemSelection";
+import type { MyTimetableSelectionId } from "~/utils/myTimetable";
+import { getTimetableCellLinkUrl } from "../_utils/links";
 
 const {
   type,
@@ -13,7 +20,14 @@ const {
   color: selectedColor,
   programs,
   track,
-} = defineProps<TimetableCell>();
+  selectable = false,
+  selectedMyTimetableIdSet,
+} = defineProps<TimetableCell & MyTimetableSelectableProps>();
+
+const emit = defineEmits<{
+  toggleMyTimetableSelection: [ids: MyTimetableSelectionId[]];
+}>();
+
 const { t } = useI18n();
 const localePath = useLocalePath();
 
@@ -24,34 +38,81 @@ const accentColorName = computed(() => {
 const backgroundColor = computed(() => `var(--color-${accentColorName.value}-sub)`);
 const color = computed(() => `var(--color-${accentColorName.value}-base)`);
 const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-hover)`);
+const cellLinkUrl = computed(() => getTimetableCellLinkUrl({ headingUrl, programs }));
+const displayHeading = computed(
+  () =>
+    heading ||
+    (programs.length === 1 ? programs[0]?.title : undefined) ||
+    (headingUrl || cellLinkUrl.value ? t("myTimetable.untitledProgram") : ""),
+);
+const cellLinkLabel = computed(
+  () => programs[0]?.title || displayHeading.value || t("myTimetable.untitledProgram"),
+);
+const {
+  programIds,
+  canSelect,
+  hasProgramChoices,
+  areAllProgramsSelected,
+  areSomeProgramsSelected,
+  timeSlotAccessibleLabel,
+  isProgramSelected,
+  shouldShowProgramRow,
+  getProgramDisplayTitle,
+  getProgramAccessibleLabel,
+} = useMyTimetableItemSelection({
+  programs: () => programs,
+  selectable: () => selectable,
+  selectedIdSet: () => selectedMyTimetableIdSet,
+  heading: () => displayHeading.value,
+  startTime: () => startTime,
+  endTime: () => endTime,
+  track: () => track,
+});
 </script>
 
 <template>
   <div class="cell">
+    <NuxtLink
+      v-if="cellLinkUrl"
+      :to="localePath(cellLinkUrl)"
+      class="cell-link"
+      :aria-label="cellLinkLabel"
+    />
     <div class="cell-inner">
       <template v-if="track">
         <div class="track">
           {{ t(`timetable.track.${track}`) }}
         </div>
       </template>
-      <div v-if="startTime" class="time">
-        <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-        {{ startTime }} - {{ endTime }}
+      <div v-if="startTime" class="time-row">
+        <div class="time">
+          <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
+          {{ startTime }} - {{ endTime }}
+        </div>
+        <TimetableSelectCheckbox
+          v-if="canSelect"
+          :checked="areAllProgramsSelected"
+          :indeterminate="areSomeProgramsSelected"
+          :label="t('myTimetable.add')"
+          :accessible-label="timeSlotAccessibleLabel"
+          class="cell-interactive"
+          @toggle="emit('toggleMyTimetableSelection', programIds)"
+        />
       </div>
-      <template v-if="type === 'schedule'">
+      <template v-if="type === 'schedule' && programs.length === 0">
         <div class="schedule-title">
-          {{ heading }}
+          {{ displayHeading }}
         </div>
       </template>
 
       <template v-else>
-        <div v-if="headingUrl" class="title">
-          <NuxtLink :to="localePath(headingUrl)">
-            {{ heading }}
+        <div v-if="headingUrl && headingUrl !== cellLinkUrl" class="title">
+          <NuxtLink :to="localePath(headingUrl)" class="cell-interactive">
+            {{ displayHeading }}
           </NuxtLink>
         </div>
         <div v-else class="title">
-          {{ heading }}
+          {{ displayHeading }}
         </div>
         <div
           v-if="programs.length"
@@ -62,11 +123,25 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
         >
           <template v-for="program in programs" :key="program.id">
             <div :class="{ 'event-speaker': type === 'event' }">
-              <div v-if="program.title && program.title !== heading" class="title">
-                <NuxtLink v-if="program.url" :to="localePath(program.url)">
-                  {{ program.title }}
+              <div v-if="shouldShowProgramRow(program)" class="program-title-row">
+                <NuxtLink
+                  v-if="program.url && program.url !== cellLinkUrl"
+                  :to="localePath(program.url)"
+                  class="title cell-interactive"
+                >
+                  {{ getProgramDisplayTitle(program) }}
                 </NuxtLink>
-                <template v-else>{{ program.title }}</template>
+                <div v-else class="title">
+                  {{ getProgramDisplayTitle(program) }}
+                </div>
+                <TimetableSelectCheckbox
+                  v-if="canSelect && hasProgramChoices"
+                  :checked="isProgramSelected(program.id)"
+                  :label="t('myTimetable.add')"
+                  :accessible-label="getProgramAccessibleLabel(program)"
+                  class="cell-interactive"
+                  @toggle="emit('toggleMyTimetableSelection', [program.id])"
+                />
               </div>
 
               <div v-for="speaker in program.speakers" :key="speaker.id" class="speaker-item">
@@ -84,7 +159,12 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
                 </div>
               </div>
               <!-- eslint-disable-next-line vuejs-accessibility/anchor-has-content -->
-              <a v-if="program.slideUrl" :href="program.slideUrl" class="slide" target="_blank">
+              <a
+                v-if="program.slideUrl"
+                :href="program.slideUrl"
+                class="slide cell-interactive"
+                target="_blank"
+              >
                 <SliderIcon :aria-label="t('timetable.slider')" role="img" />
               </a>
             </div>
@@ -98,6 +178,8 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
 <style scoped>
 .cell {
   --color-grey-sub: rgba(239, 239, 239, 1);
+  position: relative;
+  isolation: isolate;
   padding: 16px;
   border-radius: 8px;
   vertical-align: top;
@@ -113,6 +195,42 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
       color: var(--color-text-default);
     }
   }
+}
+
+.cell-link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+
+  @media (any-hover: hover) {
+    &:hover {
+      box-shadow: inset 0 0 0 2px v-bind(color);
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-text-default);
+    outline-offset: -5px;
+  }
+}
+
+.cell-interactive {
+  position: relative;
+  z-index: 2;
+
+  &:focus-visible {
+    border-radius: 4px;
+    outline: 3px solid var(--color-text-default);
+    outline-offset: 3px;
+  }
+}
+
+a.cell-interactive {
+  display: inline-flex;
+  align-items: center;
+  min-width: 24px;
+  min-height: 24px;
 }
 
 .track {
@@ -131,7 +249,6 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
   place-items: center;
   width: fit-content;
   height: 25px;
-  margin-bottom: 8px;
   padding: 0 16px;
   font-family: JetBrainsMono-Medium;
   font-size: 12px;
@@ -140,12 +257,27 @@ const hoverColor = computed(() => `var(--color-${accentColorName.value}-accent-h
   background-color: #fff;
 }
 
+.time-row,
+.program-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  min-width: 0;
+}
+
+.program-title-row {
+  margin-bottom: 0;
+}
+
 .title {
   color: v-bind(color);
   font-family: IBMPlexSansJP-Bold;
   font-size: 16px;
   text-align: left;
   white-space: pre-wrap;
+  min-width: 0;
 
   a {
     font-family: IBMPlexSansJP-Bold;

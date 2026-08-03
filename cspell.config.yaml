@@ -11,7 +11,9 @@ words:
   - alistaiir
   - allscale
   - allspeed
+  - Alvarosabu
   - andpad
+  - aoshi
   - Aose
   - arisa
   - arounds
@@ -22,10 +24,12 @@ words:
   - autodocs
   - autolinks
   - autospace
+  - Backes
   - barai
   - bengo
   - bsky
   - Bucky
+  - burio
   - bunx
   - ceroan
   - chau
@@ -35,9 +39,12 @@ words:
   - chooseicon
   - cloudflarestorage
   - cloudsign
+  - Classmethod
   - coderabbit
   - codmon
   - Colada
+  - commandfor
+  - Computeds
   - corons
   - cosme
   - cosmonic
@@ -46,6 +53,7 @@ words:
   - crowdsourcing
   - crowlKats
   - cyberagent
+  - daaay
   - dagashi
   - Daisuke
   - danielroe
@@ -58,7 +66,9 @@ words:
   - dero
   - desumasu
   - dominikg
+  - drumath
   - Elysia
+  - Eluwing
   - embla
   - emscripten
   - esbenp
@@ -68,7 +78,9 @@ words:
   - finatext
   - finetext
   - fract
+  - frontends
   - ftechno
+  - Fukuda
   - fujimmm
   - Fujimoto
   - Fujishiro
@@ -76,6 +88,7 @@ words:
   - Furukawa
   - gaearon
   - genj
+  - GLSL
   - Golar
   - gruntfuggly
   - guillaume
@@ -83,7 +96,9 @@ words:
   - Haba
   - hackz
   - hacomono
+  - hakshu
   - Hanako
+  - Hanabusa
   - hannoeru
   - hanzomon
   - Haoqun
@@ -103,7 +118,9 @@ words:
   - Hiroki
   - hiroko
   - hiroshi
+  - Holo
   - icubedsystems
+  - Ikeda
   - ikkyu
   - Ikuta
   - ikyu
@@ -137,6 +154,7 @@ words:
   - kazupon
   - kazuya
   - keigo
+  - Keisuke
   - keihin
   - Kettmeir
   - keystyle
@@ -144,16 +162,21 @@ words:
   - Khunpanitchot
   - kiaking
   - kickflow
+  - kinew
   - kinto
   - Kobari
   - kodomon
   - Kogure
   - kokoe
+  - koki
   - Kongkeit
   - Kota
   - kotafujishiro
+  - kouki
   - koya
   - koyasaeki
+  - Koutaro
+  - ktsn
   - ktym
   - kurawa
   - kzhrk
@@ -162,20 +185,24 @@ words:
   - leaysgur
   - lerp
   - lightningcss
+  - lightshow
   - Livesense
   - livestreaming
   - lockfiles
   - Lokalise
+  - LIXIL
   - lycorp
   - magcho
   - marunouchi
   - Masato
   - matcha
+  - Markuplint
   - medpeer
   - metalness
   - mew-ton
   - misaki
   - mita
+  - miura
   - miyake
   - mizdra
   - mizukirimatsu
@@ -204,6 +231,7 @@ words:
   - neginasu
   - Neko
   - Nijibox
+  - Ninisan
   - Nishihara
   - nitropack
   - nixpkgs
@@ -214,6 +242,7 @@ words:
   - noopener
   - noreferrer
   - noriyuki
+  - northprint
   - Nozomu
   - nozomuikuta
   - nuxi
@@ -269,10 +298,12 @@ words:
   - Sato
   - Satouuuuuu
   - sayn
+  - SCXML
   - senbei
   - Seyschab
   - shiminori
   - shimizu
+  - Shigeyuki
   - Shingo
   - shinkansen
   - Shota
@@ -303,6 +334,7 @@ words:
   - textlint
   - tfstate
   - tfvars
+  - themarcba
   - themself
   - thiha
   - Thorsten
@@ -318,9 +350,11 @@ words:
   - toyo
   - tozai
   - tresjs
+  - triaging
   - Tsai
   - tsgolint
   - Tsuchiya
+  - Tsuji
   - tsukkee
   - tsuno
   - ubugeeei
@@ -329,6 +363,7 @@ words:
   - uniquevision
   - unplugin
   - unrs
+  - ushironoko
   - vados
   - valibot
   - Vashishtha
@@ -350,14 +385,18 @@ words:
   - webshops
   - workerd
   - xlink
+  - xmdx
+  - XREAL
   - Yako
   - yamageji
   - yamanoku
   - yamanote
   - yappli
+  - Yasunobu
   - Yogo
   - yoshiya
   - Yosuke
+  - ykoizumi
   - Yuhei
   - Yuichi
   - yuichkun
@@ -369,6 +408,7 @@ words:
   - Yusuke
   - yusukebe
   - yuta
+  - Yutaro
   - Yuto
   - zari
   - zauel

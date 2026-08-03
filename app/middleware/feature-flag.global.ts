@@ -12,7 +12,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   // フィーチャーフラグとルートのマッピング
   const featureGatedRoutes = [
-    { routes: ["timetable"], enabled: import.meta.vfFeatures.timetable },
+    { routes: ["timetable", "timetable-my"], enabled: import.meta.vfFeatures.timetable },
     {
       routes: ["speaker", "speaker-speakerId"],
       enabled: import.meta.vfFeatures.guestSpeakers,

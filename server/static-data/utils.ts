@@ -3,14 +3,13 @@ import type { SponsorData, Sponsor } from "./types/sponsor";
 import type { ProgramData, Program } from "./types/program";
 import type { RelatedEventsData, RelatedEvents } from "./types/related-events";
 import type { Goods, GoodsData } from "./types/goods";
-import { createWithBase } from "../../shared/utils/createWithBase";
-import { useRuntimeConfig } from "#imports";
 import type { Staff } from "./types/staff";
 
-const withBase = (() => {
-  const baseUrl = useRuntimeConfig().app.baseURL;
-  return createWithBase(baseUrl);
-})();
+const appBaseUrl =
+  process.env.NODE_ENV === "production" ? process.env.NUXT_BASE_PATH || "/2026/" : "/";
+// Keep this local: this module is also bundled into a Satori server chunk, where
+// imports that escape the generated chunk directory cannot be resolved.
+const withBase = (path: string) => (appBaseUrl + path).replace(/\/\//g, "/");
 
 type Locale = "ja" | "en";
 

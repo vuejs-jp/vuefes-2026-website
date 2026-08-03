@@ -42,8 +42,7 @@ const SectionId = {
   SponsorStickerRally: "sponsor-sticker-rally",
   FreeDrinks: "free-drinks",
   Festival: "festival",
-  TattooSpace: "tattoo-space",
-  CocktailBash: "cocktail-bash",
+  // TattooSpace: "tattoo-space",
 } as const;
 
 const runtimeConfig = useRuntimeConfig();
@@ -64,12 +63,23 @@ const studentSupportSpeakers = computed(
       ?.speakers ?? [],
 );
 
-const quizImageList = [
-  { src: withBase("/images/event/quiz_1.jpg"), alt: t("event.quiz.image.alt1") },
-  { src: withBase("/images/event/quiz_2.jpg"), alt: t("event.quiz.image.alt2") },
-  { src: withBase("/images/event/quiz_3.jpg"), alt: t("event.quiz.image.alt3") },
-  { src: withBase("/images/event/quiz_4.jpg"), alt: t("event.quiz.image.alt4") },
-];
+const getProgramMeta = (programIds: string[]) => {
+  const programs =
+    speakersData.value?.programs.filter((program) => programIds.includes(program.id)) ?? [];
+  const tracks = [...new Set(programs.flatMap((program) => program.tracks))];
+  const times = [...new Set(programs.map((program) => `${program.start} - ${program.end}`))];
+
+  return {
+    location: tracks.map((track) => t(`timetable.track.${track}`)).join(" / "),
+    time: times.join(" / "),
+  };
+};
+
+const panelDiscussionMeta = computed(() =>
+  getProgramMeta(["panel-discussion-1", "panel-discussion-2"]),
+);
+const handsOnMeta = computed(() => getProgramMeta(["hands-on"]));
+const studentSupportMeta = computed(() => getProgramMeta(["student-support-contents"]));
 
 const handsOnImageList = [
   { src: withBase("/images/event/hands-on_1.jpg"), alt: t("event.handsOn.image.alt1") },
@@ -109,44 +119,7 @@ useSeoMeta({
 <template>
   <div id="pages-event">
     <h1>{{ $t("event.title") }}</h1>
-    <VFSection
-      :id="SectionId.PanelDiscussion"
-      :title="t('event.panel.title')"
-      class="vf-section discussion-event"
-    >
-      <component :is="locale === 'ja' ? JaPanelDiscussionEvent : EnPanelDiscussionEvent">
-        <template #speaker>
-          <ul class="speaker-list">
-            <EventSpeakerCard
-              v-for="speaker in panelSpeakers"
-              :key="speaker.name"
-              :speaker="speaker"
-            />
-          </ul>
-        </template>
-      </component>
-      <div class="meta">
-        <span class="location"> {{ t("event.panel.location") }}</span>
-        <span class="time">{{ t("event.panel.time") }}</span>
-      </div>
-    </VFSection>
-
-    <VFSection :id="SectionId.VueQuiz" :title="t('event.quiz.title')" class="vf-section">
-      <component :is="locale === 'ja' ? JaVueQuiz : EnVueQuiz" />
-      <div class="meta">
-        <span class="location"> {{ t("event.quiz.location") }}</span>
-        <span class="time">{{ t("event.quiz.time") }}</span>
-      </div>
-      <div class="image-list">
-        <img
-          v-for="(item, index) in quizImageList"
-          :key="index"
-          :src="item.src"
-          :alt="item.alt"
-          loading="lazy"
-        />
-      </div>
-    </VFSection>
+    <!-- TODO: パネルディスカッションの内容が確定したら、末尾のセクションをここへ移動する -->
 
     <VFSection :id="SectionId.HandsOn" :title="t('event.handsOn.title')" class="vf-section">
       <component :is="locale === 'ja' ? JaHandsOnEvent : EnHandsOnEvent">
@@ -163,8 +136,8 @@ useSeoMeta({
         </template>
       </component>
       <div class="meta">
-        <span class="location"> {{ t("event.handsOn.location") }}</span>
-        <span class="time">{{ t("event.handsOn.time") }}</span>
+        <span class="location">{{ handsOnMeta.location }}</span>
+        <span class="time">{{ handsOnMeta.time }}</span>
       </div>
     </VFSection>
 
@@ -185,26 +158,8 @@ useSeoMeta({
         </template>
       </component>
       <div class="meta">
-        <span class="location"> {{ t("event.studentSupport.location") }}</span>
-        <span class="time">{{ t("event.studentSupport.time") }}</span>
-      </div>
-    </VFSection>
-
-    <VFSection
-      :id="SectionId.CreativeWall"
-      :title="t('event.creativeWall.title')"
-      class="vf-section"
-    >
-      <div class="meta">
-        <span class="location"> {{ t("event.creativeWall.location") }}</span>
-      </div>
-      <div class="media-block">
-        <img
-          src="/images/event/creative-wall.jpg"
-          :alt="t('event.creativeWall.alt')"
-          loading="lazy"
-        />
-        <p>{{ t("event.creativeWall.description") }}</p>
+        <span class="location">{{ studentSupportMeta.location }}</span>
+        <span class="time">{{ studentSupportMeta.time }}</span>
       </div>
     </VFSection>
 
@@ -236,52 +191,39 @@ useSeoMeta({
       </div>
     </VFSection>
 
-    <VFSection :id="SectionId.Festival" :title="t('event.festival.title')" class="vf-section">
+    <VFSection
+      :id="SectionId.PanelDiscussion"
+      :title="t('event.panel.title')"
+      class="vf-section discussion-event"
+    >
+      <component :is="locale === 'ja' ? JaPanelDiscussionEvent : EnPanelDiscussionEvent">
+        <template #speaker>
+          <ul class="speaker-list">
+            <EventSpeakerCard
+              v-for="speaker in panelSpeakers"
+              :key="speaker.name"
+              :speaker="speaker"
+            />
+          </ul>
+        </template>
+      </component>
       <div class="meta">
-        <span class="location"> {{ t("event.festival.location") }}</span>
-      </div>
-      <div class="media-block">
-        <img
-          src="/images/event/festival-corner.jpg"
-          :alt="t('event.festival.alt')"
-          loading="lazy"
-        />
-        <p>{{ t("event.festival.description") }}</p>
+        <span class="location">{{ panelDiscussionMeta.location }}</span>
+        <span class="time">{{ panelDiscussionMeta.time }}</span>
       </div>
     </VFSection>
 
-    <VFSection :id="SectionId.TattooSpace" :title="t('event.tattoo.title')" class="vf-section">
-      <div class="meta">
-        <span class="location"> {{ t("event.tattoo.location") }}</span>
-      </div>
-      <div class="media-block">
-        <img src="/images/event/tattoo-space.jpg" :alt="t('event.tattoo.alt')" loading="lazy" />
-        <p>{{ t("event.tattoo.description") }}</p>
-      </div>
-    </VFSection>
-
-    <VFSection :id="SectionId.CocktailBash" :title="t('event.cocktail.title')" class="vf-section">
-      <div class="meta">
-        <span class="location"> {{ t("event.cocktail.location") }}</span>
-      </div>
-      <div class="media-block">
-        <img
-          src="/images/event/vue-cocktail-bash.jpg"
-          :alt="t('event.cocktail.alt')"
-          loading="lazy"
-        />
-        <p>{{ t("event.cocktail.description") }}</p>
-      </div>
-      <hr class="divider" />
-      <div class="note">
-        <p>
-          {{ t("event.cocktail.attention1") }}
-        </p>
-        <p>
-          {{ t("event.cocktail.attention2") }}
-        </p>
-      </div>
-    </VFSection>
+    <!--
+      <VFSection :id="SectionId.TattooSpace" :title="t('event.tattoo.title')" class="vf-section">
+        <div class="meta">
+          <span class="location"> {{ t("event.tattoo.location") }}</span>
+        </div>
+        <div class="media-block">
+          <img src="/images/event/tattoo-space.jpg" :alt="t('event.tattoo.alt')" loading="lazy" />
+          <p>{{ t("event.tattoo.description") }}</p>
+        </div>
+      </VFSection>
+    -->
   </div>
 </template>
 
@@ -307,6 +249,19 @@ useSeoMeta({
     }
   }
 
+  :deep([data-vf-mdc] ul:not([class])),
+  :deep([data-vf-mdc] ol:not([class])) {
+    padding-inline-start: 1.5rem;
+  }
+
+  :deep([data-vf-mdc] ul:not([class])) {
+    list-style-type: disc;
+  }
+
+  :deep([data-vf-mdc] ol:not([class])) {
+    list-style-type: decimal;
+  }
+
   .meta {
     position: absolute;
     top: 2.5rem;
@@ -316,12 +271,15 @@ useSeoMeta({
     align-items: center;
 
     @media (--mobile) {
+      position: static;
+      order: -1;
       row-gap: 0.5rem;
       flex-direction: column;
       align-items: flex-start;
-      top: 4.25rem;
-      right: auto;
-      left: 1.5rem;
+      width: 100%;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-divider);
+      margin-bottom: 1.5rem;
     }
   }
 
@@ -382,7 +340,8 @@ useSeoMeta({
     }
   }
 
-  :deep(.divider) {
+  :deep(.divider),
+  :deep(hr) {
     border: 0;
     border-top: 1px solid var(--color-divider);
     margin: 2rem 0;
@@ -407,28 +366,19 @@ useSeoMeta({
       row-gap: 1.5rem;
     }
   }
-
-  .note {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    p {
-      margin-bottom: 0;
-    }
-  }
 }
 
 .vf-section {
   position: relative;
 
   @media (--mobile) {
-    :deep(hr) {
-      margin-top: 2.75rem;
+    &:has(.meta) :deep(.section-content > div:first-child > hr) {
+      display: none;
     }
 
-    :has(.time) :deep(hr) {
-      margin-top: 4.75rem;
+    :deep(.section-content-inner) {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

@@ -20,7 +20,7 @@ interface FeatureGatedRoute {
 
 const featureGatedRoutes: FeatureGatedRoute[] = [
   // タイムテーブル
-  { pathPattern: /^\/timetable$/, flag: "timetable" },
+  { pathPattern: /^\/timetable(\/.*)?$/, flag: "timetable" },
 
   // スピーカー関連
   { pathPattern: /^\/speaker(\/.*)?$/, flag: "guestSpeakers" },

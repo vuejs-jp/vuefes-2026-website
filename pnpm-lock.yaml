@@ -13,6 +13,9 @@ importers:
 
   .:
     dependencies:
+      html-to-image:
+        specifier: ^1.11.13
+        version: 1.11.13
       temporal-polyfill-lite:
         specifier: ^0.4.0
         version: 0.4.0
@@ -7398,6 +7401,9 @@ packages:
   hot-shots@11.4.0:
     resolution: {integrity: sha512-IoyXi0eBFLbaARl6IjQxNzxqNxH3h1XX026PP5uru/RwVVLOt9Qr9f87GW+4L/sj7sNyMGzmIsh++0z5ibkP5w==}
     engines: {node: '>=16.0.0'}
+
+  html-to-image@1.11.13:
+    resolution: {integrity: sha512-cuOPoI7WApyhBElTTb9oqsawRvZ0rHhaHwghRLlTuffoD1B2aDemlCruLeZrUIIdvG7gs9xeELEPm6PhuASqrg==}
 
   http-cache-semantics@4.2.0:
     resolution: {integrity: sha512-dTxcvPXqPvXBQpq5dUr6mEMJX4oIEFv6bwom3FDwKRDsuIjjJGANqhBuoAn9c1RQJIdAKav33ED65E2ys+87QQ==}
@@ -19869,6 +19875,8 @@ snapshots:
   hot-shots@11.4.0:
     optionalDependencies:
       unix-dgram: 2.0.7
+
+  html-to-image@1.11.13: {}
 
   http-cache-semantics@4.2.0: {}
 

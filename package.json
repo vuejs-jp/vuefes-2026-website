@@ -12,6 +12,7 @@
     "prepare": "vp config"
   },
   "dependencies": {
+    "html-to-image": "^1.11.13",
     "temporal-polyfill-lite": "^0.4.0"
   },
   "devDependencies": {

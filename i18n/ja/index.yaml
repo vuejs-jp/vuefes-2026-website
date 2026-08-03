@@ -129,11 +129,9 @@ faq:
 
 event:
   title: "Event"
-  # TODO: 2026年度のパネルディスカッション情報を確定する
+  # TODO: 2026年度のパネルディスカッション内容を確定する
   panel:
     title: "パネルディスカッション"
-    location: "TBD"
-    time: "TBD"
     talkTitle: "TBD"
     talkDescription: "TBD"
   # TODO: 2026年度のVue Quiz情報を確定する
@@ -146,21 +144,16 @@ event:
       alt2: "マイクを持って話すkazupon。背後にはVue Fesのイベントロゴが投影されている。"
       alt3: "Vue Fes Japan 2024のセッション中、スクリーンを見ながら登壇者の発表を聞いている参加者たち。会場はノートパソコンを広げた人々で賑わっている。"
       alt4: "Vue Fes Japan 2024のセッション中、観客席から手を挙げて質問する参加者。前方にはスピーカーが座っている。"
-  # TODO: 2026年度のハンズオン情報を確定する
+  # TODO: 2026年度のハンズオン内容を確定する
   handsOn:
     title: "ハンズオン"
-    location: "TBD"
-    time: "TBD"
     image:
       alt1: "Vue Fes Japan 2024の「Vue.js / Nuxtハンズオン」セッションで、スライドを見ながら講義を受ける参加者たち。"
       alt2: "Vue Fes Japan 2024で登壇するAnthony。Vue Fes Japanのロゴ とスポンサーのロゴが並ぶバックパネルの前で、マイク越しに発表している。"
       alt3: "Vue Fes Japan 2024のハンズオンセッション中、スライドを見ながらノートパソコンで作業する参加者たち。講師は前方で説明を行っている。"
       alt4: "Vue Fes Japan 2024のハンズオンセッションで、右手にマイクを持ち、左手でスクリーンを指差しながら説明をするubugeeei。"
-  # TODO: 2026年度の学生支援コンテンツ情報を確定する
   studentSupport:
     title: "学生支援コンテンツ"
-    location: "TBD"
-    time: "TBD"
   creativeWall:
     title: "クリエイティブウォール"
     location: "2F受付前"
@@ -169,7 +162,7 @@ event:
   sponsorBooth:
     title: "スポンサーブースシールラリー"
     location: "1Fスポンサーブース"
-    description: "各スポンサーブースで配られるシールを12枚以上集めると、ハズレなしのくじ引きに参加できます。集めたシールの枚数に応じて最大3回まで挑戦可能です。豪華景品が当たるかも！？"
+    description: "各スポンサーブースで配られるシールを10枚以上集めると、ハズレなしのくじ引きに参加できます。集めたシールの枚数に応じて最大2回まで挑戦可能です。豪華景品が当たるかも！？"
     alt: "Vue Fes Japan 2024のスポンサーブースを訪れ、展示物を見ながら楽しそうに交流する参加者たち。"
   freeDrink:
     title: "フリードリンク & スナック"
@@ -186,13 +179,6 @@ event:
     location: "2Fホワイエ"
     description: "腕や手足に特製タトゥーシールを貼り付けて、フェス気分を盛り上げましょう。Vue Fes Japanはもちろん、おなじみのVue.jsやNuxtなどのロゴマークをその場ですぐに付けられます。"
     alt: "Vue Fes Japan 2024のロゴやOSSのロゴがデザインされたタトゥーシールを腕に貼っている様子。"
-  cocktail:
-    title: "Vue Cocktail Bash"
-    location: "アフターパーティー"
-    description: "昨年話題を呼んだオリジナルカクテルが、今年も帰ってきます！　Vue.jsをはじめ、OSSをイメージした特別なカクテルをオリジナルレシピで開発しました。ノンアルコールもご用意しています。来場の記念に、是非ご堪能ください！"
-    alt: "Vue.jsをイメージして作られたオリジナルカクテルが並んでいる。緑色のドリンクにはVueのロゴタグが付けられている。"
-    attention1: "※ オリジナルカクテルのご提供は、アフターパーティーのみとなります。"
-    attention2: "※ 数量限定でのご提供となります。"
   coverImageAlt: "Join the Event! と書かれたイベントのカバー画像。"
   view: "イベントを見る"
 speakers:
@@ -341,10 +327,10 @@ timetable:
   title: "タイムテーブル"
   description: "Vue Fes Japan 2026のタイムテーブルです。"
   track:
-    track1: "FitFits with hacomonoトラック"
-    track2: "メイツトラック"
-    track3: "フューチャーアーキテクトトラック"
-    track4: "サイバーエージェントトラック"
+    track1: "名称検討中トラック"
+    track2: "Vueトラック"
+    track3: "サイボウズトラック"
+    track4: "メドピアトラック"
   slider: "発表資料"
   session: "セッション"
   # Timetable content translations
@@ -352,6 +338,7 @@ timetable:
   opening: "オープニング"
   keynote: "キーノート"
   platinumSponsorSession: "プラチナスポンサーセッション"
+  lunchSponsorLightningTalk: "ランチスポンサーLT"
   lunchTime: "ランチタイム"
   studentSupportProgram: "学生支援コンテンツ"
   studentSupportSponsorSession: "学生支援スポンサーセッション"
@@ -366,10 +353,52 @@ timetable:
   crossTalkTitle: "TBD"
   lightningTalk: "ライトニングトーク"
   transition: "転換"
-  # TODO: 2026年度のアフターパーティー情報を確定する
-  afterParty: "アフターパーティー"
+  afterParty: "アフターパーティー\nsupported by リンクアンドモチベーション"
   view: "タイムテーブルを見る"
   coverImageAlt: "Discover the Sessions!と書かれたタイムテーブルのカバー画像。"
+myTimetable:
+  title: "マイタイムテーブル"
+  enable: "マイタイムテーブルを利用する"
+  sharedTitle: "共有されたタイムテーブル"
+  description: "Vue Fes Japan 2026のマイタイムテーブルです。"
+  open: "マイタイムテーブルを開く"
+  backToTimetable: "タイムテーブルに戻る"
+  selectedCount: "{count}件選択中"
+  sharedCount: "共有されたプログラム：{count}件"
+  addAllSharedSelections: "すべて追加"
+  allSharedSelectionsAdded: "すべて追加済み"
+  viewPersonalTimetable: "自分のタイムテーブルを見る"
+  sharedSelectionsAdded: "{count}件をマイタイムテーブルに追加しました"
+  add: "追加"
+  includeTimeSlot: "{startTime}〜{endTime}、{track}の「{heading}」に含まれる全プログラムをマイタイムテーブルに含める"
+  includeProgram: "{startTime}〜{endTime}、{track}の「{program}」をマイタイムテーブルに含める"
+  untitledProgram: "タイトル未定のプログラム"
+  shareSection: "共有"
+  shareSharedSection: "このタイムテーブルを共有"
+  link: "リンクをコピー"
+  text: "テキストでコピー"
+  saveImage: "画像を保存"
+  copyImage: "画像をコピー"
+  generatingImage: "画像を生成中…"
+  imageHeaderDate: "2026.10.24 SAT"
+  shareOnX: "Xで共有"
+  clear: "選択をクリア"
+  clearConfirmTitle: "選択をすべてクリアしますか？"
+  clearConfirmDescription: "選択したプログラムがすべて削除されます。この操作は取り消せません。"
+  clearCancel: "キャンセル"
+  empty: "まだ選択されていません。"
+  shareText: "Vue Fes Japan 2026のマイタイムテーブルを作りました！\n気になるセッションをチェックしています。\n\n{link}\n#vuefes\n"
+  copyTextTitle: "Vue Fes Japan 2026 マイタイムテーブル"
+  copyTextTime: "時間"
+  copyTextTrack: "トラック"
+  copyTextSpeakers: "登壇者"
+  linkCopied: "共有リンクをコピーしました"
+  textCopied: "プログラム情報をコピーしました"
+  imageSaved: "タイムテーブル画像を保存しました"
+  imageCopied: "タイムテーブル画像をコピーしました"
+  imageFailed: "タイムテーブル画像を生成できませんでした。もう一度お試しください。"
+  imageCopyFailed: "タイムテーブル画像をコピーできませんでした。保存をお試しください。"
+  copyFailed: "クリップボードにコピーできませんでした。もう一度お試しください。"
 venueMap:
   title: "会場マップ"
   alt: "会場のフロアマップ。1階にスポンサーブース、サイバーエージェントトラック、フューチャーアーキテクトトラックがあり、2階にメイツトラックとFitFits with hacomonoトラックがあります。入口や受付、休憩スペースの位置が確認できるマップです。"

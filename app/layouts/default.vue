@@ -176,9 +176,10 @@ const isWidenContent = computed(() => {
   return WIDE_ROUTE_PATHS.some((widePath) => path === widePath || path.startsWith(`${widePath}/`));
 });
 
-const isTimetable = computed(
-  () => localeRoute("timetable" as string).name === route.name?.toString(),
-);
+const isTimetable = computed(() => {
+  const path = stripLocalePath(route.path);
+  return path === "/timetable" || path.startsWith("/timetable/");
+});
 
 // scroll behavior
 watch(

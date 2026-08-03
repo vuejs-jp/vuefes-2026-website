@@ -260,6 +260,471 @@ const YOSUKE_FURUKAWA: SpeakerData = {
   },
 };
 
+const CFP_SPEAKERS: SpeakerData[] = [
+  {
+    id: "naokihaba",
+    avatarUrl: "/images/avatars/naokihaba.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/naokihaba",
+      bluesky: "https://bsky.app/profile/naokihaba.com",
+      github: "https://github.com/naokihaba",
+    },
+    ja: {
+      name: "Naoki Haba",
+      title: "Vite+ チームメンバー",
+      affiliation: "株式会社 アンドパッド",
+    },
+    en: {
+      name: "Naoki Haba",
+      title: "Vite+ Team Member",
+      affiliation: "ANDPAD Inc.",
+    },
+  },
+  {
+    id: "themarcba",
+    avatarUrl: "/images/avatars/themarcba.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/marcba",
+      github: "https://github.com/themarcba",
+    },
+    ja: {
+      name: "Marc Backes",
+      title: "Senior Software Engineer",
+      affiliation: "Directus",
+    },
+    en: {
+      name: "Marc Backes",
+      title: "Senior Software Engineer",
+      affiliation: "Directus",
+    },
+  },
+  {
+    id: "alvarosabu",
+    avatarUrl: "/images/avatars/alvarosabu.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/alvarosabu",
+      bluesky: "https://bsky.app/profile/alvarosaburido.dev",
+      github: "https://github.com/alvarosabu",
+    },
+    ja: {
+      name: "Alvarosabu",
+      title: "Creative Software Engineer",
+      affiliation: "TresJS",
+    },
+    en: {
+      name: "Alvarosabu",
+      title: "Creative Software Engineer",
+      affiliation: "TresJS",
+    },
+  },
+  {
+    id: "yut0naga1",
+    avatarUrl: "/images/avatars/yut0naga1.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/yut0naga1",
+      github: "https://github.com/yut0naga1",
+    },
+    ja: {
+      name: "永井優斗/Yuto NAGAI",
+      title: "シニアコンサルタント",
+      affiliation: "フューチャーアーキテクト株式会社",
+    },
+    en: {
+      name: "Yuto NAGAI",
+      title: "Senior Consultant",
+      affiliation: "Future Architect, inc",
+    },
+  },
+  {
+    id: "ykoizumi0903",
+    avatarUrl: "/images/avatars/ykoizumi0903.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/ykoizumi0903",
+    },
+    ja: {
+      name: "Yutaro Koizumi",
+      title: "テックリード",
+      affiliation: "株式会社アンドパッド",
+    },
+    en: {
+      name: "Yutaro Koizumi",
+      title: "TechLead",
+      affiliation: "ANDPAD Inc.",
+    },
+  },
+  {
+    id: "hiranuma",
+    avatarUrl: "/images/avatars/hiranuma.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/mistorun",
+      bluesky: "https://bsky.app/profile/mistorun.bsky.social",
+      github: "https://github.com/hiranuma",
+    },
+    ja: {
+      name: "平沼 真吾",
+      title: "CTO",
+      affiliation: "株式会社GENEROSITY",
+    },
+    en: {
+      name: "Shingo Hiranuma",
+      title: "CTO",
+      affiliation: "GENEROSITY inc.",
+    },
+  },
+  {
+    id: "ushironoko",
+    avatarUrl: "/images/avatars/ushironoko.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/ushiro_noko",
+      bluesky: "https://bsky.app/profile/ushironoko.work",
+      github: "https://github.com/ushironoko",
+    },
+    ja: {
+      name: "ushironoko",
+      title: "フロントエンドエンジニア",
+      affiliation: "Studio株式会社",
+    },
+    en: {
+      name: "ushironoko",
+      title: "Frontend Engineer",
+      affiliation: "Studio, inc.",
+    },
+  },
+  {
+    id: "t0daaay",
+    avatarUrl: "/images/avatars/t0daaay.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/t0daaay",
+      github: "https://github.com/t0daaay",
+    },
+    ja: {
+      name: "辻佳佑",
+      title: "ソフトウェアエンジニア",
+      affiliation: "弁護士ドットコム株式会社",
+    },
+    en: {
+      name: "Keisuke Tsuji",
+      title: "Software Engineer",
+      affiliation: "",
+    },
+  },
+  {
+    id: "jp-knj",
+    avatarUrl: "/images/avatars/jp-knj.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/jp_knj",
+      bluesky: "https://bsky.app/profile/jp-knj.bsky.social",
+      github: "https://github.com/jp-knj",
+    },
+    ja: {
+      name: "jp-knj",
+      title: "デザインエンジニア",
+      affiliation: "Plaid, Inc.",
+    },
+    en: {
+      name: "jp-knj",
+      title: "Design Engineer",
+      affiliation: "Plaid, Inc.",
+    },
+  },
+  {
+    id: "ics-ikeda",
+    avatarUrl: "/images/avatars/ics-ikeda.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/clockmaker",
+      github: "https://github.com/ics-ikeda",
+    },
+    ja: {
+      name: "池田 泰延",
+      title: "フロントエンドエンジニア",
+      affiliation: "株式会社ICS",
+    },
+    en: {
+      name: "IKEDA Yasunobu",
+      title: "Front-end Engineer",
+      affiliation: "ICS INC.",
+    },
+  },
+  {
+    id: "ktsn",
+    avatarUrl: "/images/avatars/ktsn.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/ktsn",
+      bluesky: "https://bsky.app/profile/ktsn.dev",
+      github: "https://github.com/ktsn",
+    },
+    ja: {
+      name: "Katashin",
+      title: "CTO",
+      affiliation: "kinew",
+    },
+    en: {
+      name: "Katashin",
+      title: "CTO",
+      affiliation: "kinew",
+    },
+  },
+  {
+    id: "yamanoku",
+    avatarUrl: "/images/avatars/yamanoku.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/yamanoku",
+      bluesky: "https://bsky.app/profile/yamanoku.net",
+      github: "https://github.com/yamanoku",
+    },
+    ja: {
+      name: "やまのく",
+      title: "会社員",
+      affiliation: "",
+    },
+    en: {
+      name: "yamanoku",
+      title: "Company Employee",
+      affiliation: "",
+    },
+  },
+  {
+    id: "is78-dev",
+    avatarUrl: "/images/avatars/is78-dev.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/aoshi_78",
+      github: "https://github.com/is78-dev",
+    },
+    ja: {
+      name: "aoshi",
+      title: "フロントエンドエンジニア",
+      affiliation: "株式会社ヤプリ",
+    },
+    en: {
+      name: "aoshi",
+      title: "frontend engineer",
+      affiliation: "Yappli, Inc.",
+    },
+  },
+  {
+    id: "Hal-Spidernight",
+    avatarUrl: "/images/avatars/Hal-Spidernight.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/hal_spidernight",
+      github: "https://github.com/Hal-Spidernight",
+    },
+    ja: {
+      name: "Hal",
+      title: "アプリケーションエキスパート",
+      affiliation: "株式会社LIXIL",
+    },
+    en: {
+      name: "Hal",
+      title: "Application Expert",
+      affiliation: "LIXIL",
+    },
+  },
+  {
+    id: "Shigeyuki-fukuda",
+    avatarUrl: "/images/avatars/Shigeyuki-fukuda.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/uqda90",
+      github: "https://github.com/Shigeyuki-fukuda",
+    },
+    ja: {
+      name: "福田繁之",
+      title: "Webエンジニア",
+      affiliation: "株式会社mov",
+    },
+    en: {
+      name: "Shigeyuki-fukuda",
+      title: "Web Developer",
+      affiliation: "mov inc.",
+    },
+  },
+  {
+    id: "HasutoSasaki",
+    avatarUrl: "/images/avatars/HasutoSasaki.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/hasuto00",
+      github: "https://github.com/HasutoSasaki",
+    },
+    ja: {
+      name: "Hasuto",
+      title: "バックエンドエンジニア",
+      affiliation: "クラスメソッド株式会社",
+    },
+    en: {
+      name: "Hasuto",
+      title: "Back-End Engineer",
+      affiliation: "Classmethod, Inc.",
+    },
+  },
+  {
+    id: "northprint",
+    avatarUrl: "/images/avatars/northprint.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/northprint",
+      bluesky: "https://bsky.app/profile/northprint",
+      github: "https://github.com/northprint",
+    },
+    ja: {
+      name: "northprint",
+      title: "フロントエンドエンジニア",
+      affiliation: "株式会社 ICS",
+    },
+    en: {
+      name: "northprint",
+      title: "Front-end Engineer",
+      affiliation: "ICS INC.",
+    },
+  },
+  {
+    id: "Koutaro-Hanabusa",
+    avatarUrl: "/images/avatars/Koutaro-Hanabusa.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/burio_16",
+      github: "https://github.com/Koutaro-Hanabusa",
+    },
+    ja: {
+      name: "ぶりお",
+      title: "フロントエンドエンジニア",
+      affiliation: "",
+    },
+    en: {
+      name: "burio",
+      title: "frontend engineer",
+      affiliation: "",
+    },
+  },
+  {
+    id: "hakshu25",
+    avatarUrl: "/images/avatars/hakshu25.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/hakshu25",
+      github: "https://github.com/hakshu25",
+    },
+    ja: {
+      name: "hakshu",
+      title: "Webエンジニア",
+      affiliation: "",
+    },
+    en: {
+      name: "hakshu",
+      title: "Web Engineer",
+      affiliation: "",
+    },
+  },
+  {
+    id: "Eluwing",
+    avatarUrl: "/images/avatars/Eluwing.png",
+    color: "default",
+    socialUrls: {
+      github: "https://github.com/Eluwing",
+    },
+    ja: {
+      name: "ノワン",
+      title: "フロントエンドエンジニア",
+      affiliation: "株式会社ヤプリ",
+    },
+    en: {
+      name: "noh wan",
+      title: "Frontend Engineer",
+      affiliation: "Yappli, Inc.",
+    },
+  },
+  {
+    id: "drumath2237",
+    avatarUrl: "/images/avatars/drumath2237.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/ninisan_drumath",
+      bluesky: "https://bsky.app/profile/drumath2237.bsky.social",
+      github: "https://github.com/drumath2237",
+    },
+    ja: {
+      name: "にー兄さん",
+      title: "ソフトウェアエンジニア",
+      affiliation: "株式会社ホロラボ",
+    },
+    en: {
+      name: "Ninisan",
+      title: "Software Engineer",
+      affiliation: "HoloLab inc.",
+    },
+  },
+  {
+    id: "ryuhei373",
+    avatarUrl: "/images/avatars/ryuhei373.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/373_3",
+      bluesky: "https://bsky.app/profile/ryuhei373.dev",
+      github: "https://github.com/ryuhei373",
+    },
+    ja: {
+      name: "ryuhei373",
+      title: "エンジニア",
+      affiliation: "株式会社ノーススター",
+    },
+    en: {
+      name: "ryuhei373",
+      title: "Engineer",
+      affiliation: "north star Co.,Ltd.",
+    },
+  },
+  {
+    id: "koki_m",
+    avatarUrl: "/images/avatars/koki_m.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/koki_m",
+    },
+    ja: {
+      name: "kouki.miura",
+      title: "医療ITエンジニア",
+      affiliation: "",
+    },
+    en: {
+      name: "kouki.miura",
+      title: "Healthcare IT Engineer",
+      affiliation: "",
+    },
+  },
+  {
+    id: "CrafterKina",
+    avatarUrl: "/images/avatars/CrafterKina.png",
+    color: "default",
+    socialUrls: {
+      github: "https://github.com/CrafterKina",
+    },
+    ja: {
+      name: "キナ",
+      title: "プログラマ",
+      affiliation: "",
+    },
+    en: {
+      name: "Kina",
+      title: "Programmer",
+      affiliation: "",
+    },
+  },
+];
+
 export const SPEAKERS: SpeakerData[] = [
   EVAN_YOU,
   EDUARDO_SAN_MARTIN_MOROTE,
@@ -272,4 +737,5 @@ export const SPEAKERS: SpeakerData[] = [
   KONGKEIT_KHUNPANITCHOT,
   YUSUKE_WADA,
   YOSUKE_FURUKAWA,
+  ...CFP_SPEAKERS,
 ];

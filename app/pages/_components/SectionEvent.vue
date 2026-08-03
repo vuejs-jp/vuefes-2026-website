@@ -5,6 +5,7 @@ import { useCoverImage, useI18n } from "#imports";
 const coverImage = useCoverImage();
 const { t } = useI18n();
 const localeRoute = useLocaleRoute();
+const showStore = import.meta.vfFeatures.store;
 </script>
 
 <template>
@@ -21,7 +22,7 @@ const localeRoute = useLocaleRoute();
       <VFButton :link="localeRoute('/event')">
         {{ t("event.view") }}
       </VFButton>
-      <VFButton :link="localeRoute('/store')">
+      <VFButton v-if="showStore" :link="localeRoute('/store')">
         {{ t("store.view") }}
       </VFButton>
     </div>

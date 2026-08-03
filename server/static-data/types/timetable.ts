@@ -27,6 +27,10 @@ export interface TimetableItem {
   display?: TimetableDisplay;
 }
 
+export interface TimetableResponse {
+  items: TimetableItem[];
+}
+
 export type CellColor = "primary" | "purple" | "orange" | "navy" | "grey";
 export interface TimetableDisplay {
   /** Overrides the displayed start time. An empty string hides it. */

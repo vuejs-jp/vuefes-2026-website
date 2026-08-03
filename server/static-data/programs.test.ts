@@ -2,7 +2,6 @@ import { describe, expect, expectTypeOf, it } from "vite-plus/test";
 import {
   EVENT_PROGRAMS,
   LIGHTNING_TALK_PROGRAMS,
-  PANEL_DISCUSSION_PROGRAMS,
   PROGRAMS,
   SESSION_PROGRAMS,
   type ProgramId,
@@ -28,25 +27,63 @@ describe("speaker and program relations", () => {
     }
   });
 
-  it("supports programs with multiple speakers", () => {
-    expect(PANEL_DISCUSSION_PROGRAMS[0]?.speakerIds.length).toBeGreaterThan(1);
-  });
-
-  it("supports speakers appearing in multiple programs", () => {
-    const evanPrograms = PROGRAMS.filter((program) => program.speakerIds.includes("yyx990803"));
-
-    expect(evanPrograms.length).toBeGreaterThan(1);
-  });
-
-  it("defines speaker-page URLs on programs explicitly", () => {
-    expect(SESSION_PROGRAMS).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          id: "keynote",
-          url: "/speaker/yyx990803",
-        }),
-      ]),
+  it("assigns the timetable sessions to the specified speakers", () => {
+    const expectedSpeakerIds = [
+      "posva",
+      "jp-knj",
+      "ics-ikeda",
+      "ykoizumi0903",
+      "wan9chi",
+      "ktsn",
+      "naokihaba",
+      "hiranuma",
+      "yamanoku",
+      "ubugeeei",
+      "Hal-Spidernight",
+      "is78-dev",
+      "t0daaay",
+      "themarcba",
+      "alvarosabu",
+      "yut0naga1",
+      "mnmxmx",
+      "ushironoko",
+    ];
+    const timetableSessions = SESSION_PROGRAMS.filter((program) =>
+      /^session-\d+$/.test(program.id),
     );
+
+    expect(timetableSessions.map((program) => program.speakerIds[0])).toEqual(expectedSpeakerIds);
+    for (const program of timetableSessions) {
+      expect(program.speakerIds).toHaveLength(1);
+      expect(program.url).toBe(`/speaker/${program.speakerIds[0]}`);
+    }
+  });
+
+  it("links every CFP program to its speaker page", () => {
+    const guestSpeakerIds = new Set(["posva", "wan9chi", "ubugeeei", "mnmxmx"]);
+    const cfpPrograms = [
+      ...SESSION_PROGRAMS.filter(
+        (program) =>
+          /^session-\d+$/.test(program.id) &&
+          !program.speakerIds.some((speakerId) => guestSpeakerIds.has(speakerId)),
+      ),
+      ...LIGHTNING_TALK_PROGRAMS.filter((program) => /^lightning-talk-\d+$/.test(program.id)),
+    ];
+
+    expect(cfpPrograms).toHaveLength(24);
+    for (const program of cfpPrograms) {
+      const speakerId = program.speakerIds.at(0);
+
+      expect(program.speakerIds).toHaveLength(1);
+      expect(program.url).toBe(`/speaker/${speakerId}`);
+      expect(program.ja.title).not.toBe("TBD");
+      expect(program.en.title).not.toBe("TBD");
+      expect(program.ja.overview).toBeTruthy();
+      expect(program.en.overview).toBeTruthy();
+      expect(SPEAKERS.find((speaker) => speaker.id === speakerId)?.avatarUrl).toBe(
+        `/images/avatars/${speakerId}.png`,
+      );
+    }
   });
 
   it("models student support content as a program", () => {
@@ -57,8 +94,23 @@ describe("speaker and program relations", () => {
         start: "12:00",
         end: "12:30",
         tracks: ["track4"],
+        url: "/event?session=student-support-contents#student-support-contents",
+        ja: { title: "学生支援限定ランチ会" },
+        en: { title: "Student Support Lunch Meetup" },
       }),
     );
+  });
+
+  it("uses TBD as the platinum sponsor program title", () => {
+    const sponsorPrograms = PROGRAMS.filter((program) =>
+      program.id.startsWith("platinum-sponsor-session-"),
+    );
+
+    expect(sponsorPrograms).toHaveLength(6);
+    for (const program of sponsorPrograms) {
+      expect(program.ja.title).toBe("TBD");
+      expect(program.en.title).toBe("TBD");
+    }
   });
 
   it("defines the ten evening lightning talks", () => {
