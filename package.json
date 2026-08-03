@@ -24,7 +24,7 @@
     "@nuxt/scripts": "0.13.2",
     "@nuxtjs/i18n": "10.4.0",
     "@nuxtjs/seo": "^3.0.1",
-    "@ox-content/napi": "^2.31.0",
+    "@ox-content/napi": "^2.81.0",
     "@regle/core": "^1.18.3",
     "@regle/rules": "^1.28.3",
     "@regle/schemas": "^1.20.4",
