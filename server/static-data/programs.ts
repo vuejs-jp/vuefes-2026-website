@@ -249,7 +249,7 @@ export const SESSION_PROGRAMS = definePrograms([
     ja: {
       title: "Vue SFCから見直す正しいHTMLの守り方",
       overview:
-        "VueのSFCにはtemplateブロックにてHTMLを記述できる構文が備わっていることは周知の事実だと思いますが、Vue.jsを使った開発をするときにどのように「HTMLの正しさ」を検証しているか皆さんは説明できますでしょうか？\nVueのSFCにおけるtemplate内ではHTMLの要素間のネスト違反があっても、開発時に警告してきますが明確にコンパイルエラーにはなりません。HTMLの字句的・構文的ルールについても検出されますが、具体的なHTML要素の使い方に関しては関与していません。\n本セッションでは、Vue SFCのtemplateブロックで書かれたHTMLの内容をコンパイラがどのように解釈しているかについてを仕組みから紐解き、DOMのコンパイラだけでは保てないHTMLの正しさについてをLinterといった静的解析エコシステム（ESLint、Markuplint、Biome、OxC、Vizeなど）たちによって今現在どのように守れるかについてを紹介します。\nHTMLの仕様はLiving Standardとして今なお更新されています。そんなHTMLと正しく向き合いながら、Vue.jsで堅牢なマークアップとHTMLによるアクセシブルなアウトプットを実現できる知見を持ち帰れる内容を提供します。",
+        "VueのSFCにはtemplateブロックにてHTMLを記述できる構文が備わっていることは周知の事実だと思いますが、Vue.jsを使った開発をするときにどのように「HTMLの正しさ」を検証しているか皆さんは説明できますでしょうか？\nVueのSFCにおけるtemplate内ではHTMLの要素間のネスト違反があっても、開発時に警告してきますが明確にコンパイルエラーにはなりません。HTMLの字句的・構文的ルールについても検出されますが、具体的なHTML要素の使い方に関しては関与していません。\n本セッションでは、Vue SFCのtemplateブロックで書かれたHTMLの内容をコンパイラがどのように解釈しているかについてを仕組みから紐解き、DOMのコンパイラだけでは保てないHTMLの正しさについてをLinterといった静的解析エコシステム（ESLint、Markuplint、Biome、OxC、Vizeなど）たちによって今現在どのように守れるかについてを紹介します。\nHTMLの仕様はLiving Standardとして今なお更新されています。そんなHTMLと正しく向き合いながら、Vue.jsで堅牢なマークアップとHTMLによるアクセシブルなアウトプットを実現する知見を提供します。",
     },
     en: {
       title: "The Right Way to Protect Your HTML, Revisited from Vue SFC",
