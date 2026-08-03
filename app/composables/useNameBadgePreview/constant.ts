@@ -27,7 +27,7 @@ export const NAME_BADGE_ROPE_TUNING = {
   initialTipY: -300,
   initialTipVelX: 0,
   initialTipVelY: 0,
-  attachOffsetRatio: 0.035,
+  attachOffsetRatio: 0.05125,
   attachOffsetMin: 8,
   stageBoundsInsetX: 36,
   stageBoundsInsetTop: 10,
@@ -73,7 +73,7 @@ export const NAME_BADGE_ROPE_VISUAL_TUNING = {
 } as const;
 
 export const NAME_BADGE_SLOT_TUNING = {
-  widthToRopeRatio: 1.65,
+  widthToRopeRatio: 2.15,
   heightToRopeRatio: 0.42,
   passThroughLengthToRopeRatio: 0.7,
   rimWidthToRopeRatio: 0.035,
