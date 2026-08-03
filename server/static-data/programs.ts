@@ -265,8 +265,16 @@ export const SESSION_PROGRAMS = definePrograms([
     tracks: ["track1"],
     start: "15:05",
     end: "15:35",
-    ja: { title: "Vize (仮)", overview: "" },
-    en: { title: "Vize (TBD)", overview: "" },
+    ja: {
+      title: "The Vue Toolchain, Reimagined",
+      overview:
+        "Vueの開発体験は、多くの優れたツールによって支えられています。\n\nVizeは、高速なVueツールチェーン全体をゼロから構築することを目指しているオープンソースプロジェクトです。コンパイラやリンターをはじめとするさまざまなツールを開発する中で、ツールチェーン全体を見渡すからこそ見えてくる課題や、新しい可能性がありました。\n\nこのセッションでは、Vizeの取り組みを紹介しながら、Vueツールチェーンの現在とこれからについてお話しします。",
+    },
+    en: {
+      title: "The Vue Toolchain, Reimagined",
+      overview:
+        "Vue development is powered by a rich ecosystem of tools.\n\nVize is an open source project that aims to build a blazing-fast Vue toolchain from the ground up. As the project has grown to include compilers, linters, and other developer tools, it has revealed new challenges and opportunities that only become visible when building an entire toolchain.\n\nIn this session, I'll introduce Vize, share the lessons learned from building a Vue toolchain, and explore where Vue tooling could go next.",
+    },
   },
   {
     id: "session-11",
