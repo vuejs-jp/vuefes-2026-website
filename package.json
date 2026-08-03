@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "html-to-image": "^1.11.13",
-    "temporal-polyfill-lite": "^0.4.0"
+    "temporal-polyfill-lite": "^0.4.2"
   },
   "devDependencies": {
     "@auth/drizzle-adapter": "^1.10.0",
