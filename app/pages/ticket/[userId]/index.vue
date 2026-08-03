@@ -32,7 +32,7 @@ const expiredNameBadgeRegistration = import.meta.vfFeatures.expiredNameBadgeRegi
 
 const { data: session, status } = useAuth();
 const route = useRoute("ticket-userId");
-const { data: nameBadgeData } = useFetch(`/api/name-badge/${route.params.userId}`);
+const { data: nameBadgeData } = await useFetch(`/api/name-badge/${route.params.userId}`);
 defineOgImage("OgNameBadge", {
   name: () => nameBadgeData.value?.name ?? undefined,
   userRole: () => nameBadgeData.value?.role ?? undefined,
