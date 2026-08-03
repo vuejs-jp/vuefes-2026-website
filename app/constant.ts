@@ -19,3 +19,5 @@ export const HOME_HEADING_ID = {
   // NOTE: Be careful as it is hardcoded in MDC
   contact: "contact-form",
 };
+
+export const NAME_BADGE_REDIRECT_QUERY = "name-badge";

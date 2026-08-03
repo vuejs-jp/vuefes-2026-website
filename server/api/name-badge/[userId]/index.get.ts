@@ -1,10 +1,9 @@
 import { defineEventHandler, getRouterParam } from "h3";
 import { eq } from "drizzle-orm/sql";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 import { db } from "../../../db/orm";
 import { attendees } from "../../../db/schema";
+import { resolveNameBadgeAvatarUrl } from "../../../utils/resolveNameBadgeAvatarUrl";
 
 import { getServerSession } from "#auth";
 import { createError, useRuntimeConfig } from "#imports";
@@ -32,6 +31,8 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  let role = nameBadgeData.role;
+
   // try update role authorized and same user
   try {
     const session = await getServerSession(event);
@@ -45,7 +46,7 @@ export default defineEventHandler(async (event) => {
       const { peatixEventId } = useRuntimeConfig();
       const { client } = usePeatixApi();
 
-      if (nameBadgeData?.receiptId && !nameBadgeData?.role) {
+      if (nameBadgeData.receiptId && !role) {
         const sale = await client
           .GET("/event/{eventId}/list_sales/{salesId}", {
             params: {
@@ -58,7 +59,7 @@ export default defineEventHandler(async (event) => {
           .then((response) => response.data);
 
         if (sale) {
-          const role = (() => {
+          role = (() => {
             switch (sale.ticketName) {
               case TicketName.EarlyBirdGeneral:
               case TicketName.General:
@@ -85,28 +86,10 @@ export default defineEventHandler(async (event) => {
     console.error("Failed to update role:", error);
   }
 
-  const S3 = new S3Client({
-    region: "auto",
-    endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-    credentials: {
-      accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID!,
-      secretAccessKey: process.env.CLOUDFLARE_R2_SECRET_ACCESS!,
-    },
-  });
-
   return {
     name: nameBadgeData.displayName,
-    role: nameBadgeData.role,
+    role: role ?? "Attendee",
     lang: nameBadgeData.lang,
-    avatarUrl: nameBadgeData.avatarUrl
-      ? await getSignedUrl(
-          S3,
-          new GetObjectCommand({
-            Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
-            Key: new URL(nameBadgeData.avatarUrl).pathname.split("/").pop(),
-          }),
-          { expiresIn: 3600 },
-        )
-      : undefined,
+    avatarUrl: await resolveNameBadgeAvatarUrl(nameBadgeData),
   };
 });

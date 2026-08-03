@@ -35,6 +35,7 @@ const toast = useToast();
 const bp = useBreakpoint();
 const localeRoute = useLocaleRoute();
 const route = useRoute();
+const avatarImageChanged = ref(false);
 
 if (import.meta.vfFeatures.expiredNameBadgeRegistration) {
   if (user.value) {
@@ -69,6 +70,23 @@ const sizeInMB = (sizeInBytes: number, decimalsNum = 2) => {
   return +result.toFixed(decimalsNum);
 };
 
+const avatarImageSchema = v.pipeAsync(
+  v.custom<VFFile>(
+    (input: unknown): input is VFFile => !!input,
+    t("nameBadge.form.avatarImage.error.required"),
+  ),
+  v.checkAsync(async (file: VFFile) => {
+    if (!avatarImageChanged.value) return true;
+    const { size } = await fetch(file.objectURL).then((r) => r.blob());
+    return sizeInMB(size) <= 5;
+  }, t("nameBadge.form.avatarImage.error.size")),
+  v.check(
+    (file: VFFile) =>
+      !avatarImageChanged.value || ["image/jpg", "image/jpeg", "image/png"].includes(file.type),
+    t("nameBadge.form.avatarImage.error.type"),
+  ),
+);
+
 const schema = v.objectAsync({
   name: v.pipe(
     v.string(),
@@ -85,17 +103,7 @@ const schema = v.objectAsync({
 
   salesId: v.pipe(v.string(), v.minLength(1, t("nameBadge.form.receipt.error.required"))),
 
-  avatarImage: v.pipeAsync(
-    v.custom<VFFile>((input: unknown): input is VFFile => !!input),
-    v.checkAsync(async (file: VFFile) => {
-      const { size } = await fetch(file.objectURL).then((r) => r.blob());
-      return sizeInMB(size) <= 5;
-    }, t("nameBadge.form.avatarImage.error.size")),
-    v.check(
-      (file: VFFile) => ["image/jpg", "image/jpeg", "image/png"].includes(file.type),
-      t("nameBadge.form.avatarImage.error.type"),
-    ),
-  ),
+  avatarImage: avatarImageSchema,
 });
 
 const state = ref<{ name: string; salesId: string; avatarImage: VFFile | undefined }>({
@@ -105,6 +113,18 @@ const state = ref<{ name: string; salesId: string; avatarImage: VFFile | undefin
 });
 
 const { r$ } = useRegleSchema(state, schema, { autoDirty: false });
+const avatarImageError = ref<string>();
+
+function getFirstIssueMessage(issues: unknown) {
+  if (!Array.isArray(issues)) return;
+
+  const [issue] = issues;
+  if (typeof issue !== "object" || issue === null) return;
+
+  const message =
+    "$message" in issue ? issue.$message : "message" in issue ? issue.message : undefined;
+  return typeof message === "string" ? message : undefined;
+}
 
 onMounted(async () => {
   await refresh();
@@ -113,14 +133,14 @@ onMounted(async () => {
     state.value.name = nameBadgeData.value.name ?? "";
     state.value.salesId = nameBadgeData.value.salesId ?? "";
 
-    if (nameBadgeData.value?.avatarUrl && nameBadgeData.value?.avatarImageFileName) {
-      // NOTE: need to configure cors
-      const avatarBlob = await fetch(nameBadgeData.value.avatarUrl).then((r) => r.blob());
+    if (nameBadgeData.value.avatarUrl) {
+      const avatarImageFileName =
+        nameBadgeData.value.avatarImageFileName ?? t("nameBadge.form.avatarImage.accountImage");
       state.value.avatarImage = {
-        displayName: nameBadgeData.value.avatarImageFileName,
-        name: nameBadgeData.value.avatarImageFileName,
-        type: avatarBlob.type,
-        objectURL: URL.createObjectURL(avatarBlob),
+        displayName: avatarImageFileName,
+        name: avatarImageFileName,
+        type: "",
+        objectURL: nameBadgeData.value.avatarUrl,
       } satisfies VFFile;
     }
   }
@@ -136,29 +156,63 @@ async function submit() {
 
   const result = await r$.$validate();
 
-  if (result.valid) {
-    try {
-      isLoading.value = true;
-      const formData = new FormData();
-      formData.append("name", state.value.name);
-      formData.append("salesId", state.value.salesId);
-      if (state.value.avatarImage) {
-        const blob = await fetch(state.value.avatarImage.objectURL).then((r) => r.blob());
-        formData.append("avatarImageBlob", blob);
-        formData.append("avatarImageName", state.value.avatarImage.name);
-      }
+  if (!result.valid) {
+    const avatarValidationError = getFirstIssueMessage(result.issues.avatarImage);
+    avatarImageError.value = avatarValidationError;
 
-      // ident by session
-      await $fetch(`/api/name-badge/`, { method: "POST", body: formData });
-      toast.open({ type: "success", message: t("nameBadge.form.submitResult.success") });
-      await navigateTo(`/ticket/${user.value.userId}`);
-    } catch (error) {
-      console.error(error);
-      toast.open({ type: "alert", message: t("nameBadge.form.submitResult.error") });
-    } finally {
-      isLoading.value = false;
-    }
+    const validationError = [
+      {
+        label: t("nameBadge.form.name.label"),
+        message: getFirstIssueMessage(result.issues.name),
+      },
+      {
+        label: t("nameBadge.form.avatarImage.label"),
+        message: avatarValidationError,
+      },
+      {
+        label: t("nameBadge.form.receipt.label"),
+        message: getFirstIssueMessage(result.issues.salesId),
+      },
+    ].find(({ message }) => message);
+
+    toast.open({
+      type: "alert",
+      message: validationError
+        ? `${validationError.label}: ${validationError.message}`
+        : t("nameBadge.form.submitResult.error"),
+    });
+    return;
   }
+
+  avatarImageError.value = undefined;
+
+  try {
+    isLoading.value = true;
+    const formData = new FormData();
+    formData.append("name", state.value.name);
+    formData.append("salesId", state.value.salesId);
+    if (state.value.avatarImage && avatarImageChanged.value) {
+      const blob = await fetch(state.value.avatarImage.objectURL).then((r) => r.blob());
+      formData.append("avatarImageBlob", blob);
+      formData.append("avatarImageName", state.value.avatarImage.name);
+    }
+
+    // ident by session
+    await $fetch(`/api/name-badge/`, { method: "POST", body: formData });
+    toast.open({ type: "success", message: t("nameBadge.form.submitResult.success") });
+    await navigateTo(`/ticket/${user.value.userId}`);
+  } catch (error) {
+    console.error(error);
+    toast.open({ type: "alert", message: t("nameBadge.form.submitResult.error") });
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+async function handleAvatarImageUpdate(file: VFFile) {
+  avatarImageChanged.value = true;
+  const result = await v.safeParseAsync(avatarImageSchema, file);
+  avatarImageError.value = result.success ? undefined : result.issues[0]?.message;
 }
 </script>
 
@@ -202,8 +256,9 @@ async function submit() {
           :label="t('nameBadge.form.avatarImage.label')"
           :placeholder="t('nameBadge.form.avatarImage.placeholder')"
           :description="t('nameBadge.form.avatarImage.description')"
-          :error-message="r$.$fields.avatarImage.$errors.$self?.[0]"
-          :invalid="r$.$fields.avatarImage.$error"
+          :error-message="avatarImageError"
+          :invalid="avatarImageError !== undefined"
+          @update:model-value="handleAvatarImageUpdate"
         />
         <VFInput
           v-model="state.salesId"
@@ -228,15 +283,7 @@ async function submit() {
           >
             {{ t("nameBadge.form.cancel") }}
           </VFButton>
-          <VFButton
-            type="submit"
-            :disabled="
-              r$.$fields.name.$error ||
-              !state.avatarImage ||
-              r$.$fields.avatarImage.$error ||
-              r$.$fields.salesId.$error
-            "
-          >
+          <VFButton type="submit" :disabled="isLoading">
             {{ t("nameBadge.form.save") }}
           </VFButton>
         </div>

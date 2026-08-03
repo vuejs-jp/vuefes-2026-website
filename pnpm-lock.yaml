@@ -134,6 +134,9 @@ importers:
       satori:
         specifier: ^0.26.0
         version: 0.26.0
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
       textlint:
         specifier: ^15.2.2
         version: 15.5.2

@@ -26,35 +26,28 @@ messageCoverImageAlt: Vue Fes Japan 2026 logo
 
 ticket:
   title: "Ticket"
-  details: "Details"
+  purchase: "Buy Tickets"
   coverImageAlt: "Get Your Ticket!"
   viewTicketDetails: "View Ticket Details"
   type: "Ticket Type"
   typeDescription1: "There are two types of general tickets: with or without the after-party. We also offer optional hands-on workshop and individual sponsor tickets."
+  typeDescription2: "Purchase your tickets by Monday, August 31 at 11:59 PM (JST) to take advantage of our early bird discount. Don't miss out!"
   early: "Early Bird"
   standard: "Standard"
   priceUnit: "JPY"
-  # TODO: 2026 年度のチケット価格を確定する
+  priceTbd: "TBD"
   generalTicket:
     title: "General Ticket"
-    earlyPrice: "TBD"
-    standardPrice: "TBD"
   afterPartyTicket:
     title: "General Admission + After-Party Ticket"
-    earlyPrice: "TBD"
-    standardPrice: "TBD"
   option: "Options"
   handsOn:
     title: "Hands-on Workshop"
-    # TODO: 2026 年度のハンズオン価格を確定する
-    price: "TBD"
     attention1: "※ A general ticket is also required to participate in Vue Fes Japan."
     attention2: "※ Please see the {about} for details."
     about: "Hands-on Workshop section"
   individual:
     sponsor: "Individual Sponsor"
-    # TODO: 2026 年度の個人スポンサー価格を確定する
-    price: "TBD"
     attention1: "※ A general ticket is also required to participate in Vue Fes Japan."
     attention2: "※ Please see the {about} for details."
     about: "Individual Sponsor section"
@@ -65,8 +58,7 @@ nameBadge:
   title: "Name Badge"
   description: "After purchasing your {ticketName} and registering the required information, you will receive a name badge featuring your avatar and name at the venue on the day! (Social login required)"
   ticketName: "Vue Fes Japan 2026 ticket"
-  deadlineDescription: "Name badge editing deadline: September {correction} 21, 2026 (Sunday), 11:59 PM (JST)"
-  correction: "29"
+  deadlineDescription: "Name badge editing deadline: {deadline}"
   attention: "* Name badge creation is optional."
   coverImageAlt: "Name badge image"
   confirm: "Check My Name Badge"
@@ -93,6 +85,7 @@ nameBadge:
         emoji: "Emojis are not allowed."
     avatarImage:
       label: "Avatar"
+      accountImage: "Login account image"
       placeholder: "Select File"
       description: "※ Only .jpg or .png files are allowed. Please select an image under 5MB."
       error:

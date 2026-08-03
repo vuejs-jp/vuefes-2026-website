@@ -125,9 +125,6 @@ useSeoMeta({ title: "" });
       <!-- フォト（イベント後に表示） -->
       <SectionPhoto v-if="SectionPhoto" />
 
-      <!-- ボランティア -->
-      <SectionVolunteer v-if="SectionVolunteer" />
-
       <!-- CFP -->
       <SectionCfpOpen v-if="SectionCfpOpen" />
       <SectionCfpClosed v-if="SectionCfpClosed" />
@@ -141,10 +138,6 @@ useSeoMeta({ title: "" });
       <!-- イベント -->
       <SectionEvent v-if="SectionEvent" />
 
-      <!-- 学生支援 -->
-      <SectionStudentSupportOpen studentSupportDisabled v-if="SectionStudentSupportOpen" />
-      <SectionStudentSupportClosed v-if="SectionStudentSupportClosed" />
-
       <!-- チケット -->
       <SectionGetYourTicket v-if="SectionGetYourTicket" />
 
@@ -153,6 +146,13 @@ useSeoMeta({ title: "" });
 
       <!-- スポンサー一覧 -->
       <SectionSponsors v-if="SectionSponsors" />
+
+      <!-- ボランティア -->
+      <SectionVolunteer v-if="SectionVolunteer" />
+
+      <!-- 学生支援 -->
+      <SectionStudentSupportOpen studentSupportDisabled v-if="SectionStudentSupportOpen" />
+      <SectionStudentSupportClosed v-if="SectionStudentSupportClosed" />
 
       <!-- ゲストスピーカー公開のタイミングで順番を入れ替え -->
       <SectionAccess v-if="SectionSpeakers" />

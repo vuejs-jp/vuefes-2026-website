@@ -23,11 +23,13 @@ const sizeInMB = (sizeInBytes: number, decimalsNum = 2) => {
 const schema = v.object({
   name: v.pipe(v.string(), v.minLength(1)),
   salesId: v.pipe(v.string(), v.minLength(1)),
-  avatarImageBlob: v.pipe(
-    v.custom<File>((input: unknown) => input instanceof File),
-    v.check((file) => sizeInMB(file.size) <= 5, "File size must be 5MB or less"),
+  avatarImageBlob: v.optional(
+    v.pipe(
+      v.custom<File>((input: unknown) => input instanceof File),
+      v.check((file) => sizeInMB(file.size) <= 5, "File size must be 5MB or less"),
+    ),
   ),
-  avatarImageName: v.string(),
+  avatarImageName: v.optional(v.pipe(v.string(), v.minLength(1))),
 });
 
 export default defineEventHandler(async (event) => {
@@ -75,51 +77,72 @@ export default defineEventHandler(async (event) => {
   //   console.error("Failed to fetch sales data from Peatix API:", error);
   // });
 
+  const maybeRegistered = await db
+    .select()
+    .from(attendees)
+    .where(eq(attendees.userId, session.userId))
+    .get();
+
+  const avatarImageBlob = validatedBody.output.avatarImageBlob;
+  const avatarImageName = validatedBody.output.avatarImageName;
+  if (Boolean(avatarImageBlob) !== Boolean(avatarImageName)) {
+    throw createError({
+      message: "Invalid avatar image",
+      statusCode: 400,
+    });
+  }
+  if (!avatarImageBlob && !maybeRegistered?.avatarUrl) {
+    throw createError({
+      message: "Avatar image is required",
+      statusCode: 400,
+    });
+  }
+
+  let avatarUrl = maybeRegistered?.avatarUrl;
+  let imageFileName = maybeRegistered?.imageFileName;
+
   try {
     // image registration
-    const maybeRegistered = await db
-      .select()
-      .from(attendees)
-      .where(eq(attendees.userId, session.userId))
-      .get();
+    if (avatarImageBlob && avatarImageName) {
+      const objectName = `${randomUUID()}-${avatarImageName}`;
 
-    const objectName = `${randomUUID()}-${validatedBody.output.avatarImageName}`;
-
-    const r2Endpoint = `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`;
-    const S3 = new S3Client({
-      region: "auto",
-      endpoint: r2Endpoint,
-      credentials: {
-        accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID!,
-        secretAccessKey: process.env.CLOUDFLARE_R2_SECRET_ACCESS!,
-      },
-    });
-
-    if (maybeRegistered?.avatarUrl) {
-      const deleteCommand = new DeleteObjectCommand({
-        Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
-        Key: new URL(maybeRegistered.avatarUrl).pathname.split("/").pop()!,
+      const r2Endpoint = `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`;
+      const S3 = new S3Client({
+        region: "auto",
+        endpoint: r2Endpoint,
+        credentials: {
+          accessKeyId: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.CLOUDFLARE_R2_SECRET_ACCESS!,
+        },
       });
-      // NOTE: asynchronously delete old image
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      S3.send(deleteCommand).catch(() => {});
+
+      if (maybeRegistered?.avatarUrl && maybeRegistered.imageFileName) {
+        const deleteCommand = new DeleteObjectCommand({
+          Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
+          Key: new URL(maybeRegistered.avatarUrl).pathname.split("/").pop()!,
+        });
+        // NOTE: asynchronously delete old image
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        S3.send(deleteCommand).catch(() => {});
+      }
+
+      const command = new PutObjectCommand({
+        Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
+        Key: encodeURIComponent(objectName),
+        ContentType: avatarImageBlob.type,
+        Body: Buffer.from(await avatarImageBlob.arrayBuffer()),
+      });
+      await S3.send(command);
+      avatarUrl = encodeURI(`${r2Endpoint}/${process.env.CLOUDFLARE_R2_BUCKET_NAME}/${objectName}`);
+      imageFileName = avatarImageName;
     }
 
-    const command = new PutObjectCommand({
-      Bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME!,
-      Key: encodeURIComponent(objectName),
-      ContentType: validatedBody.output.avatarImageBlob.type,
-      Body: Buffer.from(await validatedBody.output.avatarImageBlob.arrayBuffer()),
-    });
-    await S3.send(command);
     try {
       // all upsert
       const data = {
         email: session.user.email,
-        avatarUrl: encodeURI(
-          `${r2Endpoint}/${process.env.CLOUDFLARE_R2_BUCKET_NAME}/${objectName}`,
-        ),
-        imageFileName: validatedBody.output.avatarImageName,
+        avatarUrl,
+        imageFileName,
         displayName: validatedBody.output.name,
         receiptId: validatedBody.output.salesId,
       };

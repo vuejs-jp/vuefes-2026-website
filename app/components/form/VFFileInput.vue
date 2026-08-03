@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
 
     <div class="file-upload-wrapper">
       <div class="image-preview">
-        <img v-if="file" :src="file.objectURL" alt="Image" />
+        <img v-if="file" :src="file.objectURL" crossorigin="anonymous" alt="Image" />
         <div v-else class="image-placeholder">
           <img src="/images/image-preview-placeholder.svg" alt="" />
         </div>

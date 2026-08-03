@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useLocaleRoute } from "@typed-router";
+
+import { useTicketDeadlines } from "../_composables/useTicketDeadlines";
 import {
   defineOgImage,
   navigateTo,
@@ -24,6 +26,7 @@ const { t } = useI18n();
 const toast = useToast();
 const bp = useBreakpoint();
 const localeRoute = useLocaleRoute();
+const { nameBadgeEditingDeadline } = useTicketDeadlines();
 
 const expiredNameBadgeRegistration = import.meta.vfFeatures.expiredNameBadgeRegistration;
 
@@ -115,7 +118,7 @@ function copyUrl() {
         </VFButton>
 
         <p class="name-badge-deadline">
-          {{ t("nameBadge.deadlineDescription") }}
+          {{ t("nameBadge.deadlineDescription", { deadline: nameBadgeEditingDeadline }) }}
         </p>
       </div>
 

@@ -1,10 +1,17 @@
 <script setup lang="ts">
+import { Temporal } from "temporal-polyfill-lite";
+import { useTicketDeadlines } from "./_composables/useTicketDeadlines";
+import { TICKET } from "./_data/ticket";
+import { NAME_BADGE_REDIRECT_QUERY } from "~/constant";
 import {
+  computed,
   ref,
   useAuth,
+  useCurrentInstant,
   useI18n,
   useLocaleRoute,
   useRuntimeConfig,
+  useWithBase,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useSeoMeta,
@@ -18,8 +25,8 @@ import {
   JaNameBadgeFlowAndAttentions,
   EnIndividualSponsor,
   JaIndividualSponsor,
-  EnHandsOnTicket,
-  JaHandsOnTicket,
+  EnHandsOnEvent,
+  JaHandsOnEvent,
   EnFaq,
   JaFaq,
 } from "#components";
@@ -28,27 +35,58 @@ const runtimeConfig = useRuntimeConfig();
 const { signIn, status, data } = useAuth();
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
+const withBase = useWithBase();
+const { earlyBirdDeadline, cancellationDeadline, cancellationDate, nameBadgeEditingDeadline } =
+  useTicketDeadlines();
+
+const handsOnImageList = [
+  { src: withBase("/images/ticket/hands-on_1.jpg"), alt: t("event.handsOn.image.alt1") },
+  { src: withBase("/images/ticket/hands-on_2.jpg"), alt: t("event.handsOn.image.alt2") },
+  { src: withBase("/images/ticket/hands-on_3.jpg"), alt: t("event.handsOn.image.alt3") },
+  { src: withBase("/images/ticket/hands-on_4.jpg"), alt: t("event.handsOn.image.alt4") },
+];
+
+const formatPrice = (price: number | null) =>
+  price === null ? t("ticket.priceTbd") : new Intl.NumberFormat(locale.value).format(price);
+
+const currentInstant = useCurrentInstant();
+const earlyBirdDeadlineInstant = Temporal.ZonedDateTime.from(
+  TICKET.deadlines.earlyBird,
+).toInstant();
+const hasEarlyBirdDeadlinePassed = computed(
+  () =>
+    currentInstant.value !== null &&
+    Temporal.Instant.compare(currentInstant.value, earlyBirdDeadlineInstant) >= 0,
+);
 
 const isSoldOutAfterParty = import.meta.vfFeatures.soldOutAfterParty;
-const isSoldOutEarlyBirdAfterParty =
-  import.meta.vfFeatures.soldOutEarlyBirdAfterParty || import.meta.vfFeatures.soldOutEarlyBird;
-const isSoldOutEarlyBird = import.meta.vfFeatures.soldOutEarlyBird;
+const isSoldOutEarlyBird = computed(
+  () => import.meta.vfFeatures.soldOutEarlyBird || hasEarlyBirdDeadlinePassed.value,
+);
+const isSoldOutEarlyBirdAfterParty = computed(
+  () => import.meta.vfFeatures.soldOutEarlyBirdAfterParty || isSoldOutEarlyBird.value,
+);
 const isSoldOutGeneral = import.meta.vfFeatures.soldOutGeneral;
 const isSoldOutHandsOn = import.meta.vfFeatures.soldOutHandsOn;
 const isSoldOutIndividualSponsor = import.meta.vfFeatures.soldOutIndividualSponsor;
 
 const isLoading = ref(false);
+const nameBadgeCallbackUrl =
+  localeRoute({
+    name: "ticket",
+    query: { redirect: NAME_BADGE_REDIRECT_QUERY },
+  })?.fullPath ?? `/ticket?redirect=${NAME_BADGE_REDIRECT_QUERY}`;
 
 async function handleClockGoogleSignIn() {
   isLoading.value = true;
-  await signIn("google", { callbackUrl: "/ticket" }).finally(() => {
+  await signIn("google", { callbackUrl: nameBadgeCallbackUrl }).finally(() => {
     isLoading.value = false;
   });
 }
 
 async function handleClockGitHubSignIn() {
   isLoading.value = true;
-  await signIn("github", { callbackUrl: "/ticket" }).finally(() => {
+  await signIn("github", { callbackUrl: nameBadgeCallbackUrl }).finally(() => {
     isLoading.value = false;
   });
 }
@@ -70,6 +108,7 @@ useSeoMeta({
     <VFSection id="ticket-type" :title="t('ticket.type')" class="ticket-type">
       <div class="description">
         <p>{{ t("ticket.typeDescription1") }}</p>
+        <p v-if="!isSoldOutEarlyBird">{{ t("ticket.typeDescription2") }}</p>
       </div>
 
       <section class="general-tickets">
@@ -99,7 +138,7 @@ useSeoMeta({
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{ Number(t("ticket.generalTicket.earlyPrice")).toLocaleString() }}
+                    >{{ formatPrice(TICKET.prices.general.early) }}
                   </span>
                   <span v-if="isSoldOutEarlyBird" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -113,7 +152,7 @@ useSeoMeta({
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{ Number(t("ticket.generalTicket.standardPrice")).toLocaleString() }}
+                    >{{ formatPrice(TICKET.prices.general.standard) }}
                   </span>
                   <span v-if="isSoldOutGeneral" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -148,7 +187,7 @@ useSeoMeta({
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{ Number(t("ticket.afterPartyTicket.earlyPrice")).toLocaleString() }}
+                    >{{ formatPrice(TICKET.prices.afterParty.early) }}
                   </span>
                   <span v-if="isSoldOutEarlyBirdAfterParty" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -165,7 +204,7 @@ useSeoMeta({
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{ Number(t("ticket.afterPartyTicket.standardPrice")).toLocaleString() }}
+                    >{{ formatPrice(TICKET.prices.afterParty.standard) }}
                   </span>
                   <span v-if="isSoldOutAfterParty" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -194,7 +233,7 @@ useSeoMeta({
                     <span class="ticket-badge-price-unit" :class="locale">{{
                       t("ticket.priceUnit")
                     }}</span
-                    >{{ Number(t("ticket.handsOn.price")).toLocaleString() }}
+                    >{{ formatPrice(TICKET.prices.handsOn) }}
                   </span>
                   <span v-if="isSoldOutHandsOn" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -225,10 +264,12 @@ useSeoMeta({
                     class="ticket-badge-price-value"
                     :class="{ 'sold-out': isSoldOutIndividualSponsor }"
                   >
-                    <span class="ticket-badge-price-unit" :class="locale">{{
-                      t("ticket.priceUnit")
-                    }}</span
-                    >{{ Number(t("ticket.individual.price")).toLocaleString() }}
+                    <span
+                      v-if="TICKET.prices.individualSponsor !== null"
+                      class="ticket-badge-price-unit"
+                      :class="locale"
+                      >{{ t("ticket.priceUnit") }}</span
+                    >{{ formatPrice(TICKET.prices.individualSponsor) }}
                   </span>
                   <span v-if="isSoldOutIndividualSponsor" class="sold-out-label">{{
                     t("ticket.soldOut")
@@ -251,7 +292,7 @@ useSeoMeta({
       </section>
 
       <div class="buy-ticket-button-wrapper">
-        <VFButton class="buy-ticket-button" link="https://vuefes2026.peatix.com/view" external>
+        <VFButton class="buy-ticket-button" :link="TICKET.url" external>
           {{ t("ticket.buy") }}
         </VFButton>
       </div>
@@ -275,18 +316,14 @@ useSeoMeta({
 
       <i18n-t keypath="nameBadge.description" tag="p" class="name-badge-description">
         <template #ticketName>
-          <a href="https://vuefes2026.peatix.com/view" target="_blank">
+          <a :href="TICKET.url" target="_blank">
             {{ t("nameBadge.ticketName") }}
           </a>
         </template>
       </i18n-t>
-      <i18n-t keypath="nameBadge.deadlineDescription" tag="p" class="name-badge-description">
-        <template #correction>
-          <del>
-            {{ t("nameBadge.correction") }}
-          </del>
-        </template>
-      </i18n-t>
+      <p class="name-badge-description">
+        {{ t("nameBadge.deadlineDescription", { deadline: nameBadgeEditingDeadline }) }}
+      </p>
       <p class="name-badge-attention">
         {{ t("nameBadge.attention") }}
       </p>
@@ -331,11 +368,27 @@ useSeoMeta({
     </VFSection>
 
     <VFSection id="hands-on" :title="t('handsOn.title')" class="hands-on">
-      <component :is="locale === 'ja' ? JaHandsOnTicket : EnHandsOnTicket" />
+      <component :is="locale === 'ja' ? JaHandsOnEvent : EnHandsOnEvent">
+        <template #images>
+          <div class="image-list">
+            <img
+              v-for="(item, index) in handsOnImageList"
+              :key="index"
+              :src="item.src"
+              :alt="item.alt"
+              loading="lazy"
+            />
+          </div>
+        </template>
+      </component>
     </VFSection>
 
     <VFSection id="faq" :title="t('faq.title')" class="faq">
-      <component :is="locale === 'ja' ? JaFaq : EnFaq" />
+      <component :is="locale === 'ja' ? JaFaq : EnFaq">
+        <template #early-bird-deadline>{{ earlyBirdDeadline }}</template>
+        <template #cancellation-deadline>{{ cancellationDeadline }}</template>
+        <template #cancellation-date>{{ cancellationDate }}</template>
+      </component>
     </VFSection>
   </div>
 </template>
@@ -583,8 +636,7 @@ useSeoMeta({
     }
   }
 
-  .individual-sponsor,
-  .hands-on {
+  .individual-sponsor {
     :deep(.individual-sponsor-list) {
       display: flex;
       flex-direction: column;
@@ -633,7 +685,7 @@ useSeoMeta({
       }
     }
 
-    :deep(.individual-sponsor-divider) {
+    :deep([data-vf-mdc] > hr) {
       width: 100%;
       border: 0;
       border-top: 1px solid var(--color-divider);
@@ -643,28 +695,33 @@ useSeoMeta({
         margin: 1.5rem 0;
       }
     }
+  }
 
-    :deep(.hands-on-title) {
+  .hands-on {
+    :deep([data-vf-mdc] ul:not([class])) {
+      padding-inline-start: 1.5rem;
+      list-style-type: disc;
+    }
+
+    .image-list {
+      --size: 180px;
       margin-top: 32px;
-    }
-
-    :deep(.hands-on-images) {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 32px 0;
+      justify-items: center;
+      grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
+      row-gap: 10px;
+      column-gap: 10px;
 
-      @media (--mobile-small) {
-        grid-template-columns: repeat(2, 1fr);
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
       }
-    }
 
-    :deep(.hands-on-image) {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      border: 1px solid var(--color-divider-light);
+      @media (--mobile) {
+        --size: 150px;
+        margin-top: 24px;
+      }
     }
   }
 }

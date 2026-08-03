@@ -100,7 +100,7 @@ const ctaConfigs: ComputedRef<Record<NonNullable<typeof viewedCta>, CtaConfig>> 
   ticket: {
     props: {
       actionButton: {
-        label: t("ticket.details"),
+        label: t("ticket.purchase"),
         link: localeRoute({ name: "ticket" }).path,
       },
       openerText: "Ticket",

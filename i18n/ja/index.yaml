@@ -26,35 +26,28 @@ messageCoverImageAlt: Vue Fes Japan 2026ロゴ
 
 ticket:
   title: "チケット"
-  details: "チケット詳細"
+  purchase: "チケット購入"
   coverImageAlt: "チケット販売"
   viewTicketDetails: "チケットの詳細を見る"
   type: "チケット種別"
   typeDescription1: "一般チケットはアフターパーティーあり/なしの2種類があります。オプションとしてハンズオン、個人スポンサーのチケットもご用意しております。"
+  typeDescription2: "8/31（月）23:59までにご購入いただくと、オトクなお値段になる早割もありますので、お買い求めはお早めに！"
   early: "早割"
   standard: "通常"
   priceUnit: "￥"
-  # TODO: 2026年度のチケット価格を確定する
+  priceTbd: "TBD"
   generalTicket:
     title: "一般チケット"
-    earlyPrice: "TBD"
-    standardPrice: "TBD"
   afterPartyTicket:
     title: "一般＋アフターパーティーチケット"
-    earlyPrice: "TBD"
-    standardPrice: "TBD"
   option: オプション
   handsOn:
     title: "ハンズオン"
-    # TODO: 2026年度のハンズオン価格を確定する
-    price: "TBD"
     attention1: "※ Vue Fes Japanへのご参加には、一般チケットも必要となります。"
     attention2: "※ 詳しくは{about}をご覧ください。"
     about: "ハンズオンについて"
   individual:
     sponsor: "個人スポンサー"
-    # TODO: 2026年度の個人スポンサー価格を確定する
-    price: "TBD"
     attention1: "※ Vue Fes Japanへのご参加には、一般チケットも必要となります。"
     attention2: "※ 詳しくは{about}をご覧ください。"
     about: "個人スポンサーについて"
@@ -64,11 +57,8 @@ ticket:
 nameBadge:
   title: "ネームカード"
   description: "{ticketName}をご購入後、必要な情報をご登録いただくと、当日会場にてご自身のアバター＋名前入りのネームカードがもらえます！（要ソーシャルログイン）"
-  # TODO: 2026年度のチケット情報を確定する
-  ticketName: "TBD"
-  # TODO: 2026年度のネームカード編集期限を確定する
-  deadlineDescription: "TBD"
-  correction: ""
+  ticketName: "Vue Fes Japan 2026 のチケット"
+  deadlineDescription: "ネームカード編集期限：{deadline}"
   attention: "※ネームカード作成は必須ではありません。"
   coverImageAlt: "ネームカードイメージ画像"
   confirm: 自分のネームカードを確認する
@@ -95,6 +85,7 @@ nameBadge:
         emoji: "絵文字は使用できません"
     avatarImage:
       label: "アバター"
+      accountImage: "ログインアカウントの画像"
       placeholder: "ファイルを選択"
       description: "※.jpgもしくは .pngのみ可能です。5MB以下の画像を選択してください。"
       error:

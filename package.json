@@ -54,6 +54,7 @@
     "openapi-fetch": "^0.17.0",
     "openapi-typescript": "^7.8.0",
     "satori": "^0.26.0",
+    "sharp": "^0.34.5",
     "textlint": "^15.2.2",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-rule-preset-vuejs-jp": "github:vuejs-jp/textlint-rule-preset-vuejs-jp",

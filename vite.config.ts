@@ -175,6 +175,10 @@ export default defineConfig({
         command: "node scripts/terraform/run.ts apply:ci",
         cache: false,
       },
+      "generate:cover-images": {
+        command: "node scripts/generate-cover-images.ts",
+        cache: false,
+      },
     },
   },
   lint: {

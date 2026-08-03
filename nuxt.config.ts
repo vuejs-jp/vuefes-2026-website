@@ -109,10 +109,10 @@ const featureFlags = {
 
   // --- 8月初: チケット販売開始 ---
   // ネームカード登録、特商法ページ、個人スポンサー募集も含む
-  ticketSales: false, // チケット販売セクション/ページ
-  ctaTicket: false, // チケットCTA表示
-  nameBadgeRegistration: false, // ネームカード登録機能
-  tokushoPage: false, // 特定商取引法に基づく表示ページ
+  ticketSales: true, // チケット販売セクション/ページ
+  ctaTicket: true, // チケットCTA表示
+  nameBadgeRegistration: true, // ネームカード登録機能
+  tokushoPage: true, // 特定商取引法に基づく表示ページ
   individualSponsor: false, // 個人スポンサー募集
 
   // --- 8月初〜中: ストア、イベント（ハンズオン以外） ---
