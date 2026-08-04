@@ -264,7 +264,7 @@ photo:
     reception: "受付"
     creativeWall: "クリエイティブウォール"
     installation: "インスタレーション"
-    hacomonoTrack: "FitFits with hacomonoトラック"
+    hacomonoTrack: "hacomonoトラック"
     matesTrack: "メイツトラック"
     futureArchitectTrack: "フューチャーアーキテクトトラック"
     cyberAgentTrack: "サイバーエージェントトラック"
@@ -318,7 +318,7 @@ timetable:
   title: "タイムテーブル"
   description: "Vue Fes Japan 2026のタイムテーブルです。"
   track:
-    track1: "名称検討中トラック"
+    track1: "hacomonoトラック"
     track2: "Vueトラック"
     track3: "サイボウズトラック"
     track4: "メドピアトラック"
@@ -392,7 +392,7 @@ myTimetable:
   copyFailed: "クリップボードにコピーできませんでした。もう一度お試しください。"
 venueMap:
   title: "会場マップ"
-  alt: "会場のフロアマップ。1階にスポンサーブース、サイバーエージェントトラック、フューチャーアーキテクトトラックがあり、2階にメイツトラックとFitFits with hacomonoトラックがあります。入口や受付、休憩スペースの位置が確認できるマップです。"
+  alt: "会場のフロアマップ。1階にスポンサーブース、サイバーエージェントトラック、フューチャーアーキテクトトラックがあり、2階にメイツトラックとhacomonoトラックがあります。入口や受付、休憩スペースの位置が確認できるマップです。"
   openInNewTab: "別タブで開きます。"
 relatedEvents:
   title: "Related Events"

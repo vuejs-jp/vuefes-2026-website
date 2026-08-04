@@ -265,7 +265,7 @@ photo:
     reception: "Reception"
     creativeWall: "Creative Wall"
     installation: "Installation"
-    hacomonoTrack: "FitFits with hacomono Track"
+    hacomonoTrack: "hacomono Track"
     matesTrack: "Mates Track"
     futureArchitectTrack: "Future Architect Track"
     cyberAgentTrack: "CyberAgent Track"
@@ -319,7 +319,7 @@ timetable:
   title: "Timetable"
   description: "This is the timetable for Vue Fes Japan 2026."
   track:
-    track1: "TBD Track"
+    track1: "hacomono Track"
     track2: "Vue Track"
     track3: "Cybozu Track"
     track4: "MedPeer Track"
@@ -394,7 +394,7 @@ myTimetable:
   copyFailed: "Could not copy to the clipboard. Please try again."
 venueMap:
   title: "Venue Map"
-  alt: "A floor map of the venue. The first floor includes the Sponsor Booth, the CyberAgent Track, and the Future Architect Track. The second floor features the mates Track and the FitFits with hacomono Track. The map shows the locations of the entrance, reception, and rest areas."
+  alt: "A floor map of the venue. The first floor includes the Sponsor Booth, the CyberAgent Track, and the Future Architect Track. The second floor features the mates Track and the hacomono Track. The map shows the locations of the entrance, reception, and rest areas."
   openInNewTab: "Opens in a new browser tab."
 relatedEvents:
   title: "Related Events"
