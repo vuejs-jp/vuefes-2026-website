@@ -428,7 +428,7 @@ const CFP_SPEAKERS: SpeakerData[] = [
     ja: {
       name: "jp-knj",
       title: "デザインエンジニア",
-      affiliation: "Plaid, Inc.",
+      affiliation: "株式会社プレイド",
     },
     en: {
       name: "jp-knj",
