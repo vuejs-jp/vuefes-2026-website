@@ -252,7 +252,7 @@ useSeoMeta({
   background-color: var(--color-white-transparent);
   backdrop-filter: blur(8px);
 
-  @media (--mobile) {
+  @media (--mobile-wide) {
     position: static;
     gap: 8px;
   }
