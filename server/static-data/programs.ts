@@ -108,8 +108,16 @@ export const SESSION_PROGRAMS = definePrograms([
     tracks: ["track1"],
     start: "12:50",
     end: "13:20",
-    ja: { title: "TBD", overview: "" },
-    en: { title: "TBD", overview: "" },
+    ja: {
+      title: "Type-Safe URLs",
+      overview:
+        "Vue Routerの次期バージョンでは、URLを完全に型付けされた状態（state）として扱います。本セッションでは、パス、クエリ文字列、ハッシュからパラメータを抽出・変換・バリデーションし、生の文字列を数値やオブジェクトなど、アプリケーションが必要とするあらゆる形へと変える方法を紹介します。",
+    },
+    en: {
+      title: "Type-Safe URLs",
+      overview:
+        "Vue Router's next version treats your URL as fully typed state. Learn how to extract, transform, and validate parameters from paths, query strings, and hashes, turning raw strings into numbers, objects, or anything your app needs.",
+    },
   },
   {
     id: "session-2",
@@ -176,8 +184,16 @@ export const SESSION_PROGRAMS = definePrograms([
     tracks: ["track2"],
     start: "13:35",
     end: "14:05",
-    ja: { title: "Vite-plus (仮)", overview: "" },
-    en: { title: "Vite-plus (TBD)", overview: "" },
+    ja: {
+      title: "Vite Task’s Cache Magic",
+      overview:
+        "従来のタスクキャッシュでは、開発者が入力と出力を手作業で宣言する必要があり、その宣言を正しく保ち続けるのは面倒な作業です。\n\nVite Task（Vite+のタスクランナー）は、こうした手作業を減らし、キャッシュを魔法のように正確に保つことを目指しています。本セッションでは、そのキャッシュシステムを支える考え方を解説し、その使いやすさと正確さをライブデモでお見せします。",
+    },
+    en: {
+      title: "Vite Task’s Cache Magic",
+      overview:
+        "With traditional task caching, developers declare inputs and outputs by hand. Keeping those declarations correct is tedious.\n\nVite Task (the task runner in Vite+) tries to reduce that manual work and magically keep the cache accurate. In this talk, I will explain the ideas behind its caching system and show live demos to show its ease of use and accuracy.",
+    },
   },
   {
     id: "session-6",
