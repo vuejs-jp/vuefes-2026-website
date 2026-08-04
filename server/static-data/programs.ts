@@ -415,8 +415,16 @@ export const SESSION_PROGRAMS = definePrograms([
     tracks: ["track2"],
     start: "16:55",
     end: "17:25",
-    ja: { title: "TBD", overview: "" },
-    en: { title: "TBD", overview: "" },
+    ja: {
+      title: "ブランドのためのWebGLアニメーション（仮）",
+      overview:
+        "WebGLアニメーションは、Webサイトを華やかにするだけでなく、ブランドの個性や世界観を視覚的に伝えるための手段でもあります。\n\n本トークでは、WebGL Developerとしてこれまで約10年間携わってきたプロジェクトの事例を紹介しながら、ブランドのためのWebGLアニメーションがどのように作られるのかをお話しします。\n\nデザイナーが描くコンセプトや抽象的なイメージを理解し、それを形、色、動き、インタラクションへと落とし込む過程。デザイナーが調整できる範囲と、開発者が管理する範囲の設計。そして、実際のWebサイトとして成立させるために、表現の品質とパフォーマンスの境界をどのように判断するか。実制作で考えてきたことを、事例とともに紹介します。\n\nこちらのセッションの内容は当日までに変わる可能性があります。",
+    },
+    en: {
+      title: "WebGL Animation for Brands (Tentative)",
+      overview:
+        "WebGL animation isn't just about making websites look impressive — it's also a means of visually communicating a brand's personality and worldview.\n\nIn this talk, drawing on examples from projects I've worked on over roughly a decade as a WebGL developer, I'll share how WebGL animation for brands actually gets made.\n\nThe process of understanding a designer's concepts and abstract imagery, and translating them into shape, color, motion, and interaction. Designing the boundary between what designers can adjust and what developers manage. And how to judge the line between expressive quality and performance in order to make it all work as a real website. I'll introduce what I've thought through in actual production work, together with concrete examples.\n\nThe content of this session is subject to change before the day of the event.",
+    },
   },
   {
     id: "session-18",
