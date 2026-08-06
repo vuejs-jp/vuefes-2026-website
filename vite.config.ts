@@ -96,6 +96,10 @@ export default defineConfig({
         command: "drizzle-kit migrate",
         cache: false,
       },
+      "sync-role": {
+        command: "node scripts/admin/sync-role/main.ts",
+        cache: false,
+      },
       "peatix-api-gen": {
         command: "node scripts/peatix-api-gen.ts",
         cache: false,
