@@ -419,6 +419,7 @@ words:
   - ebookjapan
   - bookfan
   - minato
+  - optim
 ignorePaths:
   - dist
   - node_modules

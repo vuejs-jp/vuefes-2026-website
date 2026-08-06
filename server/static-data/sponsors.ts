@@ -652,6 +652,26 @@ const SPONSORS_OPTION_ONLY: SponsorData[] = [
       description: "",
     },
   },
+  {
+    id: "optim",
+    plan: "option-only",
+    option: ["student-support-mini"],
+    logoImageUrl: "/images/sponsor-logo/option-only/optim.png",
+    ja: {
+      name: "株式会社オプティム",
+      linkUrl:
+        "https://www.optim.co.jp/?utm_source=event&utm_medium=referral&utm_campaign=Vuefes2026",
+      logoImageAlt: "株式会社オプティム ロゴ",
+      description: "",
+    },
+    en: {
+      name: "OPTiM Corp.",
+      linkUrl:
+        "https://www.optim.com/?utm_source=event&utm_medium=referral&utm_campaign=Vuefes2026",
+      logoImageAlt: "OPTiM Corporation Logo",
+      description: "",
+    },
+  },
 ];
 const SPONSORS_CREATIVE: SponsorData[] = [];
 const SPONSORS_INDIVIDUAL: string[] = [];
