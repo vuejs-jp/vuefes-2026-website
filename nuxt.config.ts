@@ -172,6 +172,7 @@ export default defineNuxtConfig({
     "nuxt-typed-router",
     "@sidebase/nuxt-auth",
     "nuxt-og-image",
+    "@vizejs/nuxt",
   ],
 
   $production: {
@@ -364,6 +365,11 @@ export default defineNuxtConfig({
           enablePeriodically: false,
           enableOnWindowFocus: false,
         },
+  },
+
+  vize: {
+    compiler: false,
+    lint: false,
   },
 
   hooks: {

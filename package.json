@@ -12,8 +12,10 @@
     "prepare": "vp config"
   },
   "dependencies": {
+    "@vizejs/nuxt": "^0.345.0",
     "html-to-image": "^1.11.13",
-    "temporal-polyfill-lite": "^0.4.2"
+    "temporal-polyfill-lite": "^0.4.2",
+    "vize": "^0.345.0"
   },
   "devDependencies": {
     "@auth/drizzle-adapter": "^1.10.0",
@@ -53,6 +55,7 @@
     "nuxt-typed-router": "4.0.7",
     "openapi-fetch": "^0.17.0",
     "openapi-typescript": "^7.8.0",
+    "oxlint-plugin-vize": "^0.345.0",
     "satori": "^0.26.0",
     "sharp": "^0.34.5",
     "textlint": "^15.2.2",
