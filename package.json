@@ -33,7 +33,7 @@
     "@sidebase/nuxt-auth": "1.0.0",
     "@tresjs/core": "^5.8.3",
     "@types/node": "^25.5.0",
-    "@types/three": "^0.185.1",
+    "@types/three": "^0.185.4",
     "@unhead/vue": "^3.2.1",
     "@vueuse/core": "^14.2.1",
     "cspell": "^10.0.1",
