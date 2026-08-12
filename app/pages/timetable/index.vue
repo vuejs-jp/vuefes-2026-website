@@ -21,7 +21,7 @@ import {
   useHead,
   useI18n,
   useRuntimeConfig,
-  useSeoMeta,
+  usePageSeoMeta,
   useWithBase,
   computed,
   useLocalePath,
@@ -66,12 +66,10 @@ function toggleSelection(ids: MyTimetableSelectionId[]) {
 
 useScrollPosition("timetableScrollPosition");
 
-useSeoMeta({
+usePageSeoMeta({
   title: () => `Vue Fes Japan 2026 - ${t("timetable.title")}`,
-  ogImage: `${runtimeConfig.public.siteUrl}images/og/timetable.png`,
-  ogTitle: () => `Vue Fes Japan 2026 - ${t("timetable.title")}`,
+  image: `${runtimeConfig.public.siteUrl}images/og/timetable.png`,
   description: () => t("timetable.description"),
-  ogDescription: () => t("timetable.description"),
 });
 </script>
 

@@ -10,7 +10,6 @@ import {
   // NOTE: import useHead to avoid `useHead is not defined` error
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
   defineAsyncComponent,
 } from "#imports";
 
@@ -116,7 +115,7 @@ const SectionStaff = import.meta.vfFeatures.staff
   ? defineAsyncComponent(() => import("./_components/SectionStaff.vue"))
   : null;
 
-useSeoMeta({ title: "" });
+useHead({ title: "" });
 </script>
 
 <template>

@@ -14,7 +14,7 @@ import {
   useWithBase,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
 } from "#imports";
 import {
   VFButton,
@@ -91,10 +91,9 @@ async function handleClockGitHubSignIn() {
   });
 }
 
-useSeoMeta({
+usePageSeoMeta({
   title: t("ticket.title"),
-  ogImage: `${runtimeConfig.public.siteUrl}images/og/ticket.png`,
-  ogTitle: t("ticket.title"),
+  image: `${runtimeConfig.public.siteUrl}images/og/ticket.png`,
 });
 </script>
 

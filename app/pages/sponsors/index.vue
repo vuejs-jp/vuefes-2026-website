@@ -9,7 +9,7 @@ import {
   useRuntimeConfig,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
   useFetch,
 } from "#imports";
 import { VFSection } from "#components";
@@ -27,10 +27,9 @@ const hasSponsors = (sponsors?: unknown[] | null): boolean => (sponsors?.length 
 const hasOptionSponsors = (options?: OptionSponsor[] | null): boolean =>
   options?.some((option) => option.data.length > 0) ?? false;
 
-useSeoMeta({
+usePageSeoMeta({
   title: t("sponsors.title"),
-  ogImage: `${runtimeConfig.public.siteUrl}images/og/sponsors.png`,
-  ogTitle: t("sponsors.title"),
+  image: `${runtimeConfig.public.siteUrl}images/og/sponsors.png`,
 });
 </script>
 

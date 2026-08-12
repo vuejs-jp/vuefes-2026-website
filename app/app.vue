@@ -2,7 +2,7 @@
 import "~/assets/styles/main.css";
 import { useAutoThemeChanger } from "./stores/animation";
 
-import { useI18n, useHead, useSeoMeta } from "#imports";
+import { useI18n, useHead, usePageSeoMeta } from "#imports";
 import { NuxtPage, NuxtRouteAnnouncer } from "#components";
 
 const { t } = useI18n();
@@ -13,12 +13,11 @@ const description = () => t("nuxtSiteConfig.description");
 const ogImage = "https://vuefes.jp/2026/og-image.png";
 
 useHead({ templateParams: { separator: "-" } });
-useSeoMeta({
+usePageSeoMeta({
   titleTemplate: title,
-  ogImage,
-  ogTitle: title,
+  socialTitle: title,
   description,
-  ogDescription: description,
+  image: ogImage,
 });
 
 useAutoThemeChanger();

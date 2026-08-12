@@ -7,7 +7,7 @@ import {
   useRuntimeConfig,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
   useFetch,
 } from "#imports";
 
@@ -36,10 +36,9 @@ const dateOption = computed(() =>
       },
 );
 
-useSeoMeta({
+usePageSeoMeta({
   title: t("relatedEvents.sectionTitle"),
-  ogImage: `${runtimeConfig.public.siteUrl}images/og/related-events.png`,
-  ogTitle: t("relatedEvents.sectionTitle"),
+  image: `${runtimeConfig.public.siteUrl}images/og/related-events.png`,
 });
 </script>
 

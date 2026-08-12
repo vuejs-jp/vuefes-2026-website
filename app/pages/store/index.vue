@@ -10,7 +10,7 @@ import {
   // NOTE: import useHead to avoid `useHead is not defined` error
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
   useFetch,
 } from "#imports";
 import { VFSection, JaStore, EnStore } from "#components";
@@ -27,12 +27,10 @@ const { data: goodsData } = await useFetch<Goods[]>("/api/goods", {
 const goods = computed(() => goodsData.value ?? []);
 const indent = computed(() => (locale.value === "en" ? "0.7em" : "0.25em"));
 
-useSeoMeta({
+usePageSeoMeta({
   title: t("store.title"),
-  ogImage: `${runtimeConfig.public.siteUrl}images/og/store.png`,
-  ogTitle: t("store.title"),
+  image: `${runtimeConfig.public.siteUrl}images/og/store.png`,
   description: t("store.description"),
-  ogDescription: t("store.description"),
 });
 </script>
 

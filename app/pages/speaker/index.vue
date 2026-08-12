@@ -14,7 +14,7 @@ import {
   defineRouteRules,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
   useI18n,
   useRuntimeConfig,
   useQueryHashSync,
@@ -65,24 +65,16 @@ const route = useRoute();
 
 useQueryHashSync({ queryKey: "section" });
 
-useSeoMeta({
+usePageSeoMeta({
   title: () =>
     route.query.section === SectionId.PanelDiscussion
       ? t("event.panel.talkTitle")
       : t("speakers.title"),
-  ogImage: () =>
+  image: () =>
     route.query.section === SectionId.PanelDiscussion
       ? `${runtimeConfig.public.siteUrl}images/og/panel-discussion.png`
       : `${runtimeConfig.public.siteUrl}images/og/speaker.png`,
-  ogTitle: () =>
-    route.query.section === SectionId.PanelDiscussion
-      ? t("event.panel.talkTitle")
-      : t("speakers.title"),
   description: () =>
-    route.query.section === SectionId.PanelDiscussion
-      ? t("event.panel.talkDescription")
-      : t("speakers.description"),
-  ogDescription: () =>
     route.query.section === SectionId.PanelDiscussion
       ? t("event.panel.talkDescription")
       : t("speakers.description"),

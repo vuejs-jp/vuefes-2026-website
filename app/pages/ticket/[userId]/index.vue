@@ -12,7 +12,7 @@ import {
   useHead,
   useI18n,
   useRuntimeConfig,
-  useSeoMeta,
+  usePageSeoMeta,
 } from "#imports";
 
 import { VFNameBadgePreview, VFSection, VFToast } from "#components";
@@ -45,17 +45,12 @@ defineOgImage("OgNameBadge", {
   lang: () => nameBadgeData.value?.lang ?? undefined,
 });
 
-useSeoMeta({
+usePageSeoMeta({
   title: () =>
     nameBadgeData.value?.role === "Sponsor"
       ? t("nameBadge.pageTitleSponsor", { sponsorName: nameBadgeData.value?.name })
       : t("nameBadge.pageTitle", { username: nameBadgeData.value?.name }),
-  ogTitle: () =>
-    nameBadgeData.value?.role === "Sponsor"
-      ? t("nameBadge.pageTitleSponsor", { sponsorName: nameBadgeData.value?.name })
-      : t("nameBadge.pageTitle", { username: nameBadgeData.value?.name }),
   description: () => t("nameBadge.pageDescription"),
-  ogDescription: () => t("nameBadge.pageDescription"),
 });
 
 function handleClickXIcon() {

@@ -12,7 +12,7 @@ import {
   useI18n,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
   useRouter,
   useFetch,
 } from "#imports";
@@ -52,11 +52,9 @@ const pageDescription = computed(
 
 const splitLines = (text?: string) => (text ? text.split("\n") : []);
 
-useSeoMeta({
+usePageSeoMeta({
   title: () => currentSpeaker.value?.name || t("speakers.title"),
-  ogTitle: () => currentSpeaker.value?.name || t("speakers.title"),
   description: () => pageDescription.value,
-  ogDescription: () => pageDescription.value,
 });
 
 defineOgImage("OgSpeaker", {

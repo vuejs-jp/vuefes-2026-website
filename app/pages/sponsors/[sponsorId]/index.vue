@@ -13,7 +13,7 @@ import {
   useI18n,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
   nextTick,
   onMounted,
   useFetch,
@@ -126,9 +126,9 @@ const currentSponsor = computed((): SponsorWithPlan | undefined =>
   sponsors.value.find((sponsor) => sponsor.id === route.params.sponsorId),
 );
 
-useSeoMeta({
+usePageSeoMeta({
   title: () => `${currentSponsor.value?.name || t("sponsors.title")}`,
-  ogTitle: () => `Vue Fes Japan 2026 - ${currentSponsor.value?.name || t("sponsors.title")}`,
+  socialTitle: () => `Vue Fes Japan 2026 - ${currentSponsor.value?.name || t("sponsors.title")}`,
 });
 
 defineOgImage("OgSponsor", {

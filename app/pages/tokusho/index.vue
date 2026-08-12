@@ -7,7 +7,7 @@ import {
   // NOTE: import useHead to avoid `useHead is not defined` error
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
   useLocalePath,
   useRuntimeConfig,
 } from "#imports";
@@ -19,9 +19,9 @@ const { locale, t } = useI18n();
 
 const localePath = useLocalePath();
 
-useSeoMeta({
+usePageSeoMeta({
   title: t("transactions"),
-  ogImage: `${runtimeConfig.public.siteUrl}images/og/tokusho.png`,
+  image: `${runtimeConfig.public.siteUrl}images/og/tokusho.png`,
 });
 </script>
 

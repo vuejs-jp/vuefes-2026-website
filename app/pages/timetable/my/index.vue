@@ -37,7 +37,7 @@ import {
   useLocalePath,
   useRoute,
   useRuntimeConfig,
-  useSeoMeta,
+  usePageSeoMeta,
   watch,
 } from "#imports";
 
@@ -177,12 +177,10 @@ watch(
   { immediate: true },
 );
 
-useSeoMeta({
+usePageSeoMeta({
   title: () => `Vue Fes Japan 2026 - ${pageTitle.value}`,
-  ogImage: `${runtimeConfig.public.siteUrl}images/og/timetable.png`,
-  ogTitle: () => `Vue Fes Japan 2026 - ${pageTitle.value}`,
+  image: `${runtimeConfig.public.siteUrl}images/og/timetable.png`,
   description: () => t("myTimetable.description"),
-  ogDescription: () => t("myTimetable.description"),
 });
 
 if (ogSelection) {

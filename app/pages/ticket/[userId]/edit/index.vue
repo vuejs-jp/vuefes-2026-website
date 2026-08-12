@@ -14,7 +14,7 @@ import {
   useI18n,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
-  useSeoMeta,
+  usePageSeoMeta,
   useRoute,
 } from "#imports";
 
@@ -25,8 +25,7 @@ import { NAME_BADGE_PREVIEW_LAYOUT } from "~/composables/useNameBadgePreview";
 
 const { t } = useI18n();
 const title = () => `${t("nuxtSiteConfig.name")} %separator %s`;
-useSeoMeta({
-  ogTitle: title,
+usePageSeoMeta({
   title,
 });
 
