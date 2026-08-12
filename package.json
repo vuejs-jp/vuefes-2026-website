@@ -19,8 +19,8 @@
   },
   "devDependencies": {
     "@auth/drizzle-adapter": "^1.10.0",
-    "@aws-sdk/client-s3": "^3.842.0",
-    "@aws-sdk/s3-request-presigner": "^3.842.0",
+    "@aws-sdk/client-s3": "^3.1106.0",
+    "@aws-sdk/s3-request-presigner": "^3.1106.0",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/scripts": "0.13.2",
