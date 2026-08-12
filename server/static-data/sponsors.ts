@@ -506,6 +506,23 @@ const SPONSORS_BRONZE: SponsorData[] = [
       description: "",
     },
   },
+  {
+    id: "about-the-engineer",
+    plan: "bronze",
+    logoImageUrl: "/images/sponsor-logo/bronze/about-the-engineer.png",
+    ja: {
+      name: "合同会社AboutTheEngineer",
+      linkUrl: "https://abouttheengineer.com",
+      logoImageAlt: "合同会社About The Engineer",
+      description: "",
+    },
+    en: {
+      name: "About The Engineer, LLC",
+      linkUrl: "https://abouttheengineer.com",
+      logoImageAlt: "About The Engineer, LLC",
+      description: "",
+    },
+  },
 ];
 const SPONSORS_OPTION_ONLY: SponsorData[] = [
   {
