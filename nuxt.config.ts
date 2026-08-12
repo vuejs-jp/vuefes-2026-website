@@ -116,7 +116,7 @@ const featureFlags = {
   individualSponsor: false, // 個人スポンサー募集
 
   // --- 8月初〜中: ストア、イベント（ハンズオン以外） ---
-  store: false, // ストアセクション/ページ
+  store: true, // ストアセクション/ページ
 
   // --- 随時公開 ---
   staff: false, // スタッフ一覧

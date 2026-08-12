@@ -1,3 +1,2 @@
-<!-- TODO: 2026 年度のストア情報を追加する -->
-
-TBD
+The Vue Fes Store is back this year with exclusive original Vue Fes Japan merchandise.
+Pick up your favorites and help make Vue Fes Japan even more exciting!

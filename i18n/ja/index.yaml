@@ -401,12 +401,13 @@ relatedEvents:
 
 store:
   title: "Vue Fes Store"
-  description: "Vue Fes Japan限定オリジナルグッズをお買い求めいただけるVue Fes Storeが今年も登場。今回はサイトおよびロゴのリブランディングに伴い、グッズのデザインを一新しました。オリジナルグッズを揃えて、Vue Fes Japanを盛り上げましょう！"
-  coverImageAlt: "Check the items! のテキストとともにVue Fes Japan 2026の公式グッズが並んでいる。黒いパーカー、ロゴ入りTシャツ、青紫オレンジのマーブル柄のラバーバンド、ポストカードが写っている。"
+  description: "Vue Fes Japan限定オリジナルグッズをお買い求めいただけるVue Fes Storeが今年も登場。オリジナルグッズを揃えて、Vue Fes Japanを盛り上げましょう！"
+  coverImageAlt: "Check the items! のテキストとともにVue Fes Japan 2026の公式グッズが並んでいる。黒いTシャツ、オリーブ色のパーカー、MagSafeシール、タンブラー、チャーム、ケーブルバンドが写っている。"
   panel:
     title: "ストア"
   preOrder: "予約注文する"
   color: "カラー： "
   material: "素材： "
-  size: "サイズ: "
-  view: "ストアを見る"
+  capacity: "容量： "
+  size: "サイズ： "
+  view: "グッズを見る"

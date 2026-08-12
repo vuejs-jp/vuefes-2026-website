@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useLocaleRoute } from "@typed-router";
 import { HOME_HEADING_ID } from "~/constant";
 import { useCoverImage, useI18n } from "#imports";
 import { VFSection, JaCheckTheItems, EnCheckTheItems } from "#components";
 
 const coverImage = useCoverImage();
 const { locale, t } = useI18n();
+const localeRoute = useLocaleRoute();
 </script>
 
 <template>
@@ -21,8 +23,8 @@ const { locale, t } = useI18n();
   >
     <component :is="locale === 'ja' ? JaCheckTheItems : EnCheckTheItems" />
     <div class="button-container">
-      <VFButton link="https://vuejs-jp.stores.jp">
-        {{ t("store.preOrder") }}
+      <VFButton :link="localeRoute('/store')">
+        {{ t("store.view") }}
       </VFButton>
     </div>
   </VFSection>

@@ -6,9 +6,11 @@ export interface GoodsLocaleFields {
 export interface GoodsSpecsLocaleFields {
   color?: string;
   material?: string;
+  size?: string;
 }
 
 export interface GoodsSpecsData {
+  capacity?: string;
   size?: string;
   ja: GoodsSpecsLocaleFields;
   en: GoodsSpecsLocaleFields;
@@ -32,6 +34,7 @@ export interface Goods {
   specs: {
     color?: string;
     material?: string;
+    capacity?: string;
     size?: string;
   };
 }

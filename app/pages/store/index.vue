@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Goods } from "~~/server/static-data/types/goods";
 import StorePreOrderButton from "./_components/StorePreOrderButton.vue";
 import StoreItemCard from "./_components/StoreItemCard.vue";
 import {
@@ -19,7 +20,7 @@ const { t, locale } = useI18n();
 
 const runtimeConfig = useRuntimeConfig();
 
-const { data: goodsData } = await useFetch("/api/goods", {
+const { data: goodsData } = await useFetch<Goods[]>("/api/goods", {
   query: { locale },
 });
 
@@ -42,9 +43,7 @@ useSeoMeta({
     <VFSection :title="t('store.panel.title')">
       <component :is="locale === 'ja' ? JaStore : EnStore">
         <template #button>
-          <div class="store-button-container">
-            <StorePreOrderButton />
-          </div>
+          <StorePreOrderButton />
         </template>
         <template #goods>
           <ul class="store-item-list">
@@ -78,7 +77,7 @@ useSeoMeta({
     }
   }
 
-  .store-button-container {
+  :deep(.store-button-slot) {
     text-align: center;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
@@ -100,7 +99,7 @@ useSeoMeta({
     }
   }
 
-  :deep(.divider) {
+  :deep(hr) {
     border: 0;
     border-top: 1px solid var(--color-divider);
     margin: 2rem 0;

@@ -138,11 +138,11 @@ useSeoMeta({ title: "" });
       <!-- イベント -->
       <SectionEvent v-if="SectionEvent" />
 
-      <!-- チケット -->
-      <SectionGetYourTicket v-if="SectionGetYourTicket" />
-
       <!-- ストア -->
       <SectionGrabYourGear v-if="SectionGrabYourGear" />
+
+      <!-- チケット -->
+      <SectionGetYourTicket v-if="SectionGetYourTicket" />
 
       <!-- スポンサー一覧 -->
       <SectionSponsors v-if="SectionSponsors" />

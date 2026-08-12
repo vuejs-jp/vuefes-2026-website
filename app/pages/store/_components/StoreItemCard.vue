@@ -37,6 +37,9 @@ const formatPrice = (price: number) => {
           <p v-if="item.specs.material" class="spec-item">
             {{ t("store.material") }}{{ item.specs.material }}
           </p>
+          <p v-if="item.specs.capacity" class="spec-item">
+            {{ t("store.capacity") }}{{ item.specs.capacity }}
+          </p>
           <p v-if="item.specs.size" class="spec-item">{{ t("store.size") }}{{ item.specs.size }}</p>
         </div>
       </div>
@@ -60,10 +63,26 @@ const formatPrice = (price: number) => {
   row-gap: 0.25rem;
 }
 
+.item-image {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    content: "";
+    box-shadow: inset 0 0 0 1px var(--color-divider);
+    pointer-events: none;
+  }
+}
+
 .item-image img {
+  display: block;
   width: 100%;
   height: 100%;
-  aspect-ratio: 1 / 1;
   object-fit: contain;
 }
 
