@@ -56,6 +56,13 @@ export const TICKET = {
     },
   },
   nameBadge: {
-    editingDeadline: "2026年9月下旬ごろ（詳細は確定次第、掲載します）",
+    editingDeadline: {
+      year: 2026,
+      month: 9,
+      day: 15,
+      hour: 23,
+      minute: 59,
+      timeZone: "Asia/Tokyo",
+    },
   },
 } as const satisfies Ticket;
