@@ -452,6 +452,25 @@ const SPONSORS_SILVER: SponsorData[] = [
         "istyle, Inc. operates @cosme, a leading beauty platform, along with E-commerce and physical stores. By leveraging consumer data, we strive to build a new cross-organizational infrastructure that empowers innovative services.",
     },
   },
+  {
+    id: "alpaca-connect",
+    plan: "silver",
+    logoImageUrl: "/images/sponsor-logo/silver/alpaca-connect.png",
+    ja: {
+      name: "株式会社アルパカコネクト",
+      linkUrl: "https://alpaca-connect.com",
+      logoImageAlt: "株式会社アルパカコネクトのロゴ",
+      description:
+        "キャラクターとクリエイターをつなぐプレイ・バイ・ウェブ（PBW）サービス「アルパカコネクト」を開発・運営。Vue.jsを活用し、物語やイラスト、ボイス、ロールプレイを通じた豊かな創作体験を提供します。",
+    },
+    en: {
+      name: "Alpaca Connect, Inc.",
+      linkUrl: "https://alpaca-connect.com",
+      logoImageAlt: "ALPACA CONNECT CO., LTD.",
+      description:
+        "Alpaca Connect develops and operates a Play-by-Web (PBW) platform where stories, artwork, voice, and role-playing come together. Built with Vue.js, we strive to create a seamless and engaging creative experience for our community.",
+    },
+  },
 ];
 const SPONSORS_BRONZE: SponsorData[] = [
   {
