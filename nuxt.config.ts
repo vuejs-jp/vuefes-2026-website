@@ -102,7 +102,7 @@ const featureFlags = {
   // --- この間のいつか: タイムテーブル、CFPスピーカー、イベント（ハンズオン）、スポンサー ---
   // イベントは最低限ハンズオンは必須（チケットが別なので）、スピーカー一覧もあれば better
   timetable: true, // タイムテーブル表示
-  timetableVenueMap: false, // タイムテーブルページの会場マップ表示
+  timetableVenueMap: true, // タイムテーブルページの会場マップ表示
   separateSpeakingType: false, // スピーカー一覧で登壇形式によるセクション分けを行う
   cfpSpeakerList: false, // CFPスピーカー一覧表示
   eventPage: true, // イベントページ有効化（ハンズオン必須）
