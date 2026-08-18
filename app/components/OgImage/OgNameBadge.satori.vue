@@ -135,8 +135,7 @@ const nameTransform = computed(() => {
         left: '60%',
         color: variants.color,
         fontSize: '1.5rem',
-        fontWeight: 'bold',
-        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
+        fontFamily: 'OgIBMPlexSansJP-SemiBold, OgJetBrainsMono-Regular',
         transform: nameTransform,
         transformOrigin: 'left center',
         whiteSpace: 'nowrap',
@@ -155,8 +154,7 @@ const nameTransform = computed(() => {
         transform: 'translateX(-50%)',
         color: variants.color,
         fontSize: '1.5rem',
-        fontWeight: 'bold',
-        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
+        fontFamily: 'OgIBMPlexSansJP-SemiBold, OgJetBrainsMono-Regular',
       }"
     >
       {{ lang }}
