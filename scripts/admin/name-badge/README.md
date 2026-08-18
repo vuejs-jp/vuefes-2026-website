@@ -58,10 +58,36 @@ const data: NameBadgeInput[] = [
 export default data;
 ```
 
+### 3. Compress Images Larger Than 5 MB
+
+The script overwrites JPEG and PNG files of 5 MB or more in place. It adjusts the quality based on
+the encoded file size and selects the result closest to 5 MB without exceeding it.
+
+When no path is specified, all images in `input/img` are processed.
+
+```bash
+pnpm dlx tsx scripts/admin/name-badge/compress-images.ts
+```
+
+To process specific files or directories, pass their paths as arguments.
+
+```bash
+pnpm dlx tsx scripts/admin/name-badge/compress-images.ts path/to/avatar.png path/to/images
+```
+
 ## Execution
+
+When no env file is specified, `.env` in the current directory is loaded.
 
 ```bash
 pnpm dlx tsx scripts/admin/name-badge/main.ts
+```
+
+To use a different env file, pass it as a positional argument or with `--env-file` (`-e`).
+
+```bash
+pnpm dlx tsx scripts/admin/name-badge/main.ts .env.prod
+pnpm dlx tsx scripts/admin/name-badge/main.ts --env-file .env.prod
 ```
 
 ## Notes

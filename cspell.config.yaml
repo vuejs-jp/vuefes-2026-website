@@ -13,8 +13,8 @@ words:
   - allspeed
   - Alvarosabu
   - andpad
-  - aoshi
   - Aose
+  - aoshi
   - arisa
   - arounds
   - astrotyotogood
@@ -27,19 +27,20 @@ words:
   - Backes
   - barai
   - bengo
+  - bookfan
   - bsky
   - Bucky
-  - burio
   - bunx
+  - burio
   - ceroan
   - chau
   - chibivue
   - chiyoda
   - choco
   - chooseicon
+  - Classmethod
   - cloudflarestorage
   - cloudsign
-  - Classmethod
   - coderabbit
   - codmon
   - Colada
@@ -67,8 +68,9 @@ words:
   - desumasu
   - dominikg
   - drumath
-  - Elysia
+  - ebookjapan
   - Eluwing
+  - Elysia
   - embla
   - emscripten
   - esbenp
@@ -80,11 +82,11 @@ words:
   - fract
   - frontends
   - ftechno
-  - Fukuda
   - fujimmm
   - Fujimoto
   - Fujishiro
   - FUJITA
+  - Fukuda
   - Furukawa
   - gaearon
   - genj
@@ -97,8 +99,8 @@ words:
   - hackz
   - hacomono
   - hakshu
-  - Hanako
   - Hanabusa
+  - Hanako
   - hannoeru
   - hanzomon
   - Haoqun
@@ -154,8 +156,8 @@ words:
   - kazupon
   - kazuya
   - keigo
-  - Keisuke
   - keihin
+  - Keisuke
   - Kettmeir
   - keystyle
   - kgierke
@@ -167,15 +169,15 @@ words:
   - Kobari
   - kodomon
   - Kogure
-  - kokoe
   - koki
+  - kokoe
   - Kongkeit
   - Kota
   - kotafujishiro
   - kouki
+  - Koutaro
   - koya
   - koyasaeki
-  - Koutaro
   - ktsn
   - ktym
   - kurawa
@@ -188,19 +190,20 @@ words:
   - lightshow
   - Livesense
   - livestreaming
+  - LIXIL
   - lockfiles
   - Lokalise
-  - LIXIL
   - lycorp
   - magcho
+  - Markuplint
   - MagSafe
   - marunouchi
   - Masato
   - matcha
-  - Markuplint
   - medpeer
   - metalness
   - mew-ton
+  - minato
   - misaki
   - mita
   - miura
@@ -214,6 +217,7 @@ words:
   - Moriguin
   - morishita
   - Morote
+  - mozjpeg
   - Murata
   - NAGAI
   - naitokosuke
@@ -253,6 +257,7 @@ words:
   - odan
   - ogawa
   - Okuyama
+  - optim
   - Osame
   - otemachi
   - oxfmt
@@ -276,8 +281,6 @@ words:
   - rebranded
   - regle
   - reinit
-  - substep
-  - substeps
   - Rinchoku
   - ritogk
   - RIZAP
@@ -302,9 +305,9 @@ words:
   - SCXML
   - senbei
   - Seyschab
+  - Shigeyuki
   - shiminori
   - shimizu
-  - Shigeyuki
   - Shingo
   - shinkansen
   - Shota
@@ -317,6 +320,8 @@ words:
   - ssssota
   - stockmark
   - studist
+  - substep
+  - substeps
   - sugiura
   - sumi
   - suminagashi
@@ -395,10 +400,10 @@ words:
   - yamanote
   - yappli
   - Yasunobu
+  - ykoizumi
   - Yogo
   - yoshiya
   - Yosuke
-  - ykoizumi
   - Yuhei
   - Yuichi
   - yuichkun
@@ -418,10 +423,6 @@ words:
   - zeiri
   - Zeirishi
   - ZOZO
-  - ebookjapan
-  - bookfan
-  - minato
-  - optim
 ignorePaths:
   - dist
   - node_modules

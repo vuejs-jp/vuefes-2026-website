@@ -1,12 +1,50 @@
 import { randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
+import { resolve } from "node:path";
+import { parseArgs } from "node:util";
 import { and, eq } from "drizzle-orm";
 import dotenv from "dotenv";
 import { DeleteObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { db } from "../../../server/db/orm";
 import { attendees, users } from "../../../server/db/schema";
 
-dotenv.config();
+const { positionals, values } = parseArgs({
+  allowPositionals: true,
+  options: {
+    "env-file": {
+      short: "e",
+      type: "string",
+    },
+    help: {
+      short: "h",
+      type: "boolean",
+    },
+  },
+});
+
+if (values.help) {
+  console.log(`Usage:
+  pnpm dlx tsx scripts/admin/name-badge/main.ts [env-file]
+  pnpm dlx tsx scripts/admin/name-badge/main.ts --env-file <path>
+
+If env-file is omitted, dotenv loads .env from the current directory.`);
+  process.exit(0);
+}
+
+if (positionals.length > 1 || (values["env-file"] && positionals.length > 0)) {
+  throw new Error("Specify exactly one env file, either as an argument or with --env-file.");
+}
+
+const envFile = values["env-file"] ?? positionals[0];
+const envPath = envFile ? resolve(process.cwd(), envFile) : undefined;
+const envResult = dotenv.config({
+  path: envPath,
+  quiet: true,
+});
+
+if (envPath && envResult.error) {
+  throw new Error(`Failed to load env file: ${envPath}`, { cause: envResult.error });
+}
 
 // Initialize S3 client for Cloudflare R2
 const R2_ENDPOINT = `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`;
@@ -155,11 +193,13 @@ await (async function main() {
         },
       })
       .from(users)
-      .where(eq(users.name, it.name))
-      .rightJoin(attendees, eq(users.id, attendees.userId));
+      .rightJoin(attendees, eq(users.id, attendees.userId))
+      .where(and(eq(users.name, it.name), eq(attendees.role, it.role)));
 
     if (existingUser) {
-      console.warn(`[Warn] User with name "${it.name}" already exists. Skipping...`);
+      console.warn(
+        `[Warn] User with name "${it.name}" and role "${it.role}" already exists. Skipping...`,
+      );
       return;
     }
 
