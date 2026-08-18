@@ -38,7 +38,7 @@ const shareUrl = new URL(
   useRuntimeConfig().public.siteUrl,
 ).toString();
 const { data: nameBadgeData } = await useFetch(`/api/name-badge/${route.params.userId}`);
-defineOgImage("OgNameBadge", {
+defineOgImage("OgNameBadgeSatori", {
   name: () => nameBadgeData.value?.name ?? undefined,
   userRole: () => nameBadgeData.value?.role ?? undefined,
   avatarImageUrl: () => nameBadgeData.value?.avatarUrl,

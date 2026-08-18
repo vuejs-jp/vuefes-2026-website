@@ -184,7 +184,7 @@ usePageSeoMeta({
 });
 
 if (ogSelection) {
-  defineOgImage("OgMyTimetable", {
+  defineOgImage("OgMyTimetableSatori", {
     selection: ogSelection,
     locale: locale.value === "en" ? "en" : "ja",
   });
