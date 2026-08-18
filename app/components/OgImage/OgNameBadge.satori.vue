@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, useRuntimeConfig } from "#imports";
 import { resolveOgImageUrl } from "./utils";
+import { formatNameBadgeLanguages } from "~/utils/formatNameBadgeLanguages";
 
-const { name, userRole, avatarImageUrl } = defineProps<{
+const { name, userRole, avatarImageUrl, lang } = defineProps<{
   name?: string;
   userRole?: "Attendee" | "Attendee+Party" | "Sponsor" | "Speaker" | "Staff";
   avatarImageUrl?: string;
@@ -13,6 +14,7 @@ const runtimeConfig = useRuntimeConfig();
 const avatarImageFullUrl = computed(() =>
   avatarImageUrl ? resolveOgImageUrl(runtimeConfig.siteUrl, avatarImageUrl) : undefined,
 );
+const formattedLanguages = computed(() => formatNameBadgeLanguages(lang));
 
 const variants = computed(() => {
   switch (userRole) {
@@ -145,19 +147,22 @@ const nameTransform = computed(() => {
     </div>
 
     <div
-      v-if="userRole === 'Staff' && lang"
+      v-if="userRole === 'Staff' && formattedLanguages"
       id="name-badge-lang"
       :style="{
         position: 'absolute',
-        top: '49%',
-        left: '82.5%',
-        transform: 'translateX(-50%)',
+        top: '50%',
+        right: '9.7%',
+        transform: 'translateY(-50%)',
         color: variants.color,
         fontSize: '1.5rem',
-        fontFamily: 'OgIBMPlexSansJP-SemiBold, OgJetBrainsMono-Regular',
+        fontWeight: 400,
+        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
+        lineHeight: 1,
+        whiteSpace: 'nowrap',
       }"
     >
-      {{ lang }}
+      {{ formattedLanguages }}
     </div>
 
     <div

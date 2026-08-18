@@ -149,9 +149,9 @@ export const NAME_BADGE_PREVIEW_TEXT_TUNING = {
   nameXRatio: 0.0413,
   nameYRatio: 0.353,
   nameFontRatio: 0.062,
-  langXRatio: 0.75,
-  langYRatio: 0.49,
-  langFontRatio: 0.037,
+  langXRatio: 0.96,
+  langYRatio: 0.5,
+  langFontRatio: 0.056,
 } as const;
 
 export const NAME_BADGE_PREVIEW_AVATAR_TUNING = {

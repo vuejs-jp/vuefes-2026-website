@@ -5,6 +5,7 @@ import { computed, onBeforeUnmount, ref, toRef, watch, type Ref } from "vue";
 import { useTresCamera } from "~/composables/useTresCamera";
 import { useTresObject3D } from "~/composables/useTresObject3D";
 import { useWithBase } from "~/composables/useWithBase";
+import { formatNameBadgeLanguages } from "~/utils/formatNameBadgeLanguages";
 import type {
   NameBadgePreviewCameraMotionSnapshot,
   NameBadgePreviewPropRefs,
@@ -1083,13 +1084,14 @@ function createTextureModel(params: {
     ctx.fillText(params.props.name.value, 0, 0);
     ctx.restore();
 
-    if (params.props.userRole.value === "Staff" && params.props.lang.value) {
+    const formattedLanguages = formatNameBadgeLanguages(params.props.lang.value);
+    if (params.props.userRole.value === "Staff" && formattedLanguages) {
       ctx.fillStyle = params.layout.variants.value.color;
-      ctx.font = `${Math.round(h * NAME_BADGE_PREVIEW_TEXT_TUNING.langFontRatio)}px JetBrainsMono-Regular, IBMPlexSansJP-Regular, sans-serif`;
-      ctx.textAlign = "center";
+      ctx.font = `400 ${Math.round(h * NAME_BADGE_PREVIEW_TEXT_TUNING.langFontRatio)}px JetBrainsMono-Regular, IBMPlexSansJP-Regular, sans-serif`;
+      ctx.textAlign = "right";
       ctx.textBaseline = "middle";
       ctx.fillText(
-        params.props.lang.value,
+        formattedLanguages,
         w * NAME_BADGE_PREVIEW_TEXT_TUNING.langXRatio,
         h * NAME_BADGE_PREVIEW_TEXT_TUNING.langYRatio,
       );
