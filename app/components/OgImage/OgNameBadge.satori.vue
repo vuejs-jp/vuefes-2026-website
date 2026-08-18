@@ -157,7 +157,7 @@ const nameTransform = computed(() => {
         color: variants.color,
         fontSize: '1.5rem',
         fontWeight: 400,
-        fontFamily: 'OgJetBrainsMono-Regular, OgIBMPlexSansJP-Regular',
+        fontFamily: 'OgIBMPlexSansJP-SemiBold, OgJetBrainsMono-Regular',
         lineHeight: 1,
         whiteSpace: 'nowrap',
       }"
