@@ -51,7 +51,7 @@
     "nitropack": "^2.12.4",
     "node-fetch": "^3.3.2",
     "nuxt": "^4.5.0",
-    "nuxt-og-image": "^6.7.2",
+    "nuxt-og-image": "^6.7.8",
     "nuxt-typed-router": "4.0.7",
     "openapi-fetch": "^0.17.0",
     "openapi-typescript": "^7.8.0",
