@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { TresCanvas } from "@tresjs/core";
-import { useNameBadgePreview, type NameBadgePreviewProps } from "~/composables/useNameBadgePreview";
+import { useNameBadgePreview, type NameBadgePreviewProps } from "./useNameBadgePreview";
 import * as THREE from "three";
 
 const props = defineProps<NameBadgePreviewProps>();

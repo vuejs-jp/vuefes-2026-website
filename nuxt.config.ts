@@ -220,7 +220,7 @@ export default defineNuxtConfig({
       siteUrl: publicSiteUrl,
     },
   },
-  components: [{ path: "~/components", pathPrefix: false }],
+  components: [{ path: "~/components", pathPrefix: false, extensions: ["vue"] }],
   imports: { autoImport: false },
   devtools: { enabled: true },
   app: {

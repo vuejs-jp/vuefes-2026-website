@@ -21,7 +21,7 @@ import {
 import type { VFFile } from "~/components/form/VFFileInput.vue";
 import { VFFileInput, VFNameBadgePreview, VFSection, VFToast } from "#components";
 import { useToast } from "~/components/toast/VFToast.vue";
-import { NAME_BADGE_PREVIEW_LAYOUT } from "~/composables/useNameBadgePreview";
+import { NAME_BADGE_PREVIEW_LAYOUT } from "~/components/nameBadge/useNameBadgePreview";
 
 const { t } = useI18n();
 const title = () => `${t("nuxtSiteConfig.name")} %separator %s`;
