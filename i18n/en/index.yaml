@@ -330,7 +330,7 @@ timetable:
   opening: "Opening"
   keynote: "Keynote"
   platinumSponsorSession: "Platinum Sponsor Session"
-  lunchSponsorLightningTalk: "Lunch Sponsor LT"
+  lunchSponsorLightningTalk: "Lunch Sponsor Session"
   lunchTime: "Lunch Time"
   studentSupportProgram: "Student Support Content"
   studentSupportSponsorSession: "Student Support Sponsor Session"

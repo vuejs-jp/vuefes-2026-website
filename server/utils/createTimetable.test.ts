@@ -59,13 +59,20 @@ describe("createTimetable", () => {
     );
   });
 
-  it("omits unpublished lunch sponsor lightning talks", () => {
+  it("includes the published lunch sponsor lightning talk as a single program", () => {
     const timetable = createTimetable("ja");
+    const lunchSponsorLightningTalk = timetable.items.find(
+      (item) => item.id === "lightningTalk-11:40-11:45-track3",
+    );
 
-    expect(
-      timetable.items.some((item) =>
-        item.programs.some((program) => program.id.startsWith("lunch-sponsor-lt-")),
-      ),
-    ).toBe(false);
+    expect(lunchSponsorLightningTalk).toMatchObject({
+      type: "lightningTalk",
+      tracks: ["track3"],
+      start: "11:40",
+      end: "11:45",
+      heading: "ランチスポンサーセッション",
+      programs: [{ id: "lunch-sponsor-lt-1", title: "TBD" }],
+    });
+    expect(lunchSponsorLightningTalk?.programs).toHaveLength(1);
   });
 });

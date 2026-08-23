@@ -448,16 +448,16 @@ export const SESSION_PROGRAMS = definePrograms([
 ]);
 
 export const LIGHTNING_TALK_PROGRAMS = definePrograms([
-  // {
-  //   id: "lunch-sponsor-lt-1",
-  //   type: "lightningTalk",
-  //   speakerIds: [],
-  //   tracks: ["track3"],
-  //   start: "11:40",
-  //   end: "11:45",
-  //   ja: { title: "TBD" },
-  //   en: { title: "TBD" },
-  // },
+  {
+    id: "lunch-sponsor-lt-1",
+    type: "lightningTalk",
+    speakerIds: [],
+    tracks: ["track3"],
+    start: "11:40",
+    end: "11:45",
+    ja: { title: "TBD" },
+    en: { title: "TBD" },
+  },
   // {
   //   id: "lunch-sponsor-lt-2",
   //   type: "lightningTalk",

@@ -179,21 +179,21 @@ export function createTimetable(locale: "ja" | "en" = "ja"): TimetableResponse {
 
       return item;
     })(),
-    // (() => {
-    //   const program = getProgram("lunch-sponsor-lt-1");
+    (() => {
+      const program = getProgram("lunch-sponsor-lt-1");
 
-    //   const item: TimetableItem = {
-    //     id: [program.type, program.start, program.end, ...program.tracks].join("-"),
-    //     type: "lightningTalk",
-    //     tracks: program.tracks,
-    //     start: program.start,
-    //     end: program.end,
-    //     heading: t("timetable.lunchSponsorLightningTalk"),
-    //     programs: [program],
-    //   };
+      const item: TimetableItem = {
+        id: [program.type, program.start, program.end, ...program.tracks].join("-"),
+        type: "lightningTalk",
+        tracks: program.tracks,
+        start: program.start,
+        end: program.end,
+        heading: t("timetable.lunchSponsorLightningTalk"),
+        programs: [program],
+      };
 
-    //   return item;
-    // })(),
+      return item;
+    })(),
     // createBreak("11:45", "11:50", ["track3"]),
     // (() => {
     //   const program = getProgram("lunch-sponsor-lt-2");
