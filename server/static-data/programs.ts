@@ -168,12 +168,12 @@ export const SESSION_PROGRAMS = definePrograms([
     ja: {
       title: "Nuxt ContentからOxContentへ、1000ページ超のブログ基盤刷新への挑戦",
       overview:
-        "Nuxt ContentとNuxtHubを用いて1000ページ以上のブログサイトを運用する中で、ドキュメント数の増加に伴うビルドパフォーマンスの悪化やメンテナンス性が大きな課題となっていました。本セッションでは、この課題を打破するためにRust製の次世代ツールであるox-contentをNuxt 4に導入した実践記録をお話しします。\n移行にあたり、他にも様々な技術を取り入れ、検索機能や画像配信などの実用的な機能を維持しながら、SSR から SSG への移行などの最適化を実施。\n大規模な静的コンテンツ配信においてパフォーマンスと開発体験を両立させるための試行錯誤を共有します。",
+        "Nuxt ContentとNuxtHubを用いて1000ページ以上のブログサイトを運用する中で、ドキュメント数の増加に伴うパフォーマンスやメンテナンス性の悪化が大きな課題となっていました。この課題を打破するために、Rust製の次世代ツールであるOx ContentをNuxt 4サイトに導入しました。\n本セッションでは、元のNuxt 4サイトの技術構成を紹介し、そこにOx Contentを導入することで得られた成果を紹介します。また、SSRからSSGへの移行や、Nuxtから別のフレームワークへの切り替えなど、採用に至らなかったアプローチにも触れながら、技術選定の観点をお話しする予定です。\n大規模な静的コンテンツ配信における、パフォーマンスと開発体験を両立させるための試行錯誤を共有しながら、新しい技術を気軽に試せる個人開発の魅力についても伝えられればと思います。",
     },
     en: {
       title: "From Nuxt Content to OxContent: Taking on a Blog Platform Overhaul for 1,000+ Pages",
       overview:
-        "As our blog grew to more than 1,000 pages using Nuxt Content and NuxtHub, increasing build times and declining maintainability became major challenges. In this session, I'll share our hands-on experience migrating to ox-content, a next-generation Rust-based content engine, in Nuxt 4 to address these issues.\nThe migration involved more than simply replacing the content layer. We adopted several new technologies while preserving practical features such as search and image delivery, and optimized the architecture by transitioning from SSR to SSG.\nI'll walk through the technical decisions, migration process, and lessons learned from balancing performance, scalability, and developer experience for a large-scale static content site.",
+        "While operating a blog site with more than 1,000 pages using Nuxt Content and NuxtHub, worsening performance and maintainability as the number of documents grew became a major challenge. To break through this issue, I introduced Ox Content, a next-generation Rust-based tool, into our Nuxt 4 site.\nIn this session, I'll first explain the original technical architecture of the Nuxt 4 site and then share the outcomes we gained by introducing Ox Content. I'll also cover approaches we considered but did not adopt—such as moving from SSR to SSG and switching from Nuxt to another framework—through the lens of technology selection.\nBy sharing the trial-and-error behind balancing performance and developer experience in large-scale static content delivery, I also hope to highlight the appeal of personal development, where you can try new technologies with ease.",
     },
   },
   {
