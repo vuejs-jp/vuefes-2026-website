@@ -52,7 +52,11 @@ The receipts are issued by Ceroan LLC, the operations and accounting contractor 
 
 ### Will lunch be provided?
 
-**Lunch will not be provided** at Vue Fes Japan 2026. Please refer to the [lunch information around the venue](https://esa-pages.io/p/sharing/6906/posts/2044/ca629eb4d75ea7e3bd1a.html).
+A session with a free lunch giveaway by our lunch sponsor will be held in the Cybozu Track from 11:40. Lunches are available on a first-come, first-served basis and in limited quantities, so please come early if you would like one.
+
+In addition, students attending through the student support program can pick up a free lunch in the MedPeer Track from 11:30.
+
+No other lunch will be provided, so please refer to the [lunch information around the venue](https://esa-pages.io/p/sharing/6906/posts/2044/ca629eb4d75ea7e3bd1a.html). Restaurants near the venue are expected to be crowded on the day, so please allow plenty of time.
 
 You are welcome to bring your own food and beverages into the venue. If you do, please be considerate of those around you.
 
