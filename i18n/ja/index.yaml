@@ -145,6 +145,9 @@ event:
       alt4: "Vue Fes Japan 2024のハンズオンセッションで、右手にマイクを持ち、左手でスクリーンを指差しながら説明をするubugeeei。"
   studentSupport:
     title: "学生支援コンテンツ"
+  askAnythingBoard:
+    title: "なんでも相談ボード"
+    location: "2F 休憩・充電スペース"
   creativeWall:
     title: "クリエイティブウォール"
     location: "2F受付前"

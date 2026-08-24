@@ -13,6 +13,8 @@ import {
   VFSection,
   JaStudentSupportEvent,
   EnStudentSupportEvent,
+  JaAskAnythingBoard,
+  EnAskAnythingBoard,
 } from "#components";
 
 import {
@@ -38,6 +40,7 @@ const SectionId = {
   VueQuiz: "vue-quiz",
   HandsOn: "hands-on",
   StudentSupportContents: "student-support-contents",
+  AskAnythingBoard: "ask-anything-board",
   CreativeWall: "creative-wall",
   SponsorStickerRally: "sponsor-sticker-rally",
   FreeDrinks: "free-drinks",
@@ -170,6 +173,17 @@ usePageSeoMeta({
           loading="lazy"
         />
         <p>{{ t("event.sponsorBooth.description") }}</p>
+      </div>
+    </VFSection>
+
+    <VFSection
+      :id="SectionId.AskAnythingBoard"
+      :title="t('event.askAnythingBoard.title')"
+      class="vf-section"
+    >
+      <component :is="locale === 'ja' ? JaAskAnythingBoard : EnAskAnythingBoard" />
+      <div class="meta">
+        <span class="location">{{ t("event.askAnythingBoard.location") }}</span>
       </div>
     </VFSection>
 

@@ -146,6 +146,9 @@ event:
       alt4: "Ubugeeei explaining during a hands-on session at Vue Fes Japan 2024, holding a microphone in his right hand and pointing to the screen with his left."
   studentSupport:
     title: "Student Support Content"
+  askAnythingBoard:
+    title: "Ask anything board"
+    location: "2F Rest & Charging Space"
   creativeWall:
     title: "Creative Wall"
     location: "2F Reception Area"
