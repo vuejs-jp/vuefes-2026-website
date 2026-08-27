@@ -538,7 +538,7 @@ const CFP_SPEAKERS: SpeakerData[] = [
     avatarUrl: "/images/avatars/Shigeyuki-fukuda.png",
     color: "default",
     socialUrls: {
-      x: "https://x.com/uqda90",
+      x: "https://x.com/fuqda90",
       github: "https://github.com/Shigeyuki-fukuda",
     },
     ja: {
