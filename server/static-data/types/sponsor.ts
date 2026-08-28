@@ -31,6 +31,7 @@ export type Option =
   | "student-support-mini"
   | "staff-t-shirts"
   | "exhibition"
+  | "lunch"
   | "intermission-slide"
   | "job-board"
   | "media"

@@ -425,6 +425,7 @@ words:
   - zeiri
   - Zeirishi
   - ZOZO
+  - digitalvalue
 ignorePaths:
   - dist
   - node_modules

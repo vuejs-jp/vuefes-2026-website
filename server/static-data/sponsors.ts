@@ -708,6 +708,24 @@ const SPONSORS_OPTION_ONLY: SponsorData[] = [
       description: "",
     },
   },
+  {
+    id: "digitalvalue",
+    plan: "option-only",
+    option: ["lunch"],
+    logoImageUrl: "/images/sponsor-logo/option-only/digitalvalue.png",
+    ja: {
+      name: "株式会社デジタルバリュー",
+      linkUrl: "https://www.digitalvalue.co.jp/",
+      logoImageAlt: "株式会社デジタルバリューのロゴ",
+      description: "",
+    },
+    en: {
+      name: "Digital Value Co., Ltd.",
+      linkUrl: "https://www.digitalvalue.co.jp/",
+      logoImageAlt: "Digital Value Co., Ltd. Logo",
+      description: "",
+    },
+  },
 ];
 const SPONSORS_CREATIVE: SponsorData[] = [];
 const SPONSORS_INDIVIDUAL: string[] = [];
@@ -736,6 +754,7 @@ const SPONSORS_INTERMISSION_SLIDE: SponsorData[] = filterSponsorsByOption("inter
 const SPONSORS_JOB_BOARD: SponsorData[] = filterSponsorsByOption("job-board");
 const SPONSORS_MEDIA: SponsorData[] = filterSponsorsByOption("media");
 const SPONSORS_TOOL: SponsorData[] = filterSponsorsByOption("tool");
+const SPONSORS_LUNCH: SponsorData[] = filterSponsorsByOption("lunch");
 
 const SPONSORS_OPTION: OptionSponsorData[] = [
   {
@@ -777,6 +796,10 @@ const SPONSORS_OPTION: OptionSponsorData[] = [
   {
     title: "exhibitionSponsor",
     data: SPONSORS_EXHIBITION,
+  },
+  {
+    title: "lunchSponsor",
+    data: SPONSORS_LUNCH,
   },
   {
     title: "intermissionSlideSponsor",
