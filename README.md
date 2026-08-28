@@ -95,12 +95,19 @@ When the current year changes, update the redirect rules in the submodule and op
 ## Checks
 
 ```sh
-# format, lint, textlint, spell, and typecheck
+# check only staged files; installed as the pre-commit hook by `vp config`
+vp staged
+
+# format, lint, textlint, spell, and typecheck the whole repo
 vp run check
 
 # apply fixes, then re-run spell and typecheck
 vp run fix
 ```
+
+GitHub Actions CI is intentionally limited to non-draft pull requests before merge.
+It checks the PR diff through `vp run --cache check:staged`, runs cached typecheck, then runs the build without the VP task cache.
+PR preview deploys run only when a collaborator comments `/preview` or manually dispatches the workflow, so opening or updating a PR does not spend a second preview build.
 
 ## Database Migration
 

@@ -1,13 +1,27 @@
 name: CI
 
 on:
-  push:
   pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   check:
-    name: Check and Build
+    name: Pre-merge Check and Build
     runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -26,11 +40,16 @@ jobs:
       - name: Install deps
         run: vp install --frozen-lockfile
 
-      - name: Check
-        run: vp run check
+      - name: Check changed files
+        run: vp run --cache check:staged
+        env:
+          VP_STAGED_DIFF: ${{ github.event.pull_request.base.sha }}...HEAD
+
+      - name: Typecheck
+        run: vp run --cache typecheck
 
       - name: Build
-        run: vp run build
+        run: vp run --no-cache build
         env:
           APP_ENV: ci
           APP_ORIGIN: https://ci.example.com

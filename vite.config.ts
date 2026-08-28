@@ -6,6 +6,10 @@ const fmtLike = [...jsLike, "*.json", "*.yml", "*.yaml", "*.md", "*.mdc"];
 
 const textLike = ["*.md", "*.mdc"];
 
+const jsLikeGlob = "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts,vue}";
+const fmtLikeGlob = "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts,vue,json,yml,yaml,md,mdc}";
+const textLikeGlob = "*.{md,mdc}";
+
 const gitFiles = (patterns: string[]) =>
   `git ls-files -z --cached --others --exclude-standard -- ${patterns.map((pattern) => `'${pattern}'`).join(" ")}`;
 
@@ -17,12 +21,14 @@ const spell = [
   "cspell lint --file-list stdin --no-must-find-files --no-cache",
 ].join(" | ");
 
+const typecheck = "nuxi typecheck";
+
 const check = [
   runOnGitFiles("vp fmt --check", fmtLike),
   runOnGitFiles("vp lint", jsLike),
   runOnGitFiles("textlint", textLike),
   spell,
-  "nuxi typecheck",
+  typecheck,
 ].join(" && ");
 
 const fix = [
@@ -30,8 +36,21 @@ const fix = [
   runOnGitFiles("vp lint --fix", jsLike),
   runOnGitFiles("textlint --fix", textLike),
   spell,
-  "nuxi typecheck",
+  typecheck,
 ].join(" && ");
+
+const checkStaged = [
+  'if [ -n "${VP_STAGED_DIFF:-}" ]; then',
+  'vp staged --diff "$VP_STAGED_DIFF" --fail-on-changes --no-stash -p false;',
+  "else",
+  "vp staged --fail-on-changes -p false;",
+  "fi",
+].join(" ");
+
+const uncachedBuild = "vp run --no-cache build";
+
+const deployCommand = (target: string) =>
+  `${uncachedBuild} && node scripts/netlify/deploy.ts ${target}`;
 
 const buildEnv = [
   "NODE_OPTIONS",
@@ -59,14 +78,14 @@ const buildEnv = [
 
 export default defineConfig({
   staged: {
-    "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts,vue,json,yml,yaml,md,mdc}": "vp fmt",
-    "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts,vue}": "vp lint --fix",
-    "*.{md,mdc}": "textlint --fix",
+    [fmtLikeGlob]: ["vp fmt", "cspell lint --no-must-find-files --no-cache"],
+    [jsLikeGlob]: "vp lint --fix",
+    [textLikeGlob]: "textlint --fix",
   },
   run: {
     cache: {
       scripts: false,
-      tasks: false,
+      tasks: true,
     },
     tasks: {
       dev: {
@@ -83,6 +102,13 @@ export default defineConfig({
       },
       check: {
         command: check,
+      },
+      "check:staged": {
+        command: checkStaged,
+        env: ["VP_STAGED_DIFF"],
+      },
+      typecheck: {
+        command: typecheck,
       },
       fix: {
         command: fix,
@@ -121,13 +147,11 @@ export default defineConfig({
         cache: false,
       },
       deploy: {
-        command: "node scripts/netlify/deploy.ts deploy",
-        dependsOn: ["build"],
+        command: deployCommand("deploy"),
         cache: false,
       },
       "deploy:preview": {
-        command: "node scripts/netlify/deploy.ts preview",
-        dependsOn: ["build"],
+        command: deployCommand("preview"),
         cache: false,
       },
       "deploy:pr-preview": {
@@ -135,8 +159,7 @@ export default defineConfig({
         cache: false,
       },
       "deploy:release": {
-        command: "node scripts/netlify/deploy.ts release",
-        dependsOn: ["build"],
+        command: deployCommand("release"),
         cache: false,
       },
       "terraform:backend": {

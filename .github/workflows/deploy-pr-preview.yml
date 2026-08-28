@@ -1,13 +1,9 @@
 name: Deploy PR Preview
 
 on:
-  pull_request:
-    branches:
-      - main
+  issue_comment:
     types:
-      - opened
-      - synchronize
-      - reopened
+      - created
   workflow_dispatch:
     inputs:
       pr_number:
@@ -19,6 +15,13 @@ jobs:
   meta:
     name: Resolve Preview Metadata
     runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.issue.pull_request &&
+        github.event.comment.body == '/preview' &&
+        contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+      )
     outputs:
       pr_number: ${{ steps.vars.outputs.pr_number }}
       deploy_alias: ${{ steps.vars.outputs.deploy_alias }}
@@ -29,7 +32,7 @@ jobs:
       - name: Compute URLs
         id: vars
         env:
-          PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }}
+          PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.issue.number }}
           SITE_NAME: ${{ vars.NETLIFY_SITE_NAME || 'vuefes-2026' }}
         run: |
           DEPLOY_ALIAS="deploy-pr-preview-${PR_NUMBER}"
@@ -46,7 +49,6 @@ jobs:
     name: Deploy PR Preview to Netlify
     runs-on: ubuntu-latest
     needs: meta
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]')
     environment:
       name: dev
       url: ${{ needs.meta.outputs.preview_url }}
@@ -66,7 +68,7 @@ jobs:
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
-          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/pull/{0}/head', needs.meta.outputs.pr_number) || github.ref }}
+          ref: refs/pull/${{ needs.meta.outputs.pr_number }}/head
 
       - name: Setup Vite+
         uses: voidzero-dev/setup-vp@b5d848f5a62488f3d3d920f8aa6ac318a60c5f07 # v1
@@ -113,7 +115,7 @@ jobs:
     if: needs.deploy.result == 'success'
     permissions:
       contents: read
-      pull-requests: write
+      issues: write
     steps:
       - name: Comment PR
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
