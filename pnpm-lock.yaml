@@ -78,8 +78,8 @@ importers:
         specifier: ^3.2.1
         version: 3.2.1(@modelcontextprotocol/sdk@1.27.1(zod@3.25.76))(@oxc-project/types@0.143.0)(@voidzero-dev/vite-plus-core@0.1.11(@types/node@25.5.0)(esbuild@0.25.12)(jiti@2.7.0)(terser@5.49.0)(typescript@5.9.3)(yaml@2.8.3))(crossws@0.4.10(srvx@0.11.22))(esbuild@0.25.12)(lightningcss@1.31.1)(rolldown@1.2.0)(rollup@4.62.2)(typescript@5.9.3)(vue@3.6.0-beta.1(typescript@5.9.3))
       '@vueuse/core':
-        specifier: ^14.2.1
-        version: 14.2.1(vue@3.6.0-beta.1(typescript@5.9.3))
+        specifier: ^14.4.0
+        version: 14.4.0(vue@3.6.0-beta.1(typescript@5.9.3))
       cspell:
         specifier: ^10.0.1
         version: 10.0.1
@@ -5473,29 +5473,16 @@ packages:
   '@vue/shared@3.6.0-beta.1':
     resolution: {integrity: sha512-M+JCCPvuXgRGkgRYQ9LISH8eJXlQgz862OBtO2n7Ef2cyz+DgLQTGfZoNzf3WbVnNUP9/5x7/O0P1ED42IDCCw==}
 
-  '@vueuse/core@14.2.1':
-    resolution: {integrity: sha512-3vwDzV+GDUNpdegRY6kzpLm4Igptq+GA0QkJ3W61Iv27YWwW/ufSlOfgQIpN6FZRMG0mkaz4gglJRtq5SeJyIQ==}
+  '@vueuse/core@14.4.0':
+    resolution: {integrity: sha512-X4WHz1HlCzCBoYXesUkifzzWBAcZgXG8Fi5iNPQg/epdzOB3gu8Fawj3hvuwYR1nGcXGnvxwYYcUC/71++svtQ==}
     peerDependencies:
       vue: 3.6.0-beta.1
 
-  '@vueuse/core@14.3.0':
-    resolution: {integrity: sha512-aHfz47g0ZhMtTVHmIzMVpJy8ePhhOy68GY5bv110+5DVtZ+W7BsOx+m61UNQqfrWyPztIHIanWa3E2tib3NFIw==}
-    peerDependencies:
-      vue: 3.6.0-beta.1
+  '@vueuse/metadata@14.4.0':
+    resolution: {integrity: sha512-swx/255R6JyHZFJhx845iz5CRWDZdCfvkZOpACWc5+c5WHcG24mv8gUT1WIdFQaHt6dq79rvILd9QnCWiyVm9g==}
 
-  '@vueuse/metadata@14.2.1':
-    resolution: {integrity: sha512-1ButlVtj5Sb/HDtIy1HFr1VqCP4G6Ypqt5MAo0lCgjokrk2mvQKsK2uuy0vqu/Ks+sHfuHo0B9Y9jn9xKdjZsw==}
-
-  '@vueuse/metadata@14.3.0':
-    resolution: {integrity: sha512-BwxmbAzwAVF50+MW57GXOUEV61nFBGnlBvrTqj49PqWJu3uw7hdu72ztXeZ33RdZtDY6kO+bfCAE1PCn88Tktw==}
-
-  '@vueuse/shared@14.2.1':
-    resolution: {integrity: sha512-shTJncjV9JTI4oVNyF1FQonetYAiTBd+Qj7cY89SWbXSkx7gyhrgtEdF2ZAVWS1S3SHlaROO6F2IesJxQEkZBw==}
-    peerDependencies:
-      vue: 3.6.0-beta.1
-
-  '@vueuse/shared@14.3.0':
-    resolution: {integrity: sha512-bZpge9eSXwa4ToSiqJ7j6KRwhAsneMFoSz3LMWKQDkqimm3D/tbFlrklrs/IOqC8tEcYmXQZJ6N0UrjhBirVCg==}
+  '@vueuse/shared@14.4.0':
+    resolution: {integrity: sha512-JRgY90Sz8DDtPMsaDflvPMp9xYk69JZAmbuDvAquUVXKr2gEjqtzGNTTthLfckH0BzBqvnu31gb4a8TGLRe79g==}
     peerDependencies:
       vue: 3.6.0-beta.1
 
@@ -14989,7 +14976,7 @@ snapshots:
     dependencies:
       '@nuxt/kit': 4.3.1(magicast@0.5.4)
       '@unhead/vue': 3.2.1(@modelcontextprotocol/sdk@1.27.1(zod@3.25.76))(@oxc-project/types@0.143.0)(@voidzero-dev/vite-plus-core@0.1.11(@types/node@25.5.0)(esbuild@0.25.12)(jiti@2.7.0)(terser@5.49.0)(typescript@5.9.3)(yaml@2.8.3))(crossws@0.4.10(srvx@0.11.22))(esbuild@0.25.12)(lightningcss@1.31.1)(rolldown@1.2.0)(rollup@4.62.2)(typescript@5.9.3)(vue@3.6.0-beta.1(typescript@5.9.3))
-      '@vueuse/core': 14.2.1(vue@3.6.0-beta.1(typescript@5.9.3))
+      '@vueuse/core': 14.4.0(vue@3.6.0-beta.1(typescript@5.9.3))
       consola: 3.4.2
       defu: 6.1.4
       h3: 1.15.5
@@ -16893,7 +16880,7 @@ snapshots:
     dependencies:
       '@pmndrs/pointer-events': 6.6.30
       '@vue/devtools-api': 8.1.5
-      '@vueuse/core': 14.3.0(vue@3.6.0-beta.1(typescript@5.9.3))
+      '@vueuse/core': 14.4.0(vue@3.6.0-beta.1(typescript@5.9.3))
       radashi: 12.9.1
       three: 0.185.1
       vue: 3.6.0-beta.1(typescript@5.9.3)
@@ -17691,29 +17678,16 @@ snapshots:
 
   '@vue/shared@3.6.0-beta.1': {}
 
-  '@vueuse/core@14.2.1(vue@3.6.0-beta.1(typescript@5.9.3))':
+  '@vueuse/core@14.4.0(vue@3.6.0-beta.1(typescript@5.9.3))':
     dependencies:
       '@types/web-bluetooth': 0.0.21
-      '@vueuse/metadata': 14.2.1
-      '@vueuse/shared': 14.2.1(vue@3.6.0-beta.1(typescript@5.9.3))
+      '@vueuse/metadata': 14.4.0
+      '@vueuse/shared': 14.4.0(vue@3.6.0-beta.1(typescript@5.9.3))
       vue: 3.6.0-beta.1(typescript@5.9.3)
 
-  '@vueuse/core@14.3.0(vue@3.6.0-beta.1(typescript@5.9.3))':
-    dependencies:
-      '@types/web-bluetooth': 0.0.21
-      '@vueuse/metadata': 14.3.0
-      '@vueuse/shared': 14.3.0(vue@3.6.0-beta.1(typescript@5.9.3))
-      vue: 3.6.0-beta.1(typescript@5.9.3)
+  '@vueuse/metadata@14.4.0': {}
 
-  '@vueuse/metadata@14.2.1': {}
-
-  '@vueuse/metadata@14.3.0': {}
-
-  '@vueuse/shared@14.2.1(vue@3.6.0-beta.1(typescript@5.9.3))':
-    dependencies:
-      vue: 3.6.0-beta.1(typescript@5.9.3)
-
-  '@vueuse/shared@14.3.0(vue@3.6.0-beta.1(typescript@5.9.3))':
+  '@vueuse/shared@14.4.0(vue@3.6.0-beta.1(typescript@5.9.3))':
     dependencies:
       vue: 3.6.0-beta.1(typescript@5.9.3)
 
@@ -22093,7 +22067,7 @@ snapshots:
     dependencies:
       '@nuxt/devtools-kit': 3.2.2(@voidzero-dev/vite-plus-core@0.1.11(@types/node@25.5.0)(esbuild@0.25.12)(jiti@2.7.0)(terser@5.49.0)(typescript@5.9.3)(yaml@2.8.3))(magic-string@0.30.21)(magicast@0.5.4)(oxc-parser@0.143.0)(rolldown@1.2.0)(unplugin@3.3.0(@voidzero-dev/vite-plus-core@0.1.11(@types/node@25.5.0)(esbuild@0.25.12)(jiti@2.7.0)(terser@5.49.0)(typescript@5.9.3)(yaml@2.8.3))(esbuild@0.25.12)(rolldown@1.2.0)(rollup@4.62.2))
       '@nuxt/kit': 4.3.1(magicast@0.5.4)
-      '@vueuse/core': 14.3.0(vue@3.6.0-beta.1(typescript@5.9.3))
+      '@vueuse/core': 14.4.0(vue@3.6.0-beta.1(typescript@5.9.3))
       consola: 3.4.2
       diff: 8.0.3
       fuse.js: 7.1.0

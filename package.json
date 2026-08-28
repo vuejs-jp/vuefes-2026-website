@@ -35,7 +35,7 @@
     "@types/node": "^25.5.0",
     "@types/three": "^0.185.4",
     "@unhead/vue": "^3.2.1",
-    "@vueuse/core": "^14.2.1",
+    "@vueuse/core": "^14.4.0",
     "cspell": "^10.0.1",
     "d1-driver": "^2.0.2",
     "dotenv": "^17.0.1",
