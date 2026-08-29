@@ -144,6 +144,11 @@ event:
       alt2: "Anthony speaking at Vue Fes Japan 2024, delivering a presentation in front of a backdrop featuring the Vue Fes Japan logo and sponsor logos."
       alt3: "During a hands-on session at Vue Fes Japan 2024, participants work on their laptops while following the slides. The instructor is presenting at the front of the room."
       alt4: "Ubugeeei explaining during a hands-on session at Vue Fes Japan 2024, holding a microphone in his right hand and pointing to the screen with his left."
+  lunchSponsorSession:
+    title: "Lunch Sponsor Sessions"
+    time: "11:25–12:50"
+    image:
+      alt: "Attendees holding boxed lunches during a session at the Vue Fes Japan 2024 venue."
   studentSupport:
     title: "Student Support Content"
   askAnythingBoard:

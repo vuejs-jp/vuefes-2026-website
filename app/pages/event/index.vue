@@ -10,6 +10,8 @@ import {
   EnVueQuiz,
   JaHandsOnEvent,
   EnHandsOnEvent,
+  JaLunchSponsorSessionEvent,
+  EnLunchSponsorSessionEvent,
   VFSection,
   JaStudentSupportEvent,
   EnStudentSupportEvent,
@@ -39,6 +41,7 @@ const SectionId = {
   PanelDiscussion: "panel-discussion",
   VueQuiz: "vue-quiz",
   HandsOn: "hands-on",
+  LunchSponsorSession: "lunch-sponsor-session",
   StudentSupportContents: "student-support-contents",
   AskAnythingBoard: "ask-anything-board",
   CreativeWall: "creative-wall",
@@ -91,6 +94,11 @@ const handsOnImageList = [
   { src: withBase("/images/event/hands-on_4.jpg"), alt: t("event.handsOn.image.alt4") },
 ];
 
+const lunchSponsorSessionImage = {
+  src: withBase("/images/event/lunch-sponsor-session.png"),
+  alt: t("event.lunchSponsorSession.image.alt"),
+};
+
 const route = useRoute();
 
 useQueryHashSync({ queryKey: "section" });
@@ -133,6 +141,27 @@ usePageSeoMeta({
       <div class="meta">
         <span class="location">{{ handsOnMeta.location }}</span>
         <span class="time">{{ handsOnMeta.time }}</span>
+      </div>
+    </VFSection>
+
+    <VFSection
+      :id="SectionId.LunchSponsorSession"
+      :title="t('event.lunchSponsorSession.title')"
+      class="vf-section"
+    >
+      <div class="media-block">
+        <img
+          :src="lunchSponsorSessionImage.src"
+          :alt="lunchSponsorSessionImage.alt"
+          loading="lazy"
+        />
+        <component
+          :is="locale === 'ja' ? JaLunchSponsorSessionEvent : EnLunchSponsorSessionEvent"
+        />
+      </div>
+      <div class="meta">
+        <span class="location">{{ t("timetable.track.track3") }}</span>
+        <span class="time">{{ t("event.lunchSponsorSession.time") }}</span>
       </div>
     </VFSection>
 

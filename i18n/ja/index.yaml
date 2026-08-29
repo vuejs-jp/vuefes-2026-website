@@ -143,6 +143,11 @@ event:
       alt2: "Vue Fes Japan 2024で登壇するAnthony。Vue Fes Japanのロゴ とスポンサーのロゴが並ぶバックパネルの前で、マイク越しに発表している。"
       alt3: "Vue Fes Japan 2024のハンズオンセッション中、スライドを見ながらノートパソコンで作業する参加者たち。講師は前方で説明を行っている。"
       alt4: "Vue Fes Japan 2024のハンズオンセッションで、右手にマイクを持ち、左手でスクリーンを指差しながら説明をするubugeeei。"
+  lunchSponsorSession:
+    title: "ランチスポンサーセッション"
+    time: "11:25〜12:50"
+    image:
+      alt: "Vue Fes Japan 2024の会場で、弁当を手にセッションに参加する来場者たち。"
   studentSupport:
     title: "学生支援コンテンツ"
   askAnythingBoard:
