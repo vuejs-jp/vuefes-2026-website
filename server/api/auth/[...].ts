@@ -23,6 +23,7 @@ export default NuxtAuthHandler({
     GithubProvider.default({
       clientId: useRuntimeConfig().githubClientId,
       clientSecret: useRuntimeConfig().githubClientSecret,
+      issuer: "https://github.com/login/oauth",
     }),
     // @ts-expect-error Use .default here for it to work during SSR.
     GoogleProvider.default({
