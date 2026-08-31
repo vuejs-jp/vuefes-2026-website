@@ -260,6 +260,27 @@ const YOSUKE_FURUKAWA: SpeakerData = {
   },
 };
 
+const RE_TARO: SpeakerData = {
+  id: "re-taro",
+  avatarUrl: "/images/avatars/re-taro.jpeg",
+  color: "default",
+  socialUrls: {
+    x: "https://x.com/re_taro_",
+    bluesky: "https://bsky.app/profile/re-taro.dev",
+    github: "https://github.com/re-taro",
+  },
+  ja: {
+    name: "re-taro",
+    title: "Webテックリード",
+    affiliation: "株式会社WinTicket",
+  },
+  en: {
+    name: "re-taro",
+    title: "Web Tech Lead",
+    affiliation: "WinTicket Inc.",
+  },
+};
+
 const CFP_SPEAKERS: SpeakerData[] = [
   {
     id: "naokihaba",
@@ -737,5 +758,6 @@ export const SPEAKERS: SpeakerData[] = [
   KONGKEIT_KHUNPANITCHOT,
   YUSUKE_WADA,
   YOSUKE_FURUKAWA,
+  RE_TARO,
   ...CFP_SPEAKERS,
 ];

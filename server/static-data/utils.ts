@@ -32,19 +32,23 @@ export function resolveProgram(
   speakers: readonly SpeakerData[],
   locale: Locale,
 ): Program {
-  const { ja, en, speakerIds, ...base } = data;
+  const { ja, en, speakerIds, facilitatorIds = [], ...base } = data;
   const localeFields = locale === "ja" ? ja : en;
 
-  return {
-    ...base,
-    ...localeFields,
-    speakers: speakerIds.map((speakerId) => {
+  const resolveSpeakers = (ids: readonly string[]): Speaker[] =>
+    ids.map((speakerId) => {
       const speaker = speakers.find((candidate) => candidate.id === speakerId);
       if (!speaker) {
         throw new Error(`Speaker not found: ${speakerId}`);
       }
       return resolveSpeaker(speaker, locale);
-    }),
+    });
+
+  return {
+    ...base,
+    ...localeFields,
+    speakers: resolveSpeakers(speakerIds),
+    facilitators: resolveSpeakers(facilitatorIds),
   };
 }
 

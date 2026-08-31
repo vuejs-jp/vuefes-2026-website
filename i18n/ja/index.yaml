@@ -120,11 +120,10 @@ faq:
 
 event:
   title: "Event"
-  # TODO: 2026年度のパネルディスカッション内容を確定する
   panel:
     title: "パネルディスカッション"
-    talkTitle: "TBD"
-    talkDescription: "TBD"
+    talkTitle: "JavaScriptエコシステムの境界線を問い直す"
+    talkDescription: "ツールとツール、実装と標準、プロジェクトとコミュニティの間にある「境界線」を手がかりに、JavaScriptエコシステムの現在地とこれからについて議論します。"
   # TODO: 2026年度のVue Quiz情報を確定する
   quiz:
     title: "Vue Quiz"

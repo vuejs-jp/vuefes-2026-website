@@ -13,14 +13,16 @@ export interface Program {
   end: TimeString;
   tracks: ProgramTrack[];
   speakers: Speaker[];
+  facilitators: Speaker[];
   title?: string;
   overview?: string;
 }
 
 type LocaleFieldsKey = "title" | "overview";
 type ProgramLocaleFields = Pick<Program, LocaleFieldsKey>;
-export type ProgramData = Omit<Program, LocaleFieldsKey | "speakers"> & {
+export type ProgramData = Omit<Program, LocaleFieldsKey | "speakers" | "facilitators"> & {
   speakerIds: string[];
+  facilitatorIds?: string[];
   ja: ProgramLocaleFields;
   en: ProgramLocaleFields;
 };

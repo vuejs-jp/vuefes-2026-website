@@ -2,11 +2,13 @@ import { describe, expect, expectTypeOf, it } from "vite-plus/test";
 import {
   EVENT_PROGRAMS,
   LIGHTNING_TALK_PROGRAMS,
+  PANEL_DISCUSSION_PROGRAMS,
   PROGRAMS,
   SESSION_PROGRAMS,
   type ProgramId,
 } from "./programs";
 import { SPEAKERS } from "./speakers";
+import { resolveProgram } from "./utils";
 
 describe("speaker and program relations", () => {
   it("infers program IDs as a literal union", () => {
@@ -24,6 +26,13 @@ describe("speaker and program relations", () => {
     for (const program of PROGRAMS) {
       expect(new Set(program.speakerIds).size).toBe(program.speakerIds.length);
       expect(program.speakerIds.every((speakerId) => knownSpeakerIds.has(speakerId))).toBe(true);
+
+      const facilitatorIds = program.facilitatorIds ?? [];
+      expect(new Set(facilitatorIds).size).toBe(facilitatorIds.length);
+      expect(facilitatorIds.every((speakerId) => knownSpeakerIds.has(speakerId))).toBe(true);
+      expect(facilitatorIds.every((speakerId) => !program.speakerIds.includes(speakerId))).toBe(
+        true,
+      );
     }
   });
 
@@ -99,6 +108,31 @@ describe("speaker and program relations", () => {
         en: { title: "Student Support Lunch Meetup" },
       }),
     );
+  });
+
+  it("defines the JavaScript ecosystem panel discussion", () => {
+    expect(PANEL_DISCUSSION_PROGRAMS).toContainEqual({
+      id: "panel-discussion-1",
+      type: "panelDiscussion",
+      speakerIds: ["yyx990803", "yosuke-furukawa", "alii", "crowlKats"],
+      facilitatorIds: ["re-taro"],
+      start: "15:50",
+      end: "16:50",
+      tracks: ["track1"],
+      ja: { title: "JavaScriptエコシステムの境界線を問い直す" },
+      en: { title: "Rethinking Boundaries in the JavaScript Ecosystem" },
+    });
+
+    const panel = PANEL_DISCUSSION_PROGRAMS.find((program) => program.id === "panel-discussion-1");
+    expect(panel).toBeDefined();
+    const resolvedPanel = resolveProgram(panel!, SPEAKERS, "ja");
+    expect(resolvedPanel.speakers.map((speaker) => speaker.id)).toEqual([
+      "yyx990803",
+      "yosuke-furukawa",
+      "alii",
+      "crowlKats",
+    ]);
+    expect(resolvedPanel.facilitators.map((speaker) => speaker.id)).toEqual(["re-taro"]);
   });
 
   it("uses TBD as the platinum sponsor program title", () => {

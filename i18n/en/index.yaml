@@ -120,12 +120,11 @@ faq:
 
 event:
   title: "Event"
-  # TODO: 2026 年度のパネルディスカッション内容を確定する
   panel:
     title: "Panel Discussion"
     panelist: "Panelist"
-    talkTitle: "TBD"
-    talkDescription: "TBD"
+    talkTitle: "Rethinking Boundaries in the JavaScript Ecosystem"
+    talkDescription: "Our panelists will explore where the JavaScript ecosystem stands today and where it may be headed next, through the lens of the boundaries between tools, between implementations and standards, and between projects and communities."
   # TODO: 2026 年度の Vue Quiz 情報を確定する
   quiz:
     title: "Vue Quiz"

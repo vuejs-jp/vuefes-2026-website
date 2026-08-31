@@ -58,11 +58,11 @@ const { data: speakersData } = await useFetch("/api/speakers", {
   query: { locale },
 });
 
-const panelSpeakers = computed(
-  () =>
-    speakersData.value?.programs.find((program) => program.id === "panel-discussion")?.speakers ??
-    [],
+const panel1Program = computed(() =>
+  speakersData.value?.programs.find((program) => program.id === "panel-discussion-1"),
 );
+const panel1Facilitators = computed(() => panel1Program.value?.facilitators ?? []);
+const panel1Speakers = computed(() => panel1Program.value?.speakers ?? []);
 const studentSupportSpeakers = computed(
   () =>
     speakersData.value?.programs.find((program) => program.id === "student-support-contents")
@@ -81,9 +81,7 @@ const getProgramMeta = (programIds: string[]) => {
   };
 };
 
-const panelDiscussionMeta = computed(() =>
-  getProgramMeta(["panel-discussion-1", "panel-discussion-2"]),
-);
+const panelDiscussionMeta = computed(() => getProgramMeta(["panel-discussion-1"]));
 const handsOnMeta = computed(() => getProgramMeta(["hands-on"]));
 const studentSupportMeta = computed(() => getProgramMeta(["student-support-contents"]));
 
@@ -122,7 +120,37 @@ usePageSeoMeta({
 <template>
   <div id="pages-event">
     <h1>{{ $t("event.title") }}</h1>
-    <!-- TODO: パネルディスカッションの内容が確定したら、末尾のセクションをここへ移動する -->
+
+    <VFSection
+      :id="SectionId.PanelDiscussion"
+      :title="t('event.panel.title')"
+      class="vf-section discussion-event"
+    >
+      <component :is="locale === 'ja' ? JaPanelDiscussionEvent : EnPanelDiscussionEvent">
+        <template #speaker>
+          <ul class="speaker-list">
+            <EventSpeakerCard
+              v-for="speaker in panel1Speakers"
+              :key="speaker.id"
+              :speaker="speaker"
+            />
+          </ul>
+        </template>
+        <template #facilitator>
+          <ul class="speaker-list">
+            <EventSpeakerCard
+              v-for="speaker in panel1Facilitators"
+              :key="speaker.id"
+              :speaker="speaker"
+            />
+          </ul>
+        </template>
+      </component>
+      <div class="meta">
+        <span class="location">{{ panelDiscussionMeta.location }}</span>
+        <span class="time">{{ panelDiscussionMeta.time }}</span>
+      </div>
+    </VFSection>
 
     <VFSection :id="SectionId.HandsOn" :title="t('event.handsOn.title')" class="vf-section">
       <component :is="locale === 'ja' ? JaHandsOnEvent : EnHandsOnEvent">
@@ -223,28 +251,6 @@ usePageSeoMeta({
       <div class="media-block">
         <img src="/images/event/free-drink.jpg" :alt="t('event.freeDrink.alt')" loading="lazy" />
         <p>{{ t("event.freeDrink.description") }}</p>
-      </div>
-    </VFSection>
-
-    <VFSection
-      :id="SectionId.PanelDiscussion"
-      :title="t('event.panel.title')"
-      class="vf-section discussion-event"
-    >
-      <component :is="locale === 'ja' ? JaPanelDiscussionEvent : EnPanelDiscussionEvent">
-        <template #speaker>
-          <ul class="speaker-list">
-            <EventSpeakerCard
-              v-for="speaker in panelSpeakers"
-              :key="speaker.name"
-              :speaker="speaker"
-            />
-          </ul>
-        </template>
-      </component>
-      <div class="meta">
-        <span class="location">{{ panelDiscussionMeta.location }}</span>
-        <span class="time">{{ panelDiscussionMeta.time }}</span>
       </div>
     </VFSection>
 

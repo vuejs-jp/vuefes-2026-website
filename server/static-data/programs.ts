@@ -685,12 +685,13 @@ export const PANEL_DISCUSSION_PROGRAMS = definePrograms([
   {
     id: "panel-discussion-1",
     type: "panelDiscussion",
-    speakerIds: [],
+    speakerIds: ["yyx990803", "yosuke-furukawa", "alii", "crowlKats"],
+    facilitatorIds: ["re-taro"],
     start: "15:50",
     end: "16:50",
     tracks: ["track1"],
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: { title: "JavaScriptエコシステムの境界線を問い直す" },
+    en: { title: "Rethinking Boundaries in the JavaScript Ecosystem" },
   },
   {
     id: "panel-discussion-2",
