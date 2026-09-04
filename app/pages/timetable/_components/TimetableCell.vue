@@ -324,6 +324,7 @@ a.cell-interactive {
   gap: 0 8px;
   margin-top: 8px;
   .avatar {
+    flex-shrink: 0;
     width: 48px;
     aspect-ratio: 1;
     overflow: hidden;
