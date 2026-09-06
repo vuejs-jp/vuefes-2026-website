@@ -8,6 +8,7 @@ import {
   type ProgramId,
 } from "./programs";
 import { SPEAKERS } from "./speakers";
+import { SPONSORS } from "./sponsors";
 import { resolveProgram } from "./utils";
 
 describe("speaker and program relations", () => {
@@ -135,16 +136,71 @@ describe("speaker and program relations", () => {
     expect(resolvedPanel.facilitators.map((speaker) => speaker.id)).toEqual(["re-taro"]);
   });
 
-  it("uses TBD as the platinum sponsor program title", () => {
+  it("publishes the submitted platinum sponsor program details", () => {
     const sponsorPrograms = PROGRAMS.filter((program) =>
       program.id.startsWith("platinum-sponsor-session-"),
     );
 
     expect(sponsorPrograms).toHaveLength(6);
-    for (const program of sponsorPrograms) {
-      expect(program.ja.title).toBe("TBD");
-      expect(program.en.title).toBe("TBD");
-    }
+    expect(
+      sponsorPrograms.map((program) => ({
+        id: program.id,
+        speakerIds: program.speakerIds,
+        title: program.ja.title,
+      })),
+    ).toEqual([
+      {
+        id: "platinum-sponsor-session-1",
+        speakerIds: ["keeeeeei200"],
+        title: "デザインを開発する ~ Vueで実現するデザインプロセス改善 ~",
+      },
+      { id: "platinum-sponsor-session-2", speakerIds: [], title: "TBD" },
+      {
+        id: "platinum-sponsor-session-3",
+        speakerIds: ["yug1224"],
+        title: "契約で守るコンパウンドプロダクトのデザインシステム",
+      },
+      {
+        id: "platinum-sponsor-session-4",
+        speakerIds: ["tttttt_621_s"],
+        title: "クラウドサインを止めずに Nuxt へ、次の10年のために先に決めたこと",
+      },
+      {
+        id: "platinum-sponsor-session-5",
+        speakerIds: ["ascorbic"],
+        title: "Astro is the new WordPress",
+      },
+      {
+        id: "platinum-sponsor-session-6",
+        speakerIds: ["RyutaroYako"],
+        title: "コンポーネントのライフサイクルとグローバル状態の扱い方",
+      },
+    ]);
+  });
+
+  it("assigns platinum sponsor programs to the requested timetable slots", () => {
+    expect(
+      Object.fromEntries(SPONSORS.PLATINUM.map((sponsor) => [sponsor.id, sponsor.programIds])),
+    ).toEqual({
+      "link-and-motivation": ["platinum-sponsor-session-1"],
+      vercel: ["platinum-sponsor-session-2"],
+      "dress-code": ["platinum-sponsor-session-3"],
+      bengo4: ["platinum-sponsor-session-4"],
+      cloudflare: ["platinum-sponsor-session-5"],
+      "unique-vision": ["platinum-sponsor-session-6"],
+    });
+  });
+
+  it("assigns lunch and student support programs to their sponsors", () => {
+    expect(SPONSORS.BRONZE.find((sponsor) => sponsor.id === "i-cubed-systems")?.programIds).toEqual(
+      ["student-support-sponsor-session-1"],
+    );
+    expect(
+      SPONSORS.OPTION_ONLY.find((sponsor) => sponsor.id === "digitalvalue")?.programIds,
+    ).toEqual(["lunch-sponsor-lt-1"]);
+    expect(SPONSORS.OPTION_ONLY.find((sponsor) => sponsor.id === "supporterz")?.programIds).toEqual(
+      ["student-support-sponsor-session-2"],
+    );
   });
 
   it("defines the ten evening lightning talks", () => {

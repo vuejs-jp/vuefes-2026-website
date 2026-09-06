@@ -32,13 +32,22 @@ export const SESSION_PROGRAMS = definePrograms([
   },
   {
     id: "platinum-sponsor-session-1",
+    url: "/speaker/keeeeeei200",
     type: "session",
-    speakerIds: [],
+    speakerIds: ["keeeeeei200"],
     tracks: ["track1"],
     start: "10:55",
     end: "11:05",
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: {
+      title: "デザインを開発する ~ Vueで実現するデザインプロセス改善 ~",
+      overview:
+        "デザイナーがコードを書き、エンジニアやPdMがデザインに関わる。生成AIの進化によって、役割の境目が溶けることは前提になりつつあります。\n私もエンジニアからデザインへ踏み出した一人です。\n一方で、各ロールの担当者が成果物を翻訳し、埋め込む工程は依然として必要です。役割が広がっても、委ねきれない領域は残ります。\n\n本セッションでは、デザイナーと開発者が同じアウトプットに触れながら進めるプロトタイピング手法をご紹介します。\n稼働中のコンポーネントでプロトタイプを組むことで翻訳ロスが減り、経緯と判断を記録に残すことでAIに委ねられる範囲が広がり、見通しの立つフローになりました。\n\n開発者の視点からデザインプロセスを改善し、AI×Vue.jsでデザインエンジニアリングに挑戦してきた実践知と学びを共有します。",
+    },
+    en: {
+      title: "Developing Design: Improving the Design Process with Vue",
+      overview:
+        "Designers write code, and engineers and PdMs take part in design. With the evolution of generative AI, dissolving role boundaries are becoming the norm. I'm one of those who stepped across, moving from engineering into design.\nEven so, each role still has to translate the deliverables it receives and embed them into its own domain. However far roles expand, some work remains that can't be handed over.\n\nIn this session, I'll introduce a prototyping approach where designers and developers work on the same output together. Building prototypes from the components running in production reduces translation loss, and keeping a record of the context and decisions expands what can be delegated to AI, resulting in a workflow with far better visibility.\n\nI'll share the practical insights and lessons learned from improving the design process from a developer's perspective and taking on design engineering with AI and Vue.js.",
+    },
   },
   {
     id: "platinum-sponsor-session-2",
@@ -52,53 +61,117 @@ export const SESSION_PROGRAMS = definePrograms([
   },
   {
     id: "platinum-sponsor-session-3",
+    url: "/speaker/yug1224",
     type: "session",
-    speakerIds: [],
+    speakerIds: ["yug1224"],
     tracks: ["track1"],
     start: "11:05",
     end: "11:15",
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: {
+      title: "契約で守るコンパウンドプロダクトのデザインシステム",
+      overview:
+        "複数ドメインを跨ぐコンパウンドプロダクトでは、コンポーネントを揃えても、トークンの使い方と部品の役割がいつの間にかばらついてしまう。\n\nドキュメントに規約を書いてレビューで直す運用にしても、コードが増えると対応が追いつかなくなっていき、コンポーネントのカタログでは、そのばらつきを検査することができない。\n\nそこで我々はデザインシステムの本体をスキーマによる契約にし、Schema Driven UI によって、同じスキーマから同じフロントエンドが再現できるようにしています。\n\nトークン以外の値は型検査が落とし、レイヤーをまたぐ依存は依存検査が落とす。人間のレビューは、機械が判定できない判断に残す。契約によってフロントエンドの実装を守る話をします。",
+    },
+    en: {
+      title: "Enforcing a Design System Contract in a Compound Product",
+      overview:
+        "In a compound product that spans multiple domains, even aligned components let token usage and component roles drift before anyone notices.\n\nWriting conventions in docs and fixing them in review still cannot keep up as the codebase grows, and a component catalog cannot inspect that drift.\n\nSo we made the design system itself a schema-based contract, and with Schema-Driven UI the same schema can reproduce the same frontend.\n\nRaw values fail typecheck, and cross-layer imports fail dependency lint. Human review is left for judgments machines cannot make. This talk is about protecting frontend implementation with a contract.",
+    },
   },
   {
     id: "platinum-sponsor-session-4",
+    url: "/speaker/tttttt_621_s",
     type: "session",
-    speakerIds: [],
+    speakerIds: ["tttttt_621_s"],
     tracks: ["track2"],
     start: "11:05",
     end: "11:15",
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: {
+      title: "クラウドサインを止めずに Nuxt へ、次の10年のために先に決めたこと",
+      overview:
+        "クラウドサインは 2015 年にリリースされた、契約締結から契約書管理まで可能なクラウド型の電子契約サービスです。\n\n10 年以上動いているので止められないという前提のもと、フロントエンド刷新のため Revel Template から脱却し、Nuxt へ画面単位で移行しています。\n\n対象は約 150 画面、年単位のプロジェクトを AI と共に走っています。\n\n数年続く移行作業において、私たちはまず、チームの成功指標を機能開発のリードタイムと定め、そこから、新旧を切り替える仕組みや、移行の状態を突き合わせる検査を導きました。\n\n本セッションでは、その判断の基準と道筋をお話しします。",
+    },
+    en: {
+      title: "CloudSign to Nuxt Without Stopping: What We Decided First",
+      overview:
+        "CloudSign is a cloud-based electronic contract service launched in 2015, covering everything from contract signing to contract management.\n\nHaving run for more than ten years, it cannot be stopped. With that as a given, we are renewing its frontend, moving off Revel templates and migrating to Nuxt screen by screen.\n\nThe migration covers roughly 150 screens, a multi-year project we are running together with AI.\n\nWe began this years-long migration by defining our team’s success metric: lead time for feature development. From it, we derived the machinery for switching between the old and new apps, and the checks that verify the migration’s actual state.\n\nIn this session, we will talk about that criterion, and how the rest followed from it.",
+    },
   },
   {
     id: "platinum-sponsor-session-5",
+    url: "/speaker/ascorbic",
     type: "session",
-    speakerIds: [],
+    speakerIds: ["ascorbic"],
     tracks: ["track1"],
     start: "11:15",
     end: "11:25",
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: {
+      title: "Astro is the new WordPress",
+      overview:
+        "もしWordPressが2026年にゼロから設計されたとしたら、どのような姿になるでしょうか。\n\nWordPressは、コンテンツの公開を誰にとっても身近なものにし、拡張性とオープン性を実現したことで、現在ではWebの43％を支えています。一方で、20年前に設計されたそのアーキテクチャでは、プラグインがデータやインフラに無制限にアクセスでき、デプロイの仕組みも前時代的なものになっています。\n\nEmDashは、AstroとViteをベースに、このモデルを根本から再構築します。Astroのコンテンツファーストなアーキテクチャとホスティングの柔軟性に、サンドボックス化されたプラグイン、そして人間の編集者とAIエージェントの双方に対応したワークフローを組み合わせています。",
+    },
+    en: {
+      title: "Astro is the new WordPress",
+      overview:
+        "What would WordPress look like if it was built in 2026? It powers 43% of the web because it made publishing accessible, extensible and open. But its 20-year-old architecture gives plugins unrestricted access to data and infrastructure, and the deployment model is from another age. EmDash reimagines that model with Astro and Vite at its heart, combining Astro’s content-first architecture and hosting flexibility with sandboxed plugins and workflows for both human editors and AI agents.",
+    },
   },
   {
     id: "platinum-sponsor-session-6",
+    url: "/speaker/RyutaroYako",
     type: "session",
-    speakerIds: [],
+    speakerIds: ["RyutaroYako"],
     tracks: ["track2"],
     start: "11:15",
     end: "11:25",
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: {
+      title: "コンポーネントのライフサイクルとグローバル状態の扱い方",
+      overview:
+        "VueUse のコンポーザブルはコンポーネントの中で使われることを前提に設計されており、unmount 時に内部の処理を自動的に片付けてくれます。\n\nこれを自前のコンポーザブル内でシングルトン化すると、最初に呼んだコンポーネントが unmount されたとき、変数は残りながら中身だけが壊れるという気づきにくいバグが起こります。\n\n調査する過程で VueUse には createGlobalState というグローバルに扱うための正しい方法が用意されていることを知りました。バグを生んでしまった経験をもとに、Vue のライフサイクル下でのコンポーザブルの適切な使い方をお話しします！",
+    },
+    en: {
+      title: "Component Lifecycle and How to Handle Global State",
+      overview:
+        "VueUse composables assume they run inside a component and clean themselves up on unmount. Turning one into a singleton in your own composable creates a subtle bug: the first caller unmounts, the variable survives, but its internals silently break. VueUse has createGlobalState for exactly this case. I'll share what I learned from shipping that bug.",
+    },
   },
   {
-    id: "student-support-sponsor-session",
+    id: "student-support-sponsor-session-1",
+    url: "/speaker/takayuki-miyazaki",
     type: "session",
-    speakerIds: [],
+    speakerIds: ["takayuki-miyazaki"],
     tracks: ["track4"],
     start: "11:30",
     end: "12:00",
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: {
+      title: "新卒のキャッチアップコストから決めたNuxt 3移行",
+      overview:
+        "株式会社アイキューブドシステムズはMDM（モバイルデバイス管理）製品を開発しており、管理画面のフロントエンドにNuxtを採用しています。 新卒エンジニアが増える中で、実務で書くのはNuxt 2、一方で記事やドキュメント、生成AIはNuxt 3前提、というギャップがキャッチアップの負担になっていました。\n\n本セッションでは、そこからNuxt 3への移行を決めるまでに考えたこと、実際の移行の進め方、そして移行して初めて分かった想定外について共有します。",
+    },
+    en: {
+      title: "Onboarding Costs Drove Our Nuxt 3 Migration",
+      overview:
+        "i Cubed Systems, Inc. develops MDM (Mobile Device Management) products and uses Nuxt for the frontend of its management console.\n\nAs the number of new graduate engineers increased, we faced a growing gap: our production codebase was still on Nuxt 2, while technical articles, documentation, and generative AI were increasingly based on Nuxt 3. This gap was becoming a burden during onboarding and ramp-up.\n\nIn this session, I’ll share what we considered before deciding to migrate to Nuxt 3, how we approached the migration in practice, and the unexpected challenges we discovered along the way.",
+    },
+  },
+  {
+    id: "student-support-sponsor-session-2",
+    url: "/speaker/fuchio-gt",
+    type: "session",
+    speakerIds: ["fuchio-gt"],
+    tracks: ["track4"],
+    start: "11:30",
+    end: "12:00",
+    ja: {
+      title: "Slidevで踏み出すVueとLTの第一歩",
+      overview:
+        "サポーターズの技術スタックにVueはなく、私自身もVueを書いたことがないまま、このLTを引き受けました。何から始めたかというと、スライドです。Vue製のプレゼンテーションツールであるSlidevで投影資料そのものを作りながら、スライド作りだけでVueのどこまでに触れられるのか、未経験者がどこでつまずくのかをお話しします。あわせて、「やったことないことに手を挙げる」を繰り返してきた新卒3年目の実例として、小さな一歩目の踏み出し方をお伝えします。",
+    },
+    en: {
+      title: "A First Step into Vue and Lightning Talks with Slidev",
+      overview:
+        "Vue is not part of our tech stack at Supporterz, and I had never written Vue myself when I said yes to this talk. So where did I start? With the slides. While building this very presentation with Slidev, a Vue-powered presentation tool, I will share how far slide-making alone can take you into Vue, and where a beginner stumbles along the way. It is also the story of my first three years on the job, spent raising my hand for things I had never done, with a few tips on taking your own small first step.",
+    },
   },
   {
     id: "session-1",
@@ -450,13 +523,22 @@ export const SESSION_PROGRAMS = definePrograms([
 export const LIGHTNING_TALK_PROGRAMS = definePrograms([
   {
     id: "lunch-sponsor-lt-1",
+    url: "/speaker/masashi-ageno",
     type: "lightningTalk",
-    speakerIds: [],
+    speakerIds: ["masashi-ageno"],
     tracks: ["track3"],
     start: "11:40",
     end: "11:45",
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: {
+      title: "npmサプライチェーンが狙われた1年 ─ 金融システムで実践している防御策",
+      overview:
+        "installコマンド、恐る恐る叩いていませんか。この1年、npmエコシステムでは大規模なサプライチェーン攻撃が相次いでいます。金融領域のシステムを主に開発する当社でも、この1年で対策を進めてきました。本LTでは、当社のサプライチェーンリスクへの向き合い方と、開発プロセスへの対策の落とし込み方を5分でお話しします。VueやNuxtに限らず、npmを使うプロジェクト全般で明日から使える考え方を共有します。",
+    },
+    en: {
+      title: "A Year of npm Supply Chain Attacks: Defenses from Fintech",
+      overview:
+        "Hesitant to run npm install? This year saw major npm supply chain attacks. We build financial systems and hardened our defenses. In 5 minutes, we share our approach and how we embed it in our dev process — for any npm project, not just Vue/Nuxt.",
+    },
   },
   // {
   //   id: "lunch-sponsor-lt-2",

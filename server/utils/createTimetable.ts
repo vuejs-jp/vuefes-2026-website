@@ -165,16 +165,22 @@ export function createTimetable(locale: "ja" | "en" = "ja"): TimetableResponse {
       programs: [],
     },
     (() => {
-      const program = getProgram("student-support-sponsor-session");
+      const programs = [
+        getProgram("student-support-sponsor-session-1"),
+        getProgram("student-support-sponsor-session-2"),
+      ];
+      const firstProgram = programs[0]!;
 
       const item: TimetableItem = {
-        id: [program.type, program.start, program.end, ...program.tracks].join("-"),
+        id: [firstProgram.type, firstProgram.start, firstProgram.end, ...firstProgram.tracks].join(
+          "-",
+        ),
         type: "session",
-        tracks: program.tracks,
-        start: program.start,
-        end: program.end,
+        tracks: firstProgram.tracks,
+        start: firstProgram.start,
+        end: firstProgram.end,
         heading: t("timetable.studentSupportSponsorSession"),
-        programs: [program],
+        programs,
       };
 
       return item;

@@ -281,6 +281,152 @@ const RE_TARO: SpeakerData = {
   },
 };
 
+const SPONSOR_SPEAKERS: SpeakerData[] = [
+  {
+    id: "ascorbic",
+    avatarUrl: "/images/avatars/ascorbic.jpg",
+    color: "default",
+    socialUrls: {
+      bluesky: "https://bsky.app/profile/mk.gg",
+      github: "https://github.com/ascorbic",
+    },
+    ja: {
+      name: "Matt Kane",
+      title: "シニアプリンシパルエンジニア",
+      affiliation: "Cloudflare",
+    },
+    en: {
+      name: "Matt Kane",
+      title: "Senior Principal Engineer",
+      affiliation: "Cloudflare",
+    },
+  },
+  {
+    id: "RyutaroYako",
+    avatarUrl: "/images/avatars/RyutaroYako.jpg",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/RyutaroYako",
+      github: "https://github.com/RyutaroYako",
+    },
+    ja: {
+      name: "矢光 隆太郎",
+      title: "Chief Architect",
+      affiliation: "ユニークビジョン株式会社",
+    },
+    en: {
+      name: "Ryutaro Yako",
+      title: "Chief Architect",
+      affiliation: "Unique Vision Company, Japan.",
+    },
+  },
+  {
+    id: "tttttt_621_s",
+    avatarUrl: "/images/avatars/tttttt_621_s.jpeg",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/tttttt_621_s",
+    },
+    ja: {
+      name: "篠田貴大",
+      title: "フロントエンドエンジニア",
+      affiliation: "弁護士ドットコム株式会社",
+    },
+    en: {
+      name: "Shinoda Takahiro",
+      title: "Frontend Engineer",
+      affiliation: "Bengo4.com, Inc.",
+    },
+  },
+  {
+    id: "keeeeeei200",
+    avatarUrl: "/images/avatars/keeeeeei200.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/keeeeeei200",
+    },
+    ja: {
+      name: "竹井啓",
+      title: "デザインエンジニア",
+      affiliation: "株式会社リンクアンドモチベーション",
+    },
+    en: {
+      name: "Kei Takei",
+      title: "Design Engineer",
+      affiliation: "Link and Motivation Inc.",
+    },
+  },
+  {
+    id: "yug1224",
+    avatarUrl: "/images/avatars/yug1224.png",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/yug1224",
+      bluesky: "https://bsky.app/profile/yug1224.com",
+      github: "https://github.com/yug1224",
+    },
+    ja: {
+      name: "山口 祐司",
+      title: "プロダクトエンジニア",
+      affiliation: "Dress Code株式会社",
+    },
+    en: {
+      name: "Yuji Yamaguchi",
+      title: "Product Engineer",
+      affiliation: "Dress Code Inc.",
+    },
+  },
+  {
+    id: "masashi-ageno",
+    avatarUrl: "/images/avatars/masashi-ageno.jpg",
+    color: "default",
+    ja: {
+      name: "揚野将士",
+      title: "フロントエンドエンジニア",
+      affiliation: "株式会社デジタルバリュー",
+    },
+    en: {
+      name: "Masashi Ageno",
+      title: "Frontend Engineer",
+      affiliation: "Digital Value Co., Ltd.",
+    },
+  },
+  {
+    id: "fuchio-gt",
+    avatarUrl: "/images/avatars/fuchio-gt.jpg",
+    color: "default",
+    socialUrls: {
+      x: "https://x.com/fuchio_gt",
+      github: "https://github.com/fuchio-gt",
+    },
+    ja: {
+      name: "永渕 景祐",
+      title: "ソフトウェアエンジニア",
+      affiliation: "株式会社サポーターズ",
+    },
+    en: {
+      name: "Keiyu Nagafuchi",
+      title: "Software Engineer",
+      affiliation: "Supporterz, Inc.",
+    },
+  },
+  {
+    id: "takayuki-miyazaki",
+    avatarUrl: "/images/avatars/takayuki-miyazaki.jpg",
+    color: "default",
+    ja: {
+      name: "宮崎喬行",
+      title: "フロントエンドエンジニア",
+      affiliation: "株式会社アイキューブドシステムズ",
+    },
+    en: {
+      name: "Takayuki Miyazaki",
+      title: "Frontend Engineer",
+      affiliation: "i Cubed Systems, Inc.",
+    },
+  },
+];
+
 const CFP_SPEAKERS: SpeakerData[] = [
   {
     id: "naokihaba",
@@ -759,5 +905,6 @@ export const SPEAKERS: SpeakerData[] = [
   YUSUKE_WADA,
   YOSUKE_FURUKAWA,
   RE_TARO,
+  ...SPONSOR_SPEAKERS,
   ...CFP_SPEAKERS,
 ];

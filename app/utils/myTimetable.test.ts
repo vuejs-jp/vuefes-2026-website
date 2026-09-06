@@ -189,7 +189,7 @@ describe("my timetable query", () => {
   it("uses the compact fingerprint and ranges for the current timetable", () => {
     const currentSelectionIndex = createMyTimetableSelectionIndex(createTimetable("ja").items);
 
-    expect(currentSelectionIndex.fingerprint).toBe("1f6ur15");
+    expect(currentSelectionIndex.fingerprint).toBe("v820kg");
     expect(
       encodeMyTimetableQuerySelection(currentSelectionIndex, [
         "session-8",
@@ -200,7 +200,7 @@ describe("my timetable query", () => {
         "lightning-talk-4",
         "keynote",
       ]),
-    ).toBe("1f6ur15~1.a.f-g.j.v-w");
+    ).toBe("v820kg~1.b.g-h.k.w-x");
   });
 });
 

@@ -59,7 +59,7 @@ describe("createTimetable", () => {
     );
   });
 
-  it("includes the published lunch sponsor lightning talk as a single program", () => {
+  it("includes the published lunch sponsor lightning talk", () => {
     const timetable = createTimetable("ja");
     const lunchSponsorLightningTalk = timetable.items.find(
       (item) => item.id === "lightningTalk-11:40-11:45-track3",
@@ -71,8 +71,39 @@ describe("createTimetable", () => {
       start: "11:40",
       end: "11:45",
       heading: "ランチスポンサーセッション",
-      programs: [{ id: "lunch-sponsor-lt-1", title: "TBD" }],
+      programs: [
+        {
+          id: "lunch-sponsor-lt-1",
+          title: "npmサプライチェーンが狙われた1年 ─ 金融システムで実践している防御策",
+          speakers: [{ id: "masashi-ageno" }],
+        },
+      ],
     });
     expect(lunchSponsorLightningTalk?.programs).toHaveLength(1);
+  });
+
+  it("orders the student support sponsor sessions as published", () => {
+    const timetable = createTimetable("ja");
+    const studentSupportSponsorSession = timetable.items.find(
+      (item) => item.id === "session-11:30-12:00-track4",
+    );
+
+    expect(studentSupportSponsorSession).toMatchObject({
+      type: "session",
+      tracks: ["track4"],
+      start: "11:30",
+      end: "12:00",
+      heading: "学生支援スポンサーセッション",
+      programs: [
+        {
+          id: "student-support-sponsor-session-1",
+          speakers: [{ id: "takayuki-miyazaki" }],
+        },
+        {
+          id: "student-support-sponsor-session-2",
+          speakers: [{ id: "fuchio-gt" }],
+        },
+      ],
+    });
   });
 });

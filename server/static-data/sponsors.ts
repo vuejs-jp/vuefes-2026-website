@@ -4,6 +4,7 @@ const SPONSORS_PLATINUM: SponsorData[] = [
   {
     id: "link-and-motivation",
     plan: "platinum",
+    programIds: ["platinum-sponsor-session-1"],
     option: ["after-party"],
     logoImageUrl: "/images/sponsor-logo/platinum/link-and-motivation.png",
     ja: {
@@ -24,6 +25,7 @@ const SPONSORS_PLATINUM: SponsorData[] = [
   {
     id: "dress-code",
     plan: "platinum",
+    programIds: ["platinum-sponsor-session-3"],
     logoImageUrl: "/images/sponsor-logo/platinum/dress-code.png",
     ja: {
       name: "Dress Code株式会社",
@@ -43,6 +45,7 @@ const SPONSORS_PLATINUM: SponsorData[] = [
   {
     id: "vercel",
     plan: "platinum",
+    programIds: ["platinum-sponsor-session-2"],
     logoImageUrl: "/images/sponsor-logo/platinum/vercel.png",
     ja: {
       name: "Vercel inc.",
@@ -62,6 +65,7 @@ const SPONSORS_PLATINUM: SponsorData[] = [
   {
     id: "bengo4",
     plan: "platinum",
+    programIds: ["platinum-sponsor-session-4"],
     logoImageUrl: "/images/sponsor-logo/platinum/bengo4.png",
     ja: {
       name: "弁護士ドットコム株式会社",
@@ -81,6 +85,7 @@ const SPONSORS_PLATINUM: SponsorData[] = [
   {
     id: "cloudflare",
     plan: "platinum",
+    programIds: ["platinum-sponsor-session-5"],
     logoImageUrl: "/images/sponsor-logo/platinum/cloudflare.png",
     ja: {
       name: "Cloudflare, Inc.",
@@ -100,6 +105,7 @@ const SPONSORS_PLATINUM: SponsorData[] = [
   {
     id: "unique-vision",
     plan: "platinum",
+    programIds: ["platinum-sponsor-session-6"],
     logoImageUrl: "/images/sponsor-logo/platinum/unique-vision.png",
     ja: {
       name: "ユニークビジョン株式会社",
@@ -493,6 +499,7 @@ const SPONSORS_BRONZE: SponsorData[] = [
   {
     id: "i-cubed-systems",
     plan: "bronze",
+    programIds: ["student-support-sponsor-session-1"],
     option: ["student-support-standard"],
     logoImageUrl: "/images/sponsor-logo/bronze/i-cubed-systems.png",
     ja: {
@@ -583,6 +590,7 @@ const SPONSORS_OPTION_ONLY: SponsorData[] = [
   {
     id: "supporterz",
     plan: "option-only",
+    programIds: ["student-support-sponsor-session-2"],
     option: ["student-support-standard"],
     logoImageUrl: "/images/sponsor-logo/option-only/supporterz.png",
     ja: {
@@ -711,6 +719,7 @@ const SPONSORS_OPTION_ONLY: SponsorData[] = [
   {
     id: "digitalvalue",
     plan: "option-only",
+    programIds: ["lunch-sponsor-lt-1"],
     option: ["lunch"],
     logoImageUrl: "/images/sponsor-logo/option-only/digitalvalue.png",
     ja: {
