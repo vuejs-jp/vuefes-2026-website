@@ -136,29 +136,18 @@ const trackStyles = (tracks: Program["tracks"]) => {
             </div>
           </div>
 
+          <ul class="speaker-meta" v-if="currentSpeaker.affiliation || currentSpeaker.title">
+            <li v-if="currentSpeaker.affiliation" class="speaker-affiliation">
+              {{ currentSpeaker.affiliation }}
+            </li>
+            <li v-if="currentSpeaker.title" class="speaker-title">
+              {{ currentSpeaker.title }}
+            </li>
+          </ul>
+
           <h2 class="speaker-name">
             {{ currentSpeaker.name }}
           </h2>
-
-          <div class="speaker-meta">
-            <p v-if="currentSpeaker.affiliation" class="speaker-affiliation">
-              {{ currentSpeaker.affiliation }}
-            </p>
-            <p v-if="currentSpeaker.title" class="speaker-title">
-              {{ currentSpeaker.title }}
-            </p>
-          </div>
-
-          <div v-if="currentSpeaker.bio" class="speaker-bio">
-            <div class="speaker-bio-body">
-              <template v-for="(paragraph, idx) in splitLines(currentSpeaker.bio)" :key="idx">
-                <p v-if="paragraph">
-                  {{ paragraph }}
-                </p>
-                <span v-else class="speaker-bio-spacer"></span>
-              </template>
-            </div>
-          </div>
 
           <div v-if="currentSpeaker.socialUrls" class="speaker-social">
             <a
@@ -186,20 +175,59 @@ const trackStyles = (tracks: Program["tracks"]) => {
               <BlueskyIcon width="1.5rem" height="1.5rem" />
             </a>
           </div>
+
+          <div v-if="currentSpeaker.bio" class="speaker-bio">
+            <div class="speaker-bio-body">
+              <template v-for="(paragraph, idx) in splitLines(currentSpeaker.bio)" :key="idx">
+                <p v-if="paragraph">
+                  {{ paragraph }}
+                </p>
+              </template>
+            </div>
+          </div>
         </div>
 
         <!-- Mobile layout -->
-        <div class="speaker-meta-mobile">
-          <h2 class="speaker-name">
+        <div>
+          <ul class="speaker-meta-mobile" v-if="currentSpeaker.affiliation || currentSpeaker.title">
+            <li v-if="currentSpeaker.affiliation" class="speaker-affiliation">
+              {{ currentSpeaker.affiliation }}
+            </li>
+            <li v-if="currentSpeaker.title" class="speaker-title">
+              {{ currentSpeaker.title }}
+            </li>
+          </ul>
+
+          <h2 class="speaker-name-mobile">
             {{ currentSpeaker.name }}
           </h2>
 
-          <p v-if="currentSpeaker.affiliation" class="speaker-affiliation">
-            {{ currentSpeaker.affiliation }}
-          </p>
-          <p v-if="currentSpeaker.title" class="speaker-title">
-            {{ currentSpeaker.title }}
-          </p>
+          <div v-if="currentSpeaker.socialUrls" class="speaker-social-mobile">
+            <a
+              v-if="currentSpeaker.socialUrls.github"
+              :href="currentSpeaker.socialUrls.github"
+              target="_blank"
+              aria-label="GitHub"
+            >
+              <GithubIcon width="1.5rem" height="1.5rem" />
+            </a>
+            <a
+              v-if="currentSpeaker.socialUrls.x"
+              :href="currentSpeaker.socialUrls.x"
+              target="_blank"
+              aria-label="X (Twitter)"
+            >
+              <XIcon width="1.5rem" height="1.5rem" />
+            </a>
+            <a
+              v-if="currentSpeaker.socialUrls.bluesky"
+              :href="currentSpeaker.socialUrls.bluesky"
+              target="_blank"
+              aria-label="Bluesky"
+            >
+              <BlueskyIcon width="1.5rem" height="1.5rem" />
+            </a>
+          </div>
         </div>
 
         <div v-if="currentSpeaker.bio" class="speaker-bio-mobile">
@@ -208,36 +236,8 @@ const trackStyles = (tracks: Program["tracks"]) => {
               <p v-if="paragraph">
                 {{ paragraph }}
               </p>
-              <span v-else class="speaker-bio-spacer"></span>
             </template>
           </div>
-        </div>
-
-        <div v-if="currentSpeaker.socialUrls" class="speaker-social-mobile">
-          <a
-            v-if="currentSpeaker.socialUrls.github"
-            :href="currentSpeaker.socialUrls.github"
-            target="_blank"
-            aria-label="GitHub"
-          >
-            <GithubIcon width="1.5rem" height="1.5rem" />
-          </a>
-          <a
-            v-if="currentSpeaker.socialUrls.x"
-            :href="currentSpeaker.socialUrls.x"
-            target="_blank"
-            aria-label="X (Twitter)"
-          >
-            <XIcon width="1.5rem" height="1.5rem" />
-          </a>
-          <a
-            v-if="currentSpeaker.socialUrls.bluesky"
-            :href="currentSpeaker.socialUrls.bluesky"
-            target="_blank"
-            aria-label="Bluesky"
-          >
-            <BlueskyIcon width="1.5rem" height="1.5rem" />
-          </a>
         </div>
 
         <div v-for="program in currentPrograms" :key="program.id" class="speaker-program-mobile">
@@ -393,6 +393,7 @@ const trackStyles = (tracks: Program["tracks"]) => {
     .speaker-meta {
       display: grid;
       row-gap: 0.125rem;
+      margin: 0;
 
       .speaker-title,
       .speaker-affiliation {
@@ -403,15 +404,15 @@ const trackStyles = (tracks: Program["tracks"]) => {
     }
 
     h2.speaker-name {
-      margin: 0 0 0.25rem;
-      font-size: 1.125rem;
-      line-height: 1.6875rem;
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.5;
     }
 
     .speaker-social {
       display: flex;
-      gap: 0.25rem;
-      margin-top: 1.5rem;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
       a {
         width: 1.5rem;
         height: 1.5rem;
@@ -420,7 +421,7 @@ const trackStyles = (tracks: Program["tracks"]) => {
     }
 
     .speaker-bio {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
 
       .speaker-bio-body {
         display: grid;
@@ -438,9 +439,8 @@ const trackStyles = (tracks: Program["tracks"]) => {
     display: none;
 
     @media (--mobile) {
-      display: grid;
-      align-content: start;
-      padding-top: 0.25rem;
+      display: block;
+      margin: 0;
     }
 
     .speaker-title,
@@ -449,9 +449,14 @@ const trackStyles = (tracks: Program["tracks"]) => {
       line-height: 0.9375rem;
       margin: 0;
     }
+  }
 
-    .speaker-name {
-      margin: 0 0 0.25rem;
+  .speaker-name-mobile {
+    display: none;
+
+    @media (--mobile) {
+      display: block;
+      margin: 0;
       font-size: 1rem;
       line-height: 1.5rem;
     }
@@ -489,7 +494,7 @@ const trackStyles = (tracks: Program["tracks"]) => {
     @media (--mobile) {
       display: block;
       grid-column: 1 / -1;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
 
     .speaker-bio-body {
@@ -509,8 +514,8 @@ const trackStyles = (tracks: Program["tracks"]) => {
     @media (--mobile) {
       display: flex;
       grid-column: 1 / -1;
-      gap: 0.25rem;
-      margin-top: 1rem;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
     }
 
     a {
@@ -535,11 +540,6 @@ const trackStyles = (tracks: Program["tracks"]) => {
   .session-overview-spacer {
     display: block;
     height: 1.25em;
-  }
-
-  .speaker-bio-spacer {
-    display: block;
-    height: 0.25rem;
   }
 }
 </style>
