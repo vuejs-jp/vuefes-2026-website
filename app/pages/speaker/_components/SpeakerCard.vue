@@ -1,12 +1,6 @@
 <script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
 import type { NuxtRoute, RoutesNamesList } from "@typed-router";
-import XIcon from "~icons/icons/ic_x";
-import GithubIcon from "~icons/icons/ic_github";
-import BlueskyIcon from "~icons/icons/ic_bluesky";
-import { useI18n } from "#imports";
 import { NuxtLink } from "#components";
-
-const { t } = useI18n();
 
 defineProps<{
   speaker: {
@@ -14,11 +8,6 @@ defineProps<{
     avatarUrl: string;
     affiliation?: string;
     title?: string;
-    socialUrls?: {
-      github?: string;
-      x?: string;
-      bluesky?: string;
-    };
   };
   to?: NuxtRoute<T, P>;
 }>();
@@ -38,20 +27,6 @@ defineProps<{
         {{ speaker.name }}
       </h3>
     </component>
-
-    <div class="speaker-socials">
-      <NuxtLink v-if="speaker.socialUrls?.github" :to="speaker.socialUrls.github" target="_blank">
-        <GithubIcon :aria-label="t('snsIconImageAlt.github')" role="img" />
-      </NuxtLink>
-
-      <NuxtLink v-if="speaker.socialUrls?.x" :to="speaker.socialUrls.x" target="_blank">
-        <XIcon :aria-label="t('snsIconImageAlt.x')" role="img" />
-      </NuxtLink>
-
-      <NuxtLink v-if="speaker.socialUrls?.bluesky" :to="speaker.socialUrls.bluesky" target="_blank">
-        <BlueskyIcon :aria-label="t('snsIconImageAlt.bluesky')" role="img" />
-      </NuxtLink>
-    </div>
   </li>
 </template>
 
@@ -105,25 +80,6 @@ defineProps<{
 
     .speaker-card-link:hover .speaker-name {
       color: var(--color-base);
-    }
-  }
-
-  .speaker-socials {
-    display: flex;
-    gap: 0.25rem;
-    margin-top: 0.25rem;
-
-    svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: var(--color-text-default);
-      transition: transform 0.2s;
-
-      @media (any-hover: hover) {
-        &:hover {
-          transform: scale(1.1);
-        }
-      }
     }
   }
 }
