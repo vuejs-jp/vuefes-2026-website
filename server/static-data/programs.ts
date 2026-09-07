@@ -795,9 +795,9 @@ export const EVENT_PROGRAMS = definePrograms([
     start: "12:50",
     end: "14:50",
     tracks: ["track4"],
-    // url: "/event?session=hands-on#hands-on",
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    url: "/event?session=hands-on#hands-on",
+    ja: { title: "" },
+    en: { title: "" },
   },
   {
     id: "student-support-contents",
