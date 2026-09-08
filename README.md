@@ -107,7 +107,7 @@ vp run fix
 
 GitHub Actions CI is intentionally limited to non-draft pull requests before merge.
 It checks the PR diff through `vp run --cache check:staged`, runs cached typecheck, then runs the build without the VP task cache.
-PR preview deploys run only when a collaborator comments `/preview` or manually dispatches the workflow, so opening or updating a PR does not spend a second preview build.
+PR preview deploys run only for same-repository pull requests when a collaborator comments `/preview` or manually dispatches the workflow, so opening or updating a PR does not spend a second preview build.
 
 ## Database Migration
 

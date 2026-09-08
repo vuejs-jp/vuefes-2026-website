@@ -11,6 +11,10 @@ on:
         required: true
         type: string
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   meta:
     name: Resolve Preview Metadata
@@ -44,6 +48,19 @@ jobs:
           echo "site_name=${SITE_NAME}" >> "$GITHUB_OUTPUT"
           echo "preview_origin=${PREVIEW_ORIGIN}" >> "$GITHUB_OUTPUT"
           echo "preview_url=${PREVIEW_URL}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate PR source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.vars.outputs.pr_number }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          HEAD_REPOSITORY="$(gh api "repos/${REPOSITORY}/pulls/${PR_NUMBER}" --jq '.head.repo.full_name')"
+
+          if [ "$HEAD_REPOSITORY" != "$REPOSITORY" ]; then
+            echo "::error::PR preview deploys only run for same-repository pull requests."
+            exit 1
+          fi
 
   deploy:
     name: Deploy PR Preview to Netlify
