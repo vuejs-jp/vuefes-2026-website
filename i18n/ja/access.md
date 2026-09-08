@@ -2,7 +2,7 @@
 
 東京都千代田区大手町2-3-1大手町プレイス（イーストタワー）1F/2F
 
-[https://otemachi-place-hc.jp/](https://otemachi-place-hc.jp/)
+https://otemachi-place-hc.jp/
 
 JR山手線・京浜東北線・東海道新幹線など「東京」駅 丸の内北口より徒歩7分
 
