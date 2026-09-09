@@ -1,5 +1,7 @@
 import { defineConfig } from "vite-plus";
 
+import nuxtLintConfig from "./oxlint.config.mts";
+
 const jsLike = ["*.js", "*.jsx", "*.ts", "*.tsx", "*.mjs", "*.cjs", "*.mts", "*.cts", "*.vue"];
 
 const fmtLike = [...jsLike, "*.json", "*.yml", "*.yaml", "*.md", "*.mdc"];
@@ -209,6 +211,16 @@ export default defineConfig({
     },
   },
   lint: {
+    ...nuxtLintConfig,
+    overrides: [
+      ...nuxtLintConfig.overrides,
+      {
+        files: ["app/layouts/**/*.vue", "app/pages/**/index.vue"],
+        rules: {
+          "vize/vue/no-multiple-template-root": "off",
+        },
+      },
+    ],
     options: {
       typeAware: true,
       typeCheck: true,
