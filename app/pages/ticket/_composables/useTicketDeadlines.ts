@@ -2,7 +2,8 @@ import { Temporal } from "temporal-polyfill-lite";
 
 import { TICKET } from "../_data/ticket";
 import { formatTicketDeadline } from "../_utils/formatTicketDeadline";
-import { computed, useI18n } from "#imports";
+import { hasNameBadgeEditingDeadlinePassed } from "../_utils/hasNameBadgeEditingDeadlinePassed";
+import { computed, useCurrentInstant, useI18n } from "#imports";
 
 const earlyBirdDeadline = Temporal.ZonedDateTime.from(TICKET.deadlines.earlyBird);
 const cancellationDeadline = Temporal.ZonedDateTime.from(TICKET.deadlines.cancellation);
@@ -19,6 +20,7 @@ const formatNameBadgeEditingDeadline = (
 
 export const useTicketDeadlines = () => {
   const { locale } = useI18n();
+  const currentInstant = useCurrentInstant();
 
   return {
     earlyBirdDeadline: computed(() =>
@@ -36,6 +38,12 @@ export const useTicketDeadlines = () => {
     ),
     nameBadgeEditingDeadline: computed(() =>
       formatNameBadgeEditingDeadline(TICKET.nameBadge.editingDeadline, locale.value),
+    ),
+    isNameBadgeRegistrationClosed: computed(
+      () =>
+        !import.meta.vfFeatures.nameBadgeRegistration ||
+        import.meta.vfFeatures.expiredNameBadgeRegistration ||
+        hasNameBadgeEditingDeadlinePassed(currentInstant.value ?? Temporal.Now.instant()),
     ),
   };
 };

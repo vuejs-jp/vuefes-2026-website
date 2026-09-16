@@ -111,7 +111,8 @@ const featureFlags = {
   // ネームカード登録、特商法ページ、個人スポンサー募集も含む
   ticketSales: true, // チケット販売セクション/ページ
   ctaTicket: true, // チケットCTA表示
-  nameBadgeRegistration: true, // ネームカード登録機能
+  // 編集期限到来時はフロント側で自動的に閉じ、確認後にこのフラグを false にする
+  nameBadgeRegistration: false, // ネームカード登録機能
   tokushoPage: true, // 特定商取引法に基づく表示ページ
   individualSponsor: false, // 個人スポンサー募集
 

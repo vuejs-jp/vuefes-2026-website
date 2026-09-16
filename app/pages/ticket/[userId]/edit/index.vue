@@ -4,6 +4,7 @@ import emojiRegex from "emoji-regex";
 import { useRegleSchema } from "@regle/schemas";
 
 import { useLocaleRoute } from "@typed-router";
+import { useTicketDeadlines } from "../../_composables/useTicketDeadlines";
 import {
   navigateTo,
   onMounted,
@@ -16,6 +17,7 @@ import {
   useHead,
   usePageSeoMeta,
   useRoute,
+  watch,
 } from "#imports";
 
 import type { VFFile } from "~/components/form/VFFileInput.vue";
@@ -35,31 +37,29 @@ const bp = useBreakpoint();
 const localeRoute = useLocaleRoute();
 const route = useRoute();
 const avatarImageChanged = ref(false);
+const { isNameBadgeRegistrationClosed } = useTicketDeadlines();
 
-if (import.meta.vfFeatures.expiredNameBadgeRegistration) {
+const redirectFromEditPage = async () => {
   if (user.value) {
-    await navigateTo(
+    return await navigateTo(
       localeRoute({
         name: "ticket-userId",
         params: { userId: user.value.userId },
       }),
     );
-  } else {
-    await navigateTo(localeRoute({ name: "ticket" }));
   }
-}
 
-if (route.params.userId !== user.value?.userId) {
-  if (user.value) {
-    await navigateTo(
-      localeRoute({
-        name: "ticket-userId",
-        params: { userId: user.value.userId },
-      }),
-    );
-  } else {
-    await navigateTo(localeRoute({ name: "ticket" }));
+  return await navigateTo(localeRoute({ name: "ticket" }));
+};
+
+watch(isNameBadgeRegistrationClosed, async (isClosed) => {
+  if (isClosed) {
+    await redirectFromEditPage();
   }
+});
+
+if (isNameBadgeRegistrationClosed.value || route.params.userId !== user.value?.userId) {
+  await redirectFromEditPage();
 }
 
 const { data: nameBadgeData, refresh } = useFetch("/api/name-badge");
