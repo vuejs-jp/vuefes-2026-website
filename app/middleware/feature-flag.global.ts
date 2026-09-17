@@ -30,6 +30,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
     { routes: ["related-events"], enabled: import.meta.vfFeatures.relatedEvents },
     { routes: ["photo"], enabled: import.meta.vfFeatures.photoSection },
     { routes: ["tokusho"], enabled: import.meta.vfFeatures.tokushoPage },
+    { routes: ["job-board"], enabled: import.meta.vfFeatures.jobBoard },
   ];
 
   for (const gate of featureGatedRoutes) {

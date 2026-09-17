@@ -420,4 +420,9 @@ store:
   material: "Material: "
   capacity: "Capacity: "
   size: "Size: "
-  view: "View items"
+  view: "View Store"
+
+jobBoard:
+  title: "Job Board"
+  coverImageAlt: "Find your next job!"
+  viewAll: "View Job Board"

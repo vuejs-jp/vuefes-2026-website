@@ -416,6 +416,10 @@ store:
   preOrder: "予約注文する"
   color: "カラー： "
   material: "素材： "
-  capacity: "容量： "
-  size: "サイズ： "
-  view: "グッズを見る"
+  size: "サイズ: "
+  view: "ストアを見る"
+
+jobBoard:
+  title: "ジョブボード"
+  coverImageAlt: "Find your next job!"
+  viewAll: "ジョブボードを見る"

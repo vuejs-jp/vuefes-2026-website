@@ -45,6 +45,9 @@ const featureGatedRoutes: FeatureGatedRoute[] = [
 
   // 特定商取引法に基づく表示
   { pathPattern: /^\/tokusho$/, flag: "tokushoPage" },
+
+  // ジョブボード
+  { pathPattern: /^\/job-board$/, flag: "jobBoard" },
 ];
 
 export default defineNuxtModule<ModuleOptions>({

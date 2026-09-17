@@ -115,6 +115,11 @@ const SectionStaff = import.meta.vfFeatures.staff
   ? defineAsyncComponent(() => import("./_components/SectionStaff.vue"))
   : null;
 
+// ジョブボードセクション
+const SectionJobBoard = import.meta.vfFeatures.jobBoard
+  ? defineAsyncComponent(() => import("./_components/SectionJobBoard.vue"))
+  : null;
+
 useHead({ title: "" });
 </script>
 
@@ -145,6 +150,9 @@ useHead({ title: "" });
 
       <!-- スポンサー一覧 -->
       <SectionSponsors v-if="SectionSponsors" />
+
+      <!-- ジョブボード -->
+      <SectionJobBoard v-if="SectionJobBoard" />
 
       <!-- ボランティア -->
       <SectionVolunteer v-if="SectionVolunteer" />

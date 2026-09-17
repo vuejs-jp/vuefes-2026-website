@@ -2,6 +2,7 @@ import type { SpeakerData, Speaker } from "./types/speaker";
 import type { SponsorData, Sponsor } from "./types/sponsor";
 import type { ProgramData, Program } from "./types/program";
 import type { RelatedEventsData, RelatedEvents } from "./types/related-events";
+import type { JobBoardData, JobBoard } from "./types/job-board";
 import type { Goods, GoodsData } from "./types/goods";
 import type { Staff } from "./types/staff";
 
@@ -91,6 +92,20 @@ export function resolveRelatedEvents(data: RelatedEventsData, locale: Locale): R
     return {
       ...base,
       coverUrl: withBase(base.coverUrl),
+    };
+  }
+}
+
+export function resolveJobBoard(data: JobBoardData, locale: Locale): JobBoard {
+  const { ja, en, ...base } = data;
+  const localeFields = locale === "ja" ? ja : en;
+  return { ...resolveBaseUrls(base), ...localeFields };
+
+  type BaseData = Omit<JobBoardData, "ja" | "en">;
+  function resolveBaseUrls(base: BaseData): BaseData {
+    return {
+      ...base,
+      imageUrl: withBase(base.imageUrl),
     };
   }
 }

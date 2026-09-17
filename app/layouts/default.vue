@@ -83,6 +83,11 @@ const menuItems = computed<MenuItemProps[]>(() =>
       label: "Sponsor",
       routeName: localeRoute({ name: "sponsors" }).name,
     },
+    import.meta.vfFeatures.jobBoard && {
+      id: HOME_HEADING_ID.jobBoard,
+      label: "Job Board",
+      routeName: localeRoute({ name: "job-board" }).name,
+    },
   ].filter((it) => !!it),
 );
 
@@ -169,6 +174,7 @@ const WIDE_ROUTE_PATHS = [
   "/event",
   "/related-events",
   "/store",
+  "/job-board",
 ];
 
 const isWidenContent = computed(() => {
