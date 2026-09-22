@@ -144,11 +144,11 @@ const featureFlags = {
   // ========================================================================
   // 売り切れ・終了フラグ
   // ========================================================================
-  soldOutAfterParty: false, // アフターパーティー売り切れ
-  soldOutEarlyBirdAfterParty: false, // 早割アフターパーティー売り切れ
-  soldOutEarlyBird: false, // 早割チケット売り切れ
+  soldOutAfterParty: true, // アフターパーティー売り切れ
+  soldOutEarlyBirdAfterParty: true, // 早割アフターパーティー売り切れ
+  soldOutEarlyBird: true, // 早割チケット売り切れ
   soldOutGeneral: false, // 一般チケット売り切れ
-  soldOutHandsOn: false, // ハンズオン売り切れ
+  soldOutHandsOn: true, // ハンズオン売り切れ
   soldOutIndividualSponsor: false, // 個人スポンサー売り切れ
   ticketSalesClosed: false, // チケット販売終了
   expiredNameBadgeRegistration: false, // ネームカード登録期限終了
