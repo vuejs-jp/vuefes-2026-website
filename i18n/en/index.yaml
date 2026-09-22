@@ -31,7 +31,6 @@ ticket:
   viewTicketDetails: "View Ticket Details"
   type: "Ticket Type"
   typeDescription1: "There are two types of general tickets: with or without the after-party. We also offer optional hands-on workshop and individual sponsor tickets."
-  typeDescription2: "Purchase your tickets by Monday, August 31 at 11:59 PM (JST) to take advantage of our early bird discount. Don't miss out!"
   early: "Early Bird"
   standard: "Standard"
   priceUnit: "JPY"

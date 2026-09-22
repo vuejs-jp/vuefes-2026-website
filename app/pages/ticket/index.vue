@@ -107,7 +107,6 @@ usePageSeoMeta({
     <VFSection id="ticket-type" :title="t('ticket.type')" class="ticket-type">
       <div class="description">
         <p>{{ t("ticket.typeDescription1") }}</p>
-        <p v-if="!isSoldOutEarlyBird">{{ t("ticket.typeDescription2") }}</p>
       </div>
 
       <section class="general-tickets">
