@@ -52,6 +52,19 @@ const pageDescription = computed(
 
 const splitLines = (text?: string) => (text ? text.split("\n") : []);
 
+const parseParagraph = (text: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+
+  return parts.map((part) => {
+    if (urlRegex.test(part)) {
+      urlRegex.lastIndex = 0;
+      return { isUrl: true, content: part };
+    }
+    return { isUrl: false, content: part };
+  });
+};
+
 usePageSeoMeta({
   title: () => currentSpeaker.value?.name || t("speakers.title"),
   description: () => pageDescription.value,
@@ -126,7 +139,17 @@ const trackStyles = (tracks: Program["tracks"]) => {
                       paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''
                     "
                   >
-                    {{ paragraph }}
+                    <template v-for="(part, index) in parseParagraph(paragraph)" :key="index">
+                      <a
+                        v-if="part.isUrl"
+                        :href="part.content"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {{ part.content }}
+                      </a>
+                      <template v-else>{{ part.content }}</template>
+                    </template>
                   </p>
                 </template>
                 <template v-else>
@@ -251,7 +274,17 @@ const trackStyles = (tracks: Program["tracks"]) => {
                 <p
                   :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''"
                 >
-                  {{ paragraph }}
+                  <template v-for="(part, index) in parseParagraph(paragraph)" :key="index">
+                    <a
+                      v-if="part.isUrl"
+                      :href="part.content"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {{ part.content }}
+                    </a>
+                    <template v-else>{{ part.content }}</template>
+                  </template>
                 </p>
               </template>
               <template v-else>
