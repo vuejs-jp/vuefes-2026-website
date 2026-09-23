@@ -3,6 +3,7 @@ import { useRoute, useLocaleRoute } from "@typed-router";
 
 import { useTicketDeadlines } from "../_composables/useTicketDeadlines";
 import {
+  computed,
   defineOgImage,
   navigateTo,
   useAuth,
@@ -36,6 +37,10 @@ const shareUrl = new URL(
   useRuntimeConfig().public.siteUrl,
 ).toString();
 const { data: nameBadgeData } = await useFetch(`/api/name-badge/${route.params.userId}`);
+const nameBadgeStatus = computed(() => {
+  if (!nameBadgeData.value) return "notCreated";
+  return nameBadgeData.value.isLinked ? "linked" : "created";
+});
 defineOgImage("OgNameBadgeSatori", {
   name: () => nameBadgeData.value?.name ?? undefined,
   userRole: () => nameBadgeData.value?.role ?? undefined,
@@ -99,7 +104,7 @@ function copyUrl() {
         <p class="name-badge-status">
           <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
           {{ t("nameBadge.status.label") }} :
-          {{ nameBadgeData ? t(`nameBadge.status.created`) : t(`nameBadge.status.notCreated`) }}
+          {{ t(`nameBadge.status.${nameBadgeStatus}`) }}
         </p>
 
         <VFButton

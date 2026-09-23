@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm/sql";
 import { attendees } from "../../db/schema";
 import { db } from "../../db/orm";
 import { resolveNameBadgeAvatarUrl } from "../../utils/resolveNameBadgeAvatarUrl";
+import { isSupportedNameBadgeRole } from "../../utils/isSupportedNameBadgeRole";
 
 import { getServerSession } from "#auth";
 
@@ -72,7 +73,7 @@ export default defineEventHandler(async (event) => {
     ? {
         name: nameBadgeData.displayName,
         avatarUrl: await resolveNameBadgeAvatarUrl(nameBadgeData),
-        role: role ?? "Attendee",
+        role: isSupportedNameBadgeRole(role) ? role : "Attendee",
         lang: nameBadgeData.lang,
 
         /**

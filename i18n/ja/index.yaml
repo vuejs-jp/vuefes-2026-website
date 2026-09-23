@@ -67,6 +67,7 @@ nameBadge:
     label: "ステータス"
     notCreated: "未作成"
     created: "作成済み"
+    linked: "連携済み"
   letsShare: "ネームカードをシェアしよう！"
   joinEvent: "あなたもVue Fes Japanに参加しませんか？"
   nameBadgeDefaultImageAlt: "ネームカードイメージ画像"

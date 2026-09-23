@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm/sql";
 import { db } from "../../../db/orm";
 import { attendees } from "../../../db/schema";
 import { resolveNameBadgeAvatarUrl } from "../../../utils/resolveNameBadgeAvatarUrl";
+import { isSupportedNameBadgeRole } from "../../../utils/isSupportedNameBadgeRole";
 
 import { getServerSession } from "#auth";
 import { createError, useRuntimeConfig } from "#imports";
@@ -86,9 +87,12 @@ export default defineEventHandler(async (event) => {
     console.error("Failed to update role:", error);
   }
 
+  const isLinked = isSupportedNameBadgeRole(role);
+
   return {
     name: nameBadgeData.displayName,
-    role: role ?? "Attendee",
+    role: isLinked ? role : "Attendee",
+    isLinked,
     lang: nameBadgeData.lang,
     avatarUrl: await resolveNameBadgeAvatarUrl(nameBadgeData),
   };

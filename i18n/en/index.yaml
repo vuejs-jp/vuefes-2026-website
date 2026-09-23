@@ -67,6 +67,7 @@ nameBadge:
     label: "Status"
     notCreated: "Not Created"
     created: "Created"
+    linked: "Linked"
   letsShare: "Let's Share A Name Badge!"
   joinEvent: "Join Vue Fes Japan!"
   nameBadgeDefaultImageAlt: "Name badge image"
