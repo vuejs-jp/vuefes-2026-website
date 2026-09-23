@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from "@typed-router";
+import type { Program } from "~~/server/static-data/types/program";
 
 import EventSpeakerCard from "./_components/EventSpeakerCard.vue";
 
@@ -57,7 +58,7 @@ const SectionId = {
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 
-const { data: speakersData } = await useFetch("/api/speakers", {
+const { data: speakersData } = await useFetch<{ programs: Program[] }>("/api/speakers", {
   query: { locale },
 });
 
@@ -139,51 +140,58 @@ usePageSeoMeta({
       :title="t('event.panel.title')"
       class="vf-section discussion-event"
     >
-      <component :is="locale === 'ja' ? JaPanelDiscussionEvent : EnPanelDiscussionEvent">
-        <template #speaker>
-          <ul class="speaker-list">
-            <EventSpeakerCard
-              v-for="speaker in panel1Speakers"
-              :key="speaker.id"
-              :speaker="speaker"
-            />
-          </ul>
-        </template>
-        <template #facilitator>
-          <ul class="speaker-list">
-            <EventSpeakerCard
-              v-for="speaker in panel1Facilitators"
-              :key="speaker.id"
-              :speaker="speaker"
-            />
-          </ul>
-        </template>
-      </component>
-      <div class="meta">
-        <span class="location">{{ panelDiscussionMeta.location }}</span>
-        <span class="time">{{ panelDiscussionMeta.time }}</span>
+      <div class="panel-session">
+        <div class="panel-session-heading">
+          <h3>{{ t("event.panel.talkTitle") }}</h3>
+          <div class="panel-session-meta">
+            <span class="location" :title="panelDiscussionMeta.location">
+              {{ panelDiscussionMeta.location }}
+            </span>
+            <span class="time">{{ panelDiscussionMeta.time }}</span>
+          </div>
+        </div>
+        <component :is="locale === 'ja' ? JaPanelDiscussionEvent : EnPanelDiscussionEvent">
+          <template #speaker>
+            <ul class="speaker-list">
+              <EventSpeakerCard
+                v-for="speaker in panel1Speakers"
+                :key="speaker.id"
+                :speaker="speaker"
+              />
+            </ul>
+          </template>
+          <template #facilitator>
+            <ul class="speaker-list">
+              <EventSpeakerCard
+                v-for="speaker in panel1Facilitators"
+                :key="speaker.id"
+                :speaker="speaker"
+              />
+            </ul>
+          </template>
+        </component>
       </div>
-    </VFSection>
-
-    <VFSection
-      :id="SectionId.PanelDiscussion2"
-      :title="t('event.panel.title')"
-      class="vf-section discussion-event"
-    >
-      <component :is="locale === 'ja' ? JaPanelDiscussion2Event : EnPanelDiscussion2Event">
-        <template #speaker>
-          <ul class="speaker-list">
-            <EventSpeakerCard
-              v-for="speaker in panel2Speakers"
-              :key="speaker.id"
-              :speaker="speaker"
-            />
-          </ul>
-        </template>
-      </component>
-      <div class="meta">
-        <span class="location">{{ panel2DiscussionMeta.location }}</span>
-        <span class="time">{{ panel2DiscussionMeta.time }}</span>
+      <div :id="SectionId.PanelDiscussion2" class="panel-session">
+        <div class="panel-session-heading">
+          <h3>{{ t("event.panel.talkTitle2") }}</h3>
+          <div class="panel-session-meta">
+            <span class="location" :title="panel2DiscussionMeta.location">
+              {{ panel2DiscussionMeta.location }}
+            </span>
+            <span class="time">{{ panel2DiscussionMeta.time }}</span>
+          </div>
+        </div>
+        <component :is="locale === 'ja' ? JaPanelDiscussion2Event : EnPanelDiscussion2Event">
+          <template #speaker>
+            <ul class="speaker-list">
+              <EventSpeakerCard
+                v-for="speaker in panel2Speakers"
+                :key="speaker.id"
+                :speaker="speaker"
+              />
+            </ul>
+          </template>
+        </component>
       </div>
     </VFSection>
 
@@ -482,6 +490,59 @@ usePageSeoMeta({
     @media (--mobile) {
       font-size: 0.875rem;
       margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.panel-session + .panel-session {
+  border-top: 1px solid var(--color-divider);
+  margin-top: 2rem;
+  padding-top: 2rem;
+
+  @media (--mobile) {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+}
+
+.panel-session-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+
+  h3 {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+  }
+
+  @media (--mobile) {
+    flex-direction: column;
+  }
+}
+
+.panel-session-meta {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.5rem 1rem;
+  white-space: nowrap;
+
+  @media (--mobile) {
+    max-width: 100%;
+    min-width: 0;
+    gap: 0.5rem;
+
+    .location {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .time {
+      flex-shrink: 0;
     }
   }
 }

@@ -1,5 +1,3 @@
-### サーバーサイドフレームワークの未来を語る── Nitro / Hono / Elysia と辿る「過去・現在・未来」
-
 BunやDenoをはじめとするランタイムの進化や多様化、そしてAIエージェントの台頭。JavaScript / TypeScriptにおけるサーバーサイド開発は、その役割や領域を広げながらフロントエンドとの境界線を曖昧にしつつあります。このような変化の中で、次世代のWebフレームワークはどのような姿を目指すべきなのでしょうか。
 
 本パネルディスカッションでは、[Nitro（H3）](https://nitro.build/)、[Hono](https://hono-ja.pages.dev/)、[Elysia](https://elysiajs.com/)の作者であるPooya Parsa、Yusuke Wada、saltyaomの3氏を迎え、「サーバーサイドフレームワークの過去・現在・未来」をテーマに深掘りします。

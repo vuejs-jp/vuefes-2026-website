@@ -1,5 +1,3 @@
-### Discussing the Future of Server-Side Frameworks: The Past, Present, and Future with Nitro, Hono, and Elysia
-
 Driven by the evolution and diversification of runtimes like Bun and Deno, as well as the rise of AI agents, server-side development in JavaScript and TypeScript is expanding its roles and domains while blurring the boundaries with the frontend. Amidst these changes, what form should next-generation web frameworks aim for?
 
 In this panel discussion, we welcome Pooya Parsa, Yusuke Wada, and saltyaom—the creators of [Nitro (H3)](https://nitro.build/), [Hono](https://hono-ja.pages.dev/), and [Elysia](https://elysiajs.com/)—to delve deep into the theme of "The Past, Present, and Future of Server-Side Frameworks."
