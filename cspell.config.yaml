@@ -4,8 +4,8 @@ useGitIgnore: true
 words:
   - abramov
   - acconect
-  - agentic
   - Ageno
+  - agentic
   - Ainoya
   - akinori
   - Akryum
@@ -48,6 +48,7 @@ words:
   - Colada
   - commandfor
   - Computeds
+  - cooldown
   - corons
   - cosme
   - cosmonic
@@ -56,7 +57,6 @@ words:
   - crowdsourcing
   - crowlKats
   - cyberagent
-  - cooldown
   - daaay
   - dagashi
   - Daisuke
@@ -69,6 +69,7 @@ words:
   - Denoland
   - dero
   - desumasu
+  - digitalvalue
   - dominikg
   - drumath
   - ebookjapan
@@ -84,15 +85,16 @@ words:
   - Findy
   - Fintech
   - finetext
+  - Fintech
   - fract
   - frontends
   - ftechno
+  - fuchio
   - fujimmm
   - Fujimoto
   - Fujishiro
   - FUJITA
   - Fukuda
-  - fuchio
   - Furukawa
   - gaearon
   - genj
@@ -127,6 +129,7 @@ words:
   - hiroko
   - hiroshi
   - Holo
+  - Hono
   - icubedsystems
   - Ikeda
   - ikkyu
@@ -203,8 +206,8 @@ words:
   - Lokalise
   - lycorp
   - magcho
-  - Markuplint
   - MagSafe
+  - Markuplint
   - marunouchi
   - Masashi
   - Masato
@@ -229,8 +232,8 @@ words:
   - Morote
   - mozjpeg
   - Murata
-  - NAGAI
   - Nagafuchi
+  - NAGAI
   - naitokosuke
   - nakagam
   - nakagami
@@ -292,8 +295,8 @@ words:
   - raycaster
   - rebranded
   - regle
-  - reinit
   - reimagines
+  - reinit
   - Rinchoku
   - ritogk
   - RIZAP
@@ -321,14 +324,14 @@ words:
   - Shigeyuki
   - shiminori
   - shimizu
-  - Shinoda
   - Shingo
   - shinkansen
+  - Shinoda
   - Shota
   - sidebase
   - sigrea
-  - Slidev
   - slidesinview
+  - Slidev
   - snufkin
   - softprops
   - Spidernight
@@ -389,11 +392,11 @@ words:
   - unplugin
   - unrs
   - ushironoko
-  - Verlet
   - vados
   - valibot
   - Vashishtha
   - vejhszh
+  - Verlet
   - Verter
   - visasq
   - Vite
@@ -416,9 +419,9 @@ words:
   - XREAL
   - Yako
   - yamageji
+  - Yamaguchi
   - yamanoku
   - yamanote
-  - Yamaguchi
   - yappli
   - Yasunobu
   - ykoizumi
@@ -444,7 +447,6 @@ words:
   - zeiri
   - Zeirishi
   - ZOZO
-  - digitalvalue
 ignorePaths:
   - dist
   - node_modules

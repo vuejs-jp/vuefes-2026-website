@@ -310,7 +310,7 @@ export function createTimetable(locale: "ja" | "en" = "ja"): TimetableResponse {
         start: program.start,
         end: program.end,
         heading: t("timetable.panelDiscussion"),
-        headingUrl: "/event?session=panel-discussion#panel-discussion",
+        headingUrl: "/event?section=panel-discussion#panel-discussion",
         programs: [program],
       };
 
@@ -326,7 +326,7 @@ export function createTimetable(locale: "ja" | "en" = "ja"): TimetableResponse {
         start: program.start,
         end: program.end,
         heading: t("timetable.panelDiscussion"),
-        headingUrl: "/event?session=panel-discussion#panel-discussion",
+        headingUrl: "/event?section=panel-discussion-2#panel-discussion-2",
         programs: [program],
       };
 

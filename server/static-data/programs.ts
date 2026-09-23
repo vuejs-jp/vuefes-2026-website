@@ -778,12 +778,18 @@ export const PANEL_DISCUSSION_PROGRAMS = definePrograms([
   {
     id: "panel-discussion-2",
     type: "panelDiscussion",
-    speakerIds: [],
+    speakerIds: ["pi0", "yusukebe", "SaltyAom"],
     start: "15:50",
     end: "16:50",
     tracks: ["track2"],
-    ja: { title: "TBD" },
-    en: { title: "TBD" },
+    ja: {
+      title:
+        "サーバーサイドフレームワークの未来を語る── Nitro / Hono / Elysia と辿る「過去・現在・未来」",
+    },
+    en: {
+      title:
+        "Discussing the Future of Server-Side Frameworks: The Past, Present, and Future with Nitro, Hono, and Elysia",
+    },
   },
 ]);
 

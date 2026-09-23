@@ -123,6 +123,8 @@ event:
     title: "パネルディスカッション"
     talkTitle: "JavaScriptエコシステムの境界線を問い直す"
     talkDescription: "ツールとツール、実装と標準、プロジェクトとコミュニティの間にある「境界線」を手がかりに、JavaScriptエコシステムの現在地とこれからについて議論します。"
+    talkTitle2: "サーバーサイドフレームワークの未来を語る── Nitro / Hono / Elysia と辿る「過去・現在・未来」"
+    talkDescription2: "Nitro（H3）、Hono、Elysiaの作者と、サーバーサイドフレームワークの過去・現在・未来を語ります。"
   # TODO: 2026年度のVue Quiz情報を確定する
   quiz:
     title: "Vue Quiz"

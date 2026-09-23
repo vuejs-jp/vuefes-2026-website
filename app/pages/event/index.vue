@@ -6,6 +6,8 @@ import EventSpeakerCard from "./_components/EventSpeakerCard.vue";
 import {
   JaPanelDiscussionEvent,
   EnPanelDiscussionEvent,
+  JaPanelDiscussion2Event,
+  EnPanelDiscussion2Event,
   JaVueQuiz,
   EnVueQuiz,
   JaHandsOnEvent,
@@ -39,6 +41,7 @@ const withBase = useWithBase();
 
 const SectionId = {
   PanelDiscussion: "panel-discussion",
+  PanelDiscussion2: "panel-discussion-2",
   VueQuiz: "vue-quiz",
   HandsOn: "hands-on",
   LunchSponsorSession: "lunch-sponsor-session",
@@ -63,6 +66,10 @@ const panel1Program = computed(() =>
 );
 const panel1Facilitators = computed(() => panel1Program.value?.facilitators ?? []);
 const panel1Speakers = computed(() => panel1Program.value?.speakers ?? []);
+const panel2Program = computed(() =>
+  speakersData.value?.programs.find((program) => program.id === "panel-discussion-2"),
+);
+const panel2Speakers = computed(() => panel2Program.value?.speakers ?? []);
 const studentSupportSpeakers = computed(
   () =>
     speakersData.value?.programs.find((program) => program.id === "student-support-contents")
@@ -82,6 +89,7 @@ const getProgramMeta = (programIds: string[]) => {
 };
 
 const panelDiscussionMeta = computed(() => getProgramMeta(["panel-discussion-1"]));
+const panel2DiscussionMeta = computed(() => getProgramMeta(["panel-discussion-2"]));
 const handsOnMeta = computed(() => getProgramMeta(["hands-on"]));
 const studentSupportMeta = computed(() => getProgramMeta(["student-support-contents"]));
 
@@ -103,17 +111,22 @@ useQueryHashSync({ queryKey: "section" });
 
 usePageSeoMeta({
   title:
-    route.query.section === SectionId.PanelDiscussion
-      ? t("event.panel.talkTitle")
-      : t("event.title"),
+    route.query.section === SectionId.PanelDiscussion2
+      ? t("event.panel.talkTitle2")
+      : route.query.section === SectionId.PanelDiscussion
+        ? t("event.panel.talkTitle")
+        : t("event.title"),
   image: () =>
-    route.query.section === SectionId.PanelDiscussion
+    route.query.section === SectionId.PanelDiscussion ||
+    route.query.section === SectionId.PanelDiscussion2
       ? `${runtimeConfig.public.siteUrl}images/og/panel-discussion.png`
       : `${runtimeConfig.public.siteUrl}images/og/event.png`,
   description:
-    route.query.section === SectionId.PanelDiscussion
-      ? t("event.panel.talkDescription")
-      : undefined,
+    route.query.section === SectionId.PanelDiscussion2
+      ? t("event.panel.talkDescription2")
+      : route.query.section === SectionId.PanelDiscussion
+        ? t("event.panel.talkDescription")
+        : undefined,
 });
 </script>
 
@@ -149,6 +162,28 @@ usePageSeoMeta({
       <div class="meta">
         <span class="location">{{ panelDiscussionMeta.location }}</span>
         <span class="time">{{ panelDiscussionMeta.time }}</span>
+      </div>
+    </VFSection>
+
+    <VFSection
+      :id="SectionId.PanelDiscussion2"
+      :title="t('event.panel.title')"
+      class="vf-section discussion-event"
+    >
+      <component :is="locale === 'ja' ? JaPanelDiscussion2Event : EnPanelDiscussion2Event">
+        <template #speaker>
+          <ul class="speaker-list">
+            <EventSpeakerCard
+              v-for="speaker in panel2Speakers"
+              :key="speaker.id"
+              :speaker="speaker"
+            />
+          </ul>
+        </template>
+      </component>
+      <div class="meta">
+        <span class="location">{{ panel2DiscussionMeta.location }}</span>
+        <span class="time">{{ panel2DiscussionMeta.time }}</span>
       </div>
     </VFSection>
 
