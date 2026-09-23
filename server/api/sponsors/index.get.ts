@@ -1,4 +1,5 @@
-import { defineEventHandler, getQuery } from "h3";
+import { defineEventHandler } from "h3";
+import { getLegacyQuery } from "../../utils/getLegacyQuery";
 import { SPONSORS } from "../../static-data/sponsors";
 import { PROGRAMS } from "../../static-data/programs";
 import { SPEAKERS } from "../../static-data/speakers";
@@ -19,7 +20,7 @@ export default defineEventHandler(
     OPTION: OptionSponsor[];
     JOB_BOARD: Sponsor[];
   } => {
-    const query = getQuery(event);
+    const query = getLegacyQuery(event);
     const locale = (query.locale as "ja" | "en") || "ja";
 
     return {

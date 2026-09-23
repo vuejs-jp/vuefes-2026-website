@@ -1,4 +1,5 @@
-import { defineEventHandler, getQuery, getRouterParam } from "h3";
+import { defineEventHandler, getRouterParam } from "h3";
+import { getLegacyQuery } from "../../../../utils/getLegacyQuery";
 import { usePeatixApi } from "../../../../peatix-api/usePeatixApi";
 import { useRuntimeConfig } from "#imports";
 
@@ -8,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const { client } = usePeatixApi();
 
   const salesId = getRouterParam(event, "salesId")!;
-  const { fresh } = getQuery(event);
+  const { fresh } = getLegacyQuery(event);
 
   const data = await client
     .GET("/event/{eventId}/list_sales/{salesId}", {

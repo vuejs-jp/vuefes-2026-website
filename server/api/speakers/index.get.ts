@@ -1,4 +1,5 @@
-import { defineEventHandler, getQuery } from "h3";
+import { defineEventHandler } from "h3";
+import { getLegacyQuery } from "../../utils/getLegacyQuery";
 import { PROGRAMS } from "../../static-data/programs";
 import { excludeSponsorPrograms } from "../../static-data/relations";
 import { SPEAKERS } from "../../static-data/speakers";
@@ -18,7 +19,7 @@ export default defineEventHandler(
     speakers: Speaker[];
     programs: Program[];
   } => {
-    const query = getQuery(event);
+    const query = getLegacyQuery(event);
     const locale = (query.locale as "ja" | "en") || "ja";
 
     const speakerPrograms = excludeSponsorPrograms(PROGRAMS, [

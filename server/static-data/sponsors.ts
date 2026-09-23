@@ -477,6 +477,25 @@ const SPONSORS_SILVER: SponsorData[] = [
         "Alpaca Connect develops and operates a Play-by-Web (PBW) platform where stories, artwork, voice, and role-playing come together. Built with Vue.js, we strive to create a seamless and engaging creative experience for our community.",
     },
   },
+  {
+    id: "engineer-rakuen-radio",
+    plan: "silver",
+    logoImageUrl: "/images/sponsor-logo/silver/engineer-rakuen-radio.png",
+    ja: {
+      name: "Findy presents エンジニアの楽園ラジオ",
+      linkUrl: "https://engineer.rakuen-radio.com/",
+      logoImageAlt: "Findy presents エンジニアの楽園ラジオ",
+      description:
+        "Tokyofmポッドキャスト公式番組「Findy presents エンジニアの楽園ラジオ」はエンジニアの楽園を目指して旅するラジオです。プログラミングから子育てに至るまで楽園を求めてさすらいます。",
+    },
+    en: {
+      name: "Findy presents: Engineer's Rakuen Radio",
+      linkUrl: "https://engineer.rakuen-radio.com/",
+      logoImageAlt: "Findy presents: Engineer's Rakuen Radio",
+      description:
+        "The official Tokyo FM podcast 'Findy presents: Engineer's Rakuen Radio' is a show that journeys on a quest for an engineer's paradise. From programming to parenting, it wanders through various topics in pursuit of paradise.",
+    },
+  },
 ];
 const SPONSORS_BRONZE: SponsorData[] = [
   {

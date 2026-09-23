@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@vizejs/nuxt": "^0.345.0",
+    "h3-v1": "npm:h3@1.15.11",
     "html-to-image": "^1.11.13",
     "temporal-polyfill-lite": "^0.4.2",
     "vize": "^0.345.0"

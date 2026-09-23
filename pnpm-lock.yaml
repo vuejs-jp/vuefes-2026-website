@@ -16,6 +16,9 @@ importers:
       '@vizejs/nuxt':
         specifier: ^0.345.0
         version: 0.345.0(@voidzero-dev/vite-plus-core@0.1.11(@types/node@25.5.0)(esbuild@0.25.12)(jiti@2.7.0)(terser@5.49.0)(typescript@5.9.3)(yaml@2.8.3))(axe-core@4.11.1)(magicast@0.5.4)(nuxt@4.5.0(8eac5ece94f9390ed33df524f3ba1485))(rollup@4.62.2)(vue@3.6.0-beta.1(typescript@5.9.3))
+      h3-v1:
+        specifier: npm:h3@1.15.11
+        version: h3@1.15.11
       html-to-image:
         specifier: ^1.11.13
         version: 1.11.13
