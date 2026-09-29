@@ -373,7 +373,7 @@ export default defineNuxtConfig({
 
   vize: {
     compiler: false,
-    lint: true,
+    lint: { autoInit: false },
   },
 
   hooks: {

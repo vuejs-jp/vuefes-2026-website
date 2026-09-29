@@ -1,6 +1,15 @@
+import { readFileSync } from "node:fs";
 import { defineConfig } from "vite-plus";
 
-import nuxtLintConfig from "./oxlint.config.mts";
+type OxlintJsPlugin = string | { name?: string; specifier: string };
+
+const generatedUrl = new URL("./.nuxt/oxlint.config.json", import.meta.url);
+const nuxtLintConfig = JSON.parse(readFileSync(generatedUrl, "utf8"));
+nuxtLintConfig.jsPlugins = nuxtLintConfig.jsPlugins.map((plugin: OxlintJsPlugin) =>
+  typeof plugin === "string"
+    ? new URL(plugin, generatedUrl).href
+    : { ...plugin, specifier: new URL(plugin.specifier, generatedUrl).href },
+);
 
 const jsLike = ["*.js", "*.jsx", "*.ts", "*.tsx", "*.mjs", "*.cjs", "*.mts", "*.cts", "*.vue"];
 
