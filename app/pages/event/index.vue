@@ -70,6 +70,7 @@ const panel1Speakers = computed(() => panel1Program.value?.speakers ?? []);
 const panel2Program = computed(() =>
   speakersData.value?.programs.find((program) => program.id === "panel-discussion-2"),
 );
+const panel2Facilitators = computed(() => panel2Program.value?.facilitators ?? []);
 const panel2Speakers = computed(() => panel2Program.value?.speakers ?? []);
 const studentSupportSpeakers = computed(
   () =>
@@ -186,6 +187,15 @@ usePageSeoMeta({
             <ul class="speaker-list">
               <EventSpeakerCard
                 v-for="speaker in panel2Speakers"
+                :key="speaker.id"
+                :speaker="speaker"
+              />
+            </ul>
+          </template>
+          <template #facilitator>
+            <ul class="speaker-list">
+              <EventSpeakerCard
+                v-for="speaker in panel2Facilitators"
                 :key="speaker.id"
                 :speaker="speaker"
               />

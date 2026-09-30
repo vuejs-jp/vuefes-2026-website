@@ -779,6 +779,7 @@ export const PANEL_DISCUSSION_PROGRAMS = definePrograms([
     id: "panel-discussion-2",
     type: "panelDiscussion",
     speakerIds: ["pi0", "yusukebe", "SaltyAom"],
+    facilitatorIds: ["antfu"],
     start: "15:50",
     end: "16:50",
     tracks: ["track2"],

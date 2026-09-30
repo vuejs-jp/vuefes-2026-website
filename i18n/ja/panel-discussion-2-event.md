@@ -9,3 +9,7 @@ BunやDenoをはじめとするランタイムの進化や多様化、そしてA
 #### パネリスト
 
 <slot name="speaker" />
+
+#### ファシリテーター
+
+<slot name="facilitator" />

@@ -260,6 +260,29 @@ const YOSUKE_FURUKAWA: SpeakerData = {
   },
 };
 
+const ANTHONY_FU: SpeakerData = {
+  id: "antfu",
+  avatarUrl: "/images/avatars/antfu.png",
+  color: "default",
+  socialUrls: {
+    x: "https://x.com/antfu7",
+    bluesky: "https://bsky.app/profile/antfu.me",
+    github: "https://github.com/antfu",
+  },
+  ja: {
+    name: "Anthony Fu",
+    title: "デザインエンジニア",
+    affiliation: "Vercel",
+    bio: "フルタイムのオープンソース制作者・メンテナー。現在は岐阜在住です。",
+  },
+  en: {
+    name: "Anthony Fu",
+    title: "Design Engineer",
+    affiliation: "Vercel",
+    bio: "Full-time Open-source Maker & Maintainer. Now living in Gifu, Japan.",
+  },
+};
+
 const RE_TARO: SpeakerData = {
   id: "re-taro",
   avatarUrl: "/images/avatars/re-taro.jpeg",
@@ -273,11 +296,13 @@ const RE_TARO: SpeakerData = {
     name: "re-taro",
     title: "Webテックリード",
     affiliation: "株式会社WinTicket",
+    bio: "株式会社WinTicket の web 領域のテックリードを務め、プロダクト全体の開発を牽引。Web エコシステムへの貢献と観測を続けている。",
   },
   en: {
     name: "re-taro",
     title: "Web Tech Lead",
     affiliation: "WinTicket Inc.",
+    bio: "Serving as the tech lead for the web domain at WinTicket Inc., leading the development of the entire product. Continuing to contribute to and observe the web ecosystem.",
   },
 };
 
@@ -904,6 +929,7 @@ export const SPEAKERS: SpeakerData[] = [
   KONGKEIT_KHUNPANITCHOT,
   YUSUKE_WADA,
   YOSUKE_FURUKAWA,
+  ANTHONY_FU,
   RE_TARO,
   ...SPONSOR_SPEAKERS,
   ...CFP_SPEAKERS,

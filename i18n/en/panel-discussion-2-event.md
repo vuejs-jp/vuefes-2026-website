@@ -9,3 +9,7 @@ Starting with a look back at past design philosophies, the discussion will explo
 #### Panelists
 
 <slot name="speaker" />
+
+#### Facilitators
+
+<slot name="facilitator" />
