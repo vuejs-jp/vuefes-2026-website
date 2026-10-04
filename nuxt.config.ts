@@ -75,11 +75,11 @@ const featureFlags = {
 
   // --- 4月初: 初回ティザー公開 ---
   // スポンサー資料も公開（募集フォームは非公開、募集開始日時を記載して温める）
-  sponsorDocument: true, // スポンサー資料のみ表示（募集フォームなし）
+  sponsorDocument: false, // スポンサー資料のみ表示（募集フォームなし）
 
   // --- 4月中〜末: スポンサー募集開始 ---
-  sponsorWanted: true, // スポンサー募集セクション表示
-  sponsorClosed: false, // スポンサー募集終了メッセージ
+  sponsorWanted: false, // スポンサー募集セクション表示
+  sponsorClosed: true, // スポンサー募集終了メッセージ
 
   // --- 5月末: ゲストスピーカー公開 ---
   // CFP募集が始まることを匂わせる、トーク内容はまだ決まってないので一覧だけ
