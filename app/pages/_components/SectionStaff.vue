@@ -5,11 +5,12 @@ import { VFSection } from "#components";
 
 import StaffGrid from "./StaffGrid.vue";
 import type { Staff } from "~~/server/static-data/types/staff";
+import type { StaffsResponse } from "~/utils/apiResponses";
 
 const { t } = useI18n();
 const bp = useBreakpoint();
 
-const { data: staffList } = await useFetch("/api/staffs", { deep: true });
+const { data: staffList } = await useFetch<StaffsResponse>("/api/staffs", { deep: true });
 
 const leaderColumns = computed(() => {
   return bp.value === "pc" ? 3 : 2;

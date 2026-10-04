@@ -24,6 +24,7 @@ import type { VFFile } from "~/components/form/VFFileInput.vue";
 import { VFFileInput, VFNameBadgePreview, VFSection, VFToast } from "#components";
 import { useToast } from "~/components/toast/VFToast.vue";
 import { NAME_BADGE_PREVIEW_LAYOUT } from "~/components/nameBadge/useNameBadgePreview";
+import type { NameBadgeResponse } from "~/utils/apiResponses";
 
 const { t } = useI18n();
 const title = () => `${t("nuxtSiteConfig.name")} %separator %s`;
@@ -62,7 +63,7 @@ if (isNameBadgeRegistrationClosed.value || route.params.userId !== user.value?.u
   await redirectFromEditPage();
 }
 
-const { data: nameBadgeData, refresh } = useFetch("/api/name-badge");
+const { data: nameBadgeData, refresh } = useFetch<NameBadgeResponse>("/api/name-badge");
 
 const sizeInMB = (sizeInBytes: number, decimalsNum = 2) => {
   const result = sizeInBytes / (1024 * 1024);

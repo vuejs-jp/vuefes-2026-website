@@ -29,6 +29,7 @@ function createProgram(id: string): TimetableProgram {
     type: "session",
     tracks: ["track1"],
     speakers: [],
+    facilitators: [],
   };
 }
 

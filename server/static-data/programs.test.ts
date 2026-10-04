@@ -112,17 +112,19 @@ describe("speaker and program relations", () => {
   });
 
   it("defines the JavaScript ecosystem panel discussion", () => {
-    expect(PANEL_DISCUSSION_PROGRAMS).toContainEqual({
-      id: "panel-discussion-1",
-      type: "panelDiscussion",
-      speakerIds: ["yyx990803", "yosuke-furukawa", "alii", "crowlKats"],
-      facilitatorIds: ["re-taro"],
-      start: "15:50",
-      end: "16:50",
-      tracks: ["track1"],
-      ja: { title: "JavaScriptエコシステムの境界線を問い直す" },
-      en: { title: "Rethinking Boundaries in the JavaScript Ecosystem" },
-    });
+    expect(PANEL_DISCUSSION_PROGRAMS).toContainEqual(
+      expect.objectContaining({
+        id: "panel-discussion-1",
+        type: "panelDiscussion",
+        speakerIds: ["yyx990803", "yosuke-furukawa", "alii", "crowlKats"],
+        facilitatorIds: ["re-taro"],
+        start: "15:50",
+        end: "16:50",
+        tracks: ["track1"],
+        ja: expect.objectContaining({ title: "JavaScriptエコシステムの境界線を問い直す" }),
+        en: expect.objectContaining({ title: "Rethinking Boundaries in the JavaScript Ecosystem" }),
+      }),
+    );
 
     const panel = PANEL_DISCUSSION_PROGRAMS.find((program) => program.id === "panel-discussion-1");
     expect(panel).toBeDefined();
@@ -134,6 +136,15 @@ describe("speaker and program relations", () => {
       "crowlKats",
     ]);
     expect(resolvedPanel.facilitators.map((speaker) => speaker.id)).toEqual(["re-taro"]);
+    expect(resolvedPanel.overview).toContain("近年のJavaScriptエコシステムでは");
+    expect(resolveProgram(panel!, SPEAKERS, "en").overview).toContain(
+      "In recent years, tools in the JavaScript ecosystem",
+    );
+
+    for (const panelProgram of PANEL_DISCUSSION_PROGRAMS) {
+      expect(resolveProgram(panelProgram, SPEAKERS, "ja").overview).toBeTruthy();
+      expect(resolveProgram(panelProgram, SPEAKERS, "en").overview).toBeTruthy();
+    }
   });
 
   it("publishes the submitted platinum sponsor program details", () => {

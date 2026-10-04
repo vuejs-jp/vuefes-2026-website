@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { VFSection, VFButton } from "#components";
+import type { RelatedEventsResponse } from "~/utils/apiResponses";
 
 import {
   computed,
@@ -14,7 +15,7 @@ import {
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 
-const { data: relatedEventsData } = await useFetch("/api/related-events", {
+const { data: relatedEventsData } = await useFetch<RelatedEventsResponse>("/api/related-events", {
   query: { locale },
 });
 

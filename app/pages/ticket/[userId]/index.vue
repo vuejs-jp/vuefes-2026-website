@@ -19,6 +19,7 @@ import {
 import { VFNameBadgePreview, VFSection, VFToast } from "#components";
 import { NAME_BADGE_PREVIEW_LAYOUT } from "~/components/nameBadge/useNameBadgePreview";
 import { useToast } from "~/components/toast/VFToast.vue";
+import type { PublicNameBadgeResponse } from "~/utils/apiResponses";
 
 import XIcon from "~icons/icons/ic_x";
 import BlueskyIcon from "~icons/icons/ic_bluesky";
@@ -36,7 +37,9 @@ const shareUrl = new URL(
   `ticket/${route.params.userId}`,
   useRuntimeConfig().public.siteUrl,
 ).toString();
-const { data: nameBadgeData } = await useFetch(`/api/name-badge/${route.params.userId}`);
+const { data: nameBadgeData } = await useFetch<PublicNameBadgeResponse>(
+  `/api/name-badge/${route.params.userId}`,
+);
 const nameBadgeStatus = computed(() => {
   if (!nameBadgeData.value) return "notCreated";
   return nameBadgeData.value.isLinked ? "linked" : "created";

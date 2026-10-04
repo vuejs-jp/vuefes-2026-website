@@ -77,7 +77,9 @@ const countLabel = computed(() =>
 function createEntry(item: TimetableItem, program: TimetableProgram) {
   const trackLabel = item.tracks.map((itemTrack) => t(`timetable.track.${itemTrack}`)).join(" / ");
   const title = program.title || item.heading || (props.locale === "ja" ? "タイトル未定" : "TBD");
-  const speakerNames = program.speakers.map((speaker) => speaker.name).join(" / ");
+  const speakerNames = [...(program.speakers ?? []), ...(program.facilitators ?? [])]
+    .map((speaker) => speaker.name)
+    .join(" / ");
 
   return {
     id: program.id,

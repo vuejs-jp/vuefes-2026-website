@@ -122,10 +122,9 @@ event:
   title: "Event"
   panel:
     title: "Panel Discussion"
-    panelist: "Panelist"
-    talkTitle: "Rethinking Boundaries in the JavaScript Ecosystem"
+    panelists: "Panelists"
+    facilitators: "Facilitators"
     talkDescription: "Our panelists will explore where the JavaScript ecosystem stands today and where it may be headed next, through the lens of the boundaries between tools, between implementations and standards, and between projects and communities."
-    talkTitle2: "Discussing the Future of Server-Side Frameworks: The Past, Present, and Future with Nitro, Hono, and Elysia"
     talkDescription2: "Join the creators of Nitro (H3), Hono, and Elysia to discuss the past, present, and future of server-side frameworks."
   # TODO: 2026 年度の Vue Quiz 情報を確定する
   quiz:

@@ -5,6 +5,7 @@ import TimetableCard from "./_components/TimetableCard.vue";
 import { createDesktopTimetable, createMobileTimetable } from "./_utils/builders/";
 import { useScrollPosition } from "~/composables/useScrollPosition";
 import { useMyTimetable } from "~/composables/useMyTimetable";
+import type { TimetableResponse } from "~/utils/apiResponses";
 import {
   createSelectableMyTimetableProgramIdSet,
   createSelectableMyTimetableSelectionIdSet,
@@ -36,7 +37,7 @@ const bp = useBreakpoint();
 const localePath = useLocalePath();
 const showVenueMap = import.meta.vfFeatures.timetableVenueMap;
 
-const { data: timetable } = await useFetch("/api/timetable", {
+const { data: timetable } = await useFetch<TimetableResponse>("/api/timetable", {
   query: { locale },
 });
 const {

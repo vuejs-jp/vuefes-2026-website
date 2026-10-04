@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { useLocaleRoute } from "@typed-router";
 import SpeakerCard from "./_components/SpeakerCard.vue";
-import {
-  VFSection,
-  VFButton,
-  JaSpeaker,
-  EnSpeaker,
-  JaPanelDiscussion,
-  EnPanelDiscussion,
-} from "#components";
+import ProgramOverview from "~/components/program/ProgramOverview.vue";
+import type { SpeakersResponse } from "~/utils/apiResponses";
+import { VFSection, VFButton, JaSpeaker, EnSpeaker } from "#components";
 import {
   computed,
   defineRouteRules,
@@ -39,13 +34,16 @@ const goBack = () => {
   }
 };
 
-const { data: speakersData } = await useFetch("/api/speakers", {
+const { data: speakersData } = await useFetch<SpeakersResponse>("/api/speakers", {
   query: { locale },
 });
 
 const sessionSpeakers = computed(() => speakersData.value?.sessionSpeakers ?? []);
 const ltSpeakers = computed(() => speakersData.value?.ltSpeakers ?? []);
 const panelSpeakers = computed(() => speakersData.value?.panelDiscussionSpeakers ?? []);
+const panelPrograms = computed(
+  () => speakersData.value?.programs.filter((program) => program.type === "panelDiscussion") ?? [],
+);
 const allSpeakers = computed(() => {
   return [...(speakersData.value?.speakers ?? [])].sort(
     (a, b) =>
@@ -68,7 +66,7 @@ useQueryHashSync({ queryKey: "section" });
 usePageSeoMeta({
   title: () =>
     route.query.section === SectionId.PanelDiscussion
-      ? t("event.panel.talkTitle")
+      ? (panelPrograms.value[0]?.title ?? t("speakers.title"))
       : t("speakers.title"),
   image: () =>
     route.query.section === SectionId.PanelDiscussion
@@ -135,10 +133,10 @@ usePageSeoMeta({
       </VFSection>
 
       <VFSection :id="SectionId.PanelDiscussion" :title="t('speakers.panel.title')" wide>
-        <component
-          :is="locale === 'ja' ? JaPanelDiscussion : EnPanelDiscussion"
-          class="description"
-        />
+        <div v-for="program in panelPrograms" :key="program.id" class="description">
+          <h3>{{ program.title }}</h3>
+          <ProgramOverview :overview="program.overview" />
+        </div>
 
         <ul class="speakers">
           <SpeakerCard

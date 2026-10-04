@@ -3,6 +3,7 @@ import MyTimetableCapture from "./_components/MyTimetableCapture.vue";
 import VFToast, { useToast } from "~/components/toast/VFToast.vue";
 import { useMyTimetable } from "~/composables/useMyTimetable";
 import { captureElementAsPng } from "~/utils/captureElementAsPng";
+import type { TimetableResponse } from "~/utils/apiResponses";
 import XIcon from "~icons/icons/ic_x";
 import {
   addMyTimetableSelection,
@@ -69,7 +70,7 @@ const shareSectionTitle = computed(() =>
   t(isSharedTimetable.value ? "myTimetable.shareSharedSection" : "myTimetable.shareSection"),
 );
 
-const { data: timetable } = await useFetch("/api/timetable", {
+const { data: timetable } = await useFetch<TimetableResponse>("/api/timetable", {
   query: { locale },
 });
 const timetableItems = computed(() => timetable.value?.items ?? []);
@@ -414,7 +415,9 @@ function formatItemsAsText(items: readonly TimetableItem[]): string {
         lines.push(`- ${item.heading}`);
       }
 
-      const speakerNames = program.speakers.map((speaker) => speaker.name).join(", ");
+      const speakerNames = [...(program.speakers ?? []), ...(program.facilitators ?? [])]
+        .map((speaker) => speaker.name)
+        .join(", ");
       if (speakerNames) {
         lines.push(`- ${t("myTimetable.copyTextSpeakers")}: ${speakerNames}`);
       }

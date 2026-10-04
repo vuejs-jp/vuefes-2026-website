@@ -4,13 +4,14 @@ import { HOME_HEADING_ID } from "~/constant";
 import { useBreakpoint, useI18n, useWithBase, useFetch } from "#imports";
 import { VFSection, SponsorGrid } from "#components";
 import type { OptionSponsor } from "~~/server/static-data/types/sponsor";
+import type { SponsorsResponse } from "~/utils/apiResponses";
 
 const bp = useBreakpoint();
 const withBase = useWithBase();
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
 
-const { data: sponsorsData } = await useFetch("/api/sponsors", {
+const { data: sponsorsData } = await useFetch<SponsorsResponse>("/api/sponsors", {
   query: { locale },
 });
 

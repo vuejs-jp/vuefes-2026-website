@@ -144,7 +144,11 @@ const {
                 />
               </div>
 
-              <div v-for="speaker in program.speakers" :key="speaker.id" class="speaker-item">
+              <div
+                v-for="speaker in [...(program.speakers ?? []), ...(program.facilitators ?? [])]"
+                :key="speaker.id"
+                class="speaker-item"
+              >
                 <div v-if="speaker.avatarUrl" class="avatar">
                   <img :src="speaker.avatarUrl" :alt="speaker.name" />
                 </div>

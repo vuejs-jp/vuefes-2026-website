@@ -3,12 +3,9 @@ import { useRoute } from "@typed-router";
 import type { Program } from "~~/server/static-data/types/program";
 
 import EventSpeakerCard from "./_components/EventSpeakerCard.vue";
+import ProgramOverview from "~/components/program/ProgramOverview.vue";
 
 import {
-  JaPanelDiscussionEvent,
-  EnPanelDiscussionEvent,
-  JaPanelDiscussion2Event,
-  EnPanelDiscussion2Event,
   JaVueQuiz,
   EnVueQuiz,
   JaHandsOnEvent,
@@ -62,16 +59,11 @@ const { data: speakersData } = await useFetch<{ programs: Program[] }>("/api/spe
   query: { locale },
 });
 
-const panel1Program = computed(() =>
-  speakersData.value?.programs.find((program) => program.id === "panel-discussion-1"),
+const panelPrograms = computed(
+  () => speakersData.value?.programs.filter((program) => program.type === "panelDiscussion") ?? [],
 );
-const panel1Facilitators = computed(() => panel1Program.value?.facilitators ?? []);
-const panel1Speakers = computed(() => panel1Program.value?.speakers ?? []);
-const panel2Program = computed(() =>
-  speakersData.value?.programs.find((program) => program.id === "panel-discussion-2"),
-);
-const panel2Facilitators = computed(() => panel2Program.value?.facilitators ?? []);
-const panel2Speakers = computed(() => panel2Program.value?.speakers ?? []);
+const panelSectionId = (program: Program) =>
+  program.id === "panel-discussion-1" ? SectionId.PanelDiscussion : program.id;
 const studentSupportSpeakers = computed(
   () =>
     speakersData.value?.programs.find((program) => program.id === "student-support-contents")
@@ -90,8 +82,6 @@ const getProgramMeta = (programIds: string[]) => {
   };
 };
 
-const panelDiscussionMeta = computed(() => getProgramMeta(["panel-discussion-1"]));
-const panel2DiscussionMeta = computed(() => getProgramMeta(["panel-discussion-2"]));
 const handsOnMeta = computed(() => getProgramMeta(["hands-on"]));
 const studentSupportMeta = computed(() => getProgramMeta(["student-support-contents"]));
 
@@ -108,16 +98,14 @@ const lunchSponsorSessionImage = {
 };
 
 const route = useRoute();
+const selectedPanel = computed(() =>
+  panelPrograms.value.find((program) => panelSectionId(program) === route.query.section),
+);
 
 useQueryHashSync({ queryKey: "section" });
 
 usePageSeoMeta({
-  title:
-    route.query.section === SectionId.PanelDiscussion2
-      ? t("event.panel.talkTitle2")
-      : route.query.section === SectionId.PanelDiscussion
-        ? t("event.panel.talkTitle")
-        : t("event.title"),
+  title: () => selectedPanel.value?.title ?? t("event.title"),
   image: () =>
     route.query.section === SectionId.PanelDiscussion ||
     route.query.section === SectionId.PanelDiscussion2
@@ -141,67 +129,45 @@ usePageSeoMeta({
       :title="t('event.panel.title')"
       class="vf-section discussion-event"
     >
-      <div class="panel-session">
+      <div
+        v-for="program in panelPrograms"
+        :id="program.id === 'panel-discussion-1' ? undefined : panelSectionId(program)"
+        :key="program.id"
+        class="panel-session"
+      >
         <div class="panel-session-heading">
-          <h3>{{ t("event.panel.talkTitle") }}</h3>
+          <h3>{{ program.title }}</h3>
           <div class="panel-session-meta">
-            <span class="location" :title="panelDiscussionMeta.location">
-              {{ panelDiscussionMeta.location }}
+            <span
+              class="location"
+              :title="program.tracks.map((track) => t(`timetable.track.${track}`)).join(' / ')"
+            >
+              {{ program.tracks.map((track) => t(`timetable.track.${track}`)).join(" / ") }}
             </span>
-            <span class="time">{{ panelDiscussionMeta.time }}</span>
+            <span class="time">{{ program.start }} - {{ program.end }}</span>
           </div>
         </div>
-        <component :is="locale === 'ja' ? JaPanelDiscussionEvent : EnPanelDiscussionEvent">
-          <template #speaker>
-            <ul class="speaker-list">
-              <EventSpeakerCard
-                v-for="speaker in panel1Speakers"
-                :key="speaker.id"
-                :speaker="speaker"
-              />
-            </ul>
-          </template>
-          <template #facilitator>
-            <ul class="speaker-list">
-              <EventSpeakerCard
-                v-for="speaker in panel1Facilitators"
-                :key="speaker.id"
-                :speaker="speaker"
-              />
-            </ul>
-          </template>
-        </component>
-      </div>
-      <div :id="SectionId.PanelDiscussion2" class="panel-session">
-        <div class="panel-session-heading">
-          <h3>{{ t("event.panel.talkTitle2") }}</h3>
-          <div class="panel-session-meta">
-            <span class="location" :title="panel2DiscussionMeta.location">
-              {{ panel2DiscussionMeta.location }}
-            </span>
-            <span class="time">{{ panel2DiscussionMeta.time }}</span>
-          </div>
+        <ProgramOverview :overview="program.overview" />
+        <div v-if="program.speakers?.length" class="panel-participants">
+          <h4>{{ t("event.panel.panelists") }}</h4>
+          <ul class="speaker-list">
+            <EventSpeakerCard
+              v-for="speaker in program.speakers"
+              :key="speaker.id"
+              :speaker="speaker"
+            />
+          </ul>
         </div>
-        <component :is="locale === 'ja' ? JaPanelDiscussion2Event : EnPanelDiscussion2Event">
-          <template #speaker>
-            <ul class="speaker-list">
-              <EventSpeakerCard
-                v-for="speaker in panel2Speakers"
-                :key="speaker.id"
-                :speaker="speaker"
-              />
-            </ul>
-          </template>
-          <template #facilitator>
-            <ul class="speaker-list">
-              <EventSpeakerCard
-                v-for="speaker in panel2Facilitators"
-                :key="speaker.id"
-                :speaker="speaker"
-              />
-            </ul>
-          </template>
-        </component>
+        <div v-if="program.facilitators?.length" class="panel-participants">
+          <h4>{{ t("event.panel.facilitators") }}</h4>
+          <ul class="speaker-list">
+            <EventSpeakerCard
+              v-for="speaker in program.facilitators"
+              :key="speaker.id"
+              :speaker="speaker"
+            />
+          </ul>
+        </div>
       </div>
     </VFSection>
 
@@ -512,6 +478,14 @@ usePageSeoMeta({
   @media (--mobile) {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
+  }
+}
+
+.panel-participants {
+  margin-top: 2rem;
+
+  @media (--mobile) {
+    margin-top: 1.5rem;
   }
 }
 

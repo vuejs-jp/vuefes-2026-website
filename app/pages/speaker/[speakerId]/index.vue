@@ -5,6 +5,8 @@ import GithubIcon from "~icons/icons/ic_github";
 import BlueskyIcon from "~icons/icons/ic_bluesky";
 import { TIMETABLE_TRACKS } from "~~/server/static-data/timetable";
 import type { Program } from "~~/server/static-data/types/program";
+import type { SpeakersResponse } from "~/utils/apiResponses";
+import ProgramOverview from "~/components/program/ProgramOverview.vue";
 import {
   computed,
   defineOgImage,
@@ -25,7 +27,7 @@ const router = useRouter();
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
 
-const { data: speakersData } = await useFetch("/api/speakers", {
+const { data: speakersData } = await useFetch<SpeakersResponse>("/api/speakers", {
   query: { locale },
 });
 
@@ -37,9 +39,10 @@ const currentPrograms = computed(
   () =>
     speakersData.value?.programs.filter(
       (program) =>
-        program.type !== "panelDiscussion" &&
+        program.id !== "keynote" &&
         program.type !== "event" &&
-        program.speakers.some((speaker) => speaker.id === route.params.speakerId),
+        (program.speakers?.some((speaker) => speaker.id === route.params.speakerId) ||
+          program.facilitators?.some((speaker) => speaker.id === route.params.speakerId)),
     ) ?? [],
 );
 
@@ -122,6 +125,42 @@ const trackStyles = (tracks: Program["tracks"]) => {
       </div>
 
       <div class="speaker-information">
+        <div v-for="program in currentPrograms" :key="program.id" class="speaker-program-mobile">
+          <h3 v-if="program.title" class="session-title-mobile">
+            {{ program.title }}
+          </h3>
+
+          <ProgramOverview
+            v-if="program.type === 'panelDiscussion'"
+            :overview="program.overview"
+            class="session-overview-mobile"
+          />
+          <div v-else-if="program.overview" class="session-overview-mobile">
+            <template v-for="(paragraph, idx) in splitLines(program.overview)" :key="idx">
+              <template v-if="paragraph">
+                <p
+                  :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''"
+                >
+                  <template v-for="(part, index) in parseParagraph(paragraph)" :key="index">
+                    <a
+                      v-if="part.isUrl"
+                      :href="part.content"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {{ part.content }}
+                    </a>
+                    <template v-else>{{ part.content }}</template>
+                  </template>
+                </p>
+              </template>
+              <template v-else>
+                <span class="session-overview-spacer"></span>
+              </template>
+            </template>
+          </div>
+        </div>
+
         <div class="speaker-avatar">
           <img :src="currentSpeaker.avatarUrl" :alt="currentSpeaker.name" />
         </div>
@@ -131,7 +170,12 @@ const trackStyles = (tracks: Program["tracks"]) => {
               {{ program.title }}
             </h3>
 
-            <div v-if="program.overview" class="session-overview">
+            <ProgramOverview
+              v-if="program.type === 'panelDiscussion'"
+              :overview="program.overview"
+              class="session-overview"
+            />
+            <div v-else-if="program.overview" class="session-overview">
               <template v-for="(paragraph, idx) in splitLines(program.overview)" :key="idx">
                 <template v-if="paragraph">
                   <p
@@ -259,37 +303,6 @@ const trackStyles = (tracks: Program["tracks"]) => {
               <p v-if="paragraph">
                 {{ paragraph }}
               </p>
-            </template>
-          </div>
-        </div>
-
-        <div v-for="program in currentPrograms" :key="program.id" class="speaker-program-mobile">
-          <h3 v-if="program.title" class="session-title-mobile">
-            {{ program.title }}
-          </h3>
-
-          <div v-if="program.overview" class="session-overview-mobile">
-            <template v-for="(paragraph, idx) in splitLines(program.overview)" :key="idx">
-              <template v-if="paragraph">
-                <p
-                  :style="paragraph.startsWith('・') ? 'text-indent: -1em; padding-left: 1em;' : ''"
-                >
-                  <template v-for="(part, index) in parseParagraph(paragraph)" :key="index">
-                    <a
-                      v-if="part.isUrl"
-                      :href="part.content"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {{ part.content }}
-                    </a>
-                    <template v-else>{{ part.content }}</template>
-                  </template>
-                </p>
-              </template>
-              <template v-else>
-                <span class="session-overview-spacer"></span>
-              </template>
             </template>
           </div>
         </div>

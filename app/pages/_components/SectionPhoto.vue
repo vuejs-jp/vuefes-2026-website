@@ -2,8 +2,9 @@
 import { HOME_HEADING_ID } from "~/constant";
 import { useI18n, useFetch } from "#imports";
 import { VFSection } from "#components";
+import type { PhotoResponse } from "~/utils/apiResponses";
 
-const { data: photoCategories } = await useFetch("/api/photo");
+const { data: photoCategories } = await useFetch<PhotoResponse>("/api/photo");
 
 const { t } = useI18n();
 

@@ -11,13 +11,14 @@ import {
   useFetch,
 } from "#imports";
 import { VFSection, JaJobBoard, EnJobBoard } from "#components";
+import type { JobBoardResponse } from "~/utils/apiResponses";
 
 definePageMeta({ prerender: true });
 
 const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 
-const { data: jobBoardsData } = await useFetch("/api/job-board", {
+const { data: jobBoardsData } = await useFetch<JobBoardResponse>("/api/job-board", {
   query: { locale },
 });
 

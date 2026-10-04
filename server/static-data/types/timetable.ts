@@ -12,6 +12,7 @@ export type TimetableProgram = Pick<
   "id" | "title" | "url" | "slideUrl" | "type" | "tracks"
 > & {
   speakers: TimetableSpeaker[];
+  facilitators: TimetableSpeaker[];
 };
 
 export interface TimetableItem {

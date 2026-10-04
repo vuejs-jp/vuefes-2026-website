@@ -772,8 +772,23 @@ export const PANEL_DISCUSSION_PROGRAMS = definePrograms([
     start: "15:50",
     end: "16:50",
     tracks: ["track1"],
-    ja: { title: "JavaScriptエコシステムの境界線を問い直す" },
-    en: { title: "Rethinking Boundaries in the JavaScript Ecosystem" },
+    ja: {
+      title: "JavaScriptエコシステムの境界線を問い直す",
+      overview: [
+        "近年のJavaScriptエコシステムでは、それぞれ従来の役割を越えて進化しています。個々のツールが担う領域は広がり、その境界は以前よりも曖昧になりつつあります。",
+        "1つのツールは、どこまでを自ら担い、どこからをほかのツールや標準に委ねるべきなのでしょうか。互換性を守ることと独自の価値を生み出すこと、技術的な進化とオープンなエコシステムを持続させることは、どのように両立できるのでしょうか。",
+        "本パネルディスカッションでは、ツールとツール、実装と標準、プロジェクトとコミュニティの間にある「境界線」を手がかりに、JavaScriptエコシステムの現在地とこれからについて議論していただきます。",
+        "※ 内容は予告なく変更する可能性があります。",
+      ].join("\n\n"),
+    },
+    en: {
+      title: "Rethinking Boundaries in the JavaScript Ecosystem",
+      overview: [
+        "In recent years, tools in the JavaScript ecosystem have evolved beyond their traditional roles. As individual tools take on a broader range of responsibilities, the boundaries between them are becoming increasingly blurred.",
+        "How much should a single tool take on, and what should it leave to other tools or to standards? How can we reconcile preserving compatibility with creating unique value, and technical progress with sustaining an open ecosystem?",
+        "In this panel discussion, our panelists will explore where the JavaScript ecosystem stands today and where it may be headed next, through the lens of the boundaries between tools, between implementations and standards, and between projects and communities.",
+      ].join("\n\n"),
+    },
   },
   {
     id: "panel-discussion-2",
@@ -786,10 +801,22 @@ export const PANEL_DISCUSSION_PROGRAMS = definePrograms([
     ja: {
       title:
         "サーバーサイドフレームワークの未来を語る── Nitro / Hono / Elysia と辿る「過去・現在・未来」",
+      overview: [
+        "BunやDenoをはじめとするランタイムの進化や多様化、そしてAIエージェントの台頭。JavaScript / TypeScriptにおけるサーバーサイド開発は、その役割や領域を広げながらフロントエンドとの境界線を曖昧にしつつあります。このような変化の中で、次世代のWebフレームワークはどのような姿を目指すべきなのでしょうか。",
+        "本パネルディスカッションでは、[Nitro（H3）](https://nitro.build/)、[Hono](https://hono-ja.pages.dev/)、[Elysia](https://elysiajs.com/)の作者であるPooya Parsa、Yusuke Wada、saltyaomの3氏を迎え、「サーバーサイドフレームワークの過去・現在・未来」をテーマに深掘りします。",
+        "これまでの設計思想の振り返りをはじめ、AI時代における開発者体験とAI体験の関係性を議論します。さらに、フレームワークは単機能で軽量なパーツであるべきか、それとも開発を完結させる包括的な基盤へ進化すべきかといった問いにも踏み込みます。これからのWeb開発の指針を多角的に紐解くセッションです。",
+        "※ 内容は予告なく変更する可能性があります。",
+      ].join("\n\n"),
     },
     en: {
       title:
         "Discussing the Future of Server-Side Frameworks: The Past, Present, and Future with Nitro, Hono, and Elysia",
+      overview: [
+        "Driven by the evolution and diversification of runtimes like Bun and Deno, as well as the rise of AI agents, server-side development in JavaScript and TypeScript is expanding its roles and domains while blurring the boundaries with the frontend. Amidst these changes, what form should next-generation web frameworks aim for?",
+        'In this panel discussion, we welcome Pooya Parsa, Yusuke Wada, and saltyaom—the creators of [Nitro (H3)](https://nitro.build/), [Hono](https://hono-ja.pages.dev/), and [Elysia](https://elysiajs.com/)—to delve deep into the theme of "The Past, Present, and Future of Server-Side Frameworks."',
+        "Starting with a look back at past design philosophies, the discussion will explore the relationship between developer experience and AI experience in the age of AI. We will also tackle questions such as whether frameworks should be single-function, lightweight parts or evolve into comprehensive foundations that complete the entire development process. This session will comprehensively untangle guidelines for future web development.",
+        "The content is subject to change without notice.",
+      ].join("\n\n"),
     },
   },
 ]);

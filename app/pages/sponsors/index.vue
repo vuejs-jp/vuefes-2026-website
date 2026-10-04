@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SponsorGrid from "../../components/SponsorGrid.vue";
 import type { OptionSponsor } from "~~/server/static-data/types/sponsor";
+import type { SponsorsResponse } from "~/utils/apiResponses";
 
 import {
   definePageMeta,
@@ -20,7 +21,7 @@ const runtimeConfig = useRuntimeConfig();
 const { t, locale } = useI18n();
 const bp = useBreakpoint();
 
-const { data: sponsorsData } = await useFetch("/api/sponsors", {
+const { data: sponsorsData } = await useFetch<SponsorsResponse>("/api/sponsors", {
   query: { locale },
 });
 const hasSponsors = (sponsors?: unknown[] | null): boolean => (sponsors?.length ?? 0) > 0;

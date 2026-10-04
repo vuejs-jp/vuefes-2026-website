@@ -4,11 +4,12 @@ import { computed, useI18n, useLazyFetch, useState, watch } from "#imports";
 import { EnSpeaker, JaSpeaker, NuxtLink, VFButton, VFCarousel } from "#components";
 import type { Speaker } from "~~/server/static-data/types/speaker";
 import { HOME_HEADING_ID } from "~/constant";
+import type { SpeakersResponse } from "~/utils/apiResponses";
 
 const { t, locale } = useI18n();
 const localeRoute = useLocaleRoute();
 
-const { data: speakersData } = useLazyFetch("/api/speakers", {
+const { data: speakersData } = useLazyFetch<SpeakersResponse>("/api/speakers", {
   query: { locale },
   server: false,
 });

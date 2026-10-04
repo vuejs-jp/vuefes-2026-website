@@ -10,6 +10,7 @@ function createProgram(id: string, url?: string): TimetableProgram {
     url,
     tracks: ["track1"],
     speakers: [],
+    facilitators: [],
   };
 }
 

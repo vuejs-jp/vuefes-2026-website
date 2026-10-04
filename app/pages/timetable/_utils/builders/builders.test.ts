@@ -163,6 +163,7 @@ describe("desktop and mobile timetable builders", () => {
             avatarUrl: "/speaker.png",
           },
         ],
+        facilitators: [],
         slideUrl: "https://example.com/slides",
       },
     ];
