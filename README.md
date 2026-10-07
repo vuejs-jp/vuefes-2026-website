@@ -175,7 +175,7 @@ Control page generation with Nuxt's `ignore` option:
 
 This approach completely excludes pages from the build, resulting in smaller bundle sizes and true 404s when features are disabled.
 
-See: https://nuxt.com/docs/4.x/api/nuxt-config#ignore
+See: <https://nuxt.com/docs/4.x/api/nuxt-config#ignore>
 
 #### Server API Routes
 
@@ -196,14 +196,3 @@ export default defineEventHandler(async (event) => {
   return await getTimetableData();
 });
 ```
-
-## Plans Overview
-
-### Others
-
-- [ ] Migrate to Cloudflare Workers
-- [x] remove PrimeVue (Carousel, Form)
-- [ ] Performance Improvements
-- [ ] Accessibility Improvements
-- [ ] ~~Story Improvements~~
-- [ ] Refactor Static Datasets
