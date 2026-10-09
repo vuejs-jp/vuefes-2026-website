@@ -489,14 +489,14 @@ export const SESSION_PROGRAMS = definePrograms([
     start: "16:55",
     end: "17:25",
     ja: {
-      title: "ブランドのためのWebGLアニメーション（仮）",
+      title: "WebGLで見る、有限な計算と滑らかな世界",
       overview:
-        "WebGLアニメーションは、Webサイトを華やかにするだけでなく、ブランドの個性や世界観を視覚的に伝えるための手段でもあります。\n\n本トークでは、WebGL Developerとしてこれまで約10年間携わってきたプロジェクトの事例を紹介しながら、ブランドのためのWebGLアニメーションがどのように作られるのかをお話しします。\n\nデザイナーが描くコンセプトや抽象的なイメージを理解し、それを形、色、動き、インタラクションへと落とし込む過程。デザイナーが調整できる範囲と、開発者が管理する範囲の設計。そして、実際のWebサイトとして成立させるために、表現の品質とパフォーマンスの境界をどのように判断するか。実制作で考えてきたことを、事例とともに紹介します。\n\nこちらのセッションの内容は当日までに変わる可能性があります。",
+        "WebGLで表現をつくっていると、ピクセルや数値精度といったコンピューターの制約が、見た目や動きそのものに現れる瞬間があります。\n\nこのトークでは、流体シミュレーションや自身のジェネラティブアートなど、これまでに取り組んできた制作を通して、1ピクセルという最小単位、浮動小数点精度、そして有限な計算の積み重ねから生まれる美しさや面白さについて話します。",
     },
     en: {
-      title: "WebGL Animation for Brands (Tentative)",
+      title: "Finite Computation and a Smooth World, Seen Through WebGL",
       overview:
-        "WebGL animation isn't just about making websites look impressive — it's also a means of visually communicating a brand's personality and worldview.\n\nIn this talk, drawing on examples from projects I've worked on over roughly a decade as a WebGL developer, I'll share how WebGL animation for brands actually gets made.\n\nThe process of understanding a designer's concepts and abstract imagery, and translating them into shape, color, motion, and interaction. Designing the boundary between what designers can adjust and what developers manage. And how to judge the line between expressive quality and performance in order to make it all work as a real website. I'll introduce what I've thought through in actual production work, together with concrete examples.\n\nThe content of this session is subject to change before the day of the event.",
+        "When you create visuals with WebGL, there are moments when the constraints of the computer — pixels, numerical precision — surface in the very look and motion of the work.\n\nIn this talk, drawing on work I've done so far, from fluid simulations to my own generative art, I'll talk about the beauty and fascination that emerge from the single pixel as the smallest unit, from floating-point precision, and from layer upon layer of finite computation.",
     },
   },
   {
