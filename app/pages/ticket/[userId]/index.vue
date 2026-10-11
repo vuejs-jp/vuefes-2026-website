@@ -9,7 +9,6 @@ import {
   useAuth,
   useBreakpoint,
   useFetch,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHead,
   useI18n,
   useRuntimeConfig,
@@ -58,6 +57,7 @@ usePageSeoMeta({
       : t("nameBadge.pageTitle", { username: nameBadgeData.value?.name }),
   description: () => t("nameBadge.pageDescription"),
 });
+useHead({ meta: [{ name: "robots", content: "noindex" }] });
 
 function handleClickXIcon() {
   const shareText = t("nameBadge.shareText", { link: shareUrl });
