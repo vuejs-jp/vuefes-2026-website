@@ -106,10 +106,11 @@ useQueryHashSync({ queryKey: "section" });
 
 usePageSeoMeta({
   title: () => selectedPanel.value?.title ?? t("event.title"),
+  // パネルディスカッション専用のOG Imageを出せるように仕組みを残しておく
   image: () =>
     route.query.section === SectionId.PanelDiscussion ||
     route.query.section === SectionId.PanelDiscussion2
-      ? `${runtimeConfig.public.siteUrl}images/og/panel-discussion.png`
+      ? `${runtimeConfig.public.siteUrl}images/og/event.png`
       : `${runtimeConfig.public.siteUrl}images/og/event.png`,
   description:
     route.query.section === SectionId.PanelDiscussion2

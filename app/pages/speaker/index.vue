@@ -68,9 +68,10 @@ usePageSeoMeta({
     route.query.section === SectionId.PanelDiscussion
       ? (panelPrograms.value[0]?.title ?? t("speakers.title"))
       : t("speakers.title"),
+  // パネルディスカッション専用のOG Imageを出せるように仕組みを残しておく
   image: () =>
     route.query.section === SectionId.PanelDiscussion
-      ? `${runtimeConfig.public.siteUrl}images/og/panel-discussion.png`
+      ? `${runtimeConfig.public.siteUrl}images/og/speaker.png`
       : `${runtimeConfig.public.siteUrl}images/og/speaker.png`,
   description: () =>
     route.query.section === SectionId.PanelDiscussion
