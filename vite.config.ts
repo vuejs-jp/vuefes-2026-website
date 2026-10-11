@@ -3,7 +3,7 @@ import { defineConfig } from "vite-plus";
 
 type OxlintJsPlugin = string | { name?: string; specifier: string };
 
-const generatedUrl = new URL("./.nuxt/oxlint.config.json", import.meta.url);
+const generatedUrl = new URL("./.oxlint.vize.json", import.meta.url);
 const nuxtLintConfig = JSON.parse(readFileSync(generatedUrl, "utf8"));
 nuxtLintConfig.jsPlugins = nuxtLintConfig.jsPlugins.map((plugin: OxlintJsPlugin) =>
   typeof plugin === "string"

@@ -4,6 +4,7 @@
 .nuxt
 .nitro
 .cache
+.oxlint.vize.json
 dist
 
 # Node dependencies
