@@ -11,9 +11,11 @@ const { staffList, gridMode, columns } = defineProps<{
 
 const gridClass = computed(() => `staff-grid staff-grid-${gridMode}`);
 
+// NOTE: minmax(0, 1fr) keeps every column the same width. A plain `1fr` has an `auto` minimum,
+// so a long unbreakable name (e.g. "@happylifetaka") would widen its column and enlarge the avatar.
 const gridStyle = computed(() =>
   columns && (gridMode === "leader" || gridMode === "core")
-    ? { gridTemplateColumns: `repeat(${columns}, 1fr)` }
+    ? { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }
     : {},
 );
 </script>
@@ -37,12 +39,21 @@ const gridStyle = computed(() =>
   margin-bottom: 1.5rem;
 }
 
+/* row-gap column-gap */
 .staff-grid-leader {
-  gap: 1rem;
+  gap: 1.5rem 1rem;
+
+  @media (--mobile) {
+    gap: 1rem 0.75rem;
+  }
 }
 
 .staff-grid-core {
-  gap: 0.9rem;
+  gap: 1.25rem 0.75rem;
+
+  @media (--mobile) {
+    gap: 0.75rem 0.5rem;
+  }
 }
 
 .staff-grid-volunteer {

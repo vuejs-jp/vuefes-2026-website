@@ -123,7 +123,7 @@ const featureFlags = {
   store: true, // ストアセクション/ページ
 
   // --- 随時公開 ---
-  staff: false, // スタッフ一覧
+  staff: true, // スタッフ一覧
   relatedEvents: false, // 関連イベントページ
   // アクセスは常に表示
 

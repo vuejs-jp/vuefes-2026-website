@@ -4,6 +4,8 @@ import { computed } from "vue";
 export type StaffItemProps = {
   name: string;
   avatarUrl?: string;
+  // Declared as a prop so it is not rendered as a fallthrough attribute (ordering is done by the API).
+  pinned?: boolean;
   socialUrls?: {
     x?: string;
     github?: string;
@@ -51,50 +53,51 @@ const linkComp = computed(() => (socialUrls?.x ? socialUrls.x : socialUrls?.gith
   align-items: center;
   text-decoration: none;
   color: #444;
-  margin-bottom: 1rem;
 
+  /* Name: same size and weight for leaders, cores and volunteers. May wrap onto two lines. */
   p {
     width: 100%;
     text-align: left;
     overflow-wrap: break-word;
     color: var(--color-text-default);
-    margin-top: 1rem;
+    font-family: IBMPlexSansJP-Bold;
+    font-size: 13px;
+    line-height: 1.3;
 
     @media (--mobile) {
-      margin-top: 0.75rem;
+      font-size: 12px;
     }
   }
 
+  /* Leader and core: avatar card with the name below (column count differs per grid) */
   &.staff-link-leader,
   &.staff-link-core {
-    p {
-      font-size: 18px;
-      font-family: IBMPlexSansJP-Bold;
-
-      @media (--mobile) {
-        font-size: 16px;
-      }
-    }
-
     img {
       width: 100%;
       height: auto;
       border-radius: 8%;
       border: 0.5px solid #ddd;
       aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    p {
+      margin-top: 0.5rem;
+
+      @media (--mobile) {
+        margin-top: 0.375rem;
+      }
     }
   }
 
   &.staff-link-volunteer {
-    margin-bottom: 0;
-
     p {
       margin: 0.3rem 0.6rem;
-      text-align: left;
+      line-height: 1.5; /* names-only list: a bit more room between rows */
 
       @media (--mobile) {
-        font-size: 14px;
         margin: 0 0.6rem;
+        line-height: 1.8;
       }
     }
   }

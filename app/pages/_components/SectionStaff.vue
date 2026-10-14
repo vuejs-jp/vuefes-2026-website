@@ -12,12 +12,13 @@ const bp = useBreakpoint();
 
 const { data: staffList } = await useFetch<StaffsResponse>("/api/staffs", { deep: true });
 
+// Leaders: 4 columns (3 on mobile-wide, 2 on mobile). Cores: smaller cards, 5 columns.
 const leaderColumns = computed(() => {
-  return bp.value === "pc" ? 3 : 2;
+  return bp.value === "pc" ? 4 : bp.value === "mobile-wide" ? 3 : 2;
 });
 
 const coreColumns = computed(() => {
-  return bp.value === "pc" ? 4 : 3;
+  return bp.value === "pc" ? 5 : 3;
 });
 
 onMounted(() => {
@@ -51,9 +52,11 @@ function shuffleNonPinned(staffArray: Staff[]): Staff[] {
       <StaffGrid :staff-list="staffList.leaders" grid-mode="leader" :columns="leaderColumns" />
       <StaffGrid :staff-list="staffList.cores" grid-mode="core" :columns="coreColumns" />
 
-      <VFHeading id="volunteer-staff">
-        {{ t("staff.volunteer") }}
-      </VFHeading>
+      <div class="volunteer-heading">
+        <VFHeading id="volunteer-staff">
+          {{ t("staff.volunteer") }}
+        </VFHeading>
+      </div>
 
       <StaffGrid :staff-list="staffList.volunteers" grid-mode="volunteer" />
     </template>
@@ -61,8 +64,19 @@ function shuffleNonPinned(staffArray: Staff[]): Staff[] {
 </template>
 
 <style scoped>
+@import "~/assets/styles/custom-media-query.css";
+
 .staff-description {
   margin: 2rem 0;
   word-break: break-all;
+}
+
+/* Extra breathing room between the core-staff grid and the volunteer heading */
+.volunteer-heading {
+  margin-top: 2.5rem;
+
+  @media (--mobile) {
+    margin-top: 2rem;
+  }
 }
 </style>
