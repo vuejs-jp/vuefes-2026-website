@@ -1,9 +1,10 @@
 name: Sync Ticket
 
 on:
-  schedule:
-    # UTC 16:00 => JST 01:00
-    - cron: "0 16 * * *"
+  # ネームカードの受付が終了したため定期実行は停止中 (必要に応じて手動実行する)
+  # schedule:
+  #   # UTC 16:00 => JST 01:00
+  #   - cron: "0 16 * * *"
   workflow_dispatch:
 
 permissions:
