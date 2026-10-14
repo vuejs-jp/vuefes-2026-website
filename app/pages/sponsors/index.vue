@@ -13,7 +13,7 @@ import {
   usePageSeoMeta,
   useFetch,
 } from "#imports";
-import { VFSection } from "#components";
+import { VFSection, IndividualSponsorList } from "#components";
 
 definePageMeta({ prerender: true });
 
@@ -119,9 +119,7 @@ usePageSeoMeta({
       id="individual-sponsor"
       :title="t('sponsors.individualSponsor')"
     >
-      <div class="sponsor-individual-container">
-        <span v-for="(name, index) in sponsorsData?.INDIVIDUAL ?? []" :key="index">{{ name }}</span>
-      </div>
+      <IndividualSponsorList :names="sponsorsData?.INDIVIDUAL ?? []" />
     </VFSection>
   </div>
 </template>
@@ -165,11 +163,5 @@ usePageSeoMeta({
   column-gap: 8px;
   margin: 0;
   color: var(--color-text-default);
-}
-
-.sponsor-individual-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
 }
 </style>

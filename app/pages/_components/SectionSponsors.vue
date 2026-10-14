@@ -2,7 +2,7 @@
 import { useLocaleRoute } from "@typed-router";
 import { HOME_HEADING_ID } from "~/constant";
 import { useBreakpoint, useI18n, useWithBase, useFetch } from "#imports";
-import { VFSection, SponsorGrid } from "#components";
+import { VFSection, SponsorGrid, IndividualSponsorList } from "#components";
 import type { OptionSponsor } from "~~/server/static-data/types/sponsor";
 import type { SponsorsResponse } from "~/utils/apiResponses";
 
@@ -123,7 +123,7 @@ const hasOptionSponsors = (options?: OptionSponsor[] | null): boolean =>
         {{ t("sponsors.individualSponsor") }}
       </VFHeading>
       <div class="sponsor-individual-container">
-        <span v-for="(name, index) in sponsorsData?.INDIVIDUAL ?? []" :key="index">{{ name }}</span>
+        <IndividualSponsorList :names="sponsorsData?.INDIVIDUAL ?? []" />
       </div>
     </div>
 
@@ -165,8 +165,10 @@ const hasOptionSponsors = (options?: OptionSponsor[] | null): boolean =>
 }
 
 .sponsor-individual-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
+  margin-top: 32px;
+
+  @media (--mobile) {
+    margin-top: 24px;
+  }
 }
 </style>

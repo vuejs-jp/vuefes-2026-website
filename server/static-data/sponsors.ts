@@ -756,7 +756,46 @@ const SPONSORS_OPTION_ONLY: SponsorData[] = [
   },
 ];
 const SPONSORS_CREATIVE: SponsorData[] = [];
-const SPONSORS_INDIVIDUAL: string[] = [];
+// 個人スポンサーの表示名（掲載希望者のみ）。配列の順番どおりに表示され、空の間はセクション自体が非表示になる
+const SPONSORS_INDIVIDUAL: string[] = [
+  "naokihaba",
+  "Yuhei FUJITA",
+  "田中弘治",
+  "みなみ",
+  "mizdra",
+  "ぷーじ",
+  "yamanoku",
+  "hiroko_ino",
+  "aster-mnch",
+  "SerKo",
+  "Anthony Fu",
+  "Natsuki",
+  ".ごっち(Goto Yuta)",
+  "kzhrk",
+  "Katashin",
+  "Shuhei",
+  "うめのこ",
+  "uiuifree",
+  "Jabelic",
+  "ツノ",
+  "LemonNeko",
+  "pita",
+  "Hal",
+  "みずの",
+  "みっちー",
+  "Noel De Martin",
+  "R.Okuyama",
+  "Haruki Tetone",
+  "koya",
+  "Takuya Tejima",
+  "Haoqun Jiang",
+  "ヨウ",
+  "suenryu",
+  "miyake",
+  "江崎伸英",
+  "安積洋@cyber_snufkin",
+  "Daisuke Fujimoto",
+];
 
 const filterSponsorsByOption = (option: Option): SponsorData[] => [
   ...SPONSORS_PLATINUM.filter((sponsor) => sponsor.option?.includes(option)),
