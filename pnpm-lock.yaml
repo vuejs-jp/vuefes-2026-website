@@ -54,8 +54,8 @@ importers:
         specifier: ^3.0.1
         version: 3.4.0(9e09a656c8999ca08a4801e1a7e8f3ac)
       '@ox-content/napi':
-        specifier: ^2.81.0
-        version: 2.81.0
+        specifier: ^3.2.13
+        version: 3.2.13
       '@regle/core':
         specifier: ^1.18.3
         version: 1.19.15(vue@3.6.0-beta.1(typescript@5.9.3))
@@ -2661,47 +2661,47 @@ packages:
     resolution: {integrity: sha512-eSYWTm620tTk45EKSedaUL8MFYI8hW164hIXsgIHyxu3VobUB3fFCu5t0hQby6OoWRPsG1KkKUG2M5UadiLiVg==}
     engines: {node: '>=14'}
 
-  '@ox-content/binding-darwin-arm64@2.81.0':
-    resolution: {integrity: sha512-XyvUuTvOSNiCC80hZHNcVx/8thpvnU2wW4aUoFhpX63JtvAoaOYmifXAlaqtmryf4GNM/BW7iE2ljzs8wHOpug==}
+  '@ox-content/binding-darwin-arm64@3.2.13':
+    resolution: {integrity: sha512-0lVkMuceExP2sm/XNloekSKjMYTLuFYxLfwg0lbURU8kbkYyFvn6QOTacz5zWZNipMngVjj6P4NnyoVW2QcCYg==}
     cpu: [arm64]
     os: [darwin]
 
-  '@ox-content/binding-darwin-x64@2.81.0':
-    resolution: {integrity: sha512-554zl99QPPtrmSXT3eDdO59BdX95IfXB6t1hu48NHEs6VBPXEwtupibW0Ykl1TVeKFWk3+mPM3r5fLLmZuZELA==}
+  '@ox-content/binding-darwin-x64@3.2.13':
+    resolution: {integrity: sha512-YChsHO5N13n7++m0Y4gjhaPOTYuldcMEEI0smYMflgozPwa2mHm1lpaAHIyyzIlag40S2Nx0dtPDzoJ11BspZw==}
     cpu: [x64]
     os: [darwin]
 
-  '@ox-content/binding-linux-arm64-gnu@2.81.0':
-    resolution: {integrity: sha512-ARaIkRDzIb1bHybfXyKS1jSoxvNbylgIInNou5dbw1YWykyHiiAo5t0OE5BpnmbCLNIijM1PEw1ilKQvrtfLLQ==}
+  '@ox-content/binding-linux-arm64-gnu@3.2.13':
+    resolution: {integrity: sha512-B2VB5oVKSYtvB39OBer7k+H776HF6+FJEO/r7uxRCM5UpWdswlzVG8NCJEHtF6Zgctg2p+xmumUvyOyWas/Qsw==}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@ox-content/binding-linux-arm64-musl@2.81.0':
-    resolution: {integrity: sha512-hVcg8jb6Myjq4HAcB5OyAtKygFV9BFtL4Yg1JHDBGtsrAP7IJsh3IhSzxn3Qa24vZMYNavnWgEoZ8qipQ73SMQ==}
+  '@ox-content/binding-linux-arm64-musl@3.2.13':
+    resolution: {integrity: sha512-2TjR+4FYNx97MoFUkzIvUejY3T4U/FinHdW8RVkeCmHXPix51Gh1219lycakZFTp+iNXs2PhR/p3FYYHLDNgtQ==}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@ox-content/binding-linux-x64-gnu@2.81.0':
-    resolution: {integrity: sha512-sm6BcDiSLbIaoUQtlU526IAfhlcODHLOAfWjjdgrlYSFM1nJHFzlPXak+Pgvmsi4HtHR2WqLeOLdDERwwXPDdQ==}
+  '@ox-content/binding-linux-x64-gnu@3.2.13':
+    resolution: {integrity: sha512-OxBVesfjRF/b2xHMsE3dIR67YD/2RFGrVupTsQ6U7Aj0sufiiIF+xT/4oj795fJqMqG6vE0RGXf4hhm29LBh1w==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@ox-content/binding-linux-x64-musl@2.81.0':
-    resolution: {integrity: sha512-PqK+GBMTefizzP6zWxErz1CSzZUpd2BuX+DTkRtpwgQdKYhiSj3Zucap76C3VSGSu4UUHNTBhwRN9Lb8ZNAfjg==}
+  '@ox-content/binding-linux-x64-musl@3.2.13':
+    resolution: {integrity: sha512-D46XCgyL5MzxjmQ8EeUVOskOKvU4noFa8ayXp0+PlrtN7J/UPFlogCdwYYTxwOoHYoBjpwZDx2t1NrIhrL/Yfg==}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@ox-content/binding-win32-x64-msvc@2.81.0':
-    resolution: {integrity: sha512-sybht/3kAjdPdwCMaOxeTDV6JVTA3NBqv0jHmlS28QIiPeb9hCZ2J8paE6+9KcDgHhd3ek66UaGNatTitb4p9Q==}
+  '@ox-content/binding-win32-x64-msvc@3.2.13':
+    resolution: {integrity: sha512-dBlaXaODeavKErGQU9E6NEwEq+jRiFpFaZ6q8J9uZEPyQT93uLEySzDgL7BZU3Jo0VqjpatmqCUPBDJti+bY7g==}
     cpu: [x64]
     os: [win32]
 
-  '@ox-content/napi@2.81.0':
-    resolution: {integrity: sha512-MScNMK7r4LiT62V9ny0YDcHIEb2Tyaip+L49JvVOIT8dPUEma/yJESP1G3wBXww+GBtaEUh1Ylfv7PLy1trSLg==}
+  '@ox-content/napi@3.2.13':
+    resolution: {integrity: sha512-F5PvzfzNnOUhDKFjEqPOrYWjcFFN4YlQY7qrrisw56uBYw/3RCRgNly08TcuyZ2/FfzAe5Pv3ZucMxivs5fbBw==}
 
   '@oxc-parser/binding-android-arm-eabi@0.128.0':
     resolution: {integrity: sha512-aca6ZvzmCBUGOANQRiRQRZuRKYI3ENhcit6GisnknOOmcezfQc7xJ4dxlPU7MV7mOvrC7RNR1u3LAD7xyaiCxA==}
@@ -5551,6 +5551,11 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  acorn@8.19.0:
+    resolution: {integrity: sha512-oJlA3XiRm7Cyk6qFD2Jn8ak9B7jSy0qy00ADO3+8dpT0LSjFihQYv4C02LFCSYJV3Q37xYwwRy5m+IpIiUzqWw==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
@@ -5993,8 +5998,8 @@ packages:
   caniuse-lite@1.0.30001806:
     resolution: {integrity: sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw==}
 
-  caniuse-lite@1.0.30001810:
-    resolution: {integrity: sha512-TITQPUkaz+aVk5GL6NhOdwk1aEaNTSDPsGFWrTuhKGtjTF70jL/Oht2W4c6rXUe5fu7Ie19VIahAXHIIiWWNeg==}
+  caniuse-lite@1.0.30001814:
+    resolution: {integrity: sha512-/Uaf1lAzr59XcMpW0o96WoEfr+VXK2OX4U9AgFoiSHsVJ4HppnIFUjtYzsyDH2+tgANaQb2/oxYGwCPapN1FpA==}
 
   ccount@1.1.0:
     resolution: {integrity: sha512-vlNK021QdI7PNeiUh/lKkC/mNHHfV0m/Ad5JoI0TYtlBnJAslM/JIkm/tGC88bkLIwO6OQ5uV6ztS6kVAtCDlg==}
@@ -7117,8 +7122,8 @@ packages:
     resolution: {integrity: sha512-1KboYwxxCG5kwkJHR5LjFDTD1Mgl8n4PIMcCuhhd/1OqaxlC68P3QKbvvAbZVUtVgtlxEdTgSUwf6yxwzRCuuA==}
     engines: {node: '>= 0.10.26'}
 
-  express-rate-limit@8.7.0:
-    resolution: {integrity: sha512-hOwV7WOxXfjRpAM1DSJWZDXx3GhplwD8IfwuwvogD8i1Qnkgosw/H45s4ZnFAUHDAhPjlY9hLBvJhKmGMyY26g==}
+  express-rate-limit@8.7.1:
+    resolution: {integrity: sha512-2FXbqkygil3mZiXzEtM0IjE/UBmBNot0J1GEVrJT4JbrvwOSoEtqtO+wHbiMQELWe1eNvHoYRg2dkjOid+6JkA==}
     engines: {node: '>= 16'}
     peerDependencies:
       express: '>= 4.11'
@@ -7646,8 +7651,8 @@ packages:
     resolution: {integrity: sha512-Ox1pJVrDCyGHMG9CFg1tmrRUMRPRsAWYc/PinY0XzJU4K7y7vjNoLKIQ7BR5UJMCxNN8EM1MNDmHWA/B3aZUuw==}
     engines: {node: '>=6'}
 
-  hono@4.13.8:
-    resolution: {integrity: sha512-/Gng7NfoykZl2pjukW5Z6+8Yxm3BPRf86GTbQnt0SbySkvax4fyL4H3HhY1cCpBGmiW9XDRFzRV+CXK2W8QudQ==}
+  hono@4.13.13:
+    resolution: {integrity: sha512-CQ46U0ZkAGmbT/4UxdzzGJpacP2IeKgY4a5/tOI9AABbpOMfK739wfDXmv1usCk+3RkKj1hQy4/fjhiwa2xlrA==}
     engines: {node: '>=16.9.0'}
 
   hookable@5.5.3:
@@ -7816,8 +7821,8 @@ packages:
     resolution: {integrity: sha512-ehuGcf94bQXhfagULNXrJdfnWO38v070jxSx/qE87Kjzmu2fU7ro5EFAb+OPituLqgfyuQaym5DlrNydW2sJ9A==}
     engines: {node: '>=12.22.0'}
 
-  ip-address@10.7.2:
-    resolution: {integrity: sha512-7H/2gFSIitxc0hG3nOI1glS8QLo/EHBFFLk8vEUjXY/xu0AdL8jZ9U1IzO2PUm0d2D/ofQcAifb0g6OBkt8U7w==}
+  ip-address@10.7.3:
+    resolution: {integrity: sha512-A1kdq/tSb5QjvKvAMgIoEvDBIgL7qaqVP/jkvSwYYRZ9iEzvPpopxp2wQfu3SuZRHtpHNxMn8Fs0bS+gf5Xmwg==}
     engines: {node: '>= 12'}
 
   ipaddr.js@1.9.1:
@@ -9010,8 +9015,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@3.3.19:
-    resolution: {integrity: sha512-Y2tUNy4ouw6tq5oDSKeQYGOyhkUBhNOcGV/02KC+6kd9eDGqdZd++mjMiIDilrBYvjEnCYvVtsuHCuP+okSfug==}
+  nanoid@3.3.20:
+    resolution: {integrity: sha512-uKdg2G3GNCKQn9byYOpxbGqrT2fGO5KRt5J/8b3pok8rT6qxGWF6hxMyJiEYtAf+FVyYuD9hRaDqX5uPFYJ4ZQ==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -10684,6 +10689,10 @@ packages:
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
+    engines: {node: '>=0.10.0'}
+
+  source-map-js@1.2.2:
+    resolution: {integrity: sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==}
     engines: {node: '>=0.10.0'}
 
   source-map-support@0.5.21:
@@ -13376,9 +13385,9 @@ snapshots:
 
   '@fingerprintjs/botd@2.0.0': {}
 
-  '@hono/node-server@1.19.17(hono@4.13.8)':
+  '@hono/node-server@1.19.17(hono@4.13.13)':
     dependencies:
-      hono: 4.13.8
+      hono: 4.13.13
     optional: true
 
   '@humanfs/core@0.19.2':
@@ -13706,7 +13715,7 @@ snapshots:
 
   '@modelcontextprotocol/sdk@1.27.1(zod@4.4.3)':
     dependencies:
-      '@hono/node-server': 1.19.17(hono@4.13.8)
+      '@hono/node-server': 1.19.17(hono@4.13.13)
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       content-type: 1.0.5
@@ -13715,8 +13724,8 @@ snapshots:
       eventsource: 3.0.7
       eventsource-parser: 3.1.1
       express: 5.2.1
-      express-rate-limit: 8.7.0(express@5.2.1)
-      hono: 4.13.8
+      express-rate-limit: 8.7.1(express@5.2.1)
+      hono: 4.13.13
       jose: 6.2.12
       json-schema-typed: 8.0.2
       pkce-challenge: 5.0.1
@@ -15392,36 +15401,36 @@ snapshots:
 
   '@opentelemetry/semantic-conventions@1.43.0': {}
 
-  '@ox-content/binding-darwin-arm64@2.81.0':
+  '@ox-content/binding-darwin-arm64@3.2.13':
     optional: true
 
-  '@ox-content/binding-darwin-x64@2.81.0':
+  '@ox-content/binding-darwin-x64@3.2.13':
     optional: true
 
-  '@ox-content/binding-linux-arm64-gnu@2.81.0':
+  '@ox-content/binding-linux-arm64-gnu@3.2.13':
     optional: true
 
-  '@ox-content/binding-linux-arm64-musl@2.81.0':
+  '@ox-content/binding-linux-arm64-musl@3.2.13':
     optional: true
 
-  '@ox-content/binding-linux-x64-gnu@2.81.0':
+  '@ox-content/binding-linux-x64-gnu@3.2.13':
     optional: true
 
-  '@ox-content/binding-linux-x64-musl@2.81.0':
+  '@ox-content/binding-linux-x64-musl@3.2.13':
     optional: true
 
-  '@ox-content/binding-win32-x64-msvc@2.81.0':
+  '@ox-content/binding-win32-x64-msvc@3.2.13':
     optional: true
 
-  '@ox-content/napi@2.81.0':
+  '@ox-content/napi@3.2.13':
     optionalDependencies:
-      '@ox-content/binding-darwin-arm64': 2.81.0
-      '@ox-content/binding-darwin-x64': 2.81.0
-      '@ox-content/binding-linux-arm64-gnu': 2.81.0
-      '@ox-content/binding-linux-arm64-musl': 2.81.0
-      '@ox-content/binding-linux-x64-gnu': 2.81.0
-      '@ox-content/binding-linux-x64-musl': 2.81.0
-      '@ox-content/binding-win32-x64-msvc': 2.81.0
+      '@ox-content/binding-darwin-arm64': 3.2.13
+      '@ox-content/binding-darwin-x64': 3.2.13
+      '@ox-content/binding-linux-arm64-gnu': 3.2.13
+      '@ox-content/binding-linux-arm64-musl': 3.2.13
+      '@ox-content/binding-linux-x64-gnu': 3.2.13
+      '@ox-content/binding-linux-x64-musl': 3.2.13
+      '@ox-content/binding-win32-x64-msvc': 3.2.13
 
   '@oxc-parser/binding-android-arm-eabi@0.128.0':
     optional: true
@@ -17754,6 +17763,10 @@ snapshots:
     dependencies:
       acorn: 8.18.0
 
+  acorn-jsx@5.3.2(acorn@8.19.0):
+    dependencies:
+      acorn: 8.19.0
+
   acorn-walk@8.3.5:
     dependencies:
       acorn: 8.18.0
@@ -17763,6 +17776,8 @@ snapshots:
   acorn@8.17.0: {}
 
   acorn@8.18.0: {}
+
+  acorn@8.19.0: {}
 
   agent-base@7.1.4: {}
 
@@ -18251,7 +18266,7 @@ snapshots:
 
   caniuse-lite@1.0.30001806: {}
 
-  caniuse-lite@1.0.30001810: {}
+  caniuse-lite@1.0.30001814: {}
 
   ccount@1.1.0: {}
 
@@ -19394,8 +19409,8 @@ snapshots:
 
   espree@11.2.0:
     dependencies:
-      acorn: 8.18.0
-      acorn-jsx: 5.3.2(acorn@8.18.0)
+      acorn: 8.19.0
+      acorn-jsx: 5.3.2(acorn@8.19.0)
       eslint-visitor-keys: 5.0.1
 
   espree@9.6.1:
@@ -19499,11 +19514,11 @@ snapshots:
     dependencies:
       on-headers: 1.1.0
 
-  express-rate-limit@8.7.0(express@5.2.1):
+  express-rate-limit@8.7.1(express@5.2.1):
     dependencies:
       debug: 4.4.3(supports-color@10.2.2)
       express: 5.2.1
-      ip-address: 10.7.2
+      ip-address: 10.7.3
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -20127,7 +20142,7 @@ snapshots:
 
   hex-rgb@4.3.0: {}
 
-  hono@4.13.8:
+  hono@4.13.13:
     optional: true
 
   hookable@5.5.3: {}
@@ -20336,7 +20351,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ip-address@10.7.2:
+  ip-address@10.7.3:
     optional: true
 
   ipaddr.js@1.9.1: {}
@@ -21529,7 +21544,7 @@ snapshots:
 
   nanoid@3.3.18: {}
 
-  nanoid@3.3.19: {}
+  nanoid@3.3.20: {}
 
   nanoid@5.1.6: {}
 
@@ -21703,7 +21718,7 @@ snapshots:
       '@next/env': 13.5.11
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001810
+      caniuse-lite: 1.0.30001814
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -23416,9 +23431,9 @@ snapshots:
 
   postcss@8.4.31:
     dependencies:
-      nanoid: 3.3.19
+      nanoid: 3.3.20
       picocolors: 1.1.1
-      source-map-js: 1.2.1
+      source-map-js: 1.2.2
 
   postcss@8.5.26:
     dependencies:
@@ -24264,6 +24279,8 @@ snapshots:
       atomic-sleep: 1.0.0
 
   source-map-js@1.2.1: {}
+
+  source-map-js@1.2.2: {}
 
   source-map-support@0.5.21:
     dependencies:
