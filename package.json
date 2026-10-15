@@ -40,7 +40,7 @@
     "cspell": "^10.0.1",
     "d1-driver": "^2.0.2",
     "dotenv": "^17.0.1",
-    "drizzle-kit": "^0.31.4",
+    "drizzle-kit": "^0.31.11",
     "drizzle-orm": "^0.45.2",
     "embla-carousel-vue": "9.0.0-rc01",
     "emoji-regex": "^10.4.0",
